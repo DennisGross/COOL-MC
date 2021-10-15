@@ -3,7 +3,7 @@ entry_points:
     main:
         parameters:
             project_dir : {type: string, default: "../projects"}
-            project_name : {type: string, default: "frozen_lake"}
+            project_name : {type: string, default: "CartPole"}
             parent_run_id : {type: string, default: ""}
             env : {type: string, default: "CartPole-v0" }
             sliding_window_size : {type: float, default: 100}

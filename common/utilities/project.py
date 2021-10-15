@@ -89,7 +89,7 @@ class Project():
         agent = None
         try:
             # Get Model from run artifiact path
-            print(mlflow.get_artifact_uri(artifact_path="model"))
+            print('Here', mlflow.get_artifact_uri(artifact_path="model"))
             model_folder_path = mlflow.get_artifact_uri(artifact_path="model").replace('/file:/','')
             # Build agent with the model and the hyperparameters
             agent = AgentBuilder.build_agent(model_folder_path, command_line_arguments, observation_space, number_of_actions)

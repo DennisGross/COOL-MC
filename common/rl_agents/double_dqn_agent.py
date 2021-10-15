@@ -1,8 +1,11 @@
 import torch
 import numpy as np
+import mlflow
+import shutil
 import torch.nn.functional as F
 from common.rl_agents.agent import Agent
 from collections import OrderedDict
+import os
 
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
@@ -48,7 +51,7 @@ class ReplayBuffer:
 
 class DQNetwork(torch.nn.Module):
 
-  def __init__(self, state_dimension, number_of_actions, number_of_neurons, learning_rate, file_name):
+  def __init__(self, state_dimension, number_of_actions, number_of_neurons, learning_rate):
     super(DQNetwork, self).__init__()
     layers = OrderedDict()
     previous_neurons = state_dimension
@@ -61,7 +64,7 @@ class DQNetwork(torch.nn.Module):
     self.layers = torch.nn.Sequential(layers)
     self.optimizer = torch.optim.RMSprop(self.parameters(), lr=learning_rate)
     self.to(device)
-    self.file_name = file_name
+
 
   def to_torch(self, x):
     return torch.tensor(x).float().to(device)
@@ -72,11 +75,11 @@ class DQNetwork(torch.nn.Module):
       x = F.relu(self.layers[i](x))
     return x
 
-  def save_checkpoint(self):
-    torch.save(self.state_dict(), self.file_name)
+  def save_checkpoint(self, file_name):
+    torch.save(self.state_dict(), file_name)
 
-  def load_checkpoint(self):
-    self.load_state_dict(torch.load(self.file_name))
+  def load_checkpoint(self, file_name):
+    self.load_state_dict(torch.load(file_name))
 
 
 class DoubleDQNAgent(Agent):
@@ -96,20 +99,27 @@ class DoubleDQNAgent(Agent):
     self.exp_counter = 0
     self.learn_step_counter = 0
     # Neural Networks
-    self.q_predict = DQNetwork(self.state_dimension, self.number_of_actions, self.number_of_neurons, learning_rate, "q_predict.chkpt")
-    self.q_target = DQNetwork(self.state_dimension, self.number_of_actions, self.number_of_neurons, learning_rate, "q_target.chkpt")
+    self.q_predict = DQNetwork(self.state_dimension, self.number_of_actions, self.number_of_neurons, learning_rate)
+    self.q_target = DQNetwork(self.state_dimension, self.number_of_actions, self.number_of_neurons, learning_rate)
     # Replay Buffer
     self.replay_buffer = ReplayBuffer(self.state_dimension, mem_size=self.mem_size)
 
   def save(self):
-    #self.q_predict.save_checkpoint()
-    #self.q_target.save_checkpoint()
-    pass
+    try:
+      os.mkdir('tmp_model')
+    except:
+      pass
+    self.q_predict.save_checkpoint('tmp_model/q_predict.chkpt')
+    self.q_target.save_checkpoint('tmp_model/q_target.chkpt')
+    mlflow.log_artifacts("tmp_model", artifact_path="model")
+    shutil.rmtree('tmp_model')
+    #print(mlflow.get_artifact_uri(artifact_path="model"))
+
 
   def load(self):
-    #self.q_predict.load_checkpoint()
-    #self.q_target.load_checkpoint()
-    pass
+    self.q_predict.load_checkpoint(os.path.join(mlflow.get_artifact_uri(artifact_path="model"),'q_predict.chkpt'))
+    self.q_target.load_checkpoint(os.path.join(mlflow.get_artifact_uri(artifact_path="model"),'q_target.chkpt'))
+  
 
   def store_experience(self, state, action, reward, next_state, terminal):
     self.replay_buffer.store_transition(state, action, reward, next_state, terminal)
