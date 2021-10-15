@@ -1,8 +1,10 @@
 import mlflow
 import sys
 import os
+import shutil
 import json
 import mlflow
+import glob
 import random
 import time
 import string
@@ -10,7 +12,7 @@ from distutils.dir_util import copy_tree
 from mlflow.tracking import MlflowClient
 sys.path.insert(0, '..')
 from rl_agents.agent_builder import AgentBuilder
-
+import time
 
 class Project():
 
@@ -34,16 +36,17 @@ class Project():
         return experiment
 
     def __copy_run(self, experiment, run):
-        #new_run = self.client.create_run(self.experiment.experiment_id)
+        # Find unique run_id
         exists = True
         new_run_id = ''.join(random.choices(string.ascii_lowercase + string.digits, k=len(run.info.run_id)+10))
-        run_path = os.path.join(command_line_arguments['project_dir'], experiment.experiment_id, run.info.run_id)
-        new_run_path = os.path.join(command_line_arguments['project_dir'], experiment.experiment_id, new_run_id)
+        run_path = os.path.join(self.command_line_arguments['project_dir'], experiment.experiment_id, run.info.run_id)
+        new_run_path = os.path.join(self.command_line_arguments['project_dir'], experiment.experiment_id, new_run_id)
         while exists:
             new_run_id = ''.join(random.choices(string.ascii_lowercase + string.digits, k=len(run.info.run_id)+10))
-            new_run_path = os.path.join(command_line_arguments['project_dir'], experiment.experiment_id, new_run_id)
+            new_run_path = os.path.join(self.command_line_arguments['project_dir'], experiment.experiment_id, new_run_id)
             exists = os.path.exists(new_run_path)
         copy_tree(run_path, new_run_path)
+        # Modify Meta
         f = open(os.path.join(new_run_path,'meta.yaml'),'r')
         lines = f.readlines()
         f.close()
@@ -55,6 +58,15 @@ class Project():
         f = open(os.path.join(new_run_path,'meta.yaml'),'w')
         f.writelines(lines)
         f.close()
+        # Delete already existing metrics
+        metrics_path = os.path.join(new_run_path, 'metrics')
+        shutil.rmtree(metrics_path)
+        os.mkdir(metrics_path)
+        # Delete already existing params
+        params_path = os.path.join(new_run_path, 'params')
+        shutil.rmtree(params_path)
+        os.mkdir(params_path)
+        # Get run
         run = mlflow.get_run(new_run_id)
         return run
 
@@ -97,10 +109,23 @@ class Project():
     def start(self):
         mlflow.start_run(self.run.info.run_id)
 
+    def log_reward(self, reward, episode):
+        mlflow.log_metric(key='episode_reward', value=reward, step= episode)
+
+    def log_best_reward(self, reward):
+        mlflow.log_param("best_sliding_window_reward", reward)
+
+
+    def log_property(self, property_result, property_query, episode):
+        mlflow.log_metric(key=property_query, value=property_result, step= episode)
+
+    def log_best_reward(self, best_property_result):
+        mlflow.log_param("Best_Property_Result", best_property_result)
+
     def close(self):
         mlflow.end_run()
 
-
+'''
 command_line_arguments = {'project_dir':'./projects', 'always_action':0, 'project_name':'frozen_lake42', 'task':'training', 'architecture':'dummy_agent', 'parent_run_id':''}
 m_project = Project(command_line_arguments, (2,3), 3)
 run_id = m_project.run.info.run_id
@@ -112,3 +137,4 @@ command_line_arguments = {'project_dir':'./projects', 'always_action':0, 'projec
 m_project = Project(command_line_arguments, (2,3), 3) 
 m_project.save()
 m_project.close()
+'''

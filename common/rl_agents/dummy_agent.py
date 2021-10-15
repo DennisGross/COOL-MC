@@ -11,10 +11,10 @@ class DummyAgent():
         self.always_action = always_action
         
 
-    def select_action(self, time_step, deploy):
-        pass
+    def select_action(self, time_step, deploy=False):
+        return self.always_action
 
-    def store_experience(self, time_step, action_step, n_time_step):
+    def store_experience(self, state, action, reward, next_state, terminal):
         pass
 
     def step_learn(self):
