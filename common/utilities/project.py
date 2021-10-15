@@ -1,17 +1,16 @@
-import mlflow
 import sys
 import os
 import shutil
 import json
-import mlflow
 import glob
 import random
 import time
 import string
 from distutils.dir_util import copy_tree
+import mlflow
 from mlflow.tracking import MlflowClient
 sys.path.insert(0, '..')
-from rl_agents.agent_builder import AgentBuilder
+from common.rl_agents.agent_builder import AgentBuilder
 import time
 
 class Project():
@@ -115,6 +114,8 @@ class Project():
     def log_best_reward(self, reward):
         mlflow.log_param("best_sliding_window_reward", reward)
 
+    def log_avg_reward(self, avg_reward, episode):
+        mlflow.log_metric(key='avg_reward', value=avg_reward, step=episode)
 
     def log_property(self, property_result, property_query, episode):
         mlflow.log_metric(key=property_query, value=property_result, step= episode)
