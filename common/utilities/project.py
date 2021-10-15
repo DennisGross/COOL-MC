@@ -9,7 +9,6 @@ import string
 from distutils.dir_util import copy_tree
 import mlflow
 from mlflow.tracking import MlflowClient
-sys.path.insert(0, '..')
 from common.rl_agents.agent_builder import AgentBuilder
 import time
 

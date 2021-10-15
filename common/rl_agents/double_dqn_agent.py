@@ -126,6 +126,8 @@ class DoubleDQNAgent(Agent):
 
 
   def select_action(self, state, deploy=False):
+    if deploy:
+      return int(torch.argmax(self.q_predict.forward(state)).item())
     if torch.rand(1).item() < self.epsilon:
       self.epsilon *= self.epsilon_dec
       self.epsilon = max(self.epsilon, self.epsilon_min)
