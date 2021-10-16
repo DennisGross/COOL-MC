@@ -55,7 +55,7 @@ def get_arguments():
     arg_parser.add_argument('--neurons', help='DummyAgent-Parameter: Which action should the dummy agent choose?', type=int,
                             default=0)
     arg_parser.add_argument('--replay_buffer_size', help='DummyAgent-Parameter: Which action should the dummy agent choose?', type=int,
-                            default=100000)
+                            default=300000)
     arg_parser.add_argument('--epsilon', help='Epsilon Starting Rate', type=float,
                             default=1)
     arg_parser.add_argument('--epsilon_dec', help='Epsilon Decreasing Rate', type=float,
@@ -77,7 +77,8 @@ def get_arguments():
 if __name__ == '__main__':
     command_line_arguments = get_arguments()
     command_line_arguments['task'] = 'safe_training'
-    command_line_arguments['eval_interval'] = 250
+    command_line_arguments['num_episodes'] = 1
+    command_line_arguments['eval_episodes'] = 1
     print(command_line_arguments)
     prism_file_path = os.path.join(command_line_arguments['prism_dir'], command_line_arguments['prism_file_path'])
     env = SafeGym(prism_file_path,command_line_arguments['constant_definitions'], command_line_arguments['max_steps'], command_line_arguments['wrong_action_penalty'], command_line_arguments['reward_flag'], command_line_arguments['disabled_features'])

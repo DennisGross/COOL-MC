@@ -19,3 +19,5 @@ pip install pyglet
 pip install mlflow
 # Install PyTorch
 pip install torch
+# Install Pytest
+pip install pytest

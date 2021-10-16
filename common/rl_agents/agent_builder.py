@@ -1,5 +1,6 @@
 import os
 from common.rl_agents.dummy_agent import DummyAgent
+from common.rl_agents.dummy_frozen_lake_agent import DummyFrozenLakeAgent
 from common.rl_agents.double_dqn_agent import DoubleDQNAgent
 
 '''
@@ -28,6 +29,11 @@ class AgentBuilder():
         if command_line_arguments['rl_algorithm'] == 'dummy_agent':
             print("Build Dummy Agent.")
             agent = DummyAgent(observation_space.shape[0], action_space.n, command_line_arguments['always_action'])
+            if model_root_folder_path!= None:
+                agent.load(model_root_folder_path)
+        elif command_line_arguments['rl_algorithm'] == 'dummy_frozen_lake_agent':
+            print("Build Dummy Frozen Lake Agent.")
+            agent = DummyFrozenLakeAgent(observation_space.shape[0], action_space.n, command_line_arguments['always_action'])
             if model_root_folder_path!= None:
                 agent.load(model_root_folder_path)
         elif command_line_arguments['rl_algorithm'] == 'double_dqn_agent':

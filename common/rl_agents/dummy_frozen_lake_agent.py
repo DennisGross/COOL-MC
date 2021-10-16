@@ -4,7 +4,8 @@ import shutil
 import mlflow
 import json
 from common.rl_agents.agent import Agent
-class DummyAgent(Agent):
+
+class DummyFrozenLakeAgent(Agent):
 
     def __init__(self, observation_space, number_of_actions, always_action):
         self.observation_space = observation_space
@@ -12,8 +13,24 @@ class DummyAgent(Agent):
         self.always_action = always_action
         
 
-    def select_action(self, time_step, deploy=False):
-        return self.always_action
+    def select_action(self, state, deploy=False):
+        if state.tolist() == [0, 0, 3]:
+            return 0
+        elif state.tolist() == [0, 0, 2]:
+            return 0
+        elif state.tolist() == [0, 0, 1]:
+            return 2
+        elif state.tolist() == [0, 1, 1]:
+            return 2
+        elif state.tolist() == [0, 2, 1]:
+            return 0
+        elif state.tolist() == [0, 2, 0]:
+            return 2
+        elif state.tolist() == [0, 3, 0]:
+            return 0
+        elif state.tolist() == [1, 3, 0]:
+            return 0
+        return 0
 
     def store_experience(self, state, action, reward, next_state, terminal):
         pass

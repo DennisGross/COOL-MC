@@ -6,20 +6,31 @@ import gym
 import random
 import math
 import numpy as np
+from collections import deque
 
 
 def train(project, env, monitor = None):
     all_episode_rewards = []
     all_property_results = []
     best_average = -math.inf
+    last_max_steps_states = deque(maxlen=project.command_line_arguments['max_steps']*2)
+    last_max_steps_actions = deque(maxlen=project.command_line_arguments['max_steps']*2)
+    last_max_steps_rewards = deque(maxlen=project.command_line_arguments['max_steps']*2)
+    last_max_steps_terminals = deque(maxlen=project.command_line_arguments['max_steps']*2)
     try:
         for episode in range(project.command_line_arguments['num_episodes']):
             state = env.reset()
+            last_max_steps_states.append(state)
             episode_reward = 0
             while True:
                 action = project.agent.select_action(state)
                 next_state, reward, terminal, info = env.step(action)
                 project.agent.store_experience(state, action, reward, next_state, terminal)
+                # Collect last max_steps states, actions, and rewards
+                last_max_steps_states.append(next_state)
+                last_max_steps_actions.append(action)
+                last_max_steps_rewards.append(reward)
+                last_max_steps_terminals.append(terminal)
                 project.agent.step_learn()
                 state = next_state
                 episode_reward+=reward
@@ -55,5 +66,7 @@ def train(project, env, monitor = None):
     project.log_best_reward(best_reward_of_sliding_window)
     if project.command_line_arguments['task']=='safe_training':
         pass
+
+    return list(last_max_steps_states), list(last_max_steps_actions), list(last_max_steps_rewards), list(last_max_steps_terminals)
 
 

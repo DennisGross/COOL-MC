@@ -136,3 +136,4 @@ dmypy.json
 mlruns/**
 projects/**
 engine/**
+unit_testing/projects

@@ -1,0 +1,9 @@
+name: unit_testing
+
+entry_points:
+  main:
+    command: >-
+            python run.py
+  test_safe_gym:
+    command: >-
+            pytest -s -vv test_safe_gym.py
