@@ -72,7 +72,10 @@ class DQNetwork(torch.nn.Module):
   def forward(self, x):
     x = self.to_torch(x)
     for i in range(len(self.layers)):
-      x = F.relu(self.layers[i](x))
+      if i == (len(self.layers)-1):
+        x = self.layers[i](x)
+      else:
+        x = F.relu(self.layers[i](x))
     return x
 
   def save_checkpoint(self, file_name):

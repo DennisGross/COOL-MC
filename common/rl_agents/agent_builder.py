@@ -38,9 +38,7 @@ class AgentBuilder():
                 agent.load(model_root_folder_path)
         elif command_line_arguments['rl_algorithm'] == 'double_dqn_agent':
             print("Build Dummy Double DQN Agent.")
-            
             number_of_neurons = AgentBuilder.layers_neurons_to_number_of_neurons(command_line_arguments['layers'],command_line_arguments['neurons'])
-            
             agent = DoubleDQNAgent(observation_space.shape[0], action_space.n, number_of_neurons, command_line_arguments['replay_buffer_size'], command_line_arguments['epsilon'], command_line_arguments['epsilon_dec'], command_line_arguments['epsilon_min'], command_line_arguments['gamma'], command_line_arguments['replace'], command_line_arguments['lr'], command_line_arguments['batch_size'])
             try:
                 agent.load()

@@ -36,8 +36,6 @@ def get_arguments():
                             default='slippery=0.04')
     arg_parser.add_argument('--prop', help='Property Specification', type=str,
                             default='Pmin=? [F "water"]')
-    arg_parser.add_argument('--prop_type', help='Maximal Reward (max_reward), Minimal Reward (min_reward), Property minimization (min_prop) or maximization (max_prop).', type=str,
-                            default='min_reward')
     arg_parser.add_argument('--max_steps', help='Maximal steps in environment', type=int,
                             default=20)
     arg_parser.add_argument('--disabled_features', help='Features which should not be used by the RL agent: FEATURE1,FEATURE2,...', type=str,

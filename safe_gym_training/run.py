@@ -25,8 +25,10 @@ def get_arguments():
                             default=100)
     arg_parser.add_argument('--num_episodes', help='What is the number of training episodes?', type=int,
                             default=1000)
+    arg_parser.add_argument('--eval_interval', help='What is the number of training episodes?', type=int,
+                            default=100)
     arg_parser.add_argument('--rl_algorithm', help='What is the  used RL algorithm?', type=str,
-                            default='dummy_agent')
+                            default='double_dqn_agent')
     # Model Checking
     arg_parser.add_argument('--prism_dir', help='In which folder should we save your projects?', type=str,
                             default='../prism_files')
@@ -36,16 +38,14 @@ def get_arguments():
                             default='slippery=0.04')
     arg_parser.add_argument('--prop', help='Property Specification', type=str,
                             default='Pmin=? [F "water"]')
-    arg_parser.add_argument('--prop_type', help='Maximal Reward (max_reward), Minimal Reward (min_reward), Property minimization (min_prop) or maximization (max_prop).', type=str,
-                            default='min_reward')
     arg_parser.add_argument('--max_steps', help='Maximal steps in environment', type=int,
-                            default=20)
+                            default=100)
     arg_parser.add_argument('--disabled_features', help='Features which should not be used by the RL agent: FEATURE1,FEATURE2,...', type=str,
                             default='')
     arg_parser.add_argument('--wrong_action_penalty', help='Wrong action penalty', type=int,
                             default=1000)
-    arg_parser.add_argument('--reward_flag', help='Reward Flag', type=bool,
-                            default=False)
+    arg_parser.add_argument('--reward_flag', help='Reward Flag (', type=int,
+                            default=0)
     # Dummy Agent
     arg_parser.add_argument('--always_action', help='DummyAgent-Parameter: Which action should the dummy agent choose?', type=int,
                             default=0)
@@ -73,12 +73,21 @@ def get_arguments():
     args, unknown_args = arg_parser.parse_known_args(sys.argv)
     return vars(args)
 
+def parse_prop_type(prop):
+    if prop.find("min") < prop.find("=") and prop.find("min") != -1:
+        return "min_prop"
+    elif prop.find("max") < prop.find("=") and prop.find("max") != -1:
+        return "max_prop"
+    else:
+        return "reward"
+
+
 
 if __name__ == '__main__':
     command_line_arguments = get_arguments()
     command_line_arguments['task'] = 'safe_training'
-    command_line_arguments['num_episodes'] = 1
-    command_line_arguments['eval_episodes'] = 1
+    command_line_arguments['prop_type'] = parse_prop_type(command_line_arguments['prop'])
+    command_line_arguments['reward_flag'] = command_line_arguments['reward_flag']  == 1
     print(command_line_arguments)
     prism_file_path = os.path.join(command_line_arguments['prism_dir'], command_line_arguments['prism_file_path'])
     env = SafeGym(prism_file_path,command_line_arguments['constant_definitions'], command_line_arguments['max_steps'], command_line_arguments['wrong_action_penalty'], command_line_arguments['reward_flag'], command_line_arguments['disabled_features'])

@@ -9,7 +9,7 @@ import numpy as np
 from collections import deque
 
 
-def train(project, env, monitor = None):
+def train(project, env, monitor = None, prop_type=''):
     all_episode_rewards = []
     all_property_results = []
     best_average = -math.inf
@@ -46,19 +46,26 @@ def train(project, env, monitor = None):
                 # Log Property Result
                 mdp_reward_result, model_size, _, _ = env.storm_bridge.model_checker.induced_markov_chain(project.agent, env, project.command_line_arguments['constant_definitions'], project.command_line_arguments['prop'])
                 all_property_results.append(mdp_reward_result)
+                if all_property_results[-1] == min(all_property_results) and prop_type == "min_prop" or all_property_results[-1] == max(all_property_results) and prop_type == "max_prop":
+                    project.save()
                 project.log_property(all_property_results[-1], 'Property Result', episode)
-                print(episode, "Episode\tReward", episode_reward, '\tAverage Reward', reward_of_sliding_window, "\tProperty Result:", mdp_reward_result)
+                print(episode, "Episode\tReward", episode_reward, '\tAverage Reward', reward_of_sliding_window, "\tLast Property Result:", mdp_reward_result)
             else:
-                # Only log reward (OpenAI Gym Training)
+                # Only log reward
                 all_episode_rewards.append(episode_reward)
                 project.log_reward(all_episode_rewards[-1], episode)
                 reward_of_sliding_window = np.mean(all_episode_rewards[-project.command_line_arguments['sliding_window_size']:])
                 project.log_avg_reward(reward_of_sliding_window, episode)
                 sys.stdout.flush()
-                print(episode, "Episode\tReward", episode_reward, '\tAverage Reward', reward_of_sliding_window)
+                if len(all_property_results) > 0:
+                    print(episode, "Episode\tReward", episode_reward, '\tAverage Reward', reward_of_sliding_window, "\tLast Property Result:", all_property_results[-1])
+                else:
+                    print(episode, "Episode\tReward", episode_reward, '\tAverage Reward', reward_of_sliding_window, "\tLast Property Result:", None)
+
             if reward_of_sliding_window  > best_average:
                 best_reward_of_sliding_window = reward_of_sliding_window
-                project.save()
+                if prop_type=='reward':
+                    project.save()
     except KeyboardInterrupt:
         pass
     
