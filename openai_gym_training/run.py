@@ -20,7 +20,7 @@ def get_arguments():
     arg_parser.add_argument('--env', help='In which environment do you want to train your RL agent?', type=str,
                             default='CartPole-v0')
     arg_parser.add_argument('--sliding_window_size', help='What is the sliding window size for the reward averaging?', type=int,
-                            default=3)
+                            default=100)
     arg_parser.add_argument('--num_episodes', help='What is the number of training episodes?', type=int,
                             default=1000)
     arg_parser.add_argument('--rl_algorithm', help='What is the  used RL algorithm?', type=str,
@@ -57,6 +57,7 @@ if __name__ == '__main__':
     command_line_arguments = get_arguments()
     command_line_arguments['task'] = 'openai_gym_training'
     command_line_arguments['eval_interval'] = 1
+    command_line_arguments['max_steps'] = 10
     env = gym.make(command_line_arguments['env'])
     m_project = Project(command_line_arguments, env.observation_space, env.action_space)
-    train(m_project, env)
+    train(m_project, env, prop_type='reward')

@@ -4,16 +4,16 @@ entry_points:
         parameters:
             project_dir : {type: string, default: "../projects"}
             project_name : {type: string, default: "Frozen Lake"}
-            parent_run_id : {type: string, default: ""}
+            parent_run_id : {type: string, default: "d164baa35e2347c7b43c0fb9cf5e10b9"}
             env : {type: string, default: "Frozen Lake" }
             sliding_window_size : {type: float, default: 100}
             num_episodes : {type: float, default: 50000}
-            eval_interval : {type: float, default: 100}
-            rl_algorithm : {type: string, default: "dummy_frozen_lake_agent" }
+            eval_interval : {type: float, default: 1}
+            rl_algorithm : {type: string, default: "double_dqn_agent" }
             # Model Checking Parameters
             prism_dir : {type: string, default: "../prism_files"}
-            prism_file_path : {type: string, default: "frozen_lake_4x4.prism"}
-            constant_definitions : {type: string, default: "slippery=0.04"}
+            prism_file_path : {type: string, default: "frozen_lake_nxn.prism"}
+            constant_definitions : {type: string, default: "slippery=0.04,SIZE=4"}
             prop : {type: string, default: "Pmin=? [F \"water\"]"}
             prop_type : {type: string, default: "min_prop"}
             max_steps : {type: float, default: 100}

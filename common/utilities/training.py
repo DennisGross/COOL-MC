@@ -46,7 +46,8 @@ def train(project, env, monitor = None, prop_type=''):
                 # Log Property Result
                 mdp_reward_result, model_size, _, _ = env.storm_bridge.model_checker.induced_markov_chain(project.agent, env, project.command_line_arguments['constant_definitions'], project.command_line_arguments['prop'])
                 all_property_results.append(mdp_reward_result)
-                if all_property_results[-1] == min(all_property_results) and prop_type == "min_prop" or all_property_results[-1] == max(all_property_results) and prop_type == "max_prop":
+
+                if (all_property_results[-1] == min(all_property_results) and prop_type == "min_prop") or (all_property_results[-1] == max(all_property_results) and prop_type == "max_prop"):
                     project.save()
                 project.log_property(all_property_results[-1], 'Property Result', episode)
                 print(episode, "Episode\tReward", episode_reward, '\tAverage Reward', reward_of_sliding_window, "\tLast Property Result:", mdp_reward_result)

@@ -119,9 +119,12 @@ class DoubleDQNAgent(Agent):
     #print(mlflow.get_artifact_uri(artifact_path="model"))
 
 
-  def load(self):
-    self.q_predict.load_checkpoint(os.path.join(mlflow.get_artifact_uri(artifact_path="model"),'q_predict.chkpt'))
-    self.q_target.load_checkpoint(os.path.join(mlflow.get_artifact_uri(artifact_path="model"),'q_target.chkpt'))
+  def load(self, model_root_folder_path):
+    try:
+      self.q_predict.load_checkpoint(os.path.join(model_root_folder_path,'q_predict.chkpt'))
+      self.q_target.load_checkpoint(os.path.join(model_root_folder_path,'q_target.chkpt'))
+    except:
+      pass
   
 
   def store_experience(self, state, action, reward, next_state, terminal):

@@ -22,7 +22,10 @@ class Project():
         self.experiment = self.init_experiment(self.project_name)
         self.run = self.create_new_run(self.command_line_arguments['task'], self.command_line_arguments['parent_run_id'])
         self.start()
-        self.agent = self.create_agent(self.command_line_arguments, observation_space, number_of_actions)
+        # Try to load agent hyperparameters and update command_line_arguments
+        self.load_agent_hyperparamters()
+        if observation_space!= None and number_of_actions!=None:
+            self.agent = self.create_agent(self.command_line_arguments, observation_space, number_of_actions)
 
 
     def init_experiment(self, project_name):
@@ -32,6 +35,20 @@ class Project():
             experiment_id = self.client.get_experiment_by_name(project_name).experiment_id
         experiment = self.client.get_experiment(experiment_id)
         return experiment
+
+    def load_agent_hyperparamters(self):
+        meta_folder_path = mlflow.get_artifact_uri(artifact_path="meta").replace('/file:/','')
+        # If rerun, take all the command line arguments from previous run into account except the following:
+        command_line_arguments_file_path = os.path.join(meta_folder_path, 'command_line_arguments.json')
+        if os.path.exists(command_line_arguments_file_path):
+            with open(command_line_arguments_file_path) as json_file:
+                old_data = json.load(json_file)
+                for k in old_data.keys():
+                    if k != 'constant_definitions' or k != 'prop':
+                        self.command_line_arguments[k] = old_data[k]
+            
+
+        
 
     def __copy_run(self, experiment, run):
         # Find unique run_id
@@ -98,11 +115,14 @@ class Project():
         return agent
 
     def save(self):
+        # Agent
         self.agent.save()
         with open("command_line_arguments.json", 'w') as f:
             json.dump(self.command_line_arguments, f, indent=2)
+        # Command Line Arguments
         mlflow.log_artifact("command_line_arguments.json", artifact_path="meta")
         os.remove('command_line_arguments.json')
+        # 
 
     def start(self):
         mlflow.start_run(self.run.info.run_id)
