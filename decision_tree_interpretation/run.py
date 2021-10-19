@@ -4,18 +4,8 @@ import os
 sys.path.insert(0, '../')
 from common.interpreter.data_generator import *
 from common.utilities.project import Project
-from common.utilities.training import train
 from common.safe_gym.safe_gym import SafeGym
-import mlflow
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.model_selection import train_test_split
-from sklearn import metrics
-from joblib import dump, load
-from six import StringIO
-
-from sklearn.tree import export_graphviz
-from IPython.display import Image  
-import pydotplus
+from common.interpreter.interpreter import Interpreter
 
 def get_arguments():
     arg_parser = argparse.ArgumentParser(
@@ -56,31 +46,6 @@ if __name__ == '__main__':
     env = SafeGym(prism_file_path, command_line_arguments['constant_definitions'],10, 1000, False, '')
     command_line_arguments['task'] = task
     project = Project(command_line_arguments, env.observation_space, env.action_space)
+    interpreter = Interpreter(env, project)
     if task == 'decision_tree_training':
-        df, features = create_dataset(project.agent, env)
-        X = df[features]
-        y = df['action']
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1, random_state=1)
-        #  Create Decision Tree classifer object
-        clf = DecisionTreeClassifier()
-
-        # Train Decision Tree Classifer
-        clf = clf.fit(X_train,y_train)
-
-        #Predict the response for test dataset
-        y_pred = clf.predict(X_test)
-        print(X_test, y_pred)
-        # Model Accuracy
-        acc = metrics.accuracy_score(y_test, y_pred)
-        print("Accuracy:",acc)
-
-        dot_data = StringIO()
-        export_graphviz(clf, out_file=dot_data,  
-                        filled=True, rounded=True,
-                        special_characters=True,feature_names = features,class_names=sorted(df.action.unique().tolist()))
-        graph = pydotplus.graph_from_dot_data(dot_data.getvalue())  
-        #graph.write_png(os.path.join('./', 'decision_tree.png'))
-        Image(graph.create_png())
-        project.log_accuracy(acc)
-        project.save()
-        #dump(clf, os.path.join(self.project.project_folder_path, 'decision_tree.joblib')) 
+        interpreter.train_and_visualize_decision_tree()

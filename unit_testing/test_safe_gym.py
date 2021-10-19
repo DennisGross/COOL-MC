@@ -26,6 +26,7 @@ def dummy_agent_safe_frozen_lake_double_dqn_agent():
     env = SafeGym(prism_file_path,command_line_arguments['constant_definitions'], command_line_arguments['max_steps'], command_line_arguments['wrong_action_penalty'], command_line_arguments['reward_flag'], command_line_arguments['disabled_features'])
     m_project = Project(command_line_arguments, env.observation_space, env.action_space)
     return m_project, env
+    
 
 @pytest.fixture(scope='session')
 def dummy_agent_safe_frozen_lake_dummy_frozen_lake_agent():
