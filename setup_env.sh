@@ -1,3 +1,5 @@
+# Install graphviy
+sudo apt-get install graphviz -y
 mkdir engine
 cd engine
 # Create Virtual-Envrionment
@@ -21,3 +23,8 @@ pip install mlflow
 pip install torch
 # Install Pytest
 pip install pytest
+# Install Sklearn
+pip install sklearn
+# Install ipython
+pip install ipython
+# Install pydotplus

@@ -4,7 +4,7 @@ entry_points:
         parameters:
             project_dir : {type: string, default: "../projects"}
             project_name : {type: string, default: "Frozen Lake"}
-            parent_run_id : {type: string, default: "d164baa35e2347c7b43c0fb9cf5e10b9"}
+            parent_run_id : {type: string, default: ""}
             # Model Checking Parameters
             prism_dir : {type: string, default: "../prism_files"}
             prism_file_path : {type: string, default: "frozen_lake_nxn.prism"}

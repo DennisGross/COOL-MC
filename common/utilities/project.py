@@ -114,7 +114,7 @@ class Project():
             agent = AgentBuilder.build_agent(None, command_line_arguments, observation_space, number_of_actions)
         return agent
 
-    def save(self):
+    def save(self, data_collector=None):
         # Agent
         self.agent.save()
         with open("command_line_arguments.json", 'w') as f:
@@ -122,7 +122,11 @@ class Project():
         # Command Line Arguments
         mlflow.log_artifact("command_line_arguments.json", artifact_path="meta")
         os.remove('command_line_arguments.json')
-        # 
+        # Sate Collection
+        if data_collector!=None:
+            data_collector.save()
+            mlflow.log_artifact(data_collector.csv_file_path, artifact_path="data")
+            os.remove(data_collector.csv_file_path)
 
     def start(self):
         mlflow.start_run(self.run.info.run_id)
@@ -141,6 +145,10 @@ class Project():
 
     def log_best_reward(self, best_property_result):
         mlflow.log_param("Best_Property_Result", best_property_result)
+
+    def log_accuracy(self, acc):
+        mlflow.log_param("Decision_Tree_Accuracy", acc)
+
 
     def close(self):
         mlflow.end_run()

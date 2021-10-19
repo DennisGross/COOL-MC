@@ -7,7 +7,7 @@ import random
 import math
 import numpy as np
 from collections import deque
-
+from common.interpreter.data_collector import DataCollector
 
 def train(project, env, monitor = None, prop_type=''):
     all_episode_rewards = []
@@ -17,12 +17,15 @@ def train(project, env, monitor = None, prop_type=''):
     last_max_steps_actions = deque(maxlen=project.command_line_arguments['max_steps']*2)
     last_max_steps_rewards = deque(maxlen=project.command_line_arguments['max_steps']*2)
     last_max_steps_terminals = deque(maxlen=project.command_line_arguments['max_steps']*2)
+    m_data_collector = DataCollector('./', env.storm_bridge.state_json_example)
     try:
         for episode in range(project.command_line_arguments['num_episodes']):
             state = env.reset()
             last_max_steps_states.append(state)
             episode_reward = 0
             while True:
+                # Collect Data
+                m_data_collector.store_state(state)
                 action = project.agent.select_action(state)
                 next_state, reward, terminal, info = env.step(action)
                 project.agent.store_experience(state, action, reward, next_state, terminal)
@@ -48,7 +51,7 @@ def train(project, env, monitor = None, prop_type=''):
                 all_property_results.append(mdp_reward_result)
 
                 if (all_property_results[-1] == min(all_property_results) and prop_type == "min_prop") or (all_property_results[-1] == max(all_property_results) and prop_type == "max_prop"):
-                    project.save()
+                    project.save(m_data_collector)
                 project.log_property(all_property_results[-1], 'Property Result', episode)
                 print(episode, "Episode\tReward", episode_reward, '\tAverage Reward', reward_of_sliding_window, "\tLast Property Result:", mdp_reward_result)
             else:
@@ -66,7 +69,7 @@ def train(project, env, monitor = None, prop_type=''):
             if reward_of_sliding_window  > best_average:
                 best_reward_of_sliding_window = reward_of_sliding_window
                 if prop_type=='reward':
-                    project.save()
+                    project.save(m_data_collector)
     except KeyboardInterrupt:
         pass
     

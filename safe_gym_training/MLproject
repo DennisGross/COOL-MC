@@ -4,7 +4,7 @@ entry_points:
         parameters:
             project_dir : {type: string, default: "../projects"}
             project_name : {type: string, default: "Frozen Lake"}
-            parent_run_id : {type: string, default: "d164baa35e2347c7b43c0fb9cf5e10b9"}
+            parent_run_id : {type: string, default: "0c33dd9671414edaa2680e1fec5d1967"}
             env : {type: string, default: "Frozen Lake" }
             sliding_window_size : {type: float, default: 100}
             num_episodes : {type: float, default: 50000}
@@ -15,7 +15,6 @@ entry_points:
             prism_file_path : {type: string, default: "frozen_lake_nxn.prism"}
             constant_definitions : {type: string, default: "slippery=0.04,SIZE=4"}
             prop : {type: string, default: "Pmin=? [F \"water\"]"}
-            prop_type : {type: string, default: "min_prop"}
             max_steps : {type: float, default: 100}
             disabled_features : {type: string, default: ""}
             wrong_action_penalty : {type: float, default: 1000}
@@ -37,4 +36,4 @@ entry_points:
 
 
         command: >-
-            python run.py --project_dir={project_dir} --project_name={project_name} --parent_run_id={parent_run_id} --env={env} --sliding_window_size={sliding_window_size} --num_episodes={num_episodes} --eval_interval={eval_interval} --rl_algorithm={rl_algorithm} --prism_dir={prism_dir} --prism_file_path={prism_file_path} --constant_definitions={constant_definitions} --prop={prop} --prop_type={prop_type} --reward_flag={reward_flag} --max_steps={max_steps} --disabled_features={disabled_features} --wrong_action_penalty={wrong_action_penalty} --always_action={always_action} --layers={layers} --neurons={neurons} --replay_buffer_sie={replay_buffer_sie} --epsilon={epsilon} --epsilon_dec={epsilon_dec} --epsilon_min={epsilon_min} --gamma={gamma} --replace={replace} --lr={lr} --batch_size={batch_size}
+            python run.py --project_dir={project_dir} --project_name={project_name} --parent_run_id={parent_run_id} --env={env} --sliding_window_size={sliding_window_size} --num_episodes={num_episodes} --eval_interval={eval_interval} --rl_algorithm={rl_algorithm} --prism_dir={prism_dir} --prism_file_path={prism_file_path} --constant_definitions={constant_definitions} --prop={prop} --reward_flag={reward_flag} --max_steps={max_steps} --disabled_features={disabled_features} --wrong_action_penalty={wrong_action_penalty} --always_action={always_action} --layers={layers} --neurons={neurons} --replay_buffer_sie={replay_buffer_sie} --epsilon={epsilon} --epsilon_dec={epsilon_dec} --epsilon_min={epsilon_min} --gamma={gamma} --replace={replace} --lr={lr} --batch_size={batch_size}
