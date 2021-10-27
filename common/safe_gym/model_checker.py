@@ -58,7 +58,7 @@ class ModelChecker():
         '''
         state = env.storm_bridge.parse_state(json.dumps(state_dict))
         action_index = agent.select_action(state, True)
-        return env.action_mapper.actions[action_index]
+        return env.action_mapper.actions[action_index], state, action_index
 
 
     def induced_markov_chain(self, agent, env, constant_definitions, formula_str = 'Rmin=? [LRA]'):
@@ -107,7 +107,7 @@ class ModelChecker():
             # conditions on the action
             state = self.__get_clean_state_dict(
                 state_valuation.to_json(), env.storm_bridge.state_json_example)
-            selected_action = self.__get_action_for_state(env, agent, state)
+            selected_action, collected_state, collected_action = self.__get_action_for_state(env, agent, state)
             # Check if selected action is available.. if not set action to the first available action
             #print(selected_action)
             if len(available_actions) == 0:
@@ -139,4 +139,6 @@ class ModelChecker():
         initial_state = model.initial_states[0]
         #print('Result for initial state', result.at(initial_state))
         mdp_reward_result = result.at(initial_state)
+
+        # Update StateActionCollector
         return mdp_reward_result, model_size, (time.time()-start_time), (time.time()-model_checking_start_time)

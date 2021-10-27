@@ -3,7 +3,6 @@ from common.rl_agents.dummy_agent import DummyAgent
 from common.rl_agents.dummy_frozen_lake_agent import DummyFrozenLakeAgent
 from common.rl_agents.double_dqn_agent import DoubleDQNAgent
 from common.rl_agents.sarsa_max_agent import SarsaMaxAgent
-
 '''
 HOW TO ADD MORE AGENTS?
 1) Create a new AGENTNAME.py with an AGENTNAME class
