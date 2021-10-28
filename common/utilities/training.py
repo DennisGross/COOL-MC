@@ -22,8 +22,12 @@ def train(project, env, prop_type=''):
             last_max_steps_states.append(state)
             episode_reward = 0
             while True:
+                if state.__class__.__name__ == 'int':
+                    state = [state]
                 action = project.agent.select_action(state)
                 next_state, reward, terminal, info = env.step(action)
+                if next_state.__class__.__name__ == 'int':
+                    next_state = [next_state]
                 project.agent.store_experience(state, action, reward, next_state, terminal)
                 # Collect last max_steps states, actions, and rewards
                 last_max_steps_states.append(next_state)

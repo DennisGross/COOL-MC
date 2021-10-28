@@ -100,7 +100,7 @@ class MlFlowBridge:
         return None
 
     def get_agent_path(self):
-        model_folder_path = mlflow.get_artifact_uri(artifact_path="model").replace('/file:/','')
+        model_folder_path = mlflow.get_artifact_uri(artifact_path="model").replace('file:///home/','/home/')
         return model_folder_path
 
     def log_reward(self, reward, episode):

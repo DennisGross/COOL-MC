@@ -120,9 +120,11 @@ class DoubleDQNAgent(Agent):
 
 
   def load(self, model_root_folder_path):
+    
     try:
       self.q_predict.load_checkpoint(os.path.join(model_root_folder_path,'q_predict.chkpt'))
       self.q_target.load_checkpoint(os.path.join(model_root_folder_path,'q_target.chkpt'))
+      print("Model loaded..")
     except:
       pass
   
@@ -132,6 +134,7 @@ class DoubleDQNAgent(Agent):
 
 
   def select_action(self, state, deploy=False):
+    
     if deploy:
       return int(torch.argmax(self.q_predict.forward(state)).item())
     if torch.rand(1).item() < self.epsilon:

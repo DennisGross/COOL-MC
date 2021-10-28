@@ -2,8 +2,8 @@ name: openai_gym_training
 entry_points:
     main:
         parameters:
-            project_name : {type: string, default: "Safe Frozen Lake"}
-            parent_run_id : {type: string, default: ""}
+            project_name : {type: string, default: "Frozen-Lake"}
+            parent_run_id : {type: string, default: "c5f1714f7947469c94edc7964aadad5d"}
             env : {type: string, default: "Frozen Lake" }
             sliding_window_size : {type: float, default: 100}
             num_episodes : {type: float, default: 10}
@@ -11,9 +11,9 @@ entry_points:
             rl_algorithm : {type: string, default: "double_dqn_agent" }
             # Model Checking Parameters
             prism_dir : {type: string, default: "../prism_files"}
-            prism_file_path : {type: string, default: "frozen_lake_nxn.prism"}
-            constant_definitions : {type: string, default: "slippery=0.04,SIZE=4"}
-            prop : {type: string, default: "Pmin=? [F \"water\"]"}
+            prism_file_path : {type: string, default: "frozen_lake-v1.prism"}
+            constant_definitions : {type: string, default: "slippery=0.04"}
+            prop : {type: string, default: "Pmin=? [F IS_IN_HOLE=true ]"}
             max_steps : {type: float, default: 100}
             disabled_features : {type: string, default: ""}
             wrong_action_penalty : {type: float, default: 1000}

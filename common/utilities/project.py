@@ -14,10 +14,16 @@ class Project():
     def load_saved_command_line_arguments(self):
         saved_command_line_arguments = self.mlflow_bridge.load_command_line_arguments()
         if saved_command_line_arguments != None:
-            del saved_command_line_arguments['prop']
+            try:
+                del saved_command_line_arguments['prop']
+            except:
+                pass
             del saved_command_line_arguments['task']
             del saved_command_line_arguments['parent_run_id']
-            del saved_command_line_arguments['constant_definitions']
+            try:
+                del saved_command_line_arguments['constant_definitions']
+            except:
+                pass
             for key in saved_command_line_arguments.keys():
                 self.command_line_arguments[key] = saved_command_line_arguments[key]
         
@@ -28,7 +34,7 @@ class Project():
             model_folder_path = self.mlflow_bridge.get_agent_path()
             # Build agent with the model and the hyperparameters
             agent = AgentBuilder.build_agent(model_folder_path, command_line_arguments, observation_space, number_of_actions)
-        except:
+        except Exception as msg:
             # If Model was not saved
             agent = AgentBuilder.build_agent(None, command_line_arguments, observation_space, number_of_actions)
         self.agent = agent

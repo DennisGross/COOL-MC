@@ -2,11 +2,11 @@ name: openai_gym_training
 entry_points:
     main:
         parameters:
-            project_name : {type: string, default: "CartPole"}
+            project_name : {type: string, default: "Frozen-Lake V1"}
             parent_run_id : {type: string, default: ""}
-            env : {type: string, default: "CartPole-v0" }
+            env : {type: string, default: "FrozenLake-v1" }
             sliding_window_size : {type: float, default: 100}
-            num_episodes : {type: float, default: 101}
+            num_episodes : {type: float, default: 25000}
             rl_algorithm : {type: string, default: "double_dqn_agent" }
             # Dummy Agent Parameters
             always_action : {type: float, default: 0}
