@@ -45,6 +45,7 @@ class ModelChecker():
             for _key in example_json.keys():
                 if key == _key:
                     state[key] = state_valuation_json[key]
+                    
         
         return state
 
@@ -109,7 +110,6 @@ class ModelChecker():
                 state_valuation.to_json(), env.storm_bridge.state_json_example)
             selected_action, collected_state, collected_action = self.__get_action_for_state(env, agent, state)
             # Check if selected action is available.. if not set action to the first available action
-            #print(selected_action)
             if len(available_actions) == 0:
                 return False
             if (selected_action in available_actions) == False:
@@ -139,6 +139,5 @@ class ModelChecker():
         initial_state = model.initial_states[0]
         #print('Result for initial state', result.at(initial_state))
         mdp_reward_result = result.at(initial_state)
-
         # Update StateActionCollector
         return mdp_reward_result, model_size, (time.time()-start_time), (time.time()-model_checking_start_time)

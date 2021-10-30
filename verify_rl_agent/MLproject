@@ -2,13 +2,13 @@ name: verify_rl_agent
 entry_points:
     main:
         parameters:
-            project_name : {type: string, default: "Frozen-Lake V1"}
-            parent_run_id : {type: string, default: "fb6725b8caae450d9c1bd6c2af41f622"}
+            project_name : {type: string, default: "Frozen-Lake"}
+            parent_run_id : {type: string, default: "34197c6edcc04b44a2b39703eb6598d1"}
             # Model Checking Parameters
             prism_dir : {type: string, default: "../prism_files"}
             prism_file_path : {type: string, default: "frozen_lake-v1.prism"}
-            constant_definitions : {type: string, default: "slippery=0.04"}
-            prop : {type: string, default: "Pmin=? [F IS_IN_HOLE=true]"}
+            constant_definitions : {type: string, default: "slippery=0.10"}
+            prop : {type: string, default: "Pmin=? [F AT_FRISBEE=true]"}
 
 
         command: >-

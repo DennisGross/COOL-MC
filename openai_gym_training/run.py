@@ -23,6 +23,9 @@ def get_arguments():
                             default=1000)
     arg_parser.add_argument('--rl_algorithm', help='What is the  used RL algorithm?', type=str,
                             default='double_dqn_agent')
+    arg_parser.add_argument('--deploy', help='Deploy Mode?', type=int,
+                            default=0)
+
     # Dummy Agent
     arg_parser.add_argument('--always_action', help='DummyAgent-Parameter: Which action should the dummy agent choose?', type=int,
                             default=0)
@@ -41,6 +44,8 @@ def get_arguments():
                             default=0)
     arg_parser.add_argument('--gamma', help='Gamma', type=float,
                             default=0)
+    arg_parser.add_argument('--alpha', help='Gamma', type=float,
+                            default=0)
     arg_parser.add_argument('--replace', help='Replace Target Network Intervals', type=int,
                             default=0)
     arg_parser.add_argument('--lr', help='Learning Rate', type=float,
@@ -55,7 +60,8 @@ if __name__ == '__main__':
     command_line_arguments = get_arguments()
     command_line_arguments['task'] = 'openai_gym_training'
     command_line_arguments['eval_interval'] = 1
-    command_line_arguments['max_steps'] = 10
+    command_line_arguments['max_steps'] = 20
+    command_line_arguments['deploy'] = (1 == command_line_arguments['deploy'])
     env = gym.make(command_line_arguments['env'])
     m_project = Project(command_line_arguments)
     m_project.init_mlflow_bridge(command_line_arguments['project_name'],command_line_arguments['task'],command_line_arguments['parent_run_id'])

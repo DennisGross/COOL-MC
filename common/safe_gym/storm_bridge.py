@@ -47,7 +47,7 @@ class StormBridge:
                         value = 1
                     else:
                         value = 0
-                dummy_state[k] = value
+                dummy_state[k] = int(value)
         json_object = json.dumps(dummy_state)  
         return json_object
 
@@ -137,7 +137,8 @@ class StormBridge:
                 else:
                     value = 0
             arr.append(value)
-        return np.array(arr, dtype=np.float32)
+        state = np.array(arr, dtype=np.int32)
+        return state
 
 
     

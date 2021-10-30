@@ -11,7 +11,7 @@ from collections import deque
 def train(project, env, prop_type=''):
     all_episode_rewards = []
     all_property_results = []
-    best_average = -math.inf
+    best_reward_of_sliding_window = -math.inf
     last_max_steps_states = deque(maxlen=project.command_line_arguments['max_steps']*2)
     last_max_steps_actions = deque(maxlen=project.command_line_arguments['max_steps']*2)
     last_max_steps_rewards = deque(maxlen=project.command_line_arguments['max_steps']*2)
@@ -24,7 +24,8 @@ def train(project, env, prop_type=''):
             while True:
                 if state.__class__.__name__ == 'int':
                     state = [state]
-                action = project.agent.select_action(state)
+                
+                action = project.agent.select_action(state, project.command_line_arguments['deploy']==True)
                 next_state, reward, terminal, info = env.step(action)
                 if next_state.__class__.__name__ == 'int':
                     next_state = [next_state]
@@ -66,18 +67,18 @@ def train(project, env, prop_type=''):
                 else:
                     print(episode, "Episode\tReward", episode_reward, '\tAverage Reward', reward_of_sliding_window, "\tLast Property Result:", None)
 
-            if reward_of_sliding_window  > best_average:
+            if reward_of_sliding_window  > best_reward_of_sliding_window:
                 best_reward_of_sliding_window = reward_of_sliding_window
                 if prop_type=='reward':
                     project.save()
     except KeyboardInterrupt:
         pass
-    
-    # Log overall metrics
-    project.mlflow_bridge.log_best_reward(best_reward_of_sliding_window)
-    if project.command_line_arguments['task']=='safe_training':
-        #TODO: Save Metrics
-        pass
+    finally:
+        # Log overall metrics
+        project.mlflow_bridge.log_best_reward(best_reward_of_sliding_window)
+        if project.command_line_arguments['task']=='safe_training':
+            #TODO: Save Metrics
+            pass
 
     return list(last_max_steps_states), list(last_max_steps_actions), list(last_max_steps_rewards), list(last_max_steps_terminals)
 
