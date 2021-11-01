@@ -4,7 +4,15 @@ import json
 import sys
 import time
 
+
+
+
 class ModelChecker():
+
+    def __init__(self):
+        self.current_state = None
+        self.permissive = False
+
 
     def optimal_checking(self, environment, prop):
         '''
@@ -49,7 +57,11 @@ class ModelChecker():
         
         return state
 
-    def __get_action_for_state(self, env, agent, state_dict):
+    def __get_numpy_state(self, env, state_dict):
+        state = env.storm_bridge.parse_state(json.dumps(state_dict))
+        return state
+
+    def __get_action_for_state(self, env, agent, state):
         '''
         Get the action for the current state
         :param env: environment
@@ -57,7 +69,6 @@ class ModelChecker():
         :param policy: rl policy
         :return: action name
         '''
-        state = env.storm_bridge.parse_state(json.dumps(state_dict))
         action_index = agent.select_action(state, True)
         return env.action_mapper.actions[action_index], state, action_index
 
@@ -93,6 +104,8 @@ class ModelChecker():
         #options = stormpy.BuilderOptions()
         options.set_build_state_valuations()
         options.set_build_choice_labels(True)
+        
+        current_state = None
 
 
         def permissive_policy(state_valuation, action_index):
@@ -108,15 +121,30 @@ class ModelChecker():
             # conditions on the action
             state = self.__get_clean_state_dict(
                 state_valuation.to_json(), env.storm_bridge.state_json_example)
-            selected_action, collected_state, collected_action = self.__get_action_for_state(env, agent, state)
+            state = self.__get_numpy_state(env, state)
+            if self.current_state == None or self.current_state != state:
+                self.current_state = state
+                # Get all permissive states
+                print('New', self.current_state)
+                # Get all actions for these permissive states
+            else:
+                print('Same', self.current_state)
+            
             # Check if selected action is available.. if not set action to the first available action
             if len(available_actions) == 0:
                 return False
-            if (selected_action in available_actions) == False:
-                #print(state_valuation.to_json())
-                selected_action = available_actions[0]
-
-            cond1 = (action_name == selected_action)
+            
+            cond1 = False
+            if self.permissive:
+                for selected_action in self.permissive_actions:
+                    if (selected_action in available_actions) == False:
+                        selected_action = available_actions[0]
+                    cond1 |= (action_name == selected_action)
+            else:
+                selected_action, collected_state, collected_action = self.__get_action_for_state(env, agent, state)
+                if (selected_action in available_actions) == False:
+                    selected_action = available_actions[0]
+                cond1 = (action_name == selected_action)
             # print(str(state_valuation.to_json()), action_name)#, state, selected_action, cond1)
             return cond1
 

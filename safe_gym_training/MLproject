@@ -7,7 +7,7 @@ entry_points:
             env : {type: string, default: "Frozen Lake" }
             sliding_window_size : {type: float, default: 100}
             num_episodes : {type: float, default: 2500}
-            eval_interval : {type: float, default: 1000}
+            eval_interval : {type: float, default: 1}
             rl_algorithm : {type: string, default: "sarsamax" }
             # Model Checking Parameters
             prism_dir : {type: string, default: "../prism_files"}
