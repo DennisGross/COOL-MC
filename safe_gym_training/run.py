@@ -44,9 +44,14 @@ def get_arguments():
                             default=1000)
     arg_parser.add_argument('--reward_flag', help='Reward Flag (', type=int,
                             default=0)
+    arg_parser.add_argument('--deploy', help='Deploy Flag (', type=int,
+                            default=0)
     # Dummy Agent
     arg_parser.add_argument('--always_action', help='DummyAgent-Parameter: Which action should the dummy agent choose?', type=int,
                             default=0)
+    # Sarsamax
+    arg_parser.add_argument('--alpha', help='Gamma', type=float,
+                            default=0.99)
     # Double DQN Agent
     arg_parser.add_argument('--layers', help='DummyAgent-Parameter: Which action should the dummy agent choose?', type=int,
                             default=0)

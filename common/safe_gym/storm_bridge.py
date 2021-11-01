@@ -1,4 +1,5 @@
 import random
+import os
 import json
 import numpy as np
 import stormpy
@@ -6,6 +7,10 @@ import stormpy as sp
 import stormpy.examples.files
 import stormpy.simulator as sps
 from common.safe_gym.model_checker import ModelChecker
+from common.safe_gym.state_transformer import StateTransformer
+
+
+
 '''
 This class should be the only class that has contact with Storm.
 '''
@@ -27,6 +32,8 @@ class StormBridge:
         self.wrong_action_penalty = wrong_action_penalty
         self.reward_flag = reward_flag
         self.path = path
+        json_path = os.path.join(os.path.splitext(self.path)[0],'.json')
+        self.state_transformer = StateTransformer(json_path)
         
 
     def __preprocess_state_json_example(self, json_example):
@@ -127,6 +134,7 @@ class StormBridge:
         :return numpy state
         '''
         arr = []
+        state_variables = []
         for k in json.loads(state):
             if k in self.disabled_features:
                 continue
@@ -136,8 +144,10 @@ class StormBridge:
                     value = 1
                 else:
                     value = 0
+            state_variables.append(k)
             arr.append(value)
         state = np.array(arr, dtype=np.int32)
+        state = self.state_transformer.transform(state, state_variables)
         return state
 
 
