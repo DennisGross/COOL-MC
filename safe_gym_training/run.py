@@ -46,6 +46,9 @@ def get_arguments():
                             default=0)
     arg_parser.add_argument('--deploy', help='Deploy Flag (', type=int,
                             default=0)
+    # Permissive Options
+    arg_parser.add_argument('--permissive_input', help='Define the state variables which we want to ignore for the permissive policy', type=str,
+                            default='')
     # Dummy Agent
     arg_parser.add_argument('--always_action', help='DummyAgent-Parameter: Which action should the dummy agent choose?', type=int,
                             default=0)
