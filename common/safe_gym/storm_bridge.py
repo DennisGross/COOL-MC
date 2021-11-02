@@ -7,7 +7,7 @@ import stormpy as sp
 import stormpy.examples.files
 import stormpy.simulator as sps
 from common.safe_gym.model_checker import ModelChecker
-from common.safe_gym.state_transformer import StateTransformer
+from common.safe_gym.state_mapper import StateMapper
 
 
 
@@ -16,7 +16,7 @@ This class should be the only class that has contact with Storm.
 '''
 class StormBridge:
 
-    def __init__(self, path, constant_definitions, wrong_action_penalty, reward_flag, disabled_features):
+    def __init__(self, path, constant_definitions, wrong_action_penalty, reward_flag, disabled_features, permissive_input):
         '''
         Initialize Storm Bridge.
         :param path, path to prism file
@@ -26,14 +26,14 @@ class StormBridge:
         '''
         self.disabled_features = disabled_features
         self.simulator = self.create_simulator(path, constant_definitions)
-        self.model_checker = ModelChecker()
         self.constant_definitions = constant_definitions
         self.state_json_example = self.__preprocess_state_json_example(self.simulator.restart()[0])
         self.wrong_action_penalty = wrong_action_penalty
         self.reward_flag = reward_flag
         self.path = path
         json_path = os.path.join(os.path.splitext(self.path)[0],'.json')
-        self.state_transformer = StateTransformer(json_path)
+        self.state_mapper = StateMapper(json_path, self.state_json_example)
+        self.model_checker = ModelChecker(permissive_input, self.state_mapper)
         
 
     def __preprocess_state_json_example(self, json_example):
@@ -147,7 +147,7 @@ class StormBridge:
             state_variables.append(k)
             arr.append(value)
         state = np.array(arr, dtype=np.int32)
-        state = self.state_transformer.transform(state, state_variables)
+        state = self.state_mapper.map(state, state_variables)
         return state
 
 

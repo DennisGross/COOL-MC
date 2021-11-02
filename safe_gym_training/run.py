@@ -45,7 +45,7 @@ def get_arguments():
     arg_parser.add_argument('--reward_flag', help='Reward Flag (', type=int,
                             default=0)
     arg_parser.add_argument('--deploy', help='Deploy Flag (', type=int,
-                            default=0)
+                            default=0)        
     # Permissive Options
     arg_parser.add_argument('--permissive_input', help='Define the state variables which we want to ignore for the permissive policy', type=str,
                             default='')
@@ -76,6 +76,7 @@ def get_arguments():
                             default=0.004)
     arg_parser.add_argument('--batch_size', help='Batch Size', type=int,
                             default=32)
+
     args, unknown_args = arg_parser.parse_known_args(sys.argv)
     return vars(args)
 
@@ -96,7 +97,7 @@ if __name__ == '__main__':
     command_line_arguments['reward_flag'] = command_line_arguments['reward_flag']  == 1
     prism_file_path = os.path.join(command_line_arguments['prism_dir'], command_line_arguments['prism_file_path'])
     # Environment
-    env = SafeGym(prism_file_path,command_line_arguments['constant_definitions'], command_line_arguments['max_steps'], command_line_arguments['wrong_action_penalty'], command_line_arguments['reward_flag'], command_line_arguments['disabled_features'])
+    env = SafeGym(prism_file_path,command_line_arguments['constant_definitions'], command_line_arguments['max_steps'], command_line_arguments['wrong_action_penalty'], command_line_arguments['reward_flag'], command_line_arguments['permissive_input'], command_line_arguments['disabled_features'])
     # Project
     m_project = Project(command_line_arguments)
     m_project.init_mlflow_bridge(command_line_arguments['project_name'],command_line_arguments['task'],command_line_arguments['parent_run_id'])

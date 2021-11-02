@@ -19,7 +19,7 @@ entry_points:
             wrong_action_penalty : {type: float, default: 1000}
             reward_flag : {type: float, default: 0}
             deploy : {type: float, default: 0}
-            permissive_input: {type: string, default: ""}
+            permissive_input: {type: string, default: "pos=[0,4]"}
 
             #Sarsamax
             alpha : {type: float, default: 0.8}

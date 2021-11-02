@@ -3,15 +3,14 @@ import stormpy
 import json
 import sys
 import time
-
+from common.safe_gym.permissive_manager import PermissiveManager
 
 
 
 class ModelChecker():
 
-    def __init__(self):
-        self.current_state = None
-        self.permissive = False
+    def __init__(self, permissive_input, mapper):
+        self.m_permissive_manager = PermissiveManager(permissive_input, mapper)
 
 
     def optimal_checking(self, environment, prop):
@@ -105,7 +104,6 @@ class ModelChecker():
         options.set_build_state_valuations()
         options.set_build_choice_labels(True)
         
-        current_state = None
 
 
         def permissive_policy(state_valuation, action_index):
@@ -122,24 +120,16 @@ class ModelChecker():
             state = self.__get_clean_state_dict(
                 state_valuation.to_json(), env.storm_bridge.state_json_example)
             state = self.__get_numpy_state(env, state)
-            if self.current_state == None or self.current_state != state:
-                self.current_state = state
-                # Get all permissive states
-                print('New', self.current_state)
-                # Get all actions for these permissive states
-            else:
-                print('Same', self.current_state)
+            
             
             # Check if selected action is available.. if not set action to the first available action
             if len(available_actions) == 0:
                 return False
             
             cond1 = False
-            if self.permissive:
-                for selected_action in self.permissive_actions:
-                    if (selected_action in available_actions) == False:
-                        selected_action = available_actions[0]
-                    cond1 |= (action_name == selected_action)
+            if self.m_permissive_manager.is_permissive:
+                self.m_permissive_manager.manage_actions(state, agent)
+                cond1 = self.m_permissive_manager.create_condition(available_actions, action_name)
             else:
                 selected_action, collected_state, collected_action = self.__get_action_for_state(env, agent, state)
                 if (selected_action in available_actions) == False:
