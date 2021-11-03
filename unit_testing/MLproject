@@ -7,3 +7,8 @@ entry_points:
   test_safe_gym:
     command: >-
             pytest -s -vv test_safe_gym.py
+  
+  test_permissive_gym:
+    command: >-
+            pytest -s -vv test_permissive_gym.py
+            
