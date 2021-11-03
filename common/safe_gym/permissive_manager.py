@@ -62,7 +62,7 @@ class PStateVariable:
             print(pstate_variables[i])
         # Generate States
         all_states = PStateVariable.__generate_all_states(pstate_variables, fix_state, 0)
-        print(all_states)
+        print('Generated States', all_states, 'for', fix_state)
         return all_states
 
     @staticmethod
@@ -90,6 +90,7 @@ class PStateVariable:
                 all_current_states.extend(sub_states)
         
         
+        
 
         
 
@@ -105,6 +106,11 @@ class PermissiveManager:
 
     def manage_actions(self, state, agent):
         if self.current_state == None or self.current_state != state:
+            # Reset Actions
+            self.permissive_actions = []
+            # Reset all pstate_variables
+            for pstate_variable in self.pstate_variables:
+                pstate_variable.reset()
             self.current_state = state
             # Get all permissive states
             #print('New', self.current_state)
@@ -113,7 +119,7 @@ class PermissiveManager:
                 action = agent.select_action(state, deploy=True)
                 self.permissive_actions.append(action)
             # Get all actions for these permissive states
-            print(self.permissive_actions)
+            print('Actions', self.permissive_actions)
         return self.permissive_actions
 
     def create_condition(self, available_actions, action_name):
