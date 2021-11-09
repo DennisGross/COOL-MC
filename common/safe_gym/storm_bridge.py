@@ -31,7 +31,7 @@ class StormBridge:
         self.wrong_action_penalty = wrong_action_penalty
         self.reward_flag = reward_flag
         self.path = path
-        json_path = os.path.join(os.path.splitext(self.path)[0],'.json')
+        json_path = os.path.splitext(self.path)[0]+'.json'
         self.state_mapper = StateMapper(json_path, self.state_json_example)
         self.model_checker = ModelChecker(permissive_input, self.state_mapper)
         

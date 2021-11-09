@@ -2,9 +2,9 @@ name: openai_gym_training
 entry_points:
     main:
         parameters:
-            project_name : {type: string, default: "Frozen-Lake"}
+            project_name : {type: string, default: "Avoid"}
             parent_run_id : {type: string, default: ""}
-            env : {type: string, default: "FrozenLake-v1" }
+            env : {type: string, default: "avoid:avoid-v0" }
             sliding_window_size : {type: float, default: 100}
             num_episodes : {type: float, default: 50000}
             rl_algorithm : {type: string, default: "sarsamax" }
