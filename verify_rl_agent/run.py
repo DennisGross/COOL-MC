@@ -19,6 +19,8 @@ def get_arguments():
                             default='')
     arg_parser.add_argument('--permissive_input', help='Constant definitions of the formal model (PRISM model)', type=str,
                             default='')
+    arg_parser.add_argument('--disabled_features', help='Disabled features', type=str,
+                            default='')
     # Model Checking
     arg_parser.add_argument('--prism_dir', help='In which folder should we save your projects?', type=str,
                             default='../prism_files')
@@ -28,7 +30,7 @@ def get_arguments():
                             default='slippery=0.04')
     arg_parser.add_argument('--prop', help='Property Specification', type=str,
                             default='Pmin=? [F "water"]')
-
+    
     args, unknown_args = arg_parser.parse_known_args(sys.argv)
     return vars(args)
 

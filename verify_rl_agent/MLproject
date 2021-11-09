@@ -10,7 +10,8 @@ entry_points:
             constant_definitions : {type: string, default: "slippery=0.10"}
             prop : {type: string, default: "Pmin=? [F AT_FRISBEE=true]"}
             permissive_input: {type: string, default: "pos=[0,2]"}
+            disable_features: {type: string, default: ""}
 
 
         command: >-
-            python run.py --permissive_input={permissive_input} --project_name={project_name} --parent_run_id={parent_run_id} --prism_dir={prism_dir} --prism_file_path={prism_file_path} --constant_definitions={constant_definitions} --prop={prop}
+            python run.py --permissive_input={permissive_input} --disable_features={disable_features} --project_name={project_name} --parent_run_id={parent_run_id} --prism_dir={prism_dir} --prism_file_path={prism_file_path} --constant_definitions={constant_definitions} --prop={prop}

@@ -98,7 +98,7 @@ class Avoid(gym.Env):
     def reset(self):
         self.steps = 0
         self.MAX_STEPS = 20
-        self.slickness = 0.1    
+        self.slickness = 0.1   
         self.x = 0
         self.y = 0
         self.obst1_x = 4
