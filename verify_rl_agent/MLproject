@@ -10,7 +10,6 @@ entry_points:
             constant_definitions : {type: string, default: "slippery=0.10"}
             prop : {type: string, default: "Pmin=? [F AT_FRISBEE=true]"}
             permissive_input: {type: string, default: "pos=[0,2]"}
-            disable_features: {type: string, default: ""}
 
 
         command: >-
