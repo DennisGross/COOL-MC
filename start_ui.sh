@@ -1,1 +1,1 @@
-mlflow ui --backend-store-uri projects
+mlflow ui --backend-store-uri mlruns

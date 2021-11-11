@@ -149,6 +149,3 @@ class StormBridge:
         state = np.array(arr, dtype=np.int32)
         state = self.state_mapper.map(state, state_variables)
         return state
-
-
-    
