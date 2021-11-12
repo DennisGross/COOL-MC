@@ -7,9 +7,10 @@ entry_points:
             # Model Checking Parameters
             prism_dir : {type: string, default: "../prism_files"}
             prism_file_path : {type: string, default: "frozen_lake-v1.prism"}
-            constant_definitions : {type: string, default: "slippery=0.10"}
+            constant_definitions : {type: string, default: "slippery=[0.1;0.1;1]"}
             prop : {type: string, default: "Pmin=? [F AT_FRISBEE=true]"}
-            permissive_input: {type: string, default: "pos=[0,2]"}
+            permissive_input: {type: string, default: ""}
+            disable_features: {type: string, default: ""}
 
 
         command: >-

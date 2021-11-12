@@ -27,4 +27,5 @@ pip install pytest
 pip install sklearn
 # Install ipython
 pip install ipython
-# Install pydotplus
+# Install matplotlib
+pip install matplotlib

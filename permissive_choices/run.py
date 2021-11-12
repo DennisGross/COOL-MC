@@ -72,17 +72,12 @@ if __name__ == '__main__':
     m_project.create_agent(command_line_arguments, env.observation_space, env.action_space)
     
     # 2. parse state from user input (need to be the same format)
-    state = json.dumps(parse_input_state_to_dict(command_line_arguments['input_state']))
-    state = env.storm_bridge.parse_state(state)
+    state_dict = json.dumps(parse_input_state_to_dict(command_line_arguments['input_state']))
+    state = env.storm_bridge.parse_state(state_dict)
     # Generate actions
     m_permissive_manager = PermissiveManager(command_line_arguments['permissive_input'], env.storm_bridge.state_mapper)
     all_pairs = m_permissive_manager.manage_permissive_state_actions_pairs(state, m_project.agent)
-    print("All decisions for state", state,":")
+    print("All decisions for state", state_dict, command_line_arguments['permissive_input'], ":")
     for key in all_pairs.keys():
         print(key, env.action_mapper.action_index_to_action_name(all_pairs[key]))
 
-
-    # Saving Stuff
-    #print(command_line_arguments['prop'], ':', mdp_reward_result)
-    #m_project.mlflow_bridge.log_best_property_result(mdp_reward_result)
-    #m_project.save()
