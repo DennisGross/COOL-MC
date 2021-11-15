@@ -1,7 +1,7 @@
 mdp
 const int xMax=4;
 const int yMax=4;
-const double slickness=0.1;
+const double slickness;
 //At North Border
 formula NORTH_BORDER = (y=yMax);
 formula NOT_NORTH_BORDER = (NORTH_BORDER=false);
@@ -47,6 +47,7 @@ formula STING = (obstacle1_x=x) & (obstacle1_y=y) & (obstacle2_x=x) & (obstacle2
 
 //Done
 formula IS_NOT_DONE = (done=false);
+formula IS_DONE = (done = true);
 
 module agent
 	//Location
@@ -70,6 +71,12 @@ module agent
 	[east] STING & IS_NOT_DONE-> (done'=true);
 	[south] STING & IS_NOT_DONE -> (done'=true);
 	[west] STING & IS_NOT_DONE -> (done'=true);
+
+
+	[north] STING  & IS_DONE -> (done'=done);
+	[east] STING & IS_DONE-> (done'=done);
+	[south] STING & IS_DONE -> (done'=done);
+	[west] STING & IS_DONE -> (done'=done);
 endmodule
 
 module obstacle1

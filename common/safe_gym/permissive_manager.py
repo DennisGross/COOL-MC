@@ -100,7 +100,7 @@ class PermissiveManager:
         self.permissive_actions = []
 
     def manage_actions(self, state, agent):
-        if self.current_state == None or self.current_state != state:
+        if (self.current_state is None) or (np.array_equiv(self.current_state, state)):
             # Reset Actions
             self.permissive_actions = []
             # Reset all pstate_variables

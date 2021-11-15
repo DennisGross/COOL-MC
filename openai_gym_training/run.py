@@ -12,15 +12,15 @@ def get_arguments():
     args = argparse.Namespace()
     unknown_args = list()
     arg_parser.add_argument('--project_name', help='What is the name of your project?', type=str,
-                            default='CartPole2')
+                            default='Avoid')
     arg_parser.add_argument('--parent_run_id', help='Do you want to continue training of a RL agent? Name the run_id of the last training unit (see mlflow ui).', type=str,
                             default='')
     arg_parser.add_argument('--env', help='In which environment do you want to train your RL agent?', type=str,
-                            default='CartPole-v0')
+                            default='avoid.envs:Avoid')
     arg_parser.add_argument('--sliding_window_size', help='What is the sliding window size for the reward averaging?', type=int,
                             default=100)
     arg_parser.add_argument('--num_episodes', help='What is the number of training episodes?', type=int,
-                            default=1000)
+                            default=10000)
     arg_parser.add_argument('--rl_algorithm', help='What is the  used RL algorithm?', type=str,
                             default='double_dqn_agent')
     arg_parser.add_argument('--deploy', help='Deploy Mode?', type=int,
@@ -37,21 +37,21 @@ def get_arguments():
     arg_parser.add_argument('--replay_buffer_size', help='DummyAgent-Parameter: Which action should the dummy agent choose?', type=int,
                             default=100000)
     arg_parser.add_argument('--epsilon', help='Epsilon Starting Rate', type=float,
-                            default=0)
+                            default=1)
     arg_parser.add_argument('--epsilon_dec', help='Epsilon Decreasing Rate', type=float,
-                            default=0)
+                            default=0.99999)
     arg_parser.add_argument('--epsilon_min', help='Minimal Epsilon Value', type=float,
-                            default=0)
+                            default=0.1)
     arg_parser.add_argument('--gamma', help='Gamma', type=float,
-                            default=0)
+                            default=0.99)
     arg_parser.add_argument('--alpha', help='Gamma', type=float,
-                            default=0)
+                            default=0.6)
     arg_parser.add_argument('--replace', help='Replace Target Network Intervals', type=int,
-                            default=0)
+                            default=342)
     arg_parser.add_argument('--lr', help='Learning Rate', type=float,
-                            default=0)
+                            default=0.0001)
     arg_parser.add_argument('--batch_size', help='Batch Size', type=int,
-                            default=32)
+                            default=64)
     args, unknown_args = arg_parser.parse_known_args(sys.argv)
     return vars(args)
 

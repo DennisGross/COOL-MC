@@ -9,7 +9,6 @@ class StateMapper:
 
     def load_mappings(self, transformation_file_path, state_json_example):
         mapper = None
-        print(transformation_file_path)
         if os.path.exists(transformation_file_path):
             with open(transformation_file_path) as json_file:
                 mapper = json.load(json_file)

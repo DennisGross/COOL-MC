@@ -30,23 +30,20 @@ def get_arguments():
                             default='slippery=0.04')
     arg_parser.add_argument('--prop', help='Property Specification', type=str,
                             default='Pmin=? [F "water"]')
-    
+    arg_parser.add_argument('--disabled_features', help='Features for disabling', type=str,
+                            default='')
     args, unknown_args = arg_parser.parse_known_args(sys.argv)
     return vars(args)
 
-def manage_disable_features(command_line_arguments):
-    if 'disabled_features' not in command_line_arguments.keys():
-        command_line_arguments['disabled_features'] = ''
-    return command_line_arguments
 
 
 if __name__ == '__main__':
     command_line_arguments = get_arguments()
     command_line_arguments['task'] = 'rl_model_checking'
-    command_line_arguments = manage_disable_features(command_line_arguments)
     m_project = Project(command_line_arguments)
     m_project.init_mlflow_bridge(command_line_arguments['project_name'], command_line_arguments['task'], command_line_arguments['parent_run_id'])
     m_project.load_saved_command_line_arguments()
+    m_project.command_line_arguments['disabled_features'] = command_line_arguments['disabled_features']
     prism_file_path = os.path.join(m_project.command_line_arguments['prism_dir'], m_project.command_line_arguments['prism_file_path'])
     print(m_project.command_line_arguments)
     if command_line_arguments['constant_definitions'].count('[') == 0 and command_line_arguments['constant_definitions'].count(']') == 0:
