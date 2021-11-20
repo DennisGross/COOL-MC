@@ -61,7 +61,6 @@ def train(project, env, prop_type=''):
                 project.mlflow_bridge.log_reward(all_episode_rewards[-1], episode)
                 reward_of_sliding_window = np.mean(all_episode_rewards[-project.command_line_arguments['sliding_window_size']:])
                 project.mlflow_bridge.log_avg_reward(reward_of_sliding_window, episode)
-                sys.stdout.flush()
                 if len(all_property_results) > 0:
                     print(episode, "Episode\tReward", episode_reward, '\tAverage Reward', reward_of_sliding_window, "\tLast Property Result:", all_property_results[-1])
                 else:

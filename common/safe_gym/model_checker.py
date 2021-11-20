@@ -138,7 +138,7 @@ class ModelChecker():
             # print(str(state_valuation.to_json()), action_name)#, state, selected_action, cond1)
             return cond1
 
-        simulator = stormpy.simulator.create_simulator(prism_program, seed=42)
+        simulator = stormpy.simulator.create_simulator(prism_program)
         simulator.set_action_mode(
             stormpy.simulator.SimulatorActionMode.GLOBAL_NAMES)
 

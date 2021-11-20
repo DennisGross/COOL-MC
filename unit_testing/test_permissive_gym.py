@@ -62,3 +62,5 @@ def test_all_states_3d_2vars():
     env = SafeGym(prism_file_path,command_line_arguments['constant_definitions'], command_line_arguments['max_steps'], command_line_arguments['wrong_action_penalty'], command_line_arguments['reward_flag'], command_line_arguments['permissive_input'], command_line_arguments['disabled_features'])
     all_states = PStateVariable.generate_all_states(env.storm_bridge.state_mapper.openai_state_variable_positions,fix_state, [pstate_variable1, pstate_Variable2])
     assert len(all_states) == 12
+
+

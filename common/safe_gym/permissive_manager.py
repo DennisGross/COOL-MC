@@ -59,7 +59,7 @@ class PStateVariable:
         # Assign all the variable indizes
         for i in range(len(pstate_variables)):
             pstate_variables[i].set_idx(mapper[pstate_variables[i].name])
-            print(pstate_variables[i])
+            print('Here', pstate_variables[i])
         # Generate States
         all_states = PStateVariable.__generate_all_states(pstate_variables, fix_state, 0)
         return all_states
@@ -100,7 +100,7 @@ class PermissiveManager:
         self.permissive_actions = []
 
     def manage_actions(self, state, agent):
-        if (self.current_state is None) or (np.array_equiv(self.current_state, state)):
+        if (self.current_state is None) or (np.array_equal(self.current_state, state) == False):
             # Reset Actions
             self.permissive_actions = []
             # Reset all pstate_variables
@@ -138,7 +138,7 @@ class PermissiveManager:
     def create_condition(self, available_actions, action_name):
         cond1 = False
         for selected_action in self.permissive_actions:
-            if (selected_action in available_actions) == False:
+            if selected_action >= len(available_actions):
                 selected_action = available_actions[0]
-            cond1 |= (action_name == selected_action)
+            cond1 |= (action_name == available_actions[selected_action])
         return cond1

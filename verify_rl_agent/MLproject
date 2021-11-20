@@ -2,14 +2,16 @@ name: verify_rl_agent
 entry_points:
     main:
         parameters:
-            project_name : {type: string, default: "Avoid2"}
-            parent_run_id : {type: string, default: "cecf2ddc512f471b99d720fe30cf7f1f"}
+            # 98559eb0d0a244adbd69cf7cdfcd57f9
+            # dc844e27a5a14e7f80bcad568863d5b3
+            project_name : {type: string, default: "Avoid"}
+            parent_run_id : {type: string, default: "cb3e1239f3e14c0fb42a829cbca4a7e9"}
             # Model Checking Parameters
             prism_dir : {type: string, default: "../prism_files"}
             prism_file_path : {type: string, default: "avoid.prism"}
-            constant_definitions : {type: string, default: "slickness=[0.1;0.1;1]"}
-            prop : {type: string, default: "Tmax=? [F STING=true]"}
-            permissive_input: {type: string, default: "obstacle1_x=[0,4]"}
+            constant_definitions : {type: string, default: "slickness=0"}
+            prop : {type: string, default: "Pmin=? [F COLLISION=true]"}
+            permissive_input: {type: string, default: "obstacle2_x=[0,4],obstacle2_y=[0,4]"}
             disabled_features: {type: string, default: "done"}
 
 

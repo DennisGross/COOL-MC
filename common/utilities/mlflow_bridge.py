@@ -37,8 +37,13 @@ class MlFlowBridge:
             print("Choose already existing run.")
             run = mlflow.get_run(run_id)
             self.run = self.__copy_run(self.experiment, run)
+            
+        
         mlflow.start_run(self.run.info.run_id)
+       
 
+    def set_property_query_as_run_name(self, prop):
+        mlflow.tracking.MlflowClient().set_tag(self.run.info.run_id, "mlflow.runName", prop)
 
     def __copy_run(self, experiment, run):
         # Find unique run_id

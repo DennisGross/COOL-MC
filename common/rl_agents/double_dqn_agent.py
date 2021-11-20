@@ -62,7 +62,7 @@ class DQNetwork(torch.nn.Module):
         layers[str(i)]  = torch.nn.Linear(previous_neurons, number_of_neurons[i])
         previous_neurons = number_of_neurons[i]
     self.layers = torch.nn.Sequential(layers)
-    self.optimizer = torch.optim.RMSprop(self.parameters(), lr=learning_rate)
+    self.optimizer = torch.optim.Adam(self.parameters(), lr=learning_rate)
     self.to(device)
 
 
@@ -134,7 +134,6 @@ class DoubleDQNAgent(Agent):
 
 
   def select_action(self, state, deploy=False):
-    
     if deploy:
       return int(torch.argmax(self.q_predict.forward(state)).item())
     if torch.rand(1).item() < self.epsilon:

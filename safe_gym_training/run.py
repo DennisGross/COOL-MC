@@ -103,4 +103,5 @@ if __name__ == '__main__':
     m_project.init_mlflow_bridge(command_line_arguments['project_name'],command_line_arguments['task'],command_line_arguments['parent_run_id'])
     m_project.load_saved_command_line_arguments()
     m_project.create_agent(command_line_arguments, env.observation_space, env.action_space)
+    m_project.mlflow_bridge.set_property_query_as_run_name(command_line_arguments['prop'] + " for " + command_line_arguments['constant_definitions'])
     train(m_project, env, prop_type=command_line_arguments['prop_type'])

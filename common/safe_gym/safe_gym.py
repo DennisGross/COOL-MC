@@ -24,6 +24,7 @@ class SafeGym(gym.Env):
         n_state, reward, self.done = self.storm_bridge.step(action_name)
         self.steps+=1
         if self.steps >= self.max_steps:
+            #print("DONE")
             self.done = True
         self.state = n_state
         return self.state, reward, self.done, {}

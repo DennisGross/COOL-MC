@@ -2,7 +2,7 @@ name: openai_gym_training
 entry_points:
     main:
         parameters:
-            project_name : {type: string, default: "Avoid2"}
+            project_name : {type: string, default: "Avoid"}
             parent_run_id : {type: string, default: ""}
             env : {type: string, default: "avoid:avoid-v0" }
             sliding_window_size : {type: float, default: 100}
@@ -13,7 +13,7 @@ entry_points:
             # Double DQN Agent
             layers : {type: float, default: 3}
             neurons : {type: float, default: 128}
-            replay_buffer_sie : {type: float, default: 1000000}
+            replay_buffer_sie : {type: float, default: 10000}
             epsilon : {type: float, default: 1}
             epsilon_dec : {type: float, default: 0.99999}
             epsilon_min : {type: float, default: 0.01}

@@ -19,14 +19,14 @@ def get_arguments():
                             default='Frozen Lake')
     arg_parser.add_argument('--parent_run_id', help='Do you want to continue training of a RL agent? Name the run_id of the last training unit (see mlflow ui).', type=str,
                             default='')
-    arg_parser.add_argument('--permissive_input', help='Constant definitions of the formal model (PRISM model)', type=str,
+    arg_parser.add_argument('--permissive_input', help='Constant definitions of the formal model (e.g. pos=[0,3];...)', type=str,
                             default='')
     # Model Checking
     arg_parser.add_argument('--prism_dir', help='In which folder should we save your projects?', type=str,
                             default='../prism_files')
     arg_parser.add_argument('--prism_file_path', help='In which folder should we save your projects?', type=str,
                             default='frozen_lake_4x4.prism')
-    arg_parser.add_argument('--constant_definitions', help='Constant definitions of the formal model (PRISM model)', type=str,
+    arg_parser.add_argument('--constant_definitions', help='Constant definitions of the formal model (e.g. slippery=0.1 or range: slippery=[0.1;0.1;1.1])', type=str,
                             default='slippery=0.04')
     arg_parser.add_argument('--prop', help='Property Specification', type=str,
                             default='Pmin=? [F "water"]')
@@ -52,6 +52,9 @@ if __name__ == '__main__':
         mdp_reward_result, model_size, _, _ = env.storm_bridge.model_checker.induced_markov_chain(m_project.agent, env, command_line_arguments['constant_definitions'], command_line_arguments['prop'])
         print(command_line_arguments['prop'], ':', mdp_reward_result)
         m_project.mlflow_bridge.log_best_property_result(mdp_reward_result)
+        if command_line_arguments['permissive_input'] == '':
+            command_line_arguments['prop'] = command_line_arguments['prop'].replace("max","").replace("min","")
+        m_project.mlflow_bridge.set_property_query_as_run_name(command_line_arguments['prop'] + " for " + command_line_arguments['constant_definitions'])
         m_project.save()
     elif command_line_arguments['constant_definitions'].count('[') == 1 and command_line_arguments['constant_definitions'].count(']') == 1:
         # For each step make model checking and save results in list
@@ -72,7 +75,7 @@ if __name__ == '__main__':
         fig, ax = plt.subplots()
         ax.plot(x,y)
 
-        ax.set(xlabel=range_state_variable, ylabel=command_line_arguments['prop'], title='Property Results over a range of different constant assignments (' + str(range_state_variable) + ')')
+        ax.set(xlabel=range_state_variable, ylabel=command_line_arguments['prop'].replace("max","").replace("min",""), title='Property Results over a range of different constant assignments (' + str(range_state_variable) + ')')
         ax.grid()
 
         #fig.savefig(os.path.join(project_folder, "properties.png"))

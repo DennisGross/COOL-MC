@@ -2,24 +2,24 @@ name: openai_gym_training
 entry_points:
     main:
         parameters:
-            project_name : {type: string, default: "Frozen-Lake"}
+            project_name : {type: string, default: "Avoid"}
             parent_run_id : {type: string, default: ""}
-            env : {type: string, default: "Frozen Lake" }
+            env : {type: string, default: "Avoid" }
             sliding_window_size : {type: float, default: 100}
-            num_episodes : {type: float, default: 2500}
-            eval_interval : {type: float, default: 1}
+            num_episodes : {type: float, default: 50000}
+            eval_interval : {type: float, default: 2500}
             rl_algorithm : {type: string, default: "sarsamax" }
             # Model Checking Parameters
             prism_dir : {type: string, default: "../prism_files"}
-            prism_file_path : {type: string, default: "frozen_lake-v1.prism"}
-            constant_definitions : {type: string, default: "slippery=0.0"}
-            prop : {type: string, default: "Pmax=? [F AT_FRISBEE=true ]"}
-            max_steps : {type: float, default: 20}
-            disabled_features : {type: string, default: ""}
-            wrong_action_penalty : {type: float, default: 1000}
-            reward_flag : {type: float, default: 0}
+            prism_file_path : {type: string, default: "avoid.prism"}
+            constant_definitions : {type: string, default: "slickness=0.0"}
+            prop : {type: string, default: "Rmin=? [F COLLISION=true ]"}
+            max_steps : {type: float, default: 100}
+            disabled_features : {type: string, default: "done"}
+            wrong_action_penalty : {type: float, default: 2500}
+            reward_flag : {type: float, default: 1}
             deploy : {type: float, default: 0}
-            permissive_input: {type: string, default: "pos=[0,4]"}
+            permissive_input: {type: string, default: ""}
 
             #Sarsamax
             alpha : {type: float, default: 0.8}
@@ -31,12 +31,12 @@ entry_points:
             neurons : {type: float, default: 512}
             replay_buffer_size : {type: float, default: 1000000}
             epsilon : {type: float, default: 1}
-            epsilon_dec : {type: float, default: 0.999}
-            epsilon_min : {type: float, default: 0.1}
+            epsilon_dec : {type: float, default: 0.99999}
+            epsilon_min : {type: float, default: 0.01}
             gamma : {type: float, default: 0.99}
             replace : {type: float, default: 128}
             lr : {type: float, default: 0.0001}
-            batch_size : {type: float, default: 565}
+            batch_size : {type: float, default: 128}
 
 
         command: >-

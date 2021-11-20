@@ -42,8 +42,8 @@ formula NOT_BOTTOM_BORDER = (BOTTOM_BORDER = false);
 formula LEFT_BORDER = (pos = 0 | pos = 4 | pos = 8 | pos = 12);
 formula NOT_LEFT_BORDER = (LEFT_BORDER = false);
 //Hole
-formula IS_IN_HOLE = (pos=hole1) | (pos=hole2) | (pos=hole3) | (pos=hole4);
-formula NOT_IN_HOLE = (IS_IN_HOLE = false);
+formula WATER = (pos=hole1) | (pos=hole2) | (pos=hole3) | (pos=hole4);
+formula NOT_IN_HOLE = (WATER = false);
 //Frisbee
 formula AT_FRISBEE = (pos=15);
 formula NOT_AT_FRISBEE = (AT_FRISBEE = false);
@@ -136,10 +136,10 @@ module agent
 
 
 	//In hole
-	[a3_up] IS_IN_HOLE & NOT_DONE -> (pos'=done);
-	[a2_right] IS_IN_HOLE & NOT_DONE -> (pos'=done);
-	[a1_down] IS_IN_HOLE & NOT_DONE -> (pos'=done);
-	[a0_left] IS_IN_HOLE & NOT_DONE -> (pos'=done);
+	[a3_up] WATER & NOT_DONE -> (pos'=done);
+	[a2_right] WATER & NOT_DONE -> (pos'=done);
+	[a1_down] WATER & NOT_DONE -> (pos'=done);
+	[a0_left] WATER & NOT_DONE -> (pos'=done);
 	//Done (absorbing state)
 	[a3_up] IS_DONE -> (pos'=done);
 	[a2_right] IS_DONE -> (pos'=done);
@@ -150,20 +150,20 @@ module agent
 endmodule
 
 rewards
-	[a3_up] IS_IN_HOLE & NOT_DONE : 1000;
-	[a2_right] IS_IN_HOLE & NOT_DONE : 1000;
-	[a1_down] IS_IN_HOLE & NOT_DONE : 1000;
-	[a0_left] IS_IN_HOLE & NOT_DONE : 1000;
+	[a3_up] WATER & NOT_DONE : 0;
+	[a2_right] WATER & NOT_DONE : 0;
+	[a1_down] WATER & NOT_DONE : 0;
+	[a0_left] WATER & NOT_DONE : 0;
 
-	[a3_up] NOT_AT_FRISBEE & NOT_IN_HOLE & NOT_DONE : 100;
-	[a2_right] NOT_AT_FRISBEE & NOT_IN_HOLE & NOT_DONE : 100;
-	[a1_down] NOT_AT_FRISBEE & NOT_IN_HOLE & NOT_DONE : 100;
-	[a0_left] NOT_AT_FRISBEE & NOT_IN_HOLE & NOT_DONE : 100;
+	[a3_up] NOT_AT_FRISBEE & NOT_IN_HOLE & NOT_DONE : 0;
+	[a2_right] NOT_AT_FRISBEE & NOT_IN_HOLE & NOT_DONE : 0;
+	[a1_down] NOT_AT_FRISBEE & NOT_IN_HOLE & NOT_DONE : 0;
+	[a0_left] NOT_AT_FRISBEE & NOT_IN_HOLE & NOT_DONE : 0;
 
-	[a3_up] AT_FRISBEE & NOT_DONE : 0;
-	[a2_right] AT_FRISBEE & NOT_DONE : 0;
-	[a1_down] AT_FRISBEE & NOT_DONE : 0;
-	[a0_left] AT_FRISBEE & NOT_DONE : 0;
+	[a3_up] AT_FRISBEE & NOT_DONE : 1;
+	[a2_right] AT_FRISBEE & NOT_DONE : 1;
+	[a1_down] AT_FRISBEE & NOT_DONE : 1;
+	[a0_left] AT_FRISBEE & NOT_DONE : 1;
 
 endrewards
 

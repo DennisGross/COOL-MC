@@ -77,6 +77,7 @@ class Avoid(gym.Env):
             elif action == 3 and self.at_west_border() == False:
                 self.x -= 1
 
+
         # Move obstacles
         self.move_obstacles()
 
@@ -97,8 +98,8 @@ class Avoid(gym.Env):
 
     def reset(self):
         self.steps = 0
-        self.MAX_STEPS = 20
-        self.slickness = 0.1   
+        self.MAX_STEPS = 100
+        self.slickness = 0.0 
         self.x = 0
         self.y = 0
         self.obst1_x = 4

@@ -12,6 +12,5 @@ entry_points:
             permissive_input: {type: string, default: "pos=[0,2]"}
             input_state: {type: string, default: "pos=2"}
 
-
         command: >-
             python run.py --permissive_input={permissive_input} --input_state={input_state} --project_name={project_name} --parent_run_id={parent_run_id} --prism_dir={prism_dir} --prism_file_path={prism_file_path} --constant_definitions={constant_definitions} --prop={prop}
