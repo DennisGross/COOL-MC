@@ -98,6 +98,7 @@ class StormBridge:
         if len(current_available_actions)==0:
             return self._state, self.reward, True
         if action_name not in current_available_actions:
+            print("WROOONG")
             action_name = current_available_actions[0]
             penalty = -self.wrong_action_penalty
        

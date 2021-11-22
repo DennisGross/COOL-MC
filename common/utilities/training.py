@@ -6,6 +6,7 @@ import gym
 import random
 import math
 import numpy as np
+import torch
 from collections import deque
 
 def train(project, env, prop_type=''):
@@ -62,7 +63,7 @@ def train(project, env, prop_type=''):
                 reward_of_sliding_window = np.mean(all_episode_rewards[-project.command_line_arguments['sliding_window_size']:])
                 project.mlflow_bridge.log_avg_reward(reward_of_sliding_window, episode)
                 if len(all_property_results) > 0:
-                    print(episode, "Episode\tReward", episode_reward, '\tAverage Reward', reward_of_sliding_window, "\tLast Property Result:", all_property_results[-1])
+                    print(episode, "Episode\tReward", episode_reward, '\tAverage Reward', reward_of_sliding_window, "\tLast Property Result:", all_property_results[-1], '\tEpsilon:', project.agent.epsilon)
                 else:
                     print(episode, "Episode\tReward", episode_reward, '\tAverage Reward', reward_of_sliding_window, "\tLast Property Result:", None)
 
@@ -71,14 +72,16 @@ def train(project, env, prop_type=''):
                 if prop_type=='reward':
                     project.save()
     except KeyboardInterrupt:
+        torch.cuda.empty_cache()
         pass
     finally:
+        torch.cuda.empty_cache()
         # Log overall metrics
         project.mlflow_bridge.log_best_reward(best_reward_of_sliding_window)
         if project.command_line_arguments['task']=='safe_training':
             #TODO: Save Metrics
             pass
-
+    
     return list(last_max_steps_states), list(last_max_steps_actions), list(last_max_steps_rewards), list(last_max_steps_terminals)
 
 
