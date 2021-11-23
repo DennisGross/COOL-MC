@@ -3,6 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 from common.rl_agents.agent import Agent
+from collections import OrderedDict
 import torch
 import random
 import gym
@@ -49,11 +50,21 @@ class ReplayBuffer(object):
         return torch.tensor(states).to(device), torch.tensor(actions).to(device), torch.tensor(rewards).to(device), torch.tensor(states_).to(device), torch.tensor(terminal).to(device)
 
 class DeepQNetwork(nn.Module):
-    def __init__(self, state_dim, number_of_actions, lr, name='bla', chkpt_dir='asdg'):
+    def __init__(self, state_dim, number_of_neurons, number_of_actions, lr, name='bla', chkpt_dir='asdg'):
         super(DeepQNetwork, self).__init__()
-        self.fc1 = nn.Linear(state_dim, 512)
-        self.fc2 = nn.Linear(512, 512)
-        self.fc3 = nn.Linear(512, number_of_actions)
+
+
+        layers = OrderedDict()
+        previous_neurons = state_dim
+        for i in range(len(number_of_neurons)+1):
+            if i == len(number_of_neurons):
+                layers[str(i)] = torch.nn.Linear(previous_neurons, number_of_actions)
+            else:
+                layers[str(i)]  = torch.nn.Linear(previous_neurons, number_of_neurons[i])
+                previous_neurons = number_of_neurons[i]
+        self.layers = torch.nn.Sequential(layers)
+
+
         self.optimizer = optim.RMSprop(self.parameters(), lr=lr)
 
         self.loss = nn.MSELoss()
@@ -63,11 +74,13 @@ class DeepQNetwork(nn.Module):
 
     def forward(self, state):
         state = torch.tensor(state).float().to(device)
-        # conv_state shape is BS x (n_filters * H * W)
-        flat1 = F.relu(self.fc1(state))
-        flat1 = F.relu(self.fc2(flat1))
-        actions = self.fc3(flat1)
-        return actions
+        x = state
+        for i in range(len(self.layers)):
+            if i == (len(self.layers)-1):
+                x = self.layers[i](x)
+            else:
+                x = F.relu(self.layers[i](x))
+        return x
 
     def save_checkpoint(self, file_name):
         torch.save(self.state_dict(), file_name)
@@ -78,11 +91,11 @@ class DeepQNetwork(nn.Module):
 
 class DQNAgent(Agent):
 
-    def __init__(self, state_dim, number_of_actions, epsilon=1, epsilon_dec=0.99999, epsilon_min=0.1, gamma=0.99, learning_rate=0.001, replace=100, batch_size=64):
+    def __init__(self, state_dim, number_of_neurons, number_of_actions, epsilon=1, epsilon_dec=0.99999, epsilon_min=0.1, gamma=0.99, learning_rate=0.001, replace=100, batch_size=64):
         self.number_of_actions = number_of_actions
         self.replay_buffer = ReplayBuffer(10000, state_dim)
-        self.q_eval = DeepQNetwork(state_dim, number_of_actions, learning_rate)
-        self.q_next = DeepQNetwork(state_dim, number_of_actions, learning_rate)
+        self.q_eval = DeepQNetwork(state_dim, number_of_neurons, number_of_actions, learning_rate)
+        self.q_next = DeepQNetwork(state_dim, number_of_neurons, number_of_actions, learning_rate)
         self.epsilon = epsilon
         self.epsilon_dec = epsilon_dec
         self.epsilon_min = epsilon_min

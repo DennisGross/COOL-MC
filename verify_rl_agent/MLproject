@@ -10,7 +10,7 @@ entry_points:
             prism_dir : {type: string, default: "../prism_files"}
             prism_file_path : {type: string, default: "transporter.prism"}
             constant_definitions : {type: string, default: "MAX_JOBS=2,MAX_FUEL=23"}
-            prop : {type: string, default: "Pmin=? [F jobs_done=1]"}
+            prop : {type: string, default: "Pmax=? [F jobs_done=2]"}
             permissive_input: {type: string, default: "fuel=[0,23]"}
             disabled_features: {type: string, default: ""}
 
