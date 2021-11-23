@@ -137,8 +137,9 @@ class PermissiveManager:
 
     def create_condition(self, available_actions, action_name):
         cond1 = False
-        for selected_action in self.permissive_actions:
-            if selected_action >= len(available_actions):
-                selected_action = available_actions[0]
-            cond1 |= (action_name == available_actions[selected_action])
+        for selected_action_idx in self.permissive_actions:
+            if selected_action_idx >= len(available_actions):
+                cond1 |= (action_name == available_actions[0])
+            else:
+                cond1 |= (action_name == available_actions[selected_action_idx])
         return cond1

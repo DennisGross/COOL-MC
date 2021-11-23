@@ -51,8 +51,9 @@ class ReplayBuffer(object):
 class DeepQNetwork(nn.Module):
     def __init__(self, state_dim, number_of_actions, lr, name='bla', chkpt_dir='asdg'):
         super(DeepQNetwork, self).__init__()
-        self.fc1 = nn.Linear(state_dim, 1024)
-        self.fc3 = nn.Linear(1024, number_of_actions)
+        self.fc1 = nn.Linear(state_dim, 512)
+        self.fc2 = nn.Linear(512, 512)
+        self.fc3 = nn.Linear(512, number_of_actions)
         self.optimizer = optim.RMSprop(self.parameters(), lr=lr)
 
         self.loss = nn.MSELoss()
@@ -64,6 +65,7 @@ class DeepQNetwork(nn.Module):
         state = torch.tensor(state).float().to(device)
         # conv_state shape is BS x (n_filters * H * W)
         flat1 = F.relu(self.fc1(state))
+        flat1 = F.relu(self.fc2(flat1))
         actions = self.fc3(flat1)
         return actions
 
@@ -76,7 +78,7 @@ class DeepQNetwork(nn.Module):
 
 class DQNAgent(Agent):
 
-    def __init__(self, state_dim, number_of_actions, epsilon=1, epsilon_dec=0.99999, epsilon_min=0.05, gamma=0.99, learning_rate=0.0001, replace=100, batch_size=32):
+    def __init__(self, state_dim, number_of_actions, epsilon=1, epsilon_dec=0.99999, epsilon_min=0.1, gamma=0.99, learning_rate=0.001, replace=100, batch_size=64):
         self.number_of_actions = number_of_actions
         self.replay_buffer = ReplayBuffer(10000, state_dim)
         self.q_eval = DeepQNetwork(state_dim, number_of_actions, learning_rate)

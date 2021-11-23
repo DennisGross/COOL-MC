@@ -53,7 +53,10 @@ if __name__ == '__main__':
         print(command_line_arguments['prop'], ':', mdp_reward_result)
         m_project.mlflow_bridge.log_best_property_result(mdp_reward_result)
         if command_line_arguments['permissive_input'] == '':
+            print("NO PERMISSIVE INPUT")
             command_line_arguments['prop'] = command_line_arguments['prop'].replace("max","").replace("min","")
+        else:
+            print("PERMISSIVE INPUT")
         m_project.mlflow_bridge.set_property_query_as_run_name(command_line_arguments['prop'] + " for " + command_line_arguments['constant_definitions'])
         m_project.save()
     elif command_line_arguments['constant_definitions'].count('[') == 1 and command_line_arguments['constant_definitions'].count(']') == 1:

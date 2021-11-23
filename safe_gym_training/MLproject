@@ -2,18 +2,18 @@ name: openai_gym_training
 entry_points:
     main:
         parameters:
-            project_name : {type: string, default: "Transporter"}
+            project_name : {type: string, default: "Transporter With Fuel"}
             parent_run_id : {type: string, default: ""}
-            env : {type: string, default: "Transporter" }
+            env : {type: string, default: "Transporter With Fuel" }
             sliding_window_size : {type: float, default: 100}
-            num_episodes : {type: float, default: 50000}
-            eval_interval : {type: float, default: 1000}
+            num_episodes : {type: float, default: 200000}
+            eval_interval : {type: float, default: 500}
             rl_algorithm : {type: string, default: "dqn_agent" }
             # Model Checking Parameters
             prism_dir : {type: string, default: "../prism_files"}
             prism_file_path : {type: string, default: "transporter.prism"}
-            constant_definitions : {type: string, default: "MAX_JOBS=3,MAX_FUEL=15"}
-            prop : {type: string, default: "Pmin=? [F MAX_JOBS=2 ]"}
+            constant_definitions : {type: string, default: "MAX_JOBS=2,MAX_FUEL=20"}
+            prop : {type: string, default: "Pmax=? [F jobs_done=2 ]"}
             max_steps : {type: float, default: 100}
             disabled_features : {type: string, default: ""}
             wrong_action_penalty : {type: float, default: 100}

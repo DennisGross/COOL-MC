@@ -4,15 +4,15 @@ entry_points:
         parameters:
             # 98559eb0d0a244adbd69cf7cdfcd57f9
             # dc844e27a5a14e7f80bcad568863d5b3
-            project_name : {type: string, default: "Avoid"}
-            parent_run_id : {type: string, default: "cb3e1239f3e14c0fb42a829cbca4a7e9"}
+            project_name : {type: string, default: "Transporter With Fuel"}
+            parent_run_id : {type: string, default: "49451c67c2b94f8fa23bbad15d244435"}
             # Model Checking Parameters
             prism_dir : {type: string, default: "../prism_files"}
-            prism_file_path : {type: string, default: "avoid.prism"}
-            constant_definitions : {type: string, default: "slickness=0"}
-            prop : {type: string, default: "Pmin=? [F COLLISION=true]"}
-            permissive_input: {type: string, default: "obstacle2_x=[0,4],obstacle2_y=[0,4]"}
-            disabled_features: {type: string, default: "done"}
+            prism_file_path : {type: string, default: "transporter.prism"}
+            constant_definitions : {type: string, default: "MAX_JOBS=2,MAX_FUEL=21"}
+            prop : {type: string, default: "Pmax=? [F jobs_done=2]"}
+            permissive_input: {type: string, default: ""}
+            disabled_features: {type: string, default: ""}
 
 
         command: >-
