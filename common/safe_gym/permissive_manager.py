@@ -59,7 +59,6 @@ class PStateVariable:
         # Assign all the variable indizes
         for i in range(len(pstate_variables)):
             pstate_variables[i].set_idx(mapper[pstate_variables[i].name])
-            print('Here', pstate_variables[i])
         # Generate States
         all_states = PStateVariable.__generate_all_states(pstate_variables, fix_state, 0)
         return all_states
@@ -98,6 +97,7 @@ class PermissiveManager:
         if self.is_permissive:
             self.pstate_variables = PStateVariable.parse_state_variables(permissive_input)
         self.permissive_actions = []
+        self.action_mapper = None
 
     def manage_actions(self, state, agent):
         if (self.current_state is None) or (np.array_equal(self.current_state, state) == False):
@@ -111,15 +111,15 @@ class PermissiveManager:
             #print('New', self.current_state)
             all_states = PStateVariable.generate_all_states(self.state_var_mapper, self.current_state, self.pstate_variables)
             for state in all_states:
-                action = agent.select_action(state, deploy=True)
+                action = self.action_mapper.action_index_to_action_name(agent.select_action(state, deploy=True))
                 self.permissive_actions.append(action)
             # Get all actions for these permissive states
-            print('Actions', self.permissive_actions)
+            
         return self.permissive_actions
 
     def manage_permissive_state_actions_pairs(self, state, agent):
         all_pairs = {}
-        if self.current_state == None or self.current_state != state:
+        if (self.current_state is None) or (np.array_equal(self.current_state, state) == False):
             # Reset Actions
             self.permissive_actions = []
             # Reset all pstate_variables
@@ -127,9 +127,9 @@ class PermissiveManager:
                 pstate_variable.reset()
             #print('New', self.current_state)
             all_states = PStateVariable.generate_all_states(self.state_var_mapper, state, self.pstate_variables)
-            all_pairs = {}
+            
             for state in all_states:
-                action = agent.select_action(state, deploy=True)
+                action = self.action_mapper.action_index_to_action_name(agent.select_action(state, deploy=True))
                 all_pairs[str(state)] = action
         return all_pairs
 
@@ -137,9 +137,9 @@ class PermissiveManager:
 
     def create_condition(self, available_actions, action_name):
         cond1 = False
-        for selected_action_idx in self.permissive_actions:
-            if selected_action_idx >= len(available_actions):
+        for selected_action in self.permissive_actions:
+            if selected_action not in available_actions:
                 cond1 |= (action_name == available_actions[0])
             else:
-                cond1 |= (action_name == available_actions[selected_action_idx])
+                cond1 |= (action_name == selected_action)
         return cond1

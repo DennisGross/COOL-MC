@@ -8,9 +8,10 @@ import random
 class Transporter(gym.Env):
 
     def __init__(self):
-            self.reset()
-            self.action_space = gym.spaces.Discrete(6)
-            self.observation_space = gym.spaces.Discrete(8)
+        self.reset()
+        self.action_space = gym.spaces.Discrete(6)
+        self.observation_space = gym.spaces.Discrete(8)
+
 
     def is_passenger_on_board(self):
         return self.passenger == True
@@ -35,6 +36,9 @@ class Transporter(gym.Env):
 
     def get_normal_reward(self):
         return 21 + (max(self.passenger_dest_x-self.x, self.x-self.passenger_dest_x-self.x) + max(self.passenger_dest_y-self.y, self.y - self.passenger_dest_y)) * (-1)
+
+    def get_out_of_fuel_reward(self):
+        return -100
 
     def __reset_passenger(self):
         red_x = 0
@@ -91,19 +95,26 @@ class Transporter(gym.Env):
             else:
                 reward = self.get_normal_reward()
             info = {}
+            self.fuel-=1
             if self.jobs_done == self.MAX_JOBS:
                 done = True
             else:
                 done = False
+
+            if self.fuel == 0:
+                reward = self.get_out_of_fuel_reward()
+                done = True
+
             return self.__create_state(), reward, done, info
 
     def __create_state(self):
         passenger = 1 if self.passenger == True else 0
-        return np.array([self.x, self.y, self.jobs_done, passenger, self.passenger_loc_y, self.passenger_dest_y, self.passenger_dest_x, self.passenger_dest_y])
+        return np.array([self.x, self.y, self.jobs_done, passenger, self.passenger_loc_y, self.passenger_dest_y, self.passenger_dest_x, self.passenger_dest_y, self.fuel])
 
 
     def reset(self):
             self.MAX_JOBS = 10
+            self.fuel = 21
             self.x = 2
             self.y = 2
             self.jobs_done = 0

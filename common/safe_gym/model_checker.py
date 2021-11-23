@@ -82,6 +82,7 @@ class ModelChecker():
         :return: mdp_reward_result, model_size, total_run_time, model_checking_time
         '''
         env.reset()
+        self.m_permissive_manager.action_mapper = env.action_mapper
         self.wrong_choices = 0
         start_time = time.time()
         prism_program = stormpy.parse_prism_program(env.storm_bridge.path)
@@ -120,6 +121,7 @@ class ModelChecker():
             state = self.__get_clean_state_dict(
                 state_valuation.to_json(), env.storm_bridge.state_json_example)
             state = self.__get_numpy_state(env, state)
+        
             
             
             # Check if selected action is available.. if not set action to the first available action
@@ -135,6 +137,7 @@ class ModelChecker():
                 if (selected_action in available_actions) == False:
                     selected_action = available_actions[0]
                 cond1 = (action_name == selected_action)
+
             # print(str(state_valuation.to_json()), action_name)#, state, selected_action, cond1)
             return cond1
 
