@@ -25,23 +25,27 @@ def train(project, env, prop_type=''):
             while True:
                 if state.__class__.__name__ == 'int':
                     state = [state]
+                #print(project.command_line_arguments['deploy'])
                 
-                action = project.agent.select_action(state, project.command_line_arguments['deploy']==True)
+                action = project.agent.select_action(state, project.command_line_arguments['deploy'])
+                
                 next_state, reward, terminal, info = env.step(action)
                 if next_state.__class__.__name__ == 'int':
                     next_state = [next_state]
-                project.agent.store_experience(state, action, reward, next_state, terminal)
+                if project.command_line_arguments['deploy']==False:
+                    project.agent.store_experience(state, action, reward, next_state, terminal)
+                    project.agent.step_learn()
                 # Collect last max_steps states, actions, and rewards
                 last_max_steps_states.append(next_state)
                 last_max_steps_actions.append(action)
                 last_max_steps_rewards.append(reward)
                 last_max_steps_terminals.append(terminal)
-                project.agent.step_learn()
                 state = next_state
                 episode_reward+=reward
                 if terminal:
                     break
-            project.agent.episodic_learn()
+            if project.command_line_arguments['deploy']==False:
+                project.agent.episodic_learn()
             if episode % project.command_line_arguments['eval_interval']==0 and project.command_line_arguments['task']=='safe_training':
                 # Log reward and property result (Safe Training)
                 all_episode_rewards.append(episode_reward)
@@ -53,7 +57,8 @@ def train(project, env, prop_type=''):
                 all_property_results.append(mdp_reward_result)
 
                 if (all_property_results[-1] == min(all_property_results) and prop_type == "min_prop") or (all_property_results[-1] == max(all_property_results) and prop_type == "max_prop"):
-                    project.save()
+                    if project.command_line_arguments['deploy']==False:
+                        project.save()
                 project.mlflow_bridge.log_property(all_property_results[-1], 'Property Result', episode)
                 print(episode, "Episode\tReward", episode_reward, '\tAverage Reward', reward_of_sliding_window, "\tLast Property Result:", mdp_reward_result)
             else:
@@ -69,7 +74,7 @@ def train(project, env, prop_type=''):
 
             if reward_of_sliding_window  > best_reward_of_sliding_window:
                 best_reward_of_sliding_window = reward_of_sliding_window
-                if prop_type=='reward':
+                if prop_type=='reward' and project.command_line_arguments['deploy']==False:
                     project.save()
     except KeyboardInterrupt:
         torch.cuda.empty_cache()
@@ -77,10 +82,11 @@ def train(project, env, prop_type=''):
     finally:
         torch.cuda.empty_cache()
         # Log overall metrics
-        project.mlflow_bridge.log_best_reward(best_reward_of_sliding_window)
-        if project.command_line_arguments['task']=='safe_training':
-            #TODO: Save Metrics
-            pass
+        if project.command_line_arguments['deploy']==0:
+            project.mlflow_bridge.log_best_reward(best_reward_of_sliding_window)
+            if project.command_line_arguments['task']=='safe_training':
+                #TODO: Save Metrics
+                pass
     
     return list(last_max_steps_states), list(last_max_steps_actions), list(last_max_steps_rewards), list(last_max_steps_terminals)
 

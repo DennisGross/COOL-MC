@@ -136,15 +136,15 @@ module agent
 
 
 	//In hole
-	[a3_up] WATER & NOT_DONE -> (pos'=done);
-	[a2_right] WATER & NOT_DONE -> (pos'=done);
-	[a1_down] WATER & NOT_DONE -> (pos'=done);
-	[a0_left] WATER & NOT_DONE -> (pos'=done);
+	[a3_up] WATER & NOT_DONE -> (pos'=16);
+	[a2_right] WATER & NOT_DONE -> (pos'=16);
+	[a1_down] WATER & NOT_DONE -> (pos'=16);
+	[a0_left] WATER & NOT_DONE -> (pos'=16);
 	//Done (absorbing state)
-	[a3_up] IS_DONE -> (pos'=done);
-	[a2_right] IS_DONE -> (pos'=done);
-	[a1_down] IS_DONE -> (pos'=done);
-	[a0_left] IS_DONE -> (pos'=done);
+	[a3_up] IS_DONE -> (pos'=16);
+	[a2_right] IS_DONE -> (pos'=16);
+	[a1_down] IS_DONE -> (pos'=16);
+	[a0_left] IS_DONE -> (pos'=16);
 	
 	
 endmodule

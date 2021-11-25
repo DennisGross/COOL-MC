@@ -11,8 +11,8 @@ import numpy as np
 import mlflow
 import os
 import shutil
-device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-
+#device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+device = 'cpu'
 
 
 class ReplayBuffer(object):
@@ -68,7 +68,7 @@ class DeepQNetwork(nn.Module):
         self.optimizer = optim.RMSprop(self.parameters(), lr=lr)
 
         self.loss = nn.MSELoss()
-        self.device = T.device('cuda:0' if T.cuda.is_available() else 'cpu')
+        self.device = device
         self.to(self.device)
 
 
@@ -91,9 +91,9 @@ class DeepQNetwork(nn.Module):
 
 class DQNAgent(Agent):
 
-    def __init__(self, state_dim, number_of_neurons, number_of_actions, epsilon=1, epsilon_dec=0.99999, epsilon_min=0.1, gamma=0.99, learning_rate=0.001, replace=100, batch_size=64):
+    def __init__(self, state_dim, number_of_neurons, number_of_actions, epsilon=1, epsilon_dec=0.99999, epsilon_min=0.1, gamma=0.99, learning_rate=0.001, replace=100, batch_size=64, replay_buffer_size=10000):
         self.number_of_actions = number_of_actions
-        self.replay_buffer = ReplayBuffer(10000, state_dim)
+        self.replay_buffer = ReplayBuffer(replay_buffer_size, state_dim)
         self.q_eval = DeepQNetwork(state_dim, number_of_neurons, number_of_actions, learning_rate)
         self.q_next = DeepQNetwork(state_dim, number_of_neurons, number_of_actions, learning_rate)
         self.epsilon = epsilon
@@ -117,12 +117,12 @@ class DQNAgent(Agent):
         #print(mlflow.get_artifact_uri(artifact_path="model"))
 
     def load(self, model_root_folder_path):
-        
         try:
             self.q_eval.load_checkpoint(os.path.join(model_root_folder_path,'q_eval.chkpt'))
             self.q_next.load_checkpoint(os.path.join(model_root_folder_path,'q_next.chkpt'))
         except:
-            pass
+            print("Could not load network.")
+
     
 
     def store_experience(self, state, action, reward, n_state, done):
@@ -132,6 +132,9 @@ class DQNAgent(Agent):
 
     def select_action(self, state, deploy=False):
         if deploy:
+            #print(state.__class__.__name__)
+            #print(state, int(torch.argmax(self.q_eval.forward(state)).item()))
+            #print(state, int(torch.argmax(self.q_eval.forward(state)).item()))
             return int(torch.argmax(self.q_eval.forward(state)).item())
         if torch.rand(1).item() < self.epsilon:
             self.epsilon *= self.epsilon_dec

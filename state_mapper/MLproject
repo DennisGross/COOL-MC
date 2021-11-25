@@ -2,11 +2,11 @@ name: openai_gym_training
 entry_points:
     main:
         parameters:
-            open_ai_env : {type: string, default: "avoid:avoid-v0"}
+            open_ai_env : {type: string, default: "FrozenLake-v1"}
             prism_dir : {type: string, default: "../prism_files"}
-            prism_file_path : {type: string, default: "avoid.prism" }
-            constant_definitions : {type: string, default: "" }
-            disable_features: {type: tring, default: "done"}
+            prism_file_path : {type: string, default: "frozen_lake-v1.prism" }
+            constant_definitions : {type: string, default: "slippery=0.33333333333333333333" }
+            disable_features: {type: tring, default: ""}
 
 
         command: >-

@@ -1,7 +1,6 @@
 import os
 from common.rl_agents.dummy_agent import DummyAgent
 from common.rl_agents.dummy_frozen_lake_agent import DummyFrozenLakeAgent
-from common.rl_agents.double_dqn_agent import DoubleDQNAgent
 from common.rl_agents.sarsa_max_agent import SarsaMaxAgent
 from common.rl_agents.deep_q_agent import DQNAgent
 '''
@@ -46,14 +45,9 @@ class AgentBuilder():
             agent = SarsaMaxAgent(action_space.n, epsilon=command_line_arguments['epsilon'], epsilon_dec=command_line_arguments['epsilon_dec'], epsilon_min=command_line_arguments['epsilon_min'], alpha=command_line_arguments['alpha'], gamma=command_line_arguments['gamma'])
             if model_root_folder_path!= None:
                 agent.load(model_root_folder_path)
-        elif command_line_arguments['rl_algorithm'] == 'double_dqn_agent':
-            print("Build Double DQN Agent.")
-            number_of_neurons = AgentBuilder.layers_neurons_to_number_of_neurons(command_line_arguments['layers'],command_line_arguments['neurons'])
-            agent = DoubleDQNAgent(state_dimension, action_space.n, number_of_neurons, command_line_arguments['replay_buffer_size'], command_line_arguments['epsilon'], command_line_arguments['epsilon_dec'], command_line_arguments['epsilon_min'], command_line_arguments['gamma'], command_line_arguments['replace'], command_line_arguments['lr'], command_line_arguments['batch_size'])
-            agent.load(model_root_folder_path)
         elif command_line_arguments['rl_algorithm'] == 'dqn_agent':
             print("Build DQN Agent.", state_dimension, action_space.n)
             number_of_neurons = AgentBuilder.layers_neurons_to_number_of_neurons(command_line_arguments['layers'],command_line_arguments['neurons'])
-            agent = DQNAgent(state_dimension, number_of_neurons, action_space.n, epsilon=command_line_arguments['epsilon'], epsilon_dec=command_line_arguments['epsilon_dec'], epsilon_min=command_line_arguments['epsilon_min'], gamma=command_line_arguments['gamma'], learning_rate=command_line_arguments['lr'], replace=command_line_arguments['replace'], batch_size=command_line_arguments['batch_size'])
+            agent = DQNAgent(state_dimension, number_of_neurons, action_space.n, epsilon=command_line_arguments['epsilon'], epsilon_dec=command_line_arguments['epsilon_dec'], epsilon_min=command_line_arguments['epsilon_min'], gamma=command_line_arguments['gamma'], learning_rate=command_line_arguments['lr'], replace=command_line_arguments['replace'], batch_size=command_line_arguments['batch_size'], replay_buffer_size=command_line_arguments['replay_buffer_size'])
             agent.load(model_root_folder_path)
         return agent
