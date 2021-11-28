@@ -2,10 +2,10 @@ name: openai_gym_training
 entry_points:
     main:
         parameters:
-            open_ai_env : {type: string, default: "FrozenLake-v1"}
+            open_ai_env : {type: string, default: "transporter:transporter-v0"}
             prism_dir : {type: string, default: "../prism_files"}
-            prism_file_path : {type: string, default: "frozen_lake-v1.prism" }
-            constant_definitions : {type: string, default: "slippery=0.33333333333333333333" }
+            prism_file_path : {type: string, default: "transporter.prism" }
+            constant_definitions : {type: string, default: "MAX_JOBS=2,MAX_FUEL=20" }
             disable_features: {type: tring, default: ""}
 
 

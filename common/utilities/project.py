@@ -32,6 +32,14 @@ class Project():
                 del saved_command_line_arguments['deploy']
             except:
                 pass
+            try:
+                del saved_command_line_arguments['num_episodes']
+            except:
+                pass
+            try:
+                del saved_command_line_arguments['eval_interval']
+            except:
+                pass
             for key in saved_command_line_arguments.keys():
                 self.command_line_arguments[key] = saved_command_line_arguments[key]
         

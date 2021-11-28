@@ -76,8 +76,9 @@ if __name__ == '__main__':
     state = env.storm_bridge.parse_state(state_dict)
     # Generate actions
     m_permissive_manager = PermissiveManager(command_line_arguments['permissive_input'], env.storm_bridge.state_mapper)
+    m_permissive_manager.action_mapper = env.action_mapper
     all_pairs = m_permissive_manager.manage_permissive_state_actions_pairs(state, m_project.agent)
     print("All decisions for state", state_dict, command_line_arguments['permissive_input'], ":")
     for key in all_pairs.keys():
-        print(key, env.action_mapper.action_index_to_action_name(all_pairs[key]))
+        print(key, all_pairs[key])
 

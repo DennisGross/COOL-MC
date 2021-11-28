@@ -136,6 +136,7 @@ class ModelChecker():
                 selected_action, collected_state, collected_action = self.__get_action_for_state(env, agent, state)
                 if (selected_action in available_actions) == False:
                     selected_action = available_actions[0]
+                #print(state, selected_action)
                 cond1 = (action_name == selected_action)
 
             # print(str(state_valuation.to_json()), action_name)#, state, selected_action, cond1)

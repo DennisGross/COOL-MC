@@ -109,18 +109,19 @@ class Transporter(gym.Env):
 
     def __create_state(self):
         passenger = 1 if self.passenger == True else 0
-        return np.array([self.x, self.y, self.jobs_done, passenger, self.passenger_loc_y, self.passenger_dest_y, self.passenger_dest_x, self.passenger_dest_y, self.fuel])
+        return np.array([self.x, self.y, self.jobs_done, passenger, self.passenger_loc_x, self.passenger_loc_y, self.passenger_dest_x, self.passenger_dest_y, self.fuel])
 
 
     def reset(self):
-            self.MAX_JOBS = 10
-            self.fuel = 21
+            # {"fuel": 20, "jobs_done": 0, "passenger": 0, "passenger_dest_x": 0, "passenger_dest_y": 0, "passenger_loc_x": 0, "passenger_loc_y": 4, "x": 2, "y": 2}
+            self.MAX_JOBS = 1
+            self.fuel = 20
             self.x = 2
             self.y = 2
             self.jobs_done = 0
             self.passenger = False
             self.passenger_loc_x = 0
             self.passenger_loc_y = 4
-            self.passenger_dest_x = 4
-            self.passenger_dest_y = 4
+            self.passenger_dest_x = 0
+            self.passenger_dest_y = 0
             return self.__create_state()

@@ -20,7 +20,9 @@ mdp
 //Additionally, the movement direction of the agent is uncertain and only partially depends
 //on the chosen direction. The agent is rewarded for finding a walkable path to a goal tile.
 //control factor
-const double control=0.33;
+const double control;
+//start position
+const int start_position;
 const int start = 0;
 const int hole1 = 5;
 const int hole2 = 7;
@@ -55,7 +57,7 @@ formula NOT_DONE = (IS_DONE = false);
 //7889
 
 module agent
-	pos: [0..16] init 0;
+	pos: [0..16] init start_position;
 	//1
 	[a3_up] TOP_BORDER & LEFT_BORDER & NOT_IN_HOLE & NOT_DONE-> (1-(1-control)) : (pos'=pos) + ((1-control)/2) : (pos'=pos+1) + ((1-control)/2) : (pos'=pos);
 	//2

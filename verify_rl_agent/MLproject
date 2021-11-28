@@ -5,13 +5,13 @@ entry_points:
             # 98559eb0d0a244adbd69cf7cdfcd57f9
             # dc844e27a5a14e7f80bcad568863d5b3
             project_name : {type: string, default: "Frozen-Lake"}
-            parent_run_id : {type: string, default: "21ad45cc2c3a4d9f95bf56f708943aae"}
+            parent_run_id : {type: string, default: "6cb839aa725c4fa182413f75d93757d8"}
             # Model Checking Parameters
             prism_dir : {type: string, default: "../prism_files"}
-            prism_file_path : {type: string, default: "frozen_lake2-v1.prism"}
-            constant_definitions : {type: string, default: ""}
-            prop : {type: string, default: "Pmax=? [F AT_FRISBEE=true]"}
-            permissive_input: {type: string, default: ""}
+            prism_file_path : {type: string, default: "transporter.prism"}
+            constant_definitions : {type: string, default: "MAX_JOBS=2,MAX_FUEL=21"}
+            prop : {type: string, default: "Pmin=? [F jobs_done=MAX_JOBS]"}
+            permissive_input: {type: string, default: "fuel=[6,22]"}
             disabled_features: {type: string, default: ""}
 
 

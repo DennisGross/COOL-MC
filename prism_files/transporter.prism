@@ -99,21 +99,21 @@ module taxi
 							+ 1/16: (passenger_loc_x'=blue_x) & (passenger_loc_y'=blue_y)  & (passenger_dest_x'=green_x) & (passenger_dest_y'=green_y)  & (passenger'=false) & (jobs_done'=jobs_done+1) & (fuel'=fuel-1)
 							+ 1/16: (passenger_loc_x'=blue_x) & (passenger_loc_y'=blue_y)  & (passenger_dest_x'=blue_x) & (passenger_dest_y'=blue_y)  & (passenger'=false) & (jobs_done'=jobs_done+1) & (fuel'=fuel-1);
 
-	[NORTH] OUT_OF_FUEL -> true;
-	[EAST] OUT_OF_FUEL -> true;
-	[SOUTH] OUT_OF_FUEL -> true;
-	[WEST] OUT_OF_FUEL -> true;
-	[PICK_UP] OUT_OF_FUEL -> true;
-	[DROP] OUT_OF_FUEL -> true;
+	[NORTH] OUT_OF_FUEL & NOT_ON_GAS_STATION-> true;
+	[EAST] OUT_OF_FUEL & NOT_ON_GAS_STATION -> true;
+	[SOUTH] OUT_OF_FUEL & NOT_ON_GAS_STATION -> true;
+	[WEST] OUT_OF_FUEL & NOT_ON_GAS_STATION -> true;
+	[PICK_UP] OUT_OF_FUEL & NOT_ON_GAS_STATION -> true;
+	[DROP] OUT_OF_FUEL & NOT_ON_GAS_STATION-> true;
 
 	//NORTH actions
-	[NORTH] NOT_NORTH_BORDER & NOT_DONE & NOT_OUT_OF_FUEL & ON_GAS_STATION-> (y'=y+1) & (fuel'=MAX_FUEL);
+	[NORTH] ON_GAS_STATION-> (y'=y+1) & (fuel'=MAX_FUEL);
 	//EAST actions
-	[EAST] NOT_EAST_BORDER & NOT_DONE & NOT_OUT_OF_FUEL & ON_GAS_STATION -> (x'=x+1) & (fuel'=MAX_FUEL);
+	[EAST] ON_GAS_STATION -> (x'=x+1) & (fuel'=MAX_FUEL);
 	//SOUTH actions
-	[SOUTH] NOT_SOUTH_BORDER & NOT_DONE & NOT_OUT_OF_FUEL& ON_GAS_STATION-> (y'=y-1) & (fuel'=MAX_FUEL);
+	[SOUTH] ON_GAS_STATION-> (y'=y-1) & (fuel'=MAX_FUEL);
 	//WEST actions
-	[WEST] NOT_WEST_BORDER & NOT_DONE & NOT_OUT_OF_FUEL & ON_GAS_STATION-> (x'=x-1) & (fuel'=MAX_FUEL);
+	[WEST] ON_GAS_STATION-> (x'=x-1) & (fuel'=MAX_FUEL);
 
 endmodule
 
@@ -142,12 +142,12 @@ rewards
 	//PASSENGER ON BOARD BUT NOT AT DROP LOCATION
 	[DROP] NOT_DROP_LOCATION & PASSENGER_ON_BOARD: 21 + (max(passenger_dest_x-x, x-passenger_dest_x-x) + max(passenger_dest_y-y, y- passenger_dest_y));
 	//OUT OF FUEL
-	[NORTH] OUT_OF_FUEL : 100;
-	[EAST] OUT_OF_FUEL : 100;
-	[SOUTH] OUT_OF_FUEL : 100;
-	[WEST] OUT_OF_FUEL : 100;
-	[PICK_UP] OUT_OF_FUEL : 100;
-	[DROP] OUT_OF_FUEL : 100;
+	[NORTH] OUT_OF_FUEL & NOT_ON_GAS_STATION : 1000;
+	[EAST] OUT_OF_FUEL & NOT_ON_GAS_STATION : 1000;
+	[SOUTH] OUT_OF_FUEL & NOT_ON_GAS_STATION : 1000;
+	[WEST] OUT_OF_FUEL & NOT_ON_GAS_STATION: 1000;
+	[PICK_UP] OUT_OF_FUEL & NOT_ON_GAS_STATION: 1000;
+	[DROP] OUT_OF_FUEL & NOT_ON_GAS_STATION: 1000;
 endrewards
 
 

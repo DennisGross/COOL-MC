@@ -3,22 +3,22 @@ entry_points:
     main:
         parameters:
             project_name : {type: string, default: "Frozen-Lake"}
-            parent_run_id : {type: string, default: "21ad45cc2c3a4d9f95bf56f708943aae"}
-            env : {type: string, default: "FrozenLake-v0" }
+            parent_run_id : {type: string, default: "6cb839aa725c4fa182413f75d93757d8"}
+            env : {type: string, default: "Taxi with Fuel" }
             sliding_window_size : {type: float, default: 100}
-            num_episodes : {type: float, default: 1000}
-            eval_interval : {type: float, default: 999}
+            num_episodes : {type: float, default: 350000}
+            eval_interval : {type: float, default: 500}
             rl_algorithm : {type: string, default: "dqn_agent" }
             # Model Checking Parameters
             prism_dir : {type: string, default: "../prism_files"}
-            prism_file_path : {type: string, default: "frozen_lake3-v1.prism"}
-            constant_definitions : {type: string, default: ""}
-            prop : {type: string, default: "Pmax=? [F AT_FRISBEE=true]"}
+            prism_file_path : {type: string, default: "transporter.prism"}
+            constant_definitions : {type: string, default: "MAX_JOBS=2,MAX_FUEL=20"}
+            prop : {type: string, default: "Pmax=? [F jobs_done=2]"}
             max_steps : {type: float, default: 100}
             disabled_features : {type: string, default: ""}
             wrong_action_penalty : {type: float, default: 100}
-            reward_flag : {type: float, default: 1}
-            deploy : {type: float, default: 1}
+            reward_flag : {type: float, default: 0}
+            deploy : {type: float, default: 0}
             permissive_input: {type: string, default: ""}
 
             #Sarsamax
@@ -27,10 +27,11 @@ entry_points:
             # Dummy Agent Parameters
             always_action : {type: float, default: 0}
             # Double DQN Agent
-            layers : {type: float, default: 2}
+            layers : {type: float, default: 3}
             neurons : {type: float, default: 512}
             replay_buffer_size : {type: float, default: 1000000}
             epsilon : {type: float, default: 1}
+            #0.99999
             epsilon_dec : {type: float, default: 0.99999}
             epsilon_min : {type: float, default: 0.1}
             gamma : {type: float, default: 0.99}
