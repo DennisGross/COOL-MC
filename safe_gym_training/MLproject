@@ -2,8 +2,9 @@ name: openai_gym_training
 entry_points:
     main:
         parameters:
+            # 6cb839aa725c4fa182413f75d93757d8
             project_name : {type: string, default: "Frozen-Lake"}
-            parent_run_id : {type: string, default: "6cb839aa725c4fa182413f75d93757d8"}
+            parent_run_id : {type: string, default: ""}
             env : {type: string, default: "Taxi with Fuel" }
             sliding_window_size : {type: float, default: 100}
             num_episodes : {type: float, default: 350000}
@@ -13,7 +14,7 @@ entry_points:
             prism_dir : {type: string, default: "../prism_files"}
             prism_file_path : {type: string, default: "transporter.prism"}
             constant_definitions : {type: string, default: "MAX_JOBS=2,MAX_FUEL=20"}
-            prop : {type: string, default: "Pmax=? [F jobs_done=2]"}
+            prop : {type: string, default: ""}
             max_steps : {type: float, default: 100}
             disabled_features : {type: string, default: ""}
             wrong_action_penalty : {type: float, default: 100}

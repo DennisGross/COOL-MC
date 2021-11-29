@@ -40,6 +40,10 @@ class Project():
                 del saved_command_line_arguments['eval_interval']
             except:
                 pass
+            try:
+                del saved_command_line_arguments['prop_type']
+            except:
+                pass
             for key in saved_command_line_arguments.keys():
                 self.command_line_arguments[key] = saved_command_line_arguments[key]
         

@@ -9,9 +9,9 @@ entry_points:
             # Model Checking Parameters
             prism_dir : {type: string, default: "../prism_files"}
             prism_file_path : {type: string, default: "transporter.prism"}
-            constant_definitions : {type: string, default: "MAX_JOBS=2,MAX_FUEL=21"}
-            prop : {type: string, default: "Pmin=? [F jobs_done=MAX_JOBS]"}
-            permissive_input: {type: string, default: "fuel=[6,22]"}
+            constant_definitions : {type: string, default: "MAX_JOBS=3,MAX_FUEL=21"}
+            prop : {type: string, default: "Pmax=? [F x=1 & y=2]"}
+            permissive_input: {type: string, default: "jobs_done=[0,2]"}
             disabled_features: {type: string, default: ""}
 
 

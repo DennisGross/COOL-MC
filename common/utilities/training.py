@@ -53,13 +53,16 @@ def train(project, env, prop_type=''):
                 reward_of_sliding_window = np.mean(all_episode_rewards[-project.command_line_arguments['sliding_window_size']:])
                 project.mlflow_bridge.log_avg_reward(reward_of_sliding_window, episode)
                 # Log Property Result
-                mdp_reward_result, model_size, _, _ = env.storm_bridge.model_checker.induced_markov_chain(project.agent, env, project.command_line_arguments['constant_definitions'], project.command_line_arguments['prop'])
-                all_property_results.append(mdp_reward_result)
+                if prop_type != 'reward':
+                    mdp_reward_result, model_size, _, _ = env.storm_bridge.model_checker.induced_markov_chain(project.agent, env, project.command_line_arguments['constant_definitions'], project.command_line_arguments['prop'])
+                    all_property_results.append(mdp_reward_result)
 
-                if (all_property_results[-1] == min(all_property_results) and prop_type == "min_prop") or (all_property_results[-1] == max(all_property_results) and prop_type == "max_prop"):
-                    if project.command_line_arguments['deploy']==False:
-                        project.save()
-                project.mlflow_bridge.log_property(all_property_results[-1], 'Property Result', episode)
+                    if (all_property_results[-1] == min(all_property_results) and prop_type == "min_prop") or (all_property_results[-1] == max(all_property_results) and prop_type == "max_prop"):
+                        if project.command_line_arguments['deploy']==False:
+                            project.save()
+                    project.mlflow_bridge.log_property(all_property_results[-1], 'Property Result', episode)
+                else:
+                    mdp_reward_result = None
                 print(episode, "Episode\tReward", episode_reward, '\tAverage Reward', reward_of_sliding_window, "\tLast Property Result:", mdp_reward_result)
             else:
                 # Only log reward
