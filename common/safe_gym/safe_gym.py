@@ -8,8 +8,8 @@ from common.safe_gym.action_mapper import ActionMapper
 
 class SafeGym(gym.Env):
 
-    def __init__(self, prism_file_path, constant_definitions, max_steps, wrong_action_penalty, reward_flag, permissive_input, disabled_features=''):
-        self.storm_bridge = StormBridge(prism_file_path, constant_definitions, wrong_action_penalty, reward_flag, disabled_features, permissive_input)
+    def __init__(self, prism_file_path, constant_definitions, max_steps, wrong_action_penalty, reward_flag, permissive_input, disabled_features='', abstraction_input=''):
+        self.storm_bridge = StormBridge(prism_file_path, constant_definitions, wrong_action_penalty, reward_flag, disabled_features, permissive_input, abstraction_input)
         self.action_mapper = ActionMapper.collect_actions(self.storm_bridge)
         self.steps = 0
         self.max_steps = max_steps

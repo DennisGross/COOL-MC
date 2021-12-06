@@ -16,7 +16,7 @@ This class should be the only class that has contact with Storm.
 '''
 class StormBridge:
 
-    def __init__(self, path, constant_definitions, wrong_action_penalty, reward_flag, disabled_features, permissive_input):
+    def __init__(self, path, constant_definitions, wrong_action_penalty, reward_flag, disabled_features, permissive_input, abstraction_input):
         '''
         Initialize Storm Bridge.
         :param path, path to prism file
@@ -33,7 +33,7 @@ class StormBridge:
         self.path = path
         json_path = os.path.splitext(self.path)[0]+'.json'
         self.state_mapper = StateMapper(json_path, self.state_json_example)
-        self.model_checker = ModelChecker(permissive_input, self.state_mapper)
+        self.model_checker = ModelChecker(permissive_input, self.state_mapper, abstraction_input)
         
 
     def __preprocess_state_json_example(self, json_example):
