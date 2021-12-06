@@ -1,6 +1,6 @@
 mdp
-const int xMax=4;
-const int yMax=4;
+const int xMax;
+const int yMax;
 const double slickness;
 //At North Border
 formula NORTH_BORDER = (y=yMax);

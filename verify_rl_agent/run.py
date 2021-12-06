@@ -32,6 +32,14 @@ def get_arguments():
                             default='Pmin=? [F "water"]')
     arg_parser.add_argument('--disabled_features', help='Features for disabling', type=str,
                             default='')
+
+    #IGNORE THIS ARGUMENTS (BUT DO NOT DELETE THEM)
+    arg_parser.add_argument('--epsilon', help='Epsilon Starting Rate', type=float,
+                            default=1)
+    arg_parser.add_argument('--epsilon_dec', help='Epsilon Decreasing Rate', type=float,
+                            default=0.9994)
+    arg_parser.add_argument('--epsilon_min', help='Minimal Epsilon Value', type=float,
+                            default=0.1)
     args, unknown_args = arg_parser.parse_known_args(sys.argv)
     return vars(args)
 

@@ -1,11 +1,12 @@
 import numpy as np
 class PStateVariable:
 
-    def __init__(self, name, lower_bound, upper_bound, idx=None, current_assignment = None):
+    def __init__(self, name, lower_bound, upper_bound, idx=None, current_assignment = None, step_size=1):
         self.name = name
         self.lower_bound = lower_bound
         self.upper_bound = upper_bound
         self.idx = idx
+        self.step_size = step_size
         if current_assignment == None:
             self.current_assignment = lower_bound
         else:
@@ -26,11 +27,11 @@ class PStateVariable:
         self.current_assignment = self.lower_bound
 
     def copy(self):
-        return PStateVariable(self.name, self.lower_bound, self.upper_bound, self.idx, self.current_assignment)
+        return PStateVariable(self.name, self.lower_bound, self.upper_bound, self.idx, current_assignment=self.current_assignment, step_size=self.step_size)
 
 
     def __str__(self):
-        return self.name + "=["+str(self.lower_bound)+','+str(self.upper_bound)+"]" + " Index: " + str(self.idx)
+        return self.name + "=["+str(self.lower_bound)+','+str(self.upper_bound)+"]" + " Index: " + str(self.idx) + " Step Size: " + str(self.step_size)
 
     @staticmethod
     def copy_all_state_variables(variables):
@@ -42,14 +43,22 @@ class PStateVariable:
     @staticmethod
     def parse_state_variables(permissive_input):
         pstate_variables = []
-        for state_variable_str in permissive_input.split(";"):
+        for state_variable_str in permissive_input.split(","):
             name = state_variable_str.split('=')[0]
             start_interval = state_variable_str.find('[')
-            commata = state_variable_str[start_interval:].find(',')
             end_interval = state_variable_str.find(']')
-            lower_bound = int(state_variable_str[start_interval+1:start_interval+commata])
-            upper_bound = int(state_variable_str[start_interval+commata+1:end_interval])
-            pstate_variable = PStateVariable(name, lower_bound, upper_bound)
+            interval = state_variable_str[(start_interval+1):end_interval]
+            step_size = 1
+            if interval.count(';')>1:
+                parts = state_variable_str[(start_interval+1):end_interval].split(';')
+                lower_bound = int(parts[0])
+                step_size = int(parts[1])
+                upper_bound = int(parts[2])
+            else:
+                commata = state_variable_str[start_interval:].find(';')
+                lower_bound = int(state_variable_str[start_interval+1:start_interval+commata])
+                upper_bound = int(state_variable_str[start_interval+commata+1:end_interval])
+            pstate_variable = PStateVariable(name, lower_bound, upper_bound, step_size = step_size)
             pstate_variables.append(pstate_variable)
         return pstate_variables
 

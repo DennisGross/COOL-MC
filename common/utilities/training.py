@@ -8,6 +8,7 @@ import math
 import numpy as np
 import torch
 from collections import deque
+import time
 
 def train(project, env, prop_type=''):
     all_episode_rewards = []
@@ -66,12 +67,14 @@ def train(project, env, prop_type=''):
                 print(episode, "Episode\tReward", episode_reward, '\tAverage Reward', reward_of_sliding_window, "\tLast Property Result:", mdp_reward_result)
             else:
                 # Only log reward
+                post_processing_start_time = time.time()
                 all_episode_rewards.append(episode_reward)
                 project.mlflow_bridge.log_reward(all_episode_rewards[-1], episode)
                 reward_of_sliding_window = np.mean(all_episode_rewards[-project.command_line_arguments['sliding_window_size']:])
                 project.mlflow_bridge.log_avg_reward(reward_of_sliding_window, episode)
+                post_processing_time = time.time() - post_processing_start_time
                 if len(all_property_results) > 0:
-                    print(episode, "Episode\tReward", episode_reward, '\tAverage Reward', reward_of_sliding_window, "\tLast Property Result:", all_property_results[-1], '\tEpsilon:', project.agent.epsilon)
+                    print(episode, "Episode\tReward", episode_reward, '\tAverage Reward', reward_of_sliding_window, "\tLast Property Result:", all_property_results[-1], '\tEpsilon:', project.agent.epsilon, "\tPostprocessing-tTime:", post_processing_time)
                 else:
                     print(episode, "Episode\tReward", episode_reward, '\tAverage Reward', reward_of_sliding_window, "\tLast Property Result:", None)
 

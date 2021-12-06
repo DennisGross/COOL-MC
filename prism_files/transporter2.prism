@@ -43,7 +43,7 @@ formula NOT_PASSENGER_ON_BOARD = (PASSENGER_ON_BOARD = false);
 formula DROP_LOCATION = (x=passenger_destination_x) & (y=passenger_destination_y);
 formula NOT_DROP_LOCATION = (DROP_LOCATION = false);
 //Done?
-formula DONE = (jobs_done=MAX_JOBS) | (done=true);
+formula DONE = (jobs_done=MAX_JOBS);
 formula NOT_DONE = (DONE = false);
 //Fuel
 formula OUT_OF_FUEL = (fuel=0);
@@ -56,7 +56,6 @@ module taxi
 	//Location
 	x : [0..4] init 2;
 	y : [0..4] init 2;
-	done : bool init false;
 	fuel : [0..MAX_FUEL] init MAX_FUEL;
 	//transportations
 	jobs_done : [0..MAX_JOBS] init 0;
@@ -100,12 +99,12 @@ module taxi
 							+ 1/16: (passenger_loc_x'=blue_x) & (passenger_loc_y'=blue_y)  & (passenger_dest_x'=green_x) & (passenger_dest_y'=green_y)  & (passenger'=false) & (jobs_done'=jobs_done+1) & (fuel'=fuel-1)
 							+ 1/16: (passenger_loc_x'=blue_x) & (passenger_loc_y'=blue_y)  & (passenger_dest_x'=blue_x) & (passenger_dest_y'=blue_y)  & (passenger'=false) & (jobs_done'=jobs_done+1) & (fuel'=fuel-1);
 
-	[NORTH] OUT_OF_FUEL & NOT_ON_GAS_STATION-> (done'=true);
-	[EAST] OUT_OF_FUEL & NOT_ON_GAS_STATION -> (done'=true);
-	[SOUTH] OUT_OF_FUEL & NOT_ON_GAS_STATION -> (done'=true);
-	[WEST] OUT_OF_FUEL & NOT_ON_GAS_STATION -> (done'=true);
-	[PICK_UP] OUT_OF_FUEL & NOT_ON_GAS_STATION -> (done'=true);
-	[DROP] OUT_OF_FUEL & NOT_ON_GAS_STATION-> (done'=true);
+	[NORTH] OUT_OF_FUEL & NOT_ON_GAS_STATION-> true;
+	[EAST] OUT_OF_FUEL & NOT_ON_GAS_STATION -> true;
+	[SOUTH] OUT_OF_FUEL & NOT_ON_GAS_STATION -> true;
+	[WEST] OUT_OF_FUEL & NOT_ON_GAS_STATION -> true;
+	[PICK_UP] OUT_OF_FUEL & NOT_ON_GAS_STATION -> true;
+	[DROP] OUT_OF_FUEL & NOT_ON_GAS_STATION-> true;
 
 	//NORTH actions
 	[NORTH] ON_GAS_STATION-> (y'=y+1) & (fuel'=MAX_FUEL);
@@ -121,34 +120,34 @@ endmodule
 
 rewards
 	//Passenger arrived
-	[DROP] DROP_LOCATION & PASSENGER_ON_BOARD : 0;
+	[DROP] DROP_LOCATION & PASSENGER_ON_BOARD : 0 + MAX_FUEL - fuel;
 	//Pick up Passenger
-	[PICK_UP] NOT_PASSENGER_ON_BOARD & PICK_UP_LOCATION : 21; 
+	[PICK_UP] NOT_PASSENGER_ON_BOARD & PICK_UP_LOCATION : 21 + MAX_FUEL - fuel;
 	//Life penality for each action if passenger is not on board
-	[NORTH] NOT_PASSENGER_ON_BOARD : 21 + (max(passenger_loc_x-x, x-passenger_loc_x) + max(passenger_loc_y-y, y-passenger_loc_y));
-	[EAST] NOT_PASSENGER_ON_BOARD : 21 + (max(passenger_loc_x-x, x-passenger_loc_x) + max(passenger_loc_y-y, y-passenger_loc_y));
-	[SOUTH] NOT_PASSENGER_ON_BOARD : 21 + (max(passenger_loc_x-x, x-passenger_loc_x) + max(passenger_loc_y-y, y-passenger_loc_y));
-	[WEST] NOT_PASSENGER_ON_BOARD : 21 + (max(passenger_loc_x-x, x-passenger_loc_x) + max(passenger_loc_y-y, y-passenger_loc_y));
+	[NORTH] NOT_PASSENGER_ON_BOARD : 21 + (max(passenger_loc_x-x, x-passenger_loc_x) + max(passenger_loc_y-y, y-passenger_loc_y)) + MAX_FUEL - fuel;
+	[EAST] NOT_PASSENGER_ON_BOARD : 21 + (max(passenger_loc_x-x, x-passenger_loc_x) + max(passenger_loc_y-y, y-passenger_loc_y)) + MAX_FUEL - fuel;
+	[SOUTH] NOT_PASSENGER_ON_BOARD : 21 + (max(passenger_loc_x-x, x-passenger_loc_x) + max(passenger_loc_y-y, y-passenger_loc_y)) + MAX_FUEL - fuel;
+	[WEST] NOT_PASSENGER_ON_BOARD : 21 + (max(passenger_loc_x-x, x-passenger_loc_x) + max(passenger_loc_y-y, y-passenger_loc_y)) + MAX_FUEL - fuel;
 	//NOT ON BOARD BUT PICK UP AT WRONG LOCATION
-	[PICK_UP] NOT_PASSENGER_ON_BOARD & NOT_PICK_UP_LOCATION: 21 + (max(passenger_loc_x-x, x-passenger_loc_x) + max(passenger_loc_y-y, y-passenger_loc_y));
+	[PICK_UP] NOT_PASSENGER_ON_BOARD & NOT_PICK_UP_LOCATION: 21 + (max(passenger_loc_x-x, x-passenger_loc_x) + max(passenger_loc_y-y, y-passenger_loc_y)) + MAX_FUEL - fuel;
 	//DROP NOT POSSIBLE BECAUSE NO PASSENGER
-	[DROP] NOT_PASSENGER_ON_BOARD : 21 + (max(passenger_loc_x-x, x-passenger_loc_x) + max(passenger_loc_y-y, y-passenger_loc_y));
+	[DROP] NOT_PASSENGER_ON_BOARD : 21 + (max(passenger_loc_x-x, x-passenger_loc_x) + max(passenger_loc_y-y, y-passenger_loc_y)) + MAX_FUEL - fuel;
 	//Life penality for each action if passenger is on board
-	[NORTH] PASSENGER_ON_BOARD : 21 + (max(passenger_dest_x-x, x-passenger_dest_x-x) + max(passenger_dest_y-y, y- passenger_dest_y));
-	[EAST] PASSENGER_ON_BOARD : 21 + (max(passenger_dest_x-x, x-passenger_dest_x-x) + max(passenger_dest_y-y, y- passenger_dest_y));
-	[SOUTH] PASSENGER_ON_BOARD : 21 + (max(passenger_dest_x-x, x-passenger_dest_x-x) + max(passenger_dest_y-y, y- passenger_dest_y));
-	[WEST] PASSENGER_ON_BOARD : 21 + (max(passenger_dest_x-x, x-passenger_dest_x-x) + max(passenger_dest_y-y, y- passenger_dest_y));
+	[NORTH] PASSENGER_ON_BOARD : 21 + (max(passenger_dest_x-x, x-passenger_dest_x-x) + max(passenger_dest_y-y, y- passenger_dest_y)) + MAX_FUEL - fuel;
+	[EAST] PASSENGER_ON_BOARD : 21 + (max(passenger_dest_x-x, x-passenger_dest_x-x) + max(passenger_dest_y-y, y- passenger_dest_y)) + MAX_FUEL - fuel;
+	[SOUTH] PASSENGER_ON_BOARD : 21 + (max(passenger_dest_x-x, x-passenger_dest_x-x) + max(passenger_dest_y-y, y- passenger_dest_y)) + MAX_FUEL - fuel;
+	[WEST] PASSENGER_ON_BOARD : 21 + (max(passenger_dest_x-x, x-passenger_dest_x-x) + max(passenger_dest_y-y, y- passenger_dest_y)) + MAX_FUEL - fuel;
 	//PASSENGER ALREADY PICKED UP
-	[PICK_UP] PASSENGER_ON_BOARD : 21 + (max(passenger_dest_x-x, x-passenger_dest_x-x) + max(passenger_dest_y-y, y- passenger_dest_y));
+	[PICK_UP] PASSENGER_ON_BOARD : 21 + (max(passenger_dest_x-x, x-passenger_dest_x-x) + max(passenger_dest_y-y, y- passenger_dest_y)) + MAX_FUEL - fuel;
 	//PASSENGER ON BOARD BUT NOT AT DROP LOCATION
-	[DROP] NOT_DROP_LOCATION & PASSENGER_ON_BOARD: 21 + (max(passenger_dest_x-x, x-passenger_dest_x-x) + max(passenger_dest_y-y, y- passenger_dest_y));
+	[DROP] NOT_DROP_LOCATION & PASSENGER_ON_BOARD: 21 + (max(passenger_dest_x-x, x-passenger_dest_x-x) + max(passenger_dest_y-y, y- passenger_dest_y)) + MAX_FUEL - fuel;
 	//OUT OF FUEL
-	[NORTH] OUT_OF_FUEL & NOT_ON_GAS_STATION : 1500;
-	[EAST] OUT_OF_FUEL & NOT_ON_GAS_STATION : 1500;
-	[SOUTH] OUT_OF_FUEL & NOT_ON_GAS_STATION : 1500;
-	[WEST] OUT_OF_FUEL & NOT_ON_GAS_STATION: 1500;
-	[PICK_UP] OUT_OF_FUEL & NOT_ON_GAS_STATION: 1500;
-	[DROP] OUT_OF_FUEL & NOT_ON_GAS_STATION: 1500;
+	[NORTH] OUT_OF_FUEL & NOT_ON_GAS_STATION : 10000;
+	[EAST] OUT_OF_FUEL & NOT_ON_GAS_STATION : 10000;
+	[SOUTH] OUT_OF_FUEL & NOT_ON_GAS_STATION : 10000;
+	[WEST] OUT_OF_FUEL & NOT_ON_GAS_STATION: 10000;
+	[PICK_UP] OUT_OF_FUEL & NOT_ON_GAS_STATION: 10000;
+	[DROP] OUT_OF_FUEL & NOT_ON_GAS_STATION: 10000;
 endrewards
 
 

@@ -3,19 +3,20 @@ entry_points:
     main:
         parameters:
             # 6cb839aa725c4fa182413f75d93757d8
-            project_name : {type: string, default: "Frozen-Lake"}
+            # 94a544b96a8444cbb22f7061656e0ffd
+            project_name : {type: string, default: "Taxi with Fuel Testings"}
             parent_run_id : {type: string, default: ""}
             env : {type: string, default: "Taxi with Fuel" }
             sliding_window_size : {type: float, default: 100}
             num_episodes : {type: float, default: 350000}
-            eval_interval : {type: float, default: 500}
+            eval_interval : {type: float, default: 100}
             rl_algorithm : {type: string, default: "dqn_agent" }
             # Model Checking Parameters
             prism_dir : {type: string, default: "../prism_files"}
             prism_file_path : {type: string, default: "transporter.prism"}
-            constant_definitions : {type: string, default: "MAX_JOBS=2,MAX_FUEL=20"}
-            prop : {type: string, default: ""}
-            max_steps : {type: float, default: 100}
+            constant_definitions : {type: string, default: "MAX_JOBS=2,MAX_FUEL=10"}
+            prop : {type: string, default: "Pmax=? [F jobs_done=2]"}
+            max_steps : {type: float, default: 30}
             disabled_features : {type: string, default: ""}
             wrong_action_penalty : {type: float, default: 100}
             reward_flag : {type: float, default: 0}
@@ -28,17 +29,17 @@ entry_points:
             # Dummy Agent Parameters
             always_action : {type: float, default: 0}
             # Double DQN Agent
-            layers : {type: float, default: 3}
+            layers : {type: float, default: 4}
             neurons : {type: float, default: 512}
             replay_buffer_size : {type: float, default: 1000000}
-            epsilon : {type: float, default: 1}
+            epsilon : {type: float, default: 0.3}
             #0.99999
             epsilon_dec : {type: float, default: 0.99999}
             epsilon_min : {type: float, default: 0.1}
             gamma : {type: float, default: 0.99}
-            replace : {type: float, default: 128}
+            replace : {type: float, default: 1024}
             lr : {type: float, default: 0.0001}
-            batch_size : {type: float, default: 64}
+            batch_size : {type: float, default: 100}
 
 
         command: >-

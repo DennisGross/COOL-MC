@@ -29,6 +29,18 @@ class Project():
             except:
                 pass
             try:
+                del saved_command_line_arguments['epsilon']
+            except:
+                pass
+            try:
+                del saved_command_line_arguments['epsilon_dec']
+            except:
+                pass
+            try:
+                del saved_command_line_arguments['epsilon_min']
+            except:
+                pass
+            try:
                 del saved_command_line_arguments['deploy']
             except:
                 pass
