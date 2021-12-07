@@ -14,7 +14,7 @@ entry_points:
             permissive_input: {type: string, default: ""}
             disabled_features: {type: string, default: ""}
             # VAR=[LOW;STEP;MAX;METHOD], VAR=[LOW;STEP;MAX]
-            abstract_features: {type: string, default: "fuel=[0;1;10]"}
+            abstract_features: {type: string, default: "../taxi_abstraction.json"}
 
 
         command: >-
