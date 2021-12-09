@@ -10,35 +10,22 @@ class StateMapper:
             self.disabled_features = []
         else:
             self.disabled_features = disabled_features.split(",")
-        self.new_variable_format = self.get_format( self.original_format, self.disabled_features)
         print(self.mapper)
-        self.mapper = self.update_mapper(self.mapper, self.original_format, self.new_variable_format)
+        self.mapper = self.update_mapper(self.mapper, self.disabled_features)
         print(self.mapper)
 
-    def get_format(self,original_var_format, disabled_features):
-        new_var_format = []
-        for idx, name in enumerate(original_var_format):
-            if name in self.disabled_features:
-                continue
-            else:
-                new_var_format.append(name)
-        return new_var_format
 
-    def update_mapper(self, mapper, original_format, new_variable_format):
-        print(original_format, new_variable_format)
-        for idx, name in enumerate(original_format):
-            try:
-                if name in self.disabled_features:
-                    del mapper[name]
-                else:
-                    mapper[name] += (new_variable_format.index(name)-idx)
-                    if mapper[name] < 0:
-                        mapper[name] = 0
-                    elif mapper[name] >= len(new_variable_format):
-                        mapper[name] = len(new_variable_format)-1
-            except:
-                pass
-        return mapper
+    def update_mapper(self, mapper, disabled_features):
+        if len(disabled_features) == 0:
+            return mapper
+        else:
+            for disabled_key in disabled_features:
+                disabled_index = mapper[disabled_key]
+                for key in mapper.keys():
+                    if key != disabled_key and mapper[key] > disabled_index:
+                        mapper[key]-=1
+                del mapper[disabled_key]
+            return mapper
 
         
 
@@ -60,12 +47,13 @@ class StateMapper:
         return mapper
 
     def map(self, state):
-        size = len(self.original_format)-len(self.disabled_features)
+        size = len(self.mapper.keys())
         mapped_state = np.zeros(size, np.int32)
+        print(state)
         for idx, name in enumerate(self.original_format):
             if name not in self.disabled_features:
                 n_idx = self.mapper[name]
-                #print("put", name, 'to', n_idx, 'original', idx)
+                print("put", name, 'to', n_idx, 'original', idx)
                 mapped_state[n_idx] = state[idx]
         return mapped_state
 
