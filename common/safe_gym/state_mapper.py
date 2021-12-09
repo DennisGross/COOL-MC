@@ -49,11 +49,11 @@ class StateMapper:
     def map(self, state):
         size = len(self.mapper.keys())
         mapped_state = np.zeros(size, np.int32)
-        print(state)
+        #print(state)
         for idx, name in enumerate(self.original_format):
             if name not in self.disabled_features:
                 n_idx = self.mapper[name]
-                print("put", name, 'to', n_idx, 'original', idx)
+                #print("put", name, 'to', n_idx, 'original', idx)
                 mapped_state[n_idx] = state[idx]
         return mapped_state
 

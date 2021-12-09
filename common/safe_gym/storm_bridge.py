@@ -121,7 +121,6 @@ class StormBridge:
         #_state, reward = self.simulator.restart()
         _state = str(data[0])
         reward = data[1]
-        print(str(_state))
         self._state = self.parse_state(str(_state))
         return self._state
 
