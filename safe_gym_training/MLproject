@@ -4,22 +4,22 @@ entry_points:
         parameters:
             # 6cb839aa725c4fa182413f75d93757d8
             # 94a544b96a8444cbb22f7061656e0ffd
-            project_name : {type: string, default: "Taxi with Fuel Testings"}
+            project_name : {type: string, default: "Collision Avoidance"}
             parent_run_id : {type: string, default: ""}
-            env : {type: string, default: "Taxi with Fuel" }
+            env : {type: string, default: "Collision Avoidance" }
             sliding_window_size : {type: float, default: 100}
-            num_episodes : {type: float, default: 350000}
+            num_episodes : {type: float, default: 50000}
             eval_interval : {type: float, default: 100}
             rl_algorithm : {type: string, default: "dqn_agent" }
             # Model Checking Parameters
             prism_dir : {type: string, default: "../prism_files"}
-            prism_file_path : {type: string, default: "transporter.prism"}
-            constant_definitions : {type: string, default: "MAX_JOBS=2,MAX_FUEL=10"}
-            prop : {type: string, default: "Pmax=? [F jobs_done=2]"}
-            max_steps : {type: float, default: 30}
+            prism_file_path : {type: string, default: "avoid.prism"}
+            constant_definitions : {type: string, default: "slickness=0,xMax=4,yMax=4"}
+            prop : {type: string, default: "Rmax=? [F COLLISION=true]"}
+            max_steps : {type: float, default: 250}
             disabled_features : {type: string, default: ""}
             wrong_action_penalty : {type: float, default: 100}
-            reward_flag : {type: float, default: 0}
+            reward_flag : {type: float, default: 1}
             deploy : {type: float, default: 0}
             permissive_input: {type: string, default: ""}
 

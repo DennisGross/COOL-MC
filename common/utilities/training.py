@@ -77,6 +77,7 @@ def train(project, env, prop_type=''):
                     print(episode, "Episode\tReward", episode_reward, '\tAverage Reward', reward_of_sliding_window, "\tLast Property Result:", all_property_results[-1], '\tEpsilon:', project.agent.epsilon, "\tPostprocessing-tTime:", post_processing_time)
                 else:
                     print(episode, "Episode\tReward", episode_reward, '\tAverage Reward', reward_of_sliding_window, "\tLast Property Result:", None)
+                
 
             if reward_of_sliding_window  > best_reward_of_sliding_window:
                 best_reward_of_sliding_window = reward_of_sliding_window
