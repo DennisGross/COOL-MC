@@ -66,7 +66,7 @@ class AStateVariable:
     def parse_abstraction_from_dict(abstraction_mapping):
         astate_variables = []
         for state_variable_name in abstraction_mapping.keys():
-            astate_variable = AStateVariable(state_variable_name, -1, -1, -1, mapping=  abstraction_mapping[state_variable_name])
+            astate_variable = AStateVariable(state_variable_name, -1, -1, -1, mapping=abstraction_mapping[state_variable_name])
             astate_variables.append(astate_variable)
         return astate_variables
 
