@@ -45,17 +45,14 @@ class StormBridge:
         dummy_state = {}
         json_example = str(json_example)
         for k in json.loads(json_example):
-            if k in self.disabled_features:
-                continue
-            else:
-                value = json.loads(json_example)[k]
-                if type(value) == type(True):
-                    if value:
-                        value = 1
-                    else:
-                        value = 0
-                dummy_state[k] = int(value)
-        json_object = json.dumps(dummy_state)  
+            value = json.loads(json_example)[k]
+            if type(value) == type(True):
+                if value:
+                    value = 1
+                else:
+                    value = 0
+            dummy_state[k] = int(value)
+        json_object = json.dumps(dummy_state)
         return json_object
 
 
@@ -132,7 +129,7 @@ class StormBridge:
         Parse json state to numpy state
         :state, json state
         :return numpy state
-        '''
+        
         arr = []
         state_variables = []
         for k in json.loads(state):
@@ -148,4 +145,25 @@ class StormBridge:
             arr.append(value)
         state = np.array(arr, dtype=np.int32)
         state = self.state_mapper.map(state, state_variables)
-        return state
+        '''
+        # State Extracting
+        arr = []
+        state_variables = []
+        for k in json.loads(state):
+            value = json.loads(state)[k]
+            if type(value) == type(True):
+                if value:
+                    value = 1
+                else:
+                    value = 0
+            state_variables.append(k)
+            arr.append(value)
+        state = np.array(arr, dtype=np.int32)
+        # Mapping
+        state = self.state_mapper.map(state, state_variables)
+        # Manage Disabled features
+        n_state = []
+        for idx, elem in enumerate(state.tolist()):
+            if self.state_mapper.inverse_mapping(idx) not in self.disabled_features:
+                n_state.append(int(elem))
+        return np.array(n_state, dtype=np.int32)

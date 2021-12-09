@@ -32,6 +32,14 @@ class StateMapper:
             idx+=1
         return mapped_state
 
+    def inverse_mapping(self, idx):
+        for name in self.openai_state_variable_positions:
+            try:
+                if self.openai_state_variable_positions[name] == idx:
+                    return name
+            except:
+                pass
+        return -1
 
 
 

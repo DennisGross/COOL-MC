@@ -93,3 +93,4 @@ def test_dummy_agent_safe_frozen_lake_dummy_frozen_lake_agent(dummy_agent_safe_f
     m_project.mlflow_bridge.close()
     assert sum(all_rewards) == -600
     assert True in all_terminals
+
