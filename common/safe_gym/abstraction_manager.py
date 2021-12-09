@@ -76,7 +76,7 @@ class AbstractionManager:
 
     def __init__(self, state_var_mapper, abstraction_input) -> None:
         self.is_active = (abstraction_input != '')
-        self.state_var_mapper = state_var_mapper.openai_state_variable_positions
+        self.state_var_mapper = state_var_mapper.mapper
         if self.is_active:
             if os.path.isfile(abstraction_input):
                 with open(abstraction_input) as json_file:

@@ -32,7 +32,7 @@ class StormBridge:
         self.reward_flag = reward_flag
         self.path = path
         json_path = os.path.splitext(self.path)[0]+'.json'
-        self.state_mapper = StateMapper(json_path, self.state_json_example)
+        self.state_mapper = StateMapper(json_path, self.state_json_example, self.disabled_features)
         self.model_checker = ModelChecker(permissive_input, self.state_mapper, abstraction_input)
         
 
@@ -160,10 +160,12 @@ class StormBridge:
             arr.append(value)
         state = np.array(arr, dtype=np.int32)
         # Mapping
-        state = self.state_mapper.map(state, state_variables)
+        state = self.state_mapper.map(state)
         # Manage Disabled features
+        '''
         n_state = []
         for idx, elem in enumerate(state.tolist()):
             if self.state_mapper.inverse_mapping(idx) not in self.disabled_features:
                 n_state.append(int(elem))
-        return np.array(n_state, dtype=np.int32)
+        '''
+        return np.array(state, dtype=np.int32)

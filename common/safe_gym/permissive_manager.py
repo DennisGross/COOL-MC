@@ -101,7 +101,7 @@ class PermissiveManager:
 
     def __init__(self, permissive_input, state_var_mapper):
         self.current_state = None
-        self.state_var_mapper = state_var_mapper.openai_state_variable_positions
+        self.state_var_mapper = state_var_mapper.mapper
         self.is_permissive = (permissive_input != '')
         if self.is_permissive:
             self.pstate_variables = PStateVariable.parse_state_variables(permissive_input)

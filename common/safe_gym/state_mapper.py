@@ -3,8 +3,45 @@ import numpy as np
 import os
 class StateMapper:
 
-    def __init__(self, transformation_file_path, state_json_example):
-        self.openai_state_variable_positions = self.load_mappings(transformation_file_path, state_json_example)
+    def __init__(self, transformation_file_path, state_json_example, disabled_features):
+        self.mapper = self.load_mappings(transformation_file_path, state_json_example)
+        self.original_format = list(self.mapper)
+        if disabled_features == "":
+            self.disabled_features = []
+        else:
+            self.disabled_features = disabled_features.split(",")
+        self.new_variable_format = self.get_format( self.original_format, self.disabled_features)
+        print(self.mapper)
+        self.mapper = self.update_mapper(self.mapper, self.original_format, self.new_variable_format)
+        print(self.mapper)
+
+    def get_format(self,original_var_format, disabled_features):
+        new_var_format = []
+        for idx, name in enumerate(original_var_format):
+            if name in self.disabled_features:
+                continue
+            else:
+                new_var_format.append(name)
+        return new_var_format
+
+    def update_mapper(self, mapper, original_format, new_variable_format):
+        print(original_format, new_variable_format)
+        for idx, name in enumerate(original_format):
+            try:
+                if name in self.disabled_features:
+                    del mapper[name]
+                else:
+                    mapper[name] += (new_variable_format.index(name)-idx)
+                    if mapper[name] < 0:
+                        mapper[name] = 0
+                    elif mapper[name] >= len(new_variable_format):
+                        mapper[name] = len(new_variable_format)-1
+            except:
+                pass
+        return mapper
+
+        
+
         
 
     def load_mappings(self, transformation_file_path, state_json_example):
@@ -22,24 +59,26 @@ class StateMapper:
 
         return mapper
 
-    def map(self, state, state_variables):
-        size = len(state_variables)
+    def map(self, state):
+        size = len(self.original_format)-len(self.disabled_features)
         mapped_state = np.zeros(size, np.int32)
-        idx = 0
-        for name in state_variables:
-            n_idx = self.openai_state_variable_positions[name]
-            mapped_state[n_idx] = state[idx]
-            idx+=1
+        for idx, name in enumerate(self.original_format):
+            if name not in self.disabled_features:
+                n_idx = self.mapper[name]
+                #print("put", name, 'to', n_idx, 'original', idx)
+                mapped_state[n_idx] = state[idx]
         return mapped_state
 
     def inverse_mapping(self, idx):
-        for name in self.openai_state_variable_positions:
+        for name in self.mapper:
             try:
-                if self.openai_state_variable_positions[name] == idx:
+                if self.mapper[name] == idx:
                     return name
             except:
                 pass
         return -1
+
+    
 
 
 
