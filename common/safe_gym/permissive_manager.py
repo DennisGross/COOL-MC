@@ -1,12 +1,13 @@
 import numpy as np
 class PStateVariable:
 
-    def __init__(self, name, lower_bound, upper_bound, idx=None, current_assignment = None, step_size=1):
+    def __init__(self, name, lower_bound, upper_bound, idx=None, current_assignment = None, step_size=1,is_range=False):
         self.name = name
         self.lower_bound = lower_bound
         self.upper_bound = upper_bound
         self.idx = idx
         self.step_size = step_size
+        self.is_range = is_range
         if current_assignment == None:
             self.current_assignment = lower_bound
         else:
@@ -27,7 +28,7 @@ class PStateVariable:
         self.current_assignment = self.lower_bound
 
     def copy(self):
-        return PStateVariable(self.name, self.lower_bound, self.upper_bound, self.idx, current_assignment=self.current_assignment, step_size=self.step_size)
+        return PStateVariable(self.name, self.lower_bound, self.upper_bound, self.idx, current_assignment=self.current_assignment, step_size=self.step_size, is_range=self.is_range)
 
 
     def __str__(self):
@@ -45,6 +46,11 @@ class PStateVariable:
         pstate_variables = []
         for state_variable_str in permissive_input.split(","):
             name = state_variable_str.split('=')[0]
+            if name.find("<>")!=-1:
+                is_range = True
+                name = name.replace('<>','')
+            else:
+                is_range = False
             start_interval = state_variable_str.find('[')
             end_interval = state_variable_str.find(']')
             interval = state_variable_str[(start_interval+1):end_interval]
@@ -58,7 +64,7 @@ class PStateVariable:
                 commata = state_variable_str[start_interval:].find(';')
                 lower_bound = int(state_variable_str[start_interval+1:start_interval+commata])
                 upper_bound = int(state_variable_str[start_interval+commata+1:end_interval])
-            pstate_variable = PStateVariable(name, lower_bound, upper_bound, step_size = step_size)
+            pstate_variable = PStateVariable(name, lower_bound, upper_bound, step_size = step_size, is_range=is_range)
             pstate_variables.append(pstate_variable)
         return pstate_variables
 
@@ -80,21 +86,30 @@ class PStateVariable:
         # Stop if index out of range
         if state_var_idx>=len(pstate_variables):
             return all_current_states
-        while True:
-            value = pstate_variables[state_var_idx].next()
-            if value == None:
-                return all_current_states
-            else:
-                 # Copy state
-                n_state = np.array(n_state, copy=True)
-                # Update copied state
-                n_state[pstate_variables[state_var_idx].idx] = value
-                # Add state
-                all_current_states.append(n_state)
-                # Copy state variables
-                c_state_variables = PStateVariable.copy_all_state_variables(pstate_variables)
-                sub_states = PStateVariable.__generate_all_states(c_state_variables, n_state, state_var_idx+1)
-                all_current_states.extend(sub_states)
+        
+        
+        if pstate_variables[state_var_idx].is_range == True and (state[pstate_variables[state_var_idx].idx] < pstate_variables[state_var_idx].lower_bound or state[pstate_variables[state_var_idx].idx] > pstate_variables[state_var_idx].upper_bound):
+            all_current_states.append(n_state)
+            c_state_variables = PStateVariable.copy_all_state_variables(pstate_variables)
+            sub_states = PStateVariable.__generate_all_states(c_state_variables, n_state, state_var_idx+1)
+            all_current_states.extend(sub_states)
+            return all_current_states
+        else:
+            while True:
+                value = pstate_variables[state_var_idx].next()
+                if value == None:
+                    return all_current_states
+                else:
+                    # Copy state
+                    n_state = np.array(n_state, copy=True)
+                    # Update copied state
+                    n_state[pstate_variables[state_var_idx].idx] = value
+                    # Add state
+                    all_current_states.append(n_state)
+                    # Copy state variables
+                    c_state_variables = PStateVariable.copy_all_state_variables(pstate_variables)
+                    sub_states = PStateVariable.__generate_all_states(c_state_variables, n_state, state_var_idx+1)
+                    all_current_states.extend(sub_states)
         
         
 class PermissiveManager:

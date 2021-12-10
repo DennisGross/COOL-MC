@@ -12,11 +12,11 @@ entry_points:
             prism_dir : {type: string, default: "../prism_files"}
             prism_file_path : {type: string, default: "avoid.prism"}
             constant_definitions : {type: string, default: "MAX_JOBS=2,MAX_FUEL=10"}
-            prop : {type: string, default: "Pmin=? [F jobs_done=1]"}
-            permissive_input: {type: string, default: ""}
+            prop : {type: string, default: "Pmax=? [F jobs_done=2]"}
+            permissive_input: {type: string, default: "fuel<>=[0;10]"}
             disabled_features: {type: string, default: ""}
             # VAR=[LOW;STEP;MAX;METHOD], VAR=[LOW;STEP;MAX]
-            abstract_features: {type: string, default: "../taxi_abstraction.json"}
+            abstract_features: {type: string, default: ""}
 
 
         command: >-
