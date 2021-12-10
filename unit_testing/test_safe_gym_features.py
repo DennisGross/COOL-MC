@@ -87,3 +87,4 @@ def test_mapping_disabled_state_space4():
     assert disabled_state.shape[0] == 2
     assert disabled_state[0] == 4
 
+

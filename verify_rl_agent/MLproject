@@ -5,15 +5,16 @@ entry_points:
             # 98559eb0d0a244adbd69cf7cdfcd57f9
             # dc844e27a5a14e7f80bcad568863d5b3
             # lo0ahbo5up5ko0k9d7ul639pz3tu0kem0vrzsx84mr Taxi
+            # yxydlkcqo3w7ri1vecklistmh306ye743tqa29r1cpo6w6cej10e Optimal Taxi
             # e348712a4b50495196e8663dce07c3de Avoidance
             project_name : {type: string, default: "Taxi with Fuel"}
-            parent_run_id : {type: string, default: "lo0ahbo5up5ko0k9d7ul639pz3tu0kem0vrzsx84mr"}
+            parent_run_id : {type: string, default: "92ed82c3cf284afcb43b16daeaf8df9a"}
             # Model Checking Parameters
             prism_dir : {type: string, default: "../prism_files"}
             prism_file_path : {type: string, default: "avoid.prism"}
             constant_definitions : {type: string, default: "MAX_JOBS=2,MAX_FUEL=10"}
-            prop : {type: string, default: "Pmax=? [F jobs_done=2]"}
-            permissive_input: {type: string, default: "fuel<>=[0;10]"}
+            prop : {type: string, default: "Pmin=? [F jobs_done=2]"}
+            permissive_input: {type: string, default: ""}
             disabled_features: {type: string, default: ""}
             # VAR=[LOW;STEP;MAX;METHOD], VAR=[LOW;STEP;MAX]
             abstract_features: {type: string, default: ""}

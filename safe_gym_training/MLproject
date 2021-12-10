@@ -5,7 +5,7 @@ entry_points:
             # 6cb839aa725c4fa182413f75d93757d8
             # 94a544b96a8444cbb22f7061656e0ffd
             project_name : {type: string, default: "Taxi with Fuel"}
-            parent_run_id : {type: string, default: "lo0ahbo5up5ko0k9d7ul639pz3tu0kem0vrzsx84mr"}
+            parent_run_id : {type: string, default: ""}
             env : {type: string, default: "Taxi with Fuel" }
             sliding_window_size : {type: float, default: 100}
             num_episodes : {type: float, default: 50000}
@@ -17,7 +17,7 @@ entry_points:
             constant_definitions : {type: string, default: "MAX_JOBS=2,MAX_FUEL=10"}
             prop : {type: string, default: "Pmax=? [F jobs_done=2]"}
             max_steps : {type: float, default: 250}
-            disabled_features : {type: string, default: ""}
+            disabled_features : {type: string, default: "jobs_done"}
             wrong_action_penalty : {type: float, default: 100}
             reward_flag : {type: float, default: 0}
             deploy : {type: float, default: 0}

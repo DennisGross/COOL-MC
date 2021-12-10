@@ -125,27 +125,6 @@ class StormBridge:
         return self._state
 
     def parse_state(self, state):
-        '''
-        Parse json state to numpy state
-        :state, json state
-        :return numpy state
-        
-        arr = []
-        state_variables = []
-        for k in json.loads(state):
-            if k in self.disabled_features:
-                continue
-            value = json.loads(state)[k]
-            if type(value) == type(True):
-                if value:
-                    value = 1
-                else:
-                    value = 0
-            state_variables.append(k)
-            arr.append(value)
-        state = np.array(arr, dtype=np.int32)
-        state = self.state_mapper.map(state, state_variables)
-        '''
         # State Extracting
         arr = []
         state_variables = []
@@ -159,13 +138,6 @@ class StormBridge:
             state_variables.append(k)
             arr.append(value)
         state = np.array(arr, dtype=np.int32)
-        # Mapping
+        # Mapping and deleting disabled features
         state = self.state_mapper.map(state)
-        # Manage Disabled features
-        '''
-        n_state = []
-        for idx, elem in enumerate(state.tolist()):
-            if self.state_mapper.inverse_mapping(idx) not in self.disabled_features:
-                n_state.append(int(elem))
-        '''
         return np.array(state, dtype=np.int32)
