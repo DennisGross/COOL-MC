@@ -29,3 +29,5 @@ pip install sklearn
 pip install ipython
 # Install matplotlib
 pip install matplotlib
+# Install streamlit
+pip install streamlit
