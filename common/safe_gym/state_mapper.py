@@ -10,9 +10,9 @@ class StateMapper:
             self.disabled_features = []
         else:
             self.disabled_features = disabled_features.split(",")
-        print(self.mapper)
+        #print(self.mapper)
         self.mapper = self.update_mapper(self.mapper, self.disabled_features)
-        print(self.mapper)
+        #print(self.mapper)
 
 
     def update_mapper(self, mapper, disabled_features):
