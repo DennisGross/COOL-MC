@@ -2,6 +2,7 @@ from common.utilities.project import Project
 import sys
 from common.rl_agents.dummy_agent import DummyAgent
 from common.safe_gym.safe_gym import SafeGym
+from common.utilities.front_end_printer import *
 import gym
 import random
 import math
@@ -83,6 +84,8 @@ def train(project, env, prop_type=''):
                 best_reward_of_sliding_window = reward_of_sliding_window
                 if prop_type=='reward' and project.command_line_arguments['deploy']==False:
                     project.save()
+            
+            FrontEndPrinter.write_training_process(episode, reward, reward_of_sliding_window, all_property_results[-1])
     except KeyboardInterrupt:
         torch.cuda.empty_cache()
         pass

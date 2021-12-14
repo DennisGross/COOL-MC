@@ -76,6 +76,7 @@ if __name__ == '__main__':
             env = SafeGym(prism_file_path,constant_definitions, 1, 1, False, command_line_arguments['permissive_input'],  m_project.command_line_arguments['disabled_features'], abstraction_input=m_project.command_line_arguments['abstract_features'])
             m_project.create_agent(command_line_arguments, env.observation_space, env.action_space)
             mdp_reward_result, model_size, _, _ = env.storm_bridge.model_checker.induced_markov_chain(m_project.agent, env, constant_definitions, command_line_arguments['prop'])
+            print("Constant Definitions:", constant_definitions)
             print(command_line_arguments['prop'], ':', mdp_reward_result)
             
             all_prop_results.append(mdp_reward_result)

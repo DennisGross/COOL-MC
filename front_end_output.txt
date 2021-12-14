@@ -1,0 +1,5 @@
+PID: 34679
+Epoch: 299
+Reward: 100.0
+Reward Sliding Window: 4765.0
+Property Result: 60.91867700369243

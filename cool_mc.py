@@ -12,22 +12,22 @@ def get_arguments():
     args = argparse.Namespace()
     unknown_args = list()
     arg_parser.add_argument('--task', help='What is the name of your project?', type=str,
-                            default='openai_training')
+                            default='safe_training')
     arg_parser.add_argument('--project_name', help='What is the name of your project?', type=str,
-                            default='CartPole')
+                            default='avoid')
     arg_parser.add_argument('--parent_run_id', help='Do you want to continue training of a RL agent? Name the run_id of the last training unit (see mlflow ui).', type=str,
                             default='')
     arg_parser.add_argument('--sliding_window_size', help='What is the sliding window size for the reward averaging?', type=int,
                             default=100)
     arg_parser.add_argument('--num_episodes', help='What is the number of training episodes?', type=int,
-                            default=1000)
+                            default=300)
     arg_parser.add_argument('--eval_interval', help='What is the number of training episodes?', type=int,
                             default=100)
     arg_parser.add_argument('--rl_algorithm', help='What is the  used RL algorithm?', type=str,
                             default='dqn_agent')
     # OpenAI Gym
     arg_parser.add_argument('--env', help='In which environment do you want to train your RL agent?', type=str,
-                            default='CartPole-v0')
+                            default='')
     # Model Checking
     arg_parser.add_argument('--prism_dir', help='In which folder should we save your projects?', type=str,
                             default='../prism_files')
