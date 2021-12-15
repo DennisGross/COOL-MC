@@ -108,6 +108,12 @@ class MlFlowBridge:
         model_folder_path = mlflow.get_artifact_uri(artifact_path="model").replace('file:///home/','/home/')
         return model_folder_path
 
+    def get_run_id(self):
+        return self.get_agent_path().split('/')[-3]
+
+    def get_project_id(self):
+        return self.get_agent_path().split('/')[-4] 
+
     def log_reward(self, reward, episode):
         mlflow.log_metric(key='episode_reward', value=reward, step= episode)
 

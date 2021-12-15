@@ -8,7 +8,6 @@ class ConstantDefinitionParser():
     def constant_range_to_tuple(constant_range):
         t = []
         parts = constant_range.split(';')
-        print(parts)
         if len(parts) != 3:
             raise ValueError('Range Format is wrong...')
         for i in range(len(parts)):

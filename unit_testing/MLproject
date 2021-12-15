@@ -15,4 +15,8 @@ entry_points:
   test_permissive_gym:
     command: >-
             pytest -s -vv test_permissive_gym.py
+
+  test_whole_pipeline:
+    command: >-
+            pytest -s -vv test_whole_pipeline.py
             

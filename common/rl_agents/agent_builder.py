@@ -41,7 +41,7 @@ class AgentBuilder():
             if model_root_folder_path!= None:
                 agent.load(model_root_folder_path)
         elif command_line_arguments['rl_algorithm'] == 'sarsamax':
-            print("Build Dummy SARSAMAX Agent.")
+            print("Build SARSAMAX Agent.")
             agent = SarsaMaxAgent(action_space.n, epsilon=command_line_arguments['epsilon'], epsilon_dec=command_line_arguments['epsilon_dec'], epsilon_min=command_line_arguments['epsilon_min'], alpha=command_line_arguments['alpha'], gamma=command_line_arguments['gamma'])
             if model_root_folder_path!= None:
                 agent.load(model_root_folder_path)

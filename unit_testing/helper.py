@@ -1,5 +1,15 @@
 import argparse
 import sys
+import argparse
+import sys
+
+def parse_prop_type(prop):
+    if prop.find("min") < prop.find("=") and prop.find("min") != -1:
+        return "min_prop"
+    elif prop.find("max") < prop.find("=") and prop.find("max") != -1:
+        return "max_prop"
+    else:
+        return "reward"
 
 
 def get_frozen_lake_arguments():
@@ -68,8 +78,7 @@ def get_frozen_lake_arguments():
     return vars(args)
 
 
-import argparse
-import sys
+
 
 
 def get_frozen_lake_v1_arguments():

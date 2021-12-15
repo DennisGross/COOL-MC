@@ -10,11 +10,18 @@ def create_safe_gym_training_command_str(user_input):
     print("================")
     command_parameters = ""
     for key in user_input.keys():
-        parameter =  "--"+key+"="+str(user_input[key])
+        if key == "prism_dir":
+            parameter =  "--"+key+'="'+str(user_input[key])+'"'
+        else:
+            parameter =  "--"+key+'='+str(user_input[key])+''
+
         if user_input[key] != "":
             #print("--"+key+"="+str(user_input[key]))
             command_parameters += parameter + " "
     command = "python cool_mc.py " + command_parameters
+    print('=======================')
+    print(command)
+    print('=======================')
     return command
   
 

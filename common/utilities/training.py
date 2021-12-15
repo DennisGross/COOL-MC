@@ -84,8 +84,10 @@ def train(project, env, prop_type=''):
                 best_reward_of_sliding_window = reward_of_sliding_window
                 if prop_type=='reward' and project.command_line_arguments['deploy']==False:
                     project.save()
-            
-            FrontEndPrinter.write_training_process(episode, reward, reward_of_sliding_window, all_property_results[-1])
+            try:
+                FrontEndPrinter.write_training_process(project.mlflow_bridge.get_project_id(), project.mlflow_bridge.get_run_id(), episode, reward, reward_of_sliding_window, all_property_results[-1])
+            except:
+                pass
     except KeyboardInterrupt:
         torch.cuda.empty_cache()
         pass

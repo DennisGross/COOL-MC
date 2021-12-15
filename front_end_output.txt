@@ -1,2 +1,4 @@
-Property Query: Tmin=? [F COLLISION=true]
-Property Result: 55.40796343769009
+Project ID: 8
+Run ID: 75h8n1o1xcoc0nr80oz153qsa5we64gur9ovf2puxm
+Property Query: Pmax=? [F FALL_OFF=true]
+Property Result: 1.0

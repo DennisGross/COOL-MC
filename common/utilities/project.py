@@ -77,4 +77,6 @@ class Project():
         # Save Command Line Arguments
         self.mlflow_bridge.save_command_line_arguments(self.command_line_arguments)
 
+    def close(self):
+        self.mlflow_bridge.close()
     
