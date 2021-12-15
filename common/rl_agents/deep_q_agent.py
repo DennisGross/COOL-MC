@@ -130,7 +130,7 @@ class DQNAgent(Agent):
         self.exp_counter+=1
 
 
-    def select_action(self, state, deploy=False):
+    def select_action(self, state : np.ndarray, deploy=False):
         if deploy:
             #print(state.__class__.__name__)
             #print(state, int(torch.argmax(self.q_eval.forward(state)).item()))

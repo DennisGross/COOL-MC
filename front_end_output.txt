@@ -1,4 +1,4 @@
 Project ID: 8
-Run ID: 75h8n1o1xcoc0nr80oz153qsa5we64gur9ovf2puxm
-Property Query: Pmax=? [F FALL_OFF=true]
-Property Result: 1.0
+Run ID: z744xpz0mp24kuj8fj0nx7gddlai9dw66wmc3tdeoa
+Property Query: Rmax=? [F b=1]
+Property Result: inf

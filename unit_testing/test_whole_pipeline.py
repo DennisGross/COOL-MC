@@ -25,9 +25,9 @@ def test_dummy_abc_reward():
     arg_parser.add_argument('--sliding_window_size', help='What is the sliding window size for the reward averaging?', type=int,
                             default=100)
     arg_parser.add_argument('--num_episodes', help='What is the number of training episodes?', type=int,
-                            default=101)
+                            default=200)
     arg_parser.add_argument('--eval_interval', help='What is the number of training episodes?', type=int,
-                            default=100)
+                            default=10)
     arg_parser.add_argument('--rl_algorithm', help='What is the  used RL algorithm?', type=str,
                             default='dqn_agent')
     # OpenAI Gym
@@ -90,13 +90,13 @@ def test_dummy_abc_reward():
     command_line_arguments['parent_run_id'] = parent_run_id
     command_line_arguments['task'] = 'rl_model_checking'
     command_line_arguments['permissive_input'] = 'a=[0;1]'
-    command_line_arguments['prop'] = "Pmin=? [F FALL_OFF=true]"
+    command_line_arguments['prop'] = "Rmin=? [F c=1]"
     result_min = run_verify_rl_agent(command_line_arguments)
     command_line_arguments['parent_run_id'] = parent_run_id
     command_line_arguments['task'] = 'rl_model_checking'
     command_line_arguments['permissive_input'] = 'a=[0;1],b=[0;1],c=[0;1]'
-    command_line_arguments['prop'] = "Pmax=? [F FALL_OFF=true]"
+    command_line_arguments['prop'] = "Rmax=? [F b=1]"
     result_max = run_verify_rl_agent(command_line_arguments)
-    assert result_min[0] != result_max[0]
+    assert result_min[0] == result_max[0]
 
 

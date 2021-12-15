@@ -1,5 +1,5 @@
 # COOL-MC
-COOL-MC is an interface between Model Checking and Reinforcement Learning.
+COOL-MC is an interface between Model Checking and Reinforcement Learning (RL).
 It extends the OpenAI Gym to support RL training on PRISM environments
 and allows ad-hoc verification of the trained RL agents via the Storm model
 checker. The general workflow of our approach is as follows (see also Figure 1).
