@@ -44,17 +44,18 @@ def run_verify_rl_agent(command_line_arguments):
             all_prop_results.append(mdp_reward_result)
             # Plot results
             # Data for plotting
-        x = np.arange(range_tuple[0], range_tuple[2], range_tuple[1])
-        y = np.array(all_prop_results)
+        if command_line_arguments['range_plotting']:
+            x = np.arange(range_tuple[0], range_tuple[2], range_tuple[1])
+            y = np.array(all_prop_results)
 
-        fig, ax = plt.subplots()
-        ax.plot(x,y)
+            fig, ax = plt.subplots()
+            ax.plot(x,y)
 
-        ax.set(xlabel=range_state_variable, ylabel=command_line_arguments['prop'].replace("max","").replace("min",""), title='Property Results over a range of different constant assignments (' + str(range_state_variable) + ')')
-        ax.grid()
+            ax.set(xlabel=range_state_variable, ylabel=command_line_arguments['prop'].replace("max","").replace("min",""), title='Property Results over a range of different constant assignments (' + str(range_state_variable) + ')')
+            ax.grid()
 
-        #fig.savefig(os.path.join(project_folder, "properties.png"))
-        plt.show()
+            #fig.savefig(os.path.join(project_folder, "properties.png"))
+            plt.show()
         m_project.close()
         return all_prop_results
     else:

@@ -94,4 +94,3 @@ class AbstractionManager:
             idx = astate_variable.get_idx()
             state[idx] = astate_variable.round(state[idx])
         return state
-

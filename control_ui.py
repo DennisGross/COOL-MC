@@ -2,6 +2,8 @@ import streamlit as st
 from streamlit_autorefresh import st_autorefresh
 import subprocess
 import os
+
+
 def execute(cmd):
     popen = subprocess.Popen(cmd, universal_newlines=True, shell=True)
 
@@ -156,10 +158,6 @@ elif user_input['task'] == 'openai_training':
         
     if stop_training:
         os.kill(st.session_state['pid'],9)
-
-
-
-
 
 
 

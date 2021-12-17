@@ -14,6 +14,7 @@ class Project():
     def load_saved_command_line_arguments(self):
         saved_command_line_arguments = self.mlflow_bridge.load_command_line_arguments()
         if saved_command_line_arguments != None:
+            old_task = saved_command_line_arguments['task']
             try:
                 del saved_command_line_arguments['prop']
             except:
@@ -56,6 +57,21 @@ class Project():
                 del saved_command_line_arguments['prop_type']
             except:
                 pass
+            try:
+                del saved_command_line_arguments['range_plotting']
+            except:
+                pass
+
+            if old_task == 'openai_gym_training':
+                try:
+                    del saved_command_line_arguments['prism_dir']
+                except:
+                    pass
+                try:
+                    del saved_command_line_arguments['prism_file_path']
+                except:
+                    pass
+
             for key in saved_command_line_arguments.keys():
                 self.command_line_arguments[key] = saved_command_line_arguments[key]
         

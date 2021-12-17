@@ -16,4 +16,6 @@ def run_openai_gym_training(command_line_arguments):
     m_project.load_saved_command_line_arguments()
     m_project.create_agent(command_line_arguments, env.observation_space, env.action_space)
     train(m_project, env, prop_type='reward')
+    experiment_id = m_project.mlflow_bridge.get_run_id()
     m_project.close()
+    return experiment_id

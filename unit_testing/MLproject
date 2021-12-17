@@ -20,3 +20,6 @@ entry_points:
     command: >-
             pytest -s -vv test_whole_pipeline.py
             
+  test_experiments:
+    command: >-
+            pytest -s -vv test_experiments.py

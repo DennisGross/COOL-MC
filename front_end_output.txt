@@ -1,4 +1,4 @@
-Project ID: 8
-Run ID: z744xpz0mp24kuj8fj0nx7gddlai9dw66wmc3tdeoa
-Property Query: Rmax=? [F b=1]
-Property Result: inf
+Project ID: 9
+Run ID: wgu959ryb3nnlxqjo7ewyvo93yqxf0vuvxyt7xc7n4
+Property Query: Pmax=? [F AT_FRISBEE=true]
+Property Result: 0.0

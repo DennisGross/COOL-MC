@@ -66,6 +66,7 @@ class StormBridge:
         :param constant_definitions, constant definitions for PRISM file
         :return simulator
         '''
+        print(path)
         prism_program = stormpy.parse_prism_program(path)
         prism_program = stormpy.preprocess_symbolic_input(prism_program, [], constant_definitions)[0].as_prism_program()
         suggestions = dict()

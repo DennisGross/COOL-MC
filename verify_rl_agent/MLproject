@@ -18,7 +18,7 @@ entry_points:
             disabled_features: {type: string, default: ""}
             # VAR=[LOW;STEP;MAX;METHOD], VAR=[LOW;STEP;MAX]
             abstract_features: {type: string, default: ""}
-
+            range_plotting: {type: float, default: 1}
 
         command: >-
-            python run.py --abstract_features={abstract_features} --permissive_input={permissive_input} --disabled_features={disabled_features} --project_name={project_name} --parent_run_id={parent_run_id} --prism_dir={prism_dir} --prism_file_path={prism_file_path} --constant_definitions={constant_definitions} --prop={prop}
+            python run.py --range_plotting={range_plotting} --abstract_features={abstract_features} --permissive_input={permissive_input} --disabled_features={disabled_features} --project_name={project_name} --parent_run_id={parent_run_id} --prism_dir={prism_dir} --prism_file_path={prism_file_path} --constant_definitions={constant_definitions} --prop={prop}
