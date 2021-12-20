@@ -1,4 +1,4 @@
 Project ID: 9
-Run ID: wgu959ryb3nnlxqjo7ewyvo93yqxf0vuvxyt7xc7n4
-Property Query: Pmax=? [F AT_FRISBEE=true]
+Run ID: eo9y93lvijhhkpib1mnnqsf3s9eygykdjb5cil3kwn
+Property Query: Pmax=? [F jobs_done=2]
 Property Result: 0.0
