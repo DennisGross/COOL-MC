@@ -17,28 +17,57 @@ device = 'cpu'
 
 class ReplayBuffer(object):
     def __init__(self, max_size, input_shape):
-        self.mem_size = max_size
-        self.mem_cntr = 0
-        self.state_memory = np.zeros((self.mem_size, input_shape),
+        """
+        Initialize the replay buffer. The Replay Buffer stores the RL agent experiences.
+        Each row is a transition and contains:
+        a state, the action to the next state, the received reward, the next state, and if the environment is done.
+
+
+
+        Args:
+            max_size ([type]): The maximal rows of the replay buffer
+            input_shape ([type]): The shape of the state
+        """
+        self.size = max_size
+        self.memory_counter = 0
+        self.state_memory = np.zeros((self.size, input_shape),
                                      dtype=np.float32)
         self.new_state_memory = np.zeros((self.mem_size, input_shape),
                                          dtype=np.float32)
 
-        self.action_memory = np.zeros(self.mem_size, dtype=np.int64)
-        self.reward_memory = np.zeros(self.mem_size, dtype=np.float32)
-        self.terminal_memory = np.zeros(self.mem_size, dtype=np.bool)
+        self.action_memory = np.zeros(self.size, dtype=np.int64)
+        self.reward_memory = np.zeros(self.size, dtype=np.float32)
+        self.terminal_memory = np.zeros(self.size, dtype=np.bool)
 
     def store_transition(self, state, action, reward, state_, done):
-        index = self.mem_cntr % self.mem_size
+        """
+        Stores the transition.
+
+        Args:
+            state ([type]): State
+            action ([type]): action
+            reward ([type]): reward
+            state_ ([type]): next state
+            done (function): done
+        """
+        index = self.memory_counter % self.size
         self.state_memory[index] = state
         self.new_state_memory[index] = state_
         self.action_memory[index] = action
         self.reward_memory[index] = reward
         self.terminal_memory[index] = done
-        self.mem_cntr += 1
+        self.memory_counter += 1
 
-    def sample(self, batch_size):
-        max_mem = min(self.mem_cntr, self.mem_size)
+    def sample(self, batch_size : int):
+        """Sample a batch for learning
+
+        Args:
+            batch_size (int): Batch Size
+
+        Returns:
+            [type]: A tuple of batches (states, actions, rewards, next state, terminal)
+        """
+        max_mem = min(self.memory_counter, self.size)
         batch = np.random.choice(max_mem, batch_size, replace=False)
 
         states = self.state_memory[batch]
