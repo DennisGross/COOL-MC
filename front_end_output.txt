@@ -1,4 +1,4 @@
-Project ID: 9
-Run ID: eo9y93lvijhhkpib1mnnqsf3s9eygykdjb5cil3kwn
-Property Query: Pmax=? [F jobs_done=2]
-Property Result: 0.0
+Project ID: 4
+Run ID: jd0ree3ejmramj7vhe0tau7tikl41ixdjn01vbk204
+Property Query: Tmax=? [F COLLISION=true]
+Property Result: 11231.379421532067

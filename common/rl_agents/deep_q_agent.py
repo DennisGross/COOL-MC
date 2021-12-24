@@ -32,7 +32,7 @@ class ReplayBuffer(object):
         self.memory_counter = 0
         self.state_memory = np.zeros((self.size, input_shape),
                                      dtype=np.float32)
-        self.new_state_memory = np.zeros((self.mem_size, input_shape),
+        self.new_state_memory = np.zeros((self.size, input_shape),
                                          dtype=np.float32)
 
         self.action_memory = np.zeros(self.size, dtype=np.int64)
@@ -137,8 +137,11 @@ class DQNAgent(Agent):
     def save(self):
         try:
             os.mkdir('tmp_model')
-        except:
-            pass
+        except Exception as msg:
+            import getpass
+            username = getpass.getuser()
+            print(username) 
+            print(msg)
         self.q_eval.save_checkpoint('tmp_model/q_eval.chkpt')
         self.q_next.save_checkpoint('tmp_model/q_next.chkpt')
         mlflow.log_artifacts("tmp_model", artifact_path="model")
@@ -149,6 +152,7 @@ class DQNAgent(Agent):
         try:
             self.q_eval.load_checkpoint(os.path.join(model_root_folder_path,'q_eval.chkpt'))
             self.q_next.load_checkpoint(os.path.join(model_root_folder_path,'q_next.chkpt'))
+            pass
         except:
             print("Could not load network.")
 

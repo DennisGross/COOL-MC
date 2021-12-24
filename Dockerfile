@@ -1,17 +1,21 @@
 FROM python:3.8
 
+RUN useradd -ms /bin/bash mycoolmc
 
 RUN apt-get update
 RUN apt-get -y install build-essential git cmake libboost-all-dev libcln-dev libgmp-dev libginac-dev automake libglpk-dev libhwloc-dev libz3-dev libxerces-c-dev libeigen3-dev
 
-
+WORKDIR /home/mycoolmc
 RUN git clone https://github.com/moves-rwth/storm.git
-WORKDIR /storm
+WORKDIR /home/mycoolmc/storm
 RUN mkdir build
-WORKDIR /storm/build
+RUN pwd
+RUN ls
+WORKDIR /home/mycoolmc/storm/build
+
 RUN cmake ..
 RUN make -j 1
-WORKDIR /
+WORKDIR /home/mycoolmc
 RUN apt-get update -qq && apt-get install -y --no-install-recommends \
     maven \
     uuid-dev \
@@ -19,29 +23,30 @@ RUN apt-get update -qq && apt-get install -y --no-install-recommends \
     virtualenv
 
 RUN git clone https://github.com/moves-rwth/pycarl.git
-WORKDIR /pycarl
+WORKDIR /home/mycoolmc/pycarl
 RUN python3 setup.py build_ext --jobs 1 develop
 
-WORKDIR /
+WORKDIR /home/mycoolmc
 
 RUN git clone https://github.com/moves-rwth/stormpy.git
-WORKDIR /stormpy
+WORKDIR /home/mycoolmc/stormpy
 RUN python3.8 setup.py build_ext --storm-dir /storm/build/ --jobs 1 develop
 
-WORKDIR /
+WORKDIR /home/mycoolmc
 COPY requirements.txt .
 RUN pip3.8 install -r requirements.txt
 
 
-COPY common .
-COPY custom_openai_gyms .
-COPY openai_gym_training .
-COPY safe_gym_training .
-COPY unit_testing .
-COPY verify_rl_agent .
+COPY common common
+COPY custom_openai_gyms custom_openai_gyms
+COPY openai_gym_training openai_gym_training
+COPY safe_gym_training safe_gym_training
+COPY unit_testing unit_testing
+COPY verify_rl_agent verify_rl_agent
 COPY control_ui.py .
 COPY cool_mc.py .
 COPY start_ui.sh .
 
+RUN chmod -R 777 /home/mycoolmc
 
 ENTRYPOINT /bin/bash

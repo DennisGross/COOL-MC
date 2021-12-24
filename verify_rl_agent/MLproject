@@ -7,14 +7,14 @@ entry_points:
             # lo0ahbo5up5ko0k9d7ul639pz3tu0kem0vrzsx84mr Taxi
             # yxydlkcqo3w7ri1vecklistmh306ye743tqa29r1cpo6w6cej10e Optimal Taxi
             # e348712a4b50495196e8663dce07c3de Avoidance
-            project_name : {type: string, default: "Frozen-Lake"}
-            parent_run_id : {type: string, default: "21ad45cc2c3a4d9f95bf56f708943aae"}
+            project_name : {type: string, default: "Collision Avoidance"}
+            parent_run_id : {type: string, default: "e348712a4b50495196e8663dce07c3de"}
             # Model Checking Parameters
             prism_dir : {type: string, default: "../prism_files"}
             prism_file_path : {type: string, default: "frozen_lake3-v1.prism"}
-            constant_definitions : {type: string, default: "control=0.333,start_position=[0;1;16]"}
-            prop : {type: string, default: "Pmax=? [F WATER=true]"}
-            permissive_input: {type: string, default: ""}
+            constant_definitions : {type: string, default: "slickness=0,xMax=4,yMax=4"}
+            prop : {type: string, default: "Tmax=? [F COLLISION=true]"}
+            permissive_input: {type: string, default: "obstacle1_x=[0;5],obstacle1_y=[0;5]"}
             disabled_features: {type: string, default: ""}
             # VAR=[LOW;STEP;MAX;METHOD], VAR=[LOW;STEP;MAX]
             abstract_features: {type: string, default: ""}
