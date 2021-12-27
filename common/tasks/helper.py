@@ -57,9 +57,9 @@ def get_arguments():
                             default=0.99)
     # Double DQN Agent
     arg_parser.add_argument('--layers', help='DummyAgent-Parameter: Which action should the dummy agent choose?', type=int,
-                            default=0)
+                            default=2)
     arg_parser.add_argument('--neurons', help='DummyAgent-Parameter: Which action should the dummy agent choose?', type=int,
-                            default=0)
+                            default=64)
     arg_parser.add_argument('--replay_buffer_size', help='DummyAgent-Parameter: Which action should the dummy agent choose?', type=int,
                             default=300000)
     arg_parser.add_argument('--epsilon', help='Epsilon Starting Rate', type=float,

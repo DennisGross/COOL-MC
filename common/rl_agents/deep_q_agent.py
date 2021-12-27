@@ -1,3 +1,7 @@
+import mlflow
+import os
+import shutil
+from typing import List
 import torch as T
 import torch.nn as nn
 import torch.nn.functional as F
@@ -5,12 +9,8 @@ import torch.optim as optim
 from common.rl_agents.agent import Agent
 from collections import OrderedDict
 import torch
-import random
-import gym
 import numpy as np
-import mlflow
-import os
-import shutil
+
 #device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 device = 'cpu'
 
@@ -58,14 +58,14 @@ class ReplayBuffer(object):
         self.terminal_memory[index] = done
         self.memory_counter += 1
 
-    def sample(self, batch_size : int):
+    def sample(self, batch_size : int) -> tuple:
         """Sample a batch for learning
 
         Args:
             batch_size (int): Batch Size
 
         Returns:
-            [type]: A tuple of batches (states, actions, rewards, next state, terminal)
+            tuple: A tuple of batches (states, actions, rewards, next state, terminal)
         """
         max_mem = min(self.memory_counter, self.size)
         batch = np.random.choice(max_mem, batch_size, replace=False)
@@ -79,7 +79,15 @@ class ReplayBuffer(object):
         return torch.tensor(states).to(device), torch.tensor(actions).to(device), torch.tensor(rewards).to(device), torch.tensor(states_).to(device), torch.tensor(terminal).to(device)
 
 class DeepQNetwork(nn.Module):
-    def __init__(self, state_dim, number_of_neurons, number_of_actions, lr, name='bla', chkpt_dir='asdg'):
+    def __init__(self, state_dim : int, number_of_neurons : List[int], number_of_actions : int, lr : float):
+        """
+
+        Args:
+            state_dim (int): The dimension of the state
+            number_of_neurons (List[int]): List of neurons. Each element is a new layer.
+            number_of_actions (int): Number of actions.
+            lr (float): Learning rate.
+        """
         super(DeepQNetwork, self).__init__()
 
 
@@ -101,7 +109,15 @@ class DeepQNetwork(nn.Module):
         self.to(self.device)
 
 
-    def forward(self, state):
+    def forward(self, state : np.array) -> int:
+        """[summary]
+
+        Args:
+            state (np.array): State
+
+        Returns:
+            int: Action Index
+        """
         state = torch.tensor(state).float().to(device)
         x = state
         for i in range(len(self.layers)):

@@ -1,4 +1,4 @@
-Project ID: 4
-Run ID: jd0ree3ejmramj7vhe0tau7tikl41ixdjn01vbk204
-Property Query: Tmax=? [F COLLISION=true]
-Property Result: 11231.379421532067
+Project ID: 12
+Run ID: gcpmh54khvplg6vllt0cpgj3yhubty6xx6qcsn9s5d
+Property Query: Pmin=? [F COLLISION=true]
+Property Result: 1.0

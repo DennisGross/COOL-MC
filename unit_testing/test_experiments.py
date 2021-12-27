@@ -12,7 +12,7 @@ from common.tasks.safe_gym_training import *
 from common.tasks.openai_gym_training import *
 from common.tasks.verify_rl_agent import *
 
-@pytest.mark.skip(reason="no way of currently testing this")
+#@pytest.mark.skip(reason="no way of currently testing this")
 def test_frozen_lake_experiment_section_4_1():
     arg_parser = argparse.ArgumentParser(
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
