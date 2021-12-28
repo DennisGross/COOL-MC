@@ -1,4 +1,4 @@
-Project ID: 12
-Run ID: gcpmh54khvplg6vllt0cpgj3yhubty6xx6qcsn9s5d
-Property Query: Pmin=? [F COLLISION=true]
-Property Result: 1.0
+Project ID: 13
+Run ID: b52g7u9oq69jf5ulmt6oq8xl8kltp2nbnfm8gd6lxl
+Property Query: Tmin=? [F TOO_MUCH_ENERGY=true]
+Property Result: inf

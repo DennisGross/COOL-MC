@@ -118,3 +118,24 @@ We train a DQN taxi agent in the PRISM environment:
 After the training, we can verify the trained policy:
 
 `python cool_mc.py --parent_run_id=915fd49f5f9342a5b5f124dddfd3f15f --task=rl_model_checking --project_name="Avoid Example" --prism_file_path="avoid.prism" --constant_definitions="xMax=4,yMax=4,slickness=0.0" --prop="Pmin=? [F COLLISION=true]"`
+
+
+## Example 4 (Smart Grid)
+In this environment, a controller controls the distribution of renewable- and non-renewable energy production. The objective is to minimize the production of non-renewable energy by using renewable and storage technologies.
+If there is too much energy in the electricity network, the energy production shuts down which may lead to a blackout (terminal state).
+
+
+`python cool_mc.py --task=safe_training --project_name="Smart Grid Example" --num_episodes=100 --eval_interval=10 --sliding_window_size=100 --rl_algorithm=dqn_agent --layers=2 --neurons=64 --replay_buffer_size=30000 --epsilon=1 --epsilon_dec=0.9999 --epsilon_min=0.1 --gamma=0.99 --replace=304 --lr=0.001 --batch_size=32 --prism_file_path="smart_grid.prism" --constant_definitions="max_consumption=20,renewable_limit=19,non_renewable_limit=16,grid_upper_bound=25" --prop="Tmin=? [F IS_BLACKOUT=true]" --reward_flag=0`
+
+After the training, we can verify the trained policy:
+
+`python cool_mc.py --parent_run_id=c0b0a71a334e4873b045858bc5be15ed --task=rl_model_checking --project_name="Smart Grid Example" --prism_file_path="smart_grid.prism" --constant_definitions="max_consumption=20,renewable_limit=19,non_renewable_limit=16,grid_upper_bound=25" --prop="Tmin=? [F TOO_MUCH_ENERGY=true]"`
+
+
+## PRISM Modelling Tips
+We first have to model our RL environment. COOL-MC supports PRISM as modeling language. It can be difficult to design own PRISM environments. Here are some tips how to make sure that your PRISM environment works correctly with COOL-MC:
+
+- Make sure that you only use transition-rewards
+- After the agent reaches a terminal state, the storm simulator stops the simulation. Therefore, terminal state transitions will not executed. So, do not use self-looping terminal states.
+- To improve the training performance, try to make all actions at every state available. Otherwise, the agent may chooses a not available action and receives a penalty.
+- Try to unit test your PRISM environment before RL training. Does it behave as you want?
