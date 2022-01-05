@@ -1,6 +1,8 @@
 import argparse
 import sys
-
+import numpy as np
+import torch
+import random
 
 def get_arguments():
     arg_parser = argparse.ArgumentParser(
@@ -76,6 +78,8 @@ def get_arguments():
                             default=0.0001)
     arg_parser.add_argument('--batch_size', help='Batch Size', type=int,
                             default=32)
+    arg_parser.add_argument('--seed', help='Random Seed for numpy, random, storm, pytorch', type=int,
+                            default=-1)
 
     args, unknown_args = arg_parser.parse_known_args(sys.argv)
     return vars(args)
@@ -87,3 +91,9 @@ def parse_prop_type(prop):
         return "max_prop"
     else:
         return "reward"
+
+def set_random_seed(seed):
+    if seed!= -1:
+        np.random.seed(seed)
+        random.seed(seed)
+        torch.manual_seed(seed)

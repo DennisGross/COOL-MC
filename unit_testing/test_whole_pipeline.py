@@ -78,7 +78,8 @@ def test_dummy_abc_reward():
                             default=0.001)
     arg_parser.add_argument('--batch_size', help='Batch Size', type=int,
                             default=32)
-
+    arg_parser.add_argument('--seed', help='Batch Size', type=int,
+                            default=-1)
     args, unknown_args = arg_parser.parse_known_args(sys.argv)
     command_line_arguments = vars(args)
     parent_run_id = run_safe_gym_training(command_line_arguments)
@@ -167,7 +168,8 @@ def test_dummy_abc_reward_disable_state_variable_a():
                             default=0.001)
     arg_parser.add_argument('--batch_size', help='Batch Size', type=int,
                             default=32)
-
+    arg_parser.add_argument('--seed', help='Batch Size', type=int,
+                            default=-1)
     args, unknown_args = arg_parser.parse_known_args(sys.argv)
     command_line_arguments = vars(args)
     parent_run_id = run_safe_gym_training(command_line_arguments)
@@ -255,7 +257,8 @@ def test_dummy_abc2_reward_disable_state_variable_a():
                             default=0.001)
     arg_parser.add_argument('--batch_size', help='Batch Size', type=int,
                             default=32)
-
+    arg_parser.add_argument('--seed', help='Batch Size', type=int,
+                            default=-1)
     args, unknown_args = arg_parser.parse_known_args(sys.argv)
     command_line_arguments = vars(args)
     parent_run_id = run_safe_gym_training(command_line_arguments)
@@ -342,6 +345,8 @@ def test_dummy_abc2_reward_disable_state_variable_b_abstraction_a():
                             default=0.001)
     arg_parser.add_argument('--batch_size', help='Batch Size', type=int,
                             default=32)
+    arg_parser.add_argument('--seed', help='Batch Size', type=int,
+                            default=-1)
 
     args, unknown_args = arg_parser.parse_known_args(sys.argv)
     command_line_arguments = vars(args)

@@ -1,9 +1,14 @@
 import mlflow
 from common.tasks.helper import *
-
+import numpy as np
+import random
+import torch
 
 if __name__ == '__main__':
     args = get_arguments()
+    set_random_seed(args['seed'])
+
+
     if args['task'] == 'safe_training':
         mlflow.run(
             "safe_gym_training",

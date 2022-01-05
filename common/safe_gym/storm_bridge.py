@@ -16,14 +16,16 @@ This class should be the only class that has contact with Storm.
 '''
 class StormBridge:
 
-    def __init__(self, path, constant_definitions, wrong_action_penalty, reward_flag, disabled_features, permissive_input, abstraction_input):
+    def __init__(self, path, constant_definitions, wrong_action_penalty, reward_flag, disabled_features, permissive_input, abstraction_input, seed):
         '''
         Initialize Storm Bridge.
         :param path, path to prism file
         :constant_definitions, constant definitions
         :wrong_action_penalty, penalty for taking wrong action
         :reward_flag, reward (True) or costs (False)
+        :seed, seed for simulator
         '''
+        self.seed = seed
         self.disabled_features = disabled_features
         self.simulator = self.create_simulator(path, constant_definitions)
         self.constant_definitions = constant_definitions
@@ -34,6 +36,7 @@ class StormBridge:
         json_path = os.path.splitext(self.path)[0]+'.json'
         self.state_mapper = StateMapper(json_path, self.state_json_example, self.disabled_features)
         self.model_checker = ModelChecker(permissive_input, self.state_mapper, abstraction_input)
+        
         
 
     def __preprocess_state_json_example(self, json_example):
@@ -78,8 +81,10 @@ class StormBridge:
                     i+=1
 
         prism_program = prism_program.label_unlabelled_commands(suggestions)
-
-        simulator = stormpy.simulator.create_simulator(prism_program)
+        if self.seed != -1:
+            simulator = stormpy.simulator.create_simulator(prism_program, seed=self.seed)
+        else:
+            simulator = stormpy.simulator.create_simulator(prism_program)
         simulator.set_action_mode(stormpy.simulator.SimulatorActionMode.GLOBAL_NAMES)
         return simulator
 

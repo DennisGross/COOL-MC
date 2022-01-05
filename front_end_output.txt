@@ -1,4 +1,4 @@
-Project ID: 11
-Run ID: 39na6i3bsr475r3smclrp1x9f55bve06h7qqy7zgka
-Property Query: Pmax=? [F OUT_OF_FUEL=true]
-Property Result: 1.0
+Project ID: 8
+Run ID: eq7ikmhlbs2e8ujq7q8rggxzotem9getpdsfecmnro
+Property Query: Rmax=? [F c=1]
+Property Result: 25.0

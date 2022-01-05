@@ -11,6 +11,7 @@ from common.utilities.front_end_printer import *
 from common.tasks.safe_gym_training import *
 from common.tasks.openai_gym_training import *
 from common.tasks.verify_rl_agent import *
+from common.tasks.helper import *
 
 #@pytest.mark.skip(reason="no way of currently testing this")
 def test_frozen_lake_experiment_section_4_1():
@@ -79,9 +80,12 @@ def test_frozen_lake_experiment_section_4_1():
                             default=0.001)
     arg_parser.add_argument('--batch_size', help='Batch Size', type=int,
                             default=32)
+    arg_parser.add_argument('--seed', help='Batch Size', type=int,
+                            default=42)
 
     args, unknown_args = arg_parser.parse_known_args(sys.argv)
     command_line_arguments = vars(args)
+    set_random_seed(command_line_arguments['seed'])
     parent_run_id = run_openai_gym_training(command_line_arguments)
     # Verify
     command_line_arguments['parent_run_id'] = parent_run_id
@@ -177,9 +181,12 @@ def test_taxi_experiment_section_4_2_4_3():
                             default=0.001)
     arg_parser.add_argument('--batch_size', help='Batch Size', type=int,
                             default=32)
+    arg_parser.add_argument('--seed', help='Batch Size', type=int,
+                            default=42)
 
     args, unknown_args = arg_parser.parse_known_args(sys.argv)
     command_line_arguments = vars(args)
+    set_random_seed(command_line_arguments['seed'])
     parent_run_id = run_safe_gym_training(command_line_arguments)
     # Verify
     command_line_arguments['parent_run_id'] = parent_run_id

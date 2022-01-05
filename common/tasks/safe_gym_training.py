@@ -17,7 +17,7 @@ def run_safe_gym_training(command_line_arguments):
     command_line_arguments['deploy'] = (1 == command_line_arguments['deploy'])
     prism_file_path = os.path.join(command_line_arguments['prism_dir'], command_line_arguments['prism_file_path'])
     # Environment
-    env = SafeGym(prism_file_path,command_line_arguments['constant_definitions'], command_line_arguments['max_steps'], command_line_arguments['wrong_action_penalty'], command_line_arguments['reward_flag'], command_line_arguments['permissive_input'], command_line_arguments['disabled_features'])
+    env = SafeGym(prism_file_path,command_line_arguments['constant_definitions'], command_line_arguments['max_steps'], command_line_arguments['wrong_action_penalty'], command_line_arguments['reward_flag'], command_line_arguments['seed'], command_line_arguments['permissive_input'], command_line_arguments['disabled_features'])
     # Project
     m_project = Project(command_line_arguments)
     m_project.init_mlflow_bridge(command_line_arguments['project_name'],command_line_arguments['task'],command_line_arguments['parent_run_id'])

@@ -2,6 +2,8 @@ import argparse
 import sys
 import argparse
 import sys
+sys.path.insert(0, '../')
+from common.tasks.helper import *
 
 def parse_prop_type(prop):
     if prop.find("min") < prop.find("=") and prop.find("min") != -1:
@@ -74,6 +76,8 @@ def get_frozen_lake_arguments():
                             default=0.004)
     arg_parser.add_argument('--batch_size', help='Batch Size', type=int,
                             default=32)
+    arg_parser.add_argument('--seed', help='Random Seed for numpy, random, storm, pytorch', type=int,
+                            default=-1)
     args, unknown_args = arg_parser.parse_known_args(sys.argv)
     return vars(args)
 
@@ -143,6 +147,8 @@ def get_frozen_lake_v1_arguments():
                             default=0.004)
     arg_parser.add_argument('--batch_size', help='Batch Size', type=int,
                             default=32)
+    arg_parser.add_argument('--seed', help='Random Seed for numpy, random, storm, pytorch', type=int,
+                            default=-1)
     args, unknown_args = arg_parser.parse_known_args(sys.argv)
     return vars(args)
 
@@ -205,5 +211,7 @@ def get_transporter_with_fuel_arguments():
                             default=0.004)
     arg_parser.add_argument('--batch_size', help='Batch Size', type=int,
                             default=32)
+    arg_parser.add_argument('--seed', help='Random Seed for numpy, random, storm, pytorch', type=int,
+                            default=-1)
     args, unknown_args = arg_parser.parse_known_args(sys.argv)
     return vars(args)

@@ -42,6 +42,10 @@ class Project():
             except:
                 pass
             try:
+                del saved_command_line_arguments['seed']
+            except:
+                pass
+            try:
                 del saved_command_line_arguments['deploy']
             except:
                 pass
