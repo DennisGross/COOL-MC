@@ -16,7 +16,7 @@ device = 'cpu'
 
 
 class ReplayBuffer(object):
-    def __init__(self, max_size, input_shape):
+    def __init__(self, max_size : int, state_dimension : int):
         """
         Initialize the replay buffer. The Replay Buffer stores the RL agent experiences.
         Each row is a transition and contains:
@@ -25,30 +25,29 @@ class ReplayBuffer(object):
 
 
         Args:
-            max_size ([type]): The maximal rows of the replay buffer
-            input_shape ([type]): The shape of the state
+            max_size ([int]): The maximal rows of the replay buffer
+            state_dimension ([int]): The shape of the state
         """
         self.size = max_size
         self.memory_counter = 0
-        self.state_memory = np.zeros((self.size, input_shape),
+        self.state_memory = np.zeros((self.size, state_dimension),
                                      dtype=np.float32)
-        self.new_state_memory = np.zeros((self.size, input_shape),
+        self.new_state_memory = np.zeros((self.size, state_dimension),
                                          dtype=np.float32)
 
         self.action_memory = np.zeros(self.size, dtype=np.int64)
         self.reward_memory = np.zeros(self.size, dtype=np.float32)
         self.terminal_memory = np.zeros(self.size, dtype=np.bool)
 
-    def store_transition(self, state, action, reward, state_, done):
-        """
-        Stores the transition.
+    def store_transition(self, state : np.array, action : int, reward : float, state_ : np.array, done : bool):
+        """Stores the transition into the replay buffer.
 
         Args:
-            state ([type]): State
-            action ([type]): action
-            reward ([type]): reward
-            state_ ([type]): next state
-            done (function): done
+            state (np.array): State
+            action (int): Action
+            reward (float): Reward
+            state_ (np.array): Next State
+            done (bool): episode done?
         """
         index = self.memory_counter % self.size
         self.state_memory[index] = state
@@ -79,7 +78,7 @@ class ReplayBuffer(object):
         return torch.tensor(states).to(device), torch.tensor(actions).to(device), torch.tensor(rewards).to(device), torch.tensor(states_).to(device), torch.tensor(terminal).to(device)
 
 class DeepQNetwork(nn.Module):
-    def __init__(self, state_dim : int, number_of_neurons : List[int], number_of_actions : int, lr : float):
+    def __init__(self, state_dimension : int, number_of_neurons : List[int], number_of_actions : int, lr : float):
         """
 
         Args:
@@ -92,7 +91,7 @@ class DeepQNetwork(nn.Module):
 
 
         layers = OrderedDict()
-        previous_neurons = state_dim
+        previous_neurons = state_dimension
         for i in range(len(number_of_neurons)+1):
             if i == len(number_of_neurons):
                 layers[str(i)] = torch.nn.Linear(previous_neurons, number_of_actions)
@@ -127,63 +126,108 @@ class DeepQNetwork(nn.Module):
                 x = F.relu(self.layers[i](x))
         return x
 
-    def save_checkpoint(self, file_name):
+    def save_checkpoint(self, file_name : str):
+        """Save model.
+
+        Args:
+            file_name (str): File name
+        """
         torch.save(self.state_dict(), file_name)
 
-    def load_checkpoint(self, file_name):
+    def load_checkpoint(self, file_name : str):
+        """Load model
+
+        Args:
+            file_name (str): File name
+        """
         self.load_state_dict(torch.load(file_name))
 
 
 class DQNAgent(Agent):
 
-    def __init__(self, state_dim, number_of_neurons, number_of_actions, epsilon=1, epsilon_dec=0.99999, epsilon_min=0.1, gamma=0.99, learning_rate=0.001, replace=100, batch_size=64, replay_buffer_size=10000):
+    def __init__(self, state_dimension : int, number_of_neurons, number_of_actions : List[int], epsilon : float =1, epsilon_dec : float =0.99999, epsilon_min : float = 0.1, gamma : float = 0.99, learning_rate : float = 0.001, replace : int =100, batch_size : int =64, replay_buffer_size : int =10000):
+        """Initialize Deep Q-Learning Agent
+
+        Args:
+            state_dimension (np.array): State Dimension
+            number_of_neurons (List[int]): Each element is a new layer and defines the number of neurons in the current layer
+            number_of_actions (int): Number of Actions
+            epsilon (float, optional): Init epislon value. Defaults to 1.
+            epsilon_dec (float, optional): Epsilon decay value. Defaults to 0.99999.
+            epsilon_min (float, optional): Epsilon minimum value. Defaults to 0.1.
+            gamma (float, optional): Gamma value. Defaults to 0.99.
+            learning_rate (float, optional): Learning rate. Defaults to 0.001.
+            replace (int, optional): Replace Interval of the target network (q_next). Defaults to 100.
+            batch_size (int, optional): Batch Size. Defaults to 64.
+            replay_buffer_size (int, optional): Replay Buffer size. Defaults to 10000.
+        """
         self.number_of_actions = number_of_actions
-        self.replay_buffer = ReplayBuffer(replay_buffer_size, state_dim)
-        self.q_eval = DeepQNetwork(state_dim, number_of_neurons, number_of_actions, learning_rate)
-        self.q_next = DeepQNetwork(state_dim, number_of_neurons, number_of_actions, learning_rate)
+        self.replay_buffer = ReplayBuffer(replay_buffer_size, state_dimension)
+        self.q_eval = DeepQNetwork(state_dimension, number_of_neurons, number_of_actions, learning_rate)
+        self.q_next = DeepQNetwork(state_dimension, number_of_neurons, number_of_actions, learning_rate)
         self.epsilon = epsilon
         self.epsilon_dec = epsilon_dec
         self.epsilon_min = epsilon_min
         self.gamma = torch.tensor(gamma).to(device)
-        self.replace = 100
+        self.replace = replace
         self.batch_size = batch_size
         self.exp_counter = 0
         self.learn_step_counter = 0
 
     def save(self):
+        """
+        Saves the agent onto the MLFLow Server.
+        """
         try:
             os.mkdir('tmp_model')
         except Exception as msg:
             import getpass
             username = getpass.getuser()
-            print(username) 
-            print(msg)
         self.q_eval.save_checkpoint('tmp_model/q_eval.chkpt')
         self.q_next.save_checkpoint('tmp_model/q_next.chkpt')
         mlflow.log_artifacts("tmp_model", artifact_path="model")
         shutil.rmtree('tmp_model')
-        #print(mlflow.get_artifact_uri(artifact_path="model"))
 
-    def load(self, model_root_folder_path):
+    def load(self, model_root_folder_path :str):
+        """Loads the Agent from the MLFlow server.
+
+        Args:
+            model_root_folder_path (str): Model root folder path.
+        """
         try:
             self.q_eval.load_checkpoint(os.path.join(model_root_folder_path,'q_eval.chkpt'))
             self.q_next.load_checkpoint(os.path.join(model_root_folder_path,'q_next.chkpt'))
-            pass
         except:
             print("Could not load network.")
 
     
 
-    def store_experience(self, state, action, reward, n_state, done):
+    def store_experience(self, state : np.array, action : int, reward : float, n_state : np.array, done : bool):
+        """Stores experience into the replay buffer
+
+        Args:
+            state (np.array): State
+            action (int): action
+            reward (float): reward
+            n_state (np.array): next state
+            done (bool): Terminal state?
+        """
+        
         self.replay_buffer.store_transition(state, action, reward, n_state, done)
         self.exp_counter+=1
 
 
-    def select_action(self, state : np.ndarray, deploy=False):
+    def select_action(self, state : np.ndarray, deploy=False) -> int:
+        """Select random action or action based on the current state.
+
+        Args:
+            state (np.ndarray): Current state
+            deploy (bool, optional): If true, no random states. Defaults to False.
+
+        Returns:
+            [type]: action
+        """
         if deploy:
-            #print(state.__class__.__name__)
-            #print(state, int(torch.argmax(self.q_eval.forward(state)).item()))
-            #print(state, int(torch.argmax(self.q_eval.forward(state)).item()))
             return int(torch.argmax(self.q_eval.forward(state)).item())
         if torch.rand(1).item() < self.epsilon:
             self.epsilon *= self.epsilon_dec
@@ -193,10 +237,16 @@ class DQNAgent(Agent):
             return int(torch.argmax(self.q_eval.forward(state)).item())
 
     def replace_target_network(self):
+        """
+        Replace the target network.
+        """
         if self.learn_step_counter % self.replace == 0:
             self.q_next.load_state_dict(self.q_eval.state_dict())
 
     def step_learn(self):
+        """
+        Agent learning.
+        """
         if self.exp_counter<self.batch_size:
             return
         self.q_eval.optimizer.zero_grad()

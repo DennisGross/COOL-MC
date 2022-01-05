@@ -131,6 +131,9 @@ After the training, we can verify the trained policy:
 
 `python cool_mc.py --parent_run_id=c0b0a71a334e4873b045858bc5be15ed --task=rl_model_checking --project_name="Smart Grid Example" --prism_file_path="smart_grid.prism" --constant_definitions="max_consumption=20,renewable_limit=19,non_renewable_limit=16,grid_upper_bound=25" --prop="Tmin=? [F TOO_MUCH_ENERGY=true]"`
 
+## Web-Interface
+`bash start_ui.sh` starts the MLFlow server to analyze the RL training process (http://hostname:5000) and a web interface to control COOL-MC via a GUI (http://hostname:12345).
+
 
 ## PRISM Modelling Tips
 We first have to model our RL environment. COOL-MC supports PRISM as modeling language. It can be difficult to design own PRISM environments. Here are some tips how to make sure that your PRISM environment works correctly with COOL-MC:
@@ -139,3 +142,123 @@ We first have to model our RL environment. COOL-MC supports PRISM as modeling la
 - After the agent reaches a terminal state, the storm simulator stops the simulation. Therefore, terminal state transitions will not executed. So, do not use self-looping terminal states.
 - To improve the training performance, try to make all actions at every state available. Otherwise, the agent may chooses a not available action and receives a penalty.
 - Try to unit test your PRISM environment before RL training. Does it behave as you want?
+
+## COOL-MC Arguments
+The following list contains all the major COOL-MC command line arguments. It does not contain the arguments which are related to the RL algorithms. For a detailed description, we refer to the common.rl_agents package.
+
+### task
+We can specify different tasks:
+- Reinforcement Learning in a OpenAI gym (openai_training)
+- Reinforcement Learning in a PRISM environment (safe_training)
+- RL Model Checking (rl_model_checking)
+
+### project_name
+The project name groups the experiments.
+
+### parent_run_id
+Refers to the previous experiment, if you want to retrain your RL agent or if you want to model check the trained RL agent.
+
+### sliding_window_size
+The sliding window size for the average received episodic reward.
+
+### num_episodes
+THe number of training episodes.
+
+### eval_interval
+The evaluation interval size. Every `eval_interval` step, COOL-MC model checks the RL agent.
+
+### rl_algorithm
+The RL algorithm, see common.rl_agents.agent_builder module for all supported RL agents.
+
+### env
+OpenAI Gym environment name for openai_training.
+
+### prism_dir
+Specifies the folder with all PRISM files.
+
+### prism_file_path
+Specifies the path of the PRISM file inside the prism file folder.
+
+### constant_definitions
+Constant definitions for the environments. Examples:
+- x=0.2
+- x=0.3,y=1
+- x=4,y=3,z=3
+- x=[0,3,30],y=3 with a range of x-values from 0 until 27 with step size of 3.
+
+### prop
+Specifies the property specification.
+
+### max_steps
+Specifies the maximal number of allowed steps inside the environment.
+
+### disabled_features
+Features which should not be used by the RL agent: FEATURE1,FEATURE2,...
+
+### permissive_input
+TBA
+
+### abstract_features
+TBA
+
+### wrong_action_penalty
+TBA
+
+### reward_flag
+If true, the agent receives rewards instead of penalties.
+
+### deploy
+Deploy Flag.
+
+### range_plotting
+Range Plotting Flag for plotting the range plot.
+
+## Manual Installation
+
+### Creating the Docker
+
+You can build the container via `docker build -t coolmc .` It is also possible for UNIX users to run the bash script in the bin-folder.
+
+### Tool Installation
+Switch to the repository folder and define environment variable `COOL_MC="$PWD"`
+
+#### (1) Install Dependencies
+`sudo apt-get update && sudo apt-get -y install build-essential git cmake libboost-all-dev libcln-dev libgmp-dev libginac-dev automake libglpk-dev libhwloc-dev libz3-dev libxerces-c-dev libeigen3-dev python3 python-is-python3 python3-setuptools python3-pip graphviz && sudo apt-get install -y --no-install-recommends maven uuid-dev virtualenv`
+
+#### (2) Install Storm
+0. `cd $COOL_MC`
+1. `git clone https://github.com/moves-rwth/storm.git`
+2. `cd storm`
+3. `mkdir build`
+4. `cd build`
+5. `cmake ..`
+6. `make -j 1`
+
+For more information about building Storm, click [here](https://www.stormchecker.org/documentation/obtain-storm/build.html).
+
+For testing the installation, follow the follow steps [here](https://www.stormchecker.org/documentation/obtain-storm/build.html#test-step-optional).
+
+#### (3) Install PyCarl
+0. `cd $COOL_MC`
+1. `git clone https://github.com/moves-rwth/pycarl.git`
+2. `cd pycarl`
+3. `python setup.py build_ext --jobs 1 develop`
+
+If permission problems: `sudo chmod 777 /usr/local/lib/python3.8/dist-packages/` and run third command again.
+
+
+#### (4) Install Stormpy
+
+0. `cd $COOL_MC`
+1. `git clone https://github.com/moves-rwth/stormpy.git`
+2. `cd stormpy`
+3. `python setup.py build_ext --storm-dir "${COOL_MC}/build/" --jobs 1 develop`
+
+For more information about the Stormpy installation, click [here](https://moves-rwth.github.io/stormpy/installation.html#installation-steps).
+
+For testing the installation, follow the steps [here](https://moves-rwth.github.io/stormpy/installation.html#testing-stormpy-installation).
+
+#### (5) Install remaining python packages and create project folder
+0. `cd $COOL_MC`
+1. `pip install -r requirements.txt`
+2. `mkdir projects`

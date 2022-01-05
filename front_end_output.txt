@@ -1,4 +1,4 @@
-Project ID: 13
-Run ID: b52g7u9oq69jf5ulmt6oq8xl8kltp2nbnfm8gd6lxl
-Property Query: Tmin=? [F TOO_MUCH_ENERGY=true]
-Property Result: inf
+Project ID: 11
+Run ID: 39na6i3bsr475r3smclrp1x9f55bve06h7qqy7zgka
+Property Query: Pmax=? [F OUT_OF_FUEL=true]
+Property Result: 1.0
