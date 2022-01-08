@@ -1,4 +1,4 @@
-Project ID: 8
-Run ID: eq7ikmhlbs2e8ujq7q8rggxzotem9getpdsfecmnro
-Property Query: Rmax=? [F c=1]
-Property Result: 25.0
+Project ID: 9
+Run ID: 15n55r2w9j6hc2ou407naoxiwxtqzo2mqooopozhxganbhi5fozy
+Property Query: Pmax=? [F jobs_done=2]
+Property Result: 0.0

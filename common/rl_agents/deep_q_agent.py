@@ -11,8 +11,8 @@ from collections import OrderedDict
 import torch
 import numpy as np
 
-#device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-device = 'cpu'
+device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+#device = 'cpu'
 
 
 class ReplayBuffer(object):
@@ -106,6 +106,7 @@ class DeepQNetwork(nn.Module):
         self.loss = nn.MSELoss()
         self.device = device
         self.to(self.device)
+        print("Train Agent on", self.device)
 
 
     def forward(self, state : np.array) -> int:

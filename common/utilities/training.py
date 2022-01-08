@@ -10,27 +10,31 @@ import numpy as np
 import torch
 from collections import deque
 import time
+import gc
 
 def train(project, env, prop_type=''):
-    all_episode_rewards = []
-    all_property_results = []
+    all_episode_rewards = deque(maxlen=project.command_line_arguments['sliding_window_size'])
+    all_property_results = deque(maxlen=project.command_line_arguments['sliding_window_size'])
     best_reward_of_sliding_window = -math.inf
     last_max_steps_states = deque(maxlen=project.command_line_arguments['max_steps']*2)
     last_max_steps_actions = deque(maxlen=project.command_line_arguments['max_steps']*2)
     last_max_steps_rewards = deque(maxlen=project.command_line_arguments['max_steps']*2)
     last_max_steps_terminals = deque(maxlen=project.command_line_arguments['max_steps']*2)
+    
     try:
         for episode in range(project.command_line_arguments['num_episodes']):
+            start_time = time.time()
             state = env.reset()
             last_max_steps_states.append(state)
             episode_reward = 0
+            step_counter = 0
             while True:
                 if state.__class__.__name__ == 'int':
                     state = [state]
                 #print(project.command_line_arguments['deploy'])
                 
                 action = project.agent.select_action(state, project.command_line_arguments['deploy'])
-                
+                step_counter +=1
                 next_state, reward, terminal, info = env.step(action)
                 if next_state.__class__.__name__ == 'int':
                     next_state = [next_state]
@@ -52,7 +56,7 @@ def train(project, env, prop_type=''):
                 # Log reward and property result (Safe Training)
                 all_episode_rewards.append(episode_reward)
                 project.mlflow_bridge.log_reward(all_episode_rewards[-1], episode)
-                reward_of_sliding_window = np.mean(all_episode_rewards[-project.command_line_arguments['sliding_window_size']:])
+                reward_of_sliding_window = np.mean(list(all_episode_rewards))
                 project.mlflow_bridge.log_avg_reward(reward_of_sliding_window, episode)
                 # Log Property Result
                 if prop_type != 'reward':
@@ -71,26 +75,29 @@ def train(project, env, prop_type=''):
                 post_processing_start_time = time.time()
                 all_episode_rewards.append(episode_reward)
                 project.mlflow_bridge.log_reward(all_episode_rewards[-1], episode)
-                reward_of_sliding_window = np.mean(all_episode_rewards[-project.command_line_arguments['sliding_window_size']:])
+                reward_of_sliding_window = np.mean(list(all_episode_rewards))
                 project.mlflow_bridge.log_avg_reward(reward_of_sliding_window, episode)
-                post_processing_time = time.time() - post_processing_start_time
                 if len(all_property_results) > 0:
-                    print(episode, "Episode\tReward", episode_reward, '\tAverage Reward', reward_of_sliding_window, "\tLast Property Result:", all_property_results[-1], '\tEpsilon:', project.agent.epsilon, "\tPostprocessing-tTime:", post_processing_time)
+                    print(episode, "Episode\tReward", episode_reward, '\tAverage Reward', reward_of_sliding_window, "\tLast Property Result:", all_property_results[-1], '\tEpsilon:', project.agent.epsilon)
                 else:
-                    print(episode, "Episode\tReward", episode_reward, '\tAverage Reward', reward_of_sliding_window, "\tLast Property Result:", None)
+                    print(episode, "Episode\tReward", episode_reward, '\tAverage Reward', reward_of_sliding_window, "\tLast Property Result:", None, '\tEpsilon:', project.agent.epsilon)
                 
 
             if reward_of_sliding_window  > best_reward_of_sliding_window:
                 best_reward_of_sliding_window = reward_of_sliding_window
                 if prop_type=='reward' and project.command_line_arguments['deploy']==False:
                     project.save()
-            try:
+            '''    
+            if len(all_property_results) > 0:
                 FrontEndPrinter.write_training_process(project.mlflow_bridge.get_project_id(), project.mlflow_bridge.get_run_id(), episode, reward, reward_of_sliding_window, all_property_results[-1])
-            except:
-                pass
+            else:
+                FrontEndPrinter.write_training_process(project.mlflow_bridge.get_project_id(), project.mlflow_bridge.get_run_id(), episode, reward, reward_of_sliding_window, None)
+            '''
+            print(time.time() - start_time)
+            gc.collect()
     except KeyboardInterrupt:
         torch.cuda.empty_cache()
-        pass
+        gc.collect()
     finally:
         torch.cuda.empty_cache()
         # Log overall metrics

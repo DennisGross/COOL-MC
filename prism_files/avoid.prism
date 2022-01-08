@@ -21,27 +21,27 @@ formula NOT_COLLISION = (COLLISION = false);
 
 
 //obstacle1
-formula obstacle1_random_1 = obstacle1_x=0 & obstacle1_y=yMax & NOT_COLLISION;
-formula obstacle1_random_2 = obstacle1_x>0 & obstacle1_x <xMax & obstacle1_y=yMax & NOT_COLLISION;
-formula obstacle1_random_3 = obstacle1_x = xMax & obstacle1_y=yMax & NOT_COLLISION;
-formula obstacle1_random_4 = obstacle1_x=0 & obstacle1_y>0 & obstacle1_y<yMax & NOT_COLLISION;
-formula obstacle1_random_5 = obstacle1_x>0 & obstacle1_y>0 & obstacle1_y<yMax & obstacle1_x<xMax & NOT_COLLISION;
-formula obstacle1_random_6 = obstacle1_x=xMax & obstacle1_y>0 & obstacle1_y<yMax & NOT_COLLISION;
-formula obstacle1_random_7 = obstacle1_x=0 & obstacle1_y=0 & NOT_COLLISION;
-formula obstacle1_random_8 = obstacle1_x>0 & obstacle1_y=0 & obstacle1_x <xMax & NOT_COLLISION;
-formula obstacle1_random_9 = obstacle1_x=xMax & obstacle1_y=0 & NOT_COLLISION;
+formula obstacle1_random_1 = obstacle1_x=0 & obstacle1_y=yMax;
+formula obstacle1_random_2 = obstacle1_x>0 & obstacle1_x <xMax & obstacle1_y=yMax;
+formula obstacle1_random_3 = obstacle1_x = xMax & obstacle1_y=yMax;
+formula obstacle1_random_4 = obstacle1_x=0 & obstacle1_y>0 & obstacle1_y<yMax;
+formula obstacle1_random_5 = obstacle1_x>0 & obstacle1_y>0 & obstacle1_y<yMax & obstacle1_x<xMax;
+formula obstacle1_random_6 = obstacle1_x=xMax & obstacle1_y>0 & obstacle1_y<yMax;
+formula obstacle1_random_7 = obstacle1_x=0 & obstacle1_y=0;
+formula obstacle1_random_8 = obstacle1_x>0 & obstacle1_y=0 & obstacle1_x <xMax;
+formula obstacle1_random_9 = obstacle1_x=xMax & obstacle1_y=0;
 
 
 //obstacle2
-formula obstacle2_random_1 = obstacle2_x=0 & obstacle2_y=yMax & NOT_COLLISION;
-formula obstacle2_random_2 = obstacle2_x>0 & obstacle2_x <xMax & obstacle2_y=yMax & NOT_COLLISION;
-formula obstacle2_random_3 = obstacle2_x = xMax & obstacle2_y=yMax & NOT_COLLISION;
-formula obstacle2_random_4 = obstacle2_x=0 & obstacle2_y>0 & obstacle2_y<yMax & NOT_COLLISION;
-formula obstacle2_random_5 = obstacle2_x>0 & obstacle2_y>0 & obstacle2_y<yMax & obstacle2_x<xMax & NOT_COLLISION;
-formula obstacle2_random_6 = obstacle2_x=xMax & obstacle2_y>0 & obstacle2_y<yMax & NOT_COLLISION;
-formula obstacle2_random_7 = obstacle2_x=0 & obstacle2_y=0 & NOT_COLLISION;
-formula obstacle2_random_8 = obstacle2_x>0 & obstacle2_y=0 & obstacle2_x <xMax & NOT_COLLISION;
-formula obstacle2_random_9 = obstacle2_x=xMax & obstacle2_y=0 & NOT_COLLISION;
+formula obstacle2_random_1 = obstacle2_x=0 & obstacle2_y=yMax;
+formula obstacle2_random_2 = obstacle2_x>0 & obstacle2_x <xMax & obstacle2_y=yMax;
+formula obstacle2_random_3 = obstacle2_x = xMax & obstacle2_y=yMax;
+formula obstacle2_random_4 = obstacle2_x=0 & obstacle2_y>0 & obstacle2_y<yMax;
+formula obstacle2_random_5 = obstacle2_x>0 & obstacle2_y>0 & obstacle2_y<yMax & obstacle2_x<xMax;
+formula obstacle2_random_6 = obstacle2_x=xMax & obstacle2_y>0 & obstacle2_y<yMax;
+formula obstacle2_random_7 = obstacle2_x=0 & obstacle2_y=0;
+formula obstacle2_random_8 = obstacle2_x>0 & obstacle2_y=0 & obstacle2_x <xMax;
+formula obstacle2_random_9 = obstacle2_x=xMax & obstacle2_y=0;
 
 
 
@@ -271,11 +271,4 @@ rewards
 	[east] NOT_COLLISION : 100;
 	[south] NOT_COLLISION: 100;
 	[west] NOT_COLLISION : 100;
-
-	[north] NOT_COLLISION : 0;
-	[east] NOT_COLLISION : 0;
-	[south] NOT_COLLISION: 0;
-	[west] NOT_COLLISION : 0;
 endrewards
-
-label "COLLISION" = (COLLISION = true);
