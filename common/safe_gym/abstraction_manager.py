@@ -25,8 +25,9 @@ class AStateVariable:
             return self.all_assignments[min_idx]
         else:
             for original_values in self.mapping.keys():
-                if str(original_values).find(str(int(value))) != -1:
-                    return self.mapping[original_values]
+                for part_value in original_values.split(","):
+                    if part_value == str(int(value)):
+                        return self.mapping[original_values]
             raise ValueError("Mapping for " + str(value) + " does not exist.")
 
 

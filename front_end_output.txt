@@ -1,4 +1,4 @@
 Project ID: 9
-Run ID: 15n55r2w9j6hc2ou407naoxiwxtqzo2mqooopozhxganbhi5fozy
-Property Query: Pmax=? [F jobs_done=2]
+Run ID: mppuyha6bcl3jsf27gt2vc262qfr4kmauj656fsyoo
+Property Query: Pmax=? [F OUT_OF_FUEL=true]
 Property Result: 0.0

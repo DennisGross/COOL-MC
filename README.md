@@ -13,6 +13,8 @@ We assume that you have docker installed and that you run the following commands
 3. Create a project folder: `mkdir projects`
 4. Run the docker container: `docker run --user mycoolmc  -v "$(pwd)/prism_files":"/home/mycoolmc/prism_files" -it coolmc bash`
 
+Please make sure that you either run COOL-MC in on your machine OR in the docker container. Otherwise, it may lead to folder permission problems.
+
 We discuss how to create the docker container yourself, and how to install the tool natively later.
 
 If you are not familiar with PRISM/Storm, here are some references:
@@ -196,13 +198,23 @@ Specifies the maximal number of allowed steps inside the environment.
 Features which should not be used by the RL agent: FEATURE1,FEATURE2,...
 
 ### permissive_input
-TBA
+It allows the investigation of the worst-/best-case behaviour of the trained policy for certain state variables. Let's assume we have a formal model with state variables $a=[0,5]$, $b=[0,5]$, $c=[0,2]$.
+We now want to investigate the permissive policies independent of $c$. Therefore, we generate at each state all the different RL policy actions for the different $c$ assignments and incrementally build the MDP.
+- $c=[0,2]$ generates all the actions for the different c-assignments between $[0,2]$.
+- $c=[0,1]$ generates all the actions for the different c-assignments between $[0,1]$.
+- $c<>=[1,2]$ generates all the actions for the different c-assignments [1,2] only if the c value is between $[1,2]$. Otherwise, treat $c$ normally.
 
 ### abstract_features
-TBA
+It allows model-checking the trained policy on less precise sensors without changing the environment.
+To achieve this, a prepossessing step is applied to the current state in the incremental building process to map the state to a more abstract state for the RL policy. We can archive the abstraction by:
+
+- Passing the abstraction mapping file via the command line (e.g. taxi_abstraction.json)
+- Passing the abstraction interval via command line (x=[0,2,10], maps the other x-values to the closest abstracted x-value).
+
+This argument is reseted after rerunning the project.
 
 ### wrong_action_penalty
-TBA
+If an action is not available but still chosen by the policy, return a penalty of [DEFINED HERE].
 
 ### reward_flag
 If true, the agent receives rewards instead of penalties.
