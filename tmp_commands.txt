@@ -10,6 +10,7 @@ python cool_mc.py --project_name "experiments" --parent_run_id=8d4a7c9d8225428a8
 
 
 # 3decabdbf98c433aa4e7b5be74796730 PiC
+python cool_mc.py --project_name "experiments" --parent_run_id=3decabdbf98c433aa4e7b5be74796730 --task rl_model_checking --prism_file_path="transporter.prism" --constant_definitions="MAX_FUEL=[0;1;10],MAX_JOBS=2" --prop="Pmax=? [F OUT_OF_FUEL=true]"
 # Permissive
 python cool_mc.py --project_name "experiments" --parent_run_id=3decabdbf98c433aa4e7b5be74796730 --task rl_model_checking --prism_file_path="transporter.prism" --constant_definitions="MAX_FUEL=10,MAX_JOBS=2" --prop="Pmax=? [F OUT_OF_FUEL=true]" --permissive_input="fuel<>=[0;10]"
 # Abstraction

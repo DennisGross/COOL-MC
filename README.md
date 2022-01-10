@@ -6,7 +6,20 @@ The general workflow of our approach is as follows. First, we model the RL envir
 ![workflow](https://github.com/DennisGross/COOL-MC/blob/main/documentation/images/workflow_diagram.png)
 
 
-## Start
+##### Content
+1. Getting Started with COOL-MC
+2. Example 1 (Frozen Lake)
+3. Example 2 (Taxi)
+4. Example 3 (Collision Avoidance)
+5. Example 4 (Smart Grid)
+6. Web Interface
+7. PRISM Modelling Tips
+8. RL Agent Training
+9. COOL-MC Command Line Arguments
+10. Manual Installation
+
+
+## Getting Started with COOL-MC
 We assume that you have docker installed and that you run the following commands in the root of this repository:
 1. Download the docker container [here](https://drive.google.com/file/d/10C3PkC6uU0M-FEY58zeVOER8CK9zUO3L/view?usp=sharing) (not up to date).
 2. Load the docker container: `docker load --input coolmc.tar`
@@ -134,7 +147,7 @@ After the training, we can verify the trained policy:
 `python cool_mc.py --parent_run_id=c0b0a71a334e4873b045858bc5be15ed --task=rl_model_checking --project_name="Smart Grid Example" --prism_file_path="smart_grid.prism" --constant_definitions="max_consumption=20,renewable_limit=19,non_renewable_limit=16,grid_upper_bound=25" --prop="Tmin=? [F TOO_MUCH_ENERGY=true]"`
 
 ## Web-Interface
-`bash start_ui.sh` starts the MLFlow server to analyze the RL training process (http://hostname:5000) and a web interface to control COOL-MC via a GUI (http://hostname:12345).
+`bash start_ui.sh` starts the MLFlow server to analyze the RL training process (http://hostname:5000) and a web interface (early alpha version) to control COOL-MC via a GUI (http://hostname:12345).
 
 
 ## PRISM Modelling Tips
@@ -145,7 +158,24 @@ We first have to model our RL environment. COOL-MC supports PRISM as modeling la
 - To improve the training performance, try to make all actions at every state available. Otherwise, the agent may chooses a not available action and receives a penalty.
 - Try to unit test your PRISM environment before RL training. Does it behave as you want?
 
-## COOL-MC Arguments
+## RL Agent Training
+After we modeled the environment, we can train RL agents on this environment.
+It is also possible to develop your own RL agents:
+1. Create a AGENT_NAME.py in the src.rl_agents package
+2. Create a class AGENT_NAME and inherit all methods from src.agent.Agent
+3. Set use_tf_environment to true if you use tf_environments instead of py_environments from tf_agents
+4. Override all the needed methods (depends on your agent) + the agent save- and load-method.
+5. In src.rl_agents.agent_builder extends the build_agent method with an additional elif branch for your agent
+6. Add additional command-line arguments in cool_mc.py (if needed)
+
+Here are some tips that may improve the training progress:
+
+- Try to use the disable_state parameter to disable state variables from PRISM which are only relevant for the PRISM environment architecture.
+- Play around with the RL parameters.
+- Think especially about the size of the max_steps if you have only one terminal state and if this terminal state is a  negative outcome with a huge penalty. Too large max_steps values lead to always reaching this negative step in the beginning of the training. Instead, decrease the max_steps so that the RL agent may not reach this terminal state and stops training earlier. So the huge penality is not influencing the RL training too much in the beginning.
+- The model checking part while RL training can take time. Therefore, the best way to train and verify your model is to first use reward_max. After the RL model may reaches an execptable reward the change the parameter prop_type to min_prop or max_prop and adjust the evaluation intervals.
+
+## COOL-MC Command Line Arguments
 The following list contains all the major COOL-MC command line arguments. It does not contain the arguments which are related to the RL algorithms. For a detailed description, we refer to the common.rl_agents package.
 
 ### task
