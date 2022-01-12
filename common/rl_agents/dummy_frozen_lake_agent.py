@@ -55,4 +55,3 @@ class DummyFrozenLakeAgent(Agent):
     def load(self, root_folder):
         with open(os.path.join(root_folder, 'weights.json')) as json_file:
             self.always_action = json.load(json_file)['always_action']
-            print("Loaded", self.always_action)

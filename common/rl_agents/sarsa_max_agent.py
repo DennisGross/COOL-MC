@@ -107,11 +107,9 @@ class SarsaMaxAgent(Agent):
         with open(os.path.join(model_root_folder_path,'model.pickle'), 'rb') as agent_file:
                 config_dict = pickle.load(agent_file)
                 self.Q = config_dict["Q"]
-                print("Loaded Model")
         try:
             with open(os.path.join(model_root_folder_path,'model.pickle'), 'rb') as agent_file:
                 config_dict = pickle.load(agent_file)
                 self.Q = config_dict["Q"]
-                print("Loaded Model")
         except:
             pass

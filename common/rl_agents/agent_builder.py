@@ -23,30 +23,30 @@ class AgentBuilder():
 
     @staticmethod
     def build_agent(model_root_folder_path, command_line_arguments, observation_space, action_space):
-        print('Build model with', model_root_folder_path, command_line_arguments)
-        print('Environment', observation_space.shape, action_space.n)
+        #print('Build model with', model_root_folder_path, command_line_arguments)
+        #print('Environment', observation_space.shape, action_space.n)
         try:
             state_dimension = observation_space.shape[0]
         except:
             state_dimension = 1
         agent = None
         if command_line_arguments['rl_algorithm'] == 'dummy_agent':
-            print("Build Dummy Agent.")
+            #print("Build Dummy Agent.")
             agent = DummyAgent(state_dimension, action_space.n, command_line_arguments['always_action'])
             if model_root_folder_path!= None:
                 agent.load(model_root_folder_path)
         elif command_line_arguments['rl_algorithm'] == 'dummy_frozen_lake_agent':
-            print("Build Dummy Frozen Lake Agent.")
+            #print("Build Dummy Frozen Lake Agent.")
             agent = DummyFrozenLakeAgent(state_dimension, action_space.n, command_line_arguments['always_action'])
             if model_root_folder_path!= None:
                 agent.load(model_root_folder_path)
         elif command_line_arguments['rl_algorithm'] == 'sarsamax':
-            print("Build SARSAMAX Agent.")
+            #print("Build SARSAMAX Agent.")
             agent = SarsaMaxAgent(action_space.n, epsilon=command_line_arguments['epsilon'], epsilon_dec=command_line_arguments['epsilon_dec'], epsilon_min=command_line_arguments['epsilon_min'], alpha=command_line_arguments['alpha'], gamma=command_line_arguments['gamma'])
             if model_root_folder_path!= None:
                 agent.load(model_root_folder_path)
         elif command_line_arguments['rl_algorithm'] == 'dqn_agent':
-            print("Build DQN Agent.", state_dimension, action_space.n)
+            #print("Build DQN Agent.", state_dimension, action_space.n)
             number_of_neurons = AgentBuilder.layers_neurons_to_number_of_neurons(command_line_arguments['layers'],command_line_arguments['neurons'])
             agent = DQNAgent(state_dimension, number_of_neurons, action_space.n, epsilon=command_line_arguments['epsilon'], epsilon_dec=command_line_arguments['epsilon_dec'], epsilon_min=command_line_arguments['epsilon_min'], gamma=command_line_arguments['gamma'], learning_rate=command_line_arguments['lr'], replace=command_line_arguments['replace'], batch_size=command_line_arguments['batch_size'], replay_buffer_size=command_line_arguments['replay_buffer_size'])
             #print(model_root_folder_path, model_root_folder_path.find("mlruns"))
@@ -54,6 +54,6 @@ class AgentBuilder():
             #first_part_of_path = str(os.getcwd()).replace("safe_gym_training","")
             #second_part = model_root_folder_path[model_root_folder_path.find("mlruns"):]
             #model_root_folder_path = os.path.join(first_part_of_path, second_part)
-            print(model_root_folder_path)
+            #print(model_root_folder_path)
             agent.load(model_root_folder_path)
         return agent

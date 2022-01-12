@@ -106,7 +106,6 @@ class DeepQNetwork(nn.Module):
         self.loss = nn.MSELoss()
         self.device = device
         self.to(self.device)
-        print("Train Agent on", self.device)
 
 
     def forward(self, state : np.array) -> int:
@@ -199,7 +198,7 @@ class DQNAgent(Agent):
             self.q_eval.load_checkpoint(os.path.join(model_root_folder_path,'q_eval.chkpt'))
             self.q_next.load_checkpoint(os.path.join(model_root_folder_path,'q_next.chkpt'))
         except:
-            print("Could not load network.")
+            pass
 
     
 
