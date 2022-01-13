@@ -9,9 +9,21 @@ python cool_mc.py --project_name "experiments" --parent_run_id=8d4a7c9d8225428a8
 python cool_mc.py --project_name "experiments" --parent_run_id=8d4a7c9d8225428a8985b1643c1e386d --task rl_model_checking --prism_file_path="transporter.prism" --constant_definitions="MAX_FUEL=10,MAX_JOBS=2" --prop="Pmax=? [F jobs_done=2]" --abstract_features="../taxi_abstraction.json"
 
 
-# 3decabdbf98c433aa4e7b5be74796730 PiC
-python cool_mc.py --project_name "experiments" --parent_run_id=3decabdbf98c433aa4e7b5be74796730 --task rl_model_checking --prism_file_path="transporter.prism" --constant_definitions="MAX_FUEL=[0;1;10],MAX_JOBS=2" --prop="Pmax=? [F OUT_OF_FUEL=true]"
+# 3decabdbf98c433aa4e7b5be74796730 Pi
+#C
+python cool_mc.py --project_name "experiments" --parent_run_id=acf833fd3952472b8f309150d05a4a11 --task rl_model_checking --prism_file_path="transporter.prism" --constant_definitions="MAX_FUEL=[0;1;11],MAX_JOBS=2" --prop="Pmax=? [F jobs_done=2]"
+python cool_mc.py --project_name "experiments" --parent_run_id=acf833fd3952472b8f309150d05a4a11 --task rl_model_checking --prism_file_path="transporter.prism" --constant_definitions="MAX_FUEL=10,MAX_JOBS=2" --prop="Pmax=? [F OUT_OF_FUEL=true]" --permissive_input="fuel<>=[0;10]"
+# B
+python cool_mc.py --project_name "experiments" --parent_run_id=8df74decc08e42718dcf4474f0828492 --task rl_model_checking --prism_file_path="transporter.prism" --constant_definitions="MAX_FUEL=[0;1;11],MAX_JOBS=2" --prop="Pmax=? [F jobs_done=2]"
+python cool_mc.py --project_name "experiments" --parent_run_id=8df74decc08e42718dcf4474f0828492 --task rl_model_checking --prism_file_path="transporter.prism" --constant_definitions="MAX_FUEL=10,MAX_JOBS=2" --prop="Pmax=? [F OUT_OF_FUEL=true]" --abstract_features="../taxi_abstraction.json"
 # Permissive
-python cool_mc.py --project_name "experiments" --parent_run_id=3decabdbf98c433aa4e7b5be74796730 --task rl_model_checking --prism_file_path="transporter.prism" --constant_definitions="MAX_FUEL=10,MAX_JOBS=2" --prop="Pmax=? [F OUT_OF_FUEL=true]" --permissive_input="fuel<>=[0;10]"
+python cool_mc.py --project_name "experiments" --parent_run_id=592bwqm8gdmxum834ynkdnjn5xg0r31bcmo2lkkqrk --task rl_model_checking --prism_file_path="transporter.prism" --constant_definitions="MAX_FUEL=10,MAX_JOBS=2" --prop="Pmax=? [F OUT_OF_FUEL=true]" --permissive_input="fuel<>=[0;10]"
 # Abstraction
 python cool_mc.py --project_name "experiments" --parent_run_id=3decabdbf98c433aa4e7b5be74796730 --task rl_model_checking --prism_file_path="transporter.prism" --constant_definitions="MAX_FUEL=10,MAX_JOBS=2" --prop="Pmax=? [F OUT_OF_FUEL=true]" --abstract_features="../taxi_abstraction.json"
+
+
+# FROZEN LAKE NEW
+
+python cool_mc.py --parent_run_id=2bc0de1b130346f28db658b7c0639faa --task=openai_training --project_name="experiments" --num_episodes=1000 --eval_interval=10 --env=FrozenLake-v0 --sliding_window_size=100 --deploy=1 --seed=128
+python cool_mc.py --task=safe_training --parent_run_id=2bc0de1b130346f28db658b7c0639faa --seed=128 --reward_flag=1 --project_name="experiments" --num_episodes=1000 --eval_interval=10 --sliding_window_size=100 --prism_file_path="frozen_lake3-v1.prism" --constant_definitions="control=0.33,start_position=0" --prop="" --deploy=1
+python cool_mc.py --project_name "experiments" --parent_run_id=245af89627ec43d899755472669fb840 --task rl_model_checking --prism_file_path="frozen_lake3-v1.prism" --constant_definitions="control=0.33,start_position=[0;1;16]" --prop="Pmin=? [F AT_FRISBEE=true]"

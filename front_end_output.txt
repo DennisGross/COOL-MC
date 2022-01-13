@@ -1,4 +1,4 @@
 Project ID: 9
-Run ID: tlgtgi0ja3hhzxxj20icptwu57kk030y41gmi3skfe
-Property Query: Pmax=? [F jobs_done=2]
-Property Result: 1.0
+Run ID: gqlgawp79uu40uj34lx9xnyl5bnaslza6qxvlvbaru
+Property Query: Pmin=? [F AT_FRISBEE=true]
+Property Result: 0.7644529945992089

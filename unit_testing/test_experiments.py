@@ -114,7 +114,7 @@ def test_frozen_lake_agent_a():
     result = run_verify_rl_agent(command_line_arguments)
     assert 1 == 1
 
-#@pytest.mark.skip(reason="no way of currently testing this")
+@pytest.mark.skip(reason="no way of currently testing this")
 def test_taxi_experiment_section_agent_b():
     arg_parser = argparse.ArgumentParser(
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
@@ -278,7 +278,7 @@ def test_taxi_experiment_section_agent_c():
     result = run_verify_rl_agent(command_line_arguments)
     assert 1 == 1
 
-@pytest.mark.skip(reason="no way of currently testing this")
+#@pytest.mark.skip(reason="no way of currently testing this")
 def test_collision_avoidance_experiment_agent_d():
     arg_parser = argparse.ArgumentParser(
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
@@ -293,7 +293,7 @@ def test_collision_avoidance_experiment_agent_d():
     arg_parser.add_argument('--sliding_window_size', help='What is the sliding window size for the reward averaging?', type=int,
                             default=100)
     arg_parser.add_argument('--num_episodes', help='What is the number of training episodes?', type=int,
-                            default=100000)
+                            default=49700)
     arg_parser.add_argument('--eval_interval', help='What is the number of training episodes?', type=int,
                             default=100)
     arg_parser.add_argument('--rl_algorithm', help='What is the  used RL algorithm?', type=str,
