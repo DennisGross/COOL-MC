@@ -46,6 +46,7 @@ def train(project, env, prop_type=''):
                 last_max_steps_actions.append(action)
                 last_max_steps_rewards.append(reward)
                 last_max_steps_terminals.append(terminal)
+                print(state)
                 state = next_state
                 episode_reward+=reward
                 if terminal:
@@ -60,7 +61,7 @@ def train(project, env, prop_type=''):
                 project.mlflow_bridge.log_avg_reward(reward_of_sliding_window, episode)
                 # Log Property Result
                 if prop_type != 'reward':
-                    mdp_reward_result, model_size, _, _ = env.storm_bridge.model_checker.induced_markov_chain(project.agent, env, project.command_line_arguments['constant_definitions'], project.command_line_arguments['prop'])
+                    mdp_reward_result, model_size, _, _, collected_states, collected_actions = env.storm_bridge.model_checker.induced_markov_chain(project.agent, env, project.command_line_arguments['constant_definitions'], project.command_line_arguments['prop'])
                     all_property_results.append(mdp_reward_result)
 
                     if (all_property_results[-1] == min(all_property_results) and prop_type == "min_prop") or (all_property_results[-1] == max(all_property_results) and prop_type == "max_prop"):

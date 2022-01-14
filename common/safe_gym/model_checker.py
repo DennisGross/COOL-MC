@@ -82,6 +82,8 @@ class ModelChecker():
         :param property_specification: property specification
         :return: mdp_reward_result, model_size, total_run_time, model_checking_time
         '''
+        collected_states = []
+        collected_actions = []
         env.reset()
         self.m_permissive_manager.action_mapper = env.action_mapper
         self.wrong_choices = 0
@@ -127,7 +129,6 @@ class ModelChecker():
                 state = self.m_abstraction_manager.preprocess_state(state)
             
             
-            # Check if selected action is available.. if not set action to the first available action
             if len(available_actions) == 0:
                 return False
             
@@ -142,6 +143,12 @@ class ModelChecker():
                 #print(state, selected_action)
                 cond1 = (action_name == selected_action)
 
+            if cond1 == True:
+                # For Safety Guided Training
+                collected_states.append(state)
+                collected_actions.append(env.action_mapper.action_name_to_action_index(selected_action))
+                
+                
             # print(str(state_valuation.to_json()), action_name)#, state, selected_action, cond1)
             return cond1
 
@@ -165,4 +172,4 @@ class ModelChecker():
         #print('Result for initial state', result.at(initial_state))
         mdp_reward_result = result.at(initial_state)
         # Update StateActionCollector
-        return mdp_reward_result, model_size, (time.time()-start_time), (time.time()-model_checking_start_time)
+        return mdp_reward_result, model_size, (time.time()-start_time), (time.time()-model_checking_start_time), collected_states, collected_actions
