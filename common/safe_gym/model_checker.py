@@ -165,4 +165,5 @@ class ModelChecker():
         #print('Result for initial state', result.at(initial_state))
         mdp_reward_result = result.at(initial_state)
         # Update StateActionCollector
+        stormpy.export_to_drn(model,"test.drn")
         return mdp_reward_result, model_size, (time.time()-start_time), (time.time()-model_checking_start_time)

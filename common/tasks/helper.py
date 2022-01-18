@@ -9,17 +9,17 @@ def get_arguments():
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     args = argparse.Namespace()
     unknown_args = list()
-    arg_parser.add_argument('--task', help='What is the name of your project?', type=str,
+    arg_parser.add_argument('--task', help='What type of task do you want to perform(safe_training, openai_training, rl_model_checking)?', type=str,
                             default='safe_training')
     arg_parser.add_argument('--project_name', help='What is the name of your project?', type=str,
-                            default='avoid')
+                            default='defaultproject')
     arg_parser.add_argument('--parent_run_id', help='Do you want to continue training of a RL agent? Name the run_id of the last training unit (see mlflow ui).', type=str,
                             default='')
-    arg_parser.add_argument('--sliding_window_size', help='What is the sliding window size for the reward averaging?', type=int,
-                            default=100)
     arg_parser.add_argument('--num_episodes', help='What is the number of training episodes?', type=int,
-                            default=300)
+                            default=1000)
     arg_parser.add_argument('--eval_interval', help='What is the number of training episodes?', type=int,
+                            default=100)
+    arg_parser.add_argument('--sliding_window_size', help='What is the sliding window size for the reward averaging?', type=int,
                             default=100)
     arg_parser.add_argument('--rl_algorithm', help='What is the  used RL algorithm?', type=str,
                             default='dqn_agent')
@@ -30,11 +30,11 @@ def get_arguments():
     arg_parser.add_argument('--prism_dir', help='In which folder should we save your projects?', type=str,
                             default='../prism_files')
     arg_parser.add_argument('--prism_file_path', help='In which folder should we save your projects?', type=str,
-                            default='avoid.prism')
+                            default='')
     arg_parser.add_argument('--constant_definitions', help='Constant definitions of the formal model (PRISM model)', type=str,
                             default='xMax=4,yMax=4,slickness=0')
     arg_parser.add_argument('--prop', help='Property Specification', type=str,
-                            default='Tmin=? [F COLLISION=true]')
+                            default='')
     arg_parser.add_argument('--max_steps', help='Maximal steps in environment', type=int,
                             default=100)
     arg_parser.add_argument('--disabled_features', help='Features which should not be used by the RL agent: FEATURE1,FEATURE2,...', type=str,

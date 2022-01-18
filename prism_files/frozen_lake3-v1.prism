@@ -169,3 +169,6 @@ rewards
 
 endrewards
 
+label "in_water" = WATER;
+label "at_frisbee" = AT_FRISBEE;
+

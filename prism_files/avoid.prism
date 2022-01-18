@@ -272,3 +272,6 @@ rewards
 	[south] NOT_COLLISION: 100;
 	[west] NOT_COLLISION : 100;
 endrewards
+
+
+label "collide" = COLLISION;

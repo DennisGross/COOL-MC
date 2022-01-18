@@ -1,4 +1,4 @@
 Project ID: 9
-Run ID: gqlgawp79uu40uj34lx9xnyl5bnaslza6qxvlvbaru
-Property Query: Pmin=? [F AT_FRISBEE=true]
-Property Result: 0.7644529945992089
+Run ID: gus8q8e4r3tu9fbmc424bhvktgy0ndsdtdosqpw8mx
+Property Query: Pmax=? [F "empty"]
+Property Result: 0.0625

@@ -178,54 +178,29 @@ Here are some tips that may improve the training progress:
 ## COOL-MC Command Line Arguments
 The following list contains all the major COOL-MC command line arguments. It does not contain the arguments which are related to the RL algorithms. For a detailed description, we refer to the common.rl_agents package.
 
-### task
-We can specify different tasks:
-- Reinforcement Learning in a OpenAI gym (openai_training)
-- Reinforcement Learning in a PRISM environment (safe_training)
-- RL Model Checking (rl_model_checking)
+| Argument             | Description                                                                                                                                                                                                                                                                                 | Options                                           | Default Value  |
+|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------|----------------|
+| task                 | The type of task do you want to perform.                                                                                                                                                                                                                                                    | safe_training, openai_training, rl_model_checking | safe_training  |
+| project_name         | The name of your project.                                                                                                                                                                                                                                                                   |                                                   | defaultproject |
+| parent_run_id        | Reference to previous experiment for retraining or verification.                                                                                                                                                                                                                            | PROJECT_IDs                                       |                |
+| num_episodes         | The number of training episodes.                                                                                                                                                                                                                                                            | INTEGER NUMBER                                    | 1000           |
+| eval_interval        | Interval for verification while safe_training.                                                                                                                                                                                                                                              | INTEGER NUMBER                                    | 100            |
+| sliding_window_size  | Sliding window size for reward averaging over episodes.                                                                                                                                                                                                                                     | INTEGER NUMBER                                    | 100            |
+| rl_algorithm         | The name of the RL algorithm.                                                                                                                                                                                                                                                               | dqn_agent, sarsamax                               | dqn_agent      |
+| env                  | openai_training parameter for the environment name.                                                                                                                                                                                                                                         | OPENAI GYM NAMES                                  |                |
+| prism_dir            | The directory of the PRISM files.                                                                                                                                                                                                                                                           | PATH                                              | ../prism_files |
+| prism_file_path      | The name of the PRISM file.                                                                                                                                                                                                                                                                 | STR                                               |                |
+| constant_definitions | Constant definitions seperated by a commata.                                                                                                                                                                                                                                                | For example: xMax=4,yMax=4,slickness=0            |                |
+| prop                 | Property Query. **For safe_training:** Pmax tries to save RL policies that have higher probabilities. Pmin tries to save RL policies that have  lower probabilities. **For rl_model_checking:** In the case of induced DTMCs min/max  yield to the same property result (do not remove it). |                                                   |                |
+| max_steps            | Maximal steps in the safe gym environment.                                                                                                                                                                                                                                                  |                                                   | 100            |
+| disabled_features    | Disable features in the state space.                                                                                                                                                                                                                                                        | FEATURES SEPERATED BY A COMMATA                   |                |
+| permissive_input     | It allows the investigation of the worst-/best-case behaviour of the trained policy for certain state variables.                                                                                                                                                                            |                                                   |                |
+| abstract_features    | It allows model-checking the trained policy on less precise sensors without changing the environment.                                                                                                                                                                                       |                                                   |                |
+| wrong_action_penalty | If an action is not available but still chosen by the policy, return a penalty of [DEFINED HERE].                                                                                                                                                                                           |                                                   |                |
+| reward_flag          | If true (1), the agent receives rewards instead of penalties.                                                                                                                                                                                                                               |                                                   | 0              |
+| range_plotting       | Range Plotting Flag for plotting the range plot on the screen.                                                                                                                                                                                                                              |                                                   |                |
+| seed                 | Random seed for PyTorch, Numpy, Python.                                                                                                                                                                                                                                                     | INTEGER NUMBER                                    | None (-1)      |
 
-### project_name
-The project name groups the experiments.
-
-### parent_run_id
-Refers to the previous experiment, if you want to retrain your RL agent or if you want to model check the trained RL agent.
-
-### sliding_window_size
-The sliding window size for the average received episodic reward.
-
-### num_episodes
-THe number of training episodes.
-
-### eval_interval
-The evaluation interval size. Every `eval_interval` step, COOL-MC model checks the RL agent.
-
-### rl_algorithm
-The RL algorithm, see common.rl_agents.agent_builder module for all supported RL agents.
-
-### env
-OpenAI Gym environment name for openai_training.
-
-### prism_dir
-Specifies the folder with all PRISM files.
-
-### prism_file_path
-Specifies the path of the PRISM file inside the prism file folder.
-
-### constant_definitions
-Constant definitions for the environments. Examples:
-- x=0.2
-- x=0.3,y=1
-- x=4,y=3,z=3
-- x=[0,3,30],y=3 with a range of x-values from 0 until 27 with step size of 3.
-
-### prop
-Specifies the property specification.
-
-### max_steps
-Specifies the maximal number of allowed steps inside the environment.
-
-### disabled_features
-Features which should not be used by the RL agent: FEATURE1,FEATURE2,...
 
 ### permissive_input
 It allows the investigation of the worst-/best-case behaviour of the trained policy for certain state variables. Let's assume we have a formal model with state variables $a=[0,5]$, $b=[0,5]$, $c=[0,2]$.
@@ -243,17 +218,7 @@ To achieve this, a prepossessing step is applied to the current state in the inc
 
 This argument is reseted after rerunning the project.
 
-### wrong_action_penalty
-If an action is not available but still chosen by the policy, return a penalty of [DEFINED HERE].
 
-### reward_flag
-If true, the agent receives rewards instead of penalties.
-
-### deploy
-Deploy Flag.
-
-### range_plotting
-Range Plotting Flag for plotting the range plot.
 
 ## Manual Installation
 

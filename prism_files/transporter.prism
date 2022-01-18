@@ -152,3 +152,5 @@ rewards
 endrewards
 
 
+label "empty" = (OUT_OF_FUEL & NOT_ON_GAS_STATION);
+
