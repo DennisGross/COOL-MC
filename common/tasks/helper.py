@@ -34,7 +34,7 @@ def get_arguments():
     arg_parser.add_argument('--constant_definitions', help='Constant definitions of the formal model (PRISM model)', type=str,
                             default='xMax=4,yMax=4,slickness=0')
     arg_parser.add_argument('--prop', help='Property Specification', type=str,
-                            default='')
+                            default='   ')
     arg_parser.add_argument('--max_steps', help='Maximal steps in environment', type=int,
                             default=100)
     arg_parser.add_argument('--disabled_features', help='Features which should not be used by the RL agent: FEATURE1,FEATURE2,...', type=str,
@@ -67,7 +67,7 @@ def get_arguments():
     arg_parser.add_argument('--epsilon', help='Epsilon Starting Rate', type=float,
                             default=1)
     arg_parser.add_argument('--epsilon_dec', help='Epsilon Decreasing Rate', type=float,
-                            default=0.9994)
+                            default=0.9999)
     arg_parser.add_argument('--epsilon_min', help='Minimal Epsilon Value', type=float,
                             default=0.1)
     arg_parser.add_argument('--gamma', help='Gamma', type=float,

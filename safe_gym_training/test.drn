@@ -1,0 +1,16 @@
+// Exported by storm
+// Original model type: MDP
+@type: MDP
+@parameters
+
+@reward_models
+
+@nr_states
+1
+@nr_choices
+1
+@model
+state 0 "((((non_renewable + renewable) - consumption) > 2) = true)" init
+//[!blackout	& energy=3	& renewable=3	& non_renewable=0	& consumption=0]
+	action __NOLABEL__
+		0 : 1

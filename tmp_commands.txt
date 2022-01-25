@@ -11,8 +11,9 @@ python cool_mc.py --project_name "experiments" --parent_run_id=8d4a7c9d8225428a8
 
 # 3decabdbf98c433aa4e7b5be74796730 Pi
 #C (correct policy)
-python cool_mc.py --project_name "experiments" --parent_run_id=acf833fd3952472b8f309150d05a4a11 --task rl_model_checking --prism_file_path="transporter.prism" --constant_definitions="MAX_FUEL=7,MAX_JOBS=2" --prop="Pmax=? [F jobs_done=2]"
+python cool_mc.py --project_name "experiments" --parent_run_id=acf833fd3952472b8f309150d05a4a11 --task rl_model_checking --prism_file_path="transporter.prism" --constant_definitions="MAX_FUEL=7,MAX_JOBS=2" --prop="Pmax=? [F jobs_done=2]" --permissive_input="fuel=[0;1]"
 python cool_mc.py --project_name "experiments" --parent_run_id=acf833fd3952472b8f309150d05a4a11 --task rl_model_checking --prism_file_path="transporter.prism" --constant_definitions="MAX_FUEL=10,MAX_JOBS=2" --prop="Pmax=? [F \"empty\"]" --permissive_input="fuel<>=[0;10]"
+python cool_mc.py --project_name "experiments" --parent_run_id=acf833fd3952472b8f309150d05a4a11 --task rl_model_checking --prism_file_path="transporter.prism" --constant_definitions="MAX_FUEL=[0;1;11],MAX_JOBS=2" --prop="Pmax=? [F jobs_done=2]" --abstract_features="../taxi_abstraction.json"
 # B (correct policy)
 python cool_mc.py --project_name "experiments" --parent_run_id=8df74decc08e42718dcf4474f0828492 --task rl_model_checking --prism_file_path="transporter.prism" --constant_definitions="MAX_FUEL=[0;1;11],MAX_JOBS=2" --prop="Pmax=? [F jobs_done=2]"
 python cool_mc.py --project_name "experiments" --parent_run_id=8df74decc08e42718dcf4474f0828492 --task rl_model_checking --prism_file_path="transporter.prism" --constant_definitions="MAX_FUEL=10,MAX_JOBS=2" --prop="Pmax=? [F \"empty\"]" --abstract_features="../taxi_abstraction.json"

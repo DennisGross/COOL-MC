@@ -41,27 +41,14 @@ the agent has to reach the goal (frisbee) on a frozen lake. The movement directi
 To demonstrate our tool, we are going to train a RL policy for the OpenAI Gym Frozen Lake environment, verify it, and retrain it in the PRISM environment.
 The following command trains the RL policy in the OpenAI Gym FrozenLake-v0 environment.
 
-`python cool_mc.py --task=openai_training --project_name="Frozen Lake Example" --num_episodes=100 --eval_interval=10 --env=FrozenLake-v0 --sliding_window_size=100 --rl_algorithm=dqn_agent --layers=2 --neurons=64 --replay_buffer_size=30000 --epsilon=1 --epsilon_dec=0.9999 --epsilon_min=0.1 --gamma=0.99 --replace=304 --lr=0.001 --batch_size=32`
+`python cool_mc.py --task=openai_training --project_name="Frozen Lake Example" --env=FrozenLake-v0 --rl_algorithm=dqn_agent`
 
-Project Specific Arguments:
+Command Line Arguments:
 - `task=openai_training` sets the current task to the OpenAI Gym training.
 - `project_name=Frozen Lake Example` is the name of YOUR project. Labeling experiments with the same project name allows the comparison between the runs.
-- `num_episodes=100` defines the number of training episodes.
-- `eval_inteveral=10` defines the evaluation interval of the RL episode.
 - `env=FrozenLake-v0` defines the OpenAI Gym.
-- `sliding_window=100` is the size of the sliding window for the reward.
-
-Reinforcement Learning Arguments:
 - `rl_algorithm=dqn_agent` defines the reinforcement learning algorithm.
-- `layers=2` defines the number of neural network layers.
-- `neurons=64` defines the number of neurons in each layer.
-- `replay_buffer=30000` defines the size of the replay buffer.
-- `epsilon=1` defines the starting epsilon value.
-- `epsilon_dec=0.9999` defines the epsilon decay (new_epsilon=current_epsilon * epsilon_dec).
-- `epsilon_min=0.1` defines the minimal epsilon value.
-- `gamma=0.99` defines the gamma value.
-- `replace=304` defines the target network replacing interval.
-- `lr=0.001` is the learning rate argument.
+
 
 After the training, we receive an Experiment ID (e.g. 27f2bbe444754ac0bbbce1326a410419).
 We need this ID to identify the experiment.
@@ -69,12 +56,10 @@ Now it is possible to verify the trained RL policy via the COOL-MC verifier by p
 
 `python cool_mc.py --project_name "Frozen Lake Example" --parent_run_id=27f2bbe444754ac0bbbce1326a410419 --task rl_model_checking --prism_file_path="frozen_lake3-v1.prism" --constant_definitions="control=0.33,start_position=0" --prop="Pmin=? [F WATER=true]"`
 
-Project Specific Arguments:
+Command Line Arguments:
 - `project_name "Frozen Lake Example"` specifies the project name.
 - `parent_run_id=XXXX` reference to the trained RL policy (use experiment ID).
 - `task=rl_model_checking` sets the current task to model checking the trained RL policy.
-
-Model Checking Arguments:
 - `prism_file_path="frozen_lake3-v1.prism"` specifies the PRISM environment.
 - `constant_definitions="control=0.33,start_position=0"` sets the constant definitions for the PRISM environment.
 - `prop="Pmin=? [F WATER=true]"` the property query.
@@ -88,7 +73,7 @@ It is also possible to plot the property results over a range of PRISM constant 
 
 If we are not satisfied with the property result, we can retrain the RL policy via the OpenAI Gym or the PRISM environment. The following command, retrains the RL policy in the PRISM environment. 
 
-`python cool_mc.py --task=safe_training  --parent_run_id=27f2bbe444754ac0bbbce1326a410419  --reward_flag=1 --project_name="Frozen Lake Example" --num_episodes=100 --eval_interval=10 --sliding_window_size=100 --rl_algorithm=dqn_agent --layers=2 --neurons=64 --replay_buffer_size=30000 --epsilon=1 --epsilon_dec=0.9999 --epsilon_min=0.1 --gamma=0.99 --replace=304 --lr=0.001 --batch_size=32 --prism_file_path="frozen_lake3-v1.prism" --constant_definitions="control=0.33,start_position=0" --prop="Pmin=? [F WATER=true]"`
+`python cool_mc.py --task=safe_training  --parent_run_id=27f2bbe444754ac0bbbce1326a410419  --reward_flag=1 --project_name="Frozen Lake Example" --prism_file_path="frozen_lake3-v1.prism" --constant_definitions="control=0.33,start_position=0" --prop="Pmin=? [F WATER=true]"`
 
 
 - `task=safe_training` specifies the safe training task which allows the RL training in the PRISM environment.
@@ -100,7 +85,7 @@ The taxi agent has to pick up passengers and transport them to their destination
 
 We train a DQN taxi agent in the PRISM environment:
 
-`python cool_mc.py --task=safe_training --project_name="Taxi with Fuel Example" --num_episodes=100 --eval_interval=10 --sliding_window_size=100 --rl_algorithm=dqn_agent --layers=2 --neurons=64 --replay_buffer_size=30000 --epsilon=1 --epsilon_dec=0.9999 --epsilon_min=0.1 --gamma=0.99 --replace=304 --lr=0.001 --batch_size=32 --prism_file_path="transporter.prism" --constant_definitions="MAX_JOBS=2,MAX_FUEL=10" --prop="Pmin=? [F jobs_done=2]"`
+`python cool_mc.py --task=safe_training --project_name="Taxi with Fuel Example" --rl_algorithm=dqn_agent --prism_file_path="transporter.prism" --constant_definitions="MAX_JOBS=2,MAX_FUEL=10" --prop="Pmin=? [F jobs_done=2]"`
 
 
 - `project_name="Taxi with Fuel Example"` for the new `Taxi with Fuel Example` project.
@@ -128,7 +113,7 @@ Collision avoidance is an environment which contains one agent and two moving ob
 
 We train a DQN taxi agent in the PRISM environment:
 
-`python cool_mc.py --task=safe_training --project_name="Avoid Example" --num_episodes=100 --eval_interval=10 --sliding_window_size=100 --rl_algorithm=dqn_agent --layers=2 --neurons=64 --replay_buffer_size=30000 --epsilon=1 --epsilon_dec=0.9999 --epsilon_min=0.1 --gamma=0.99 --replace=304 --lr=0.001 --batch_size=32 --prism_file_path="avoid.prism" --constant_definitions="xMax=4,yMax=4,slickness=0.0" --prop="Pmin=? [F COLLISION=true]" --reward_flag=1`
+`python cool_mc.py --task=safe_training --project_name="Avoid Example" --rl_algorithm=dqn_agent --prism_file_path="avoid.prism" --constant_definitions="xMax=4,yMax=4,slickness=0.0" --prop="Pmin=? [F COLLISION=true]" --reward_flag=1`
 
 After the training, we can verify the trained policy:
 
@@ -140,14 +125,14 @@ In this environment, a controller controls the distribution of renewable- and no
 If there is too much energy in the electricity network, the energy production shuts down which may lead to a blackout (terminal state).
 
 
-`python cool_mc.py --task=safe_training --project_name="Smart Grid Example" --num_episodes=100 --eval_interval=10 --sliding_window_size=100 --rl_algorithm=dqn_agent --layers=2 --neurons=64 --replay_buffer_size=30000 --epsilon=1 --epsilon_dec=0.9999 --epsilon_min=0.1 --gamma=0.99 --replace=304 --lr=0.001 --batch_size=32 --prism_file_path="smart_grid.prism" --constant_definitions="max_consumption=20,renewable_limit=19,non_renewable_limit=16,grid_upper_bound=25" --prop="Tmin=? [F IS_BLACKOUT=true]" --reward_flag=0`
+`python cool_mc.py --task=safe_training --project_name="Smart Grid Example" --rl_algorithm=dqn_agent --prism_file_path="smart_grid.prism" --constant_definitions="max_consumption=20,renewable_limit=19,non_renewable_limit=16,grid_upper_bound=25" --prop="Tmin=? [F IS_BLACKOUT=true]" --reward_flag=0`
 
 After the training, we can verify the trained policy:
 
 `python cool_mc.py --parent_run_id=c0b0a71a334e4873b045858bc5be15ed --task=rl_model_checking --project_name="Smart Grid Example" --prism_file_path="smart_grid.prism" --constant_definitions="max_consumption=20,renewable_limit=19,non_renewable_limit=16,grid_upper_bound=25" --prop="Tmin=? [F TOO_MUCH_ENERGY=true]"`
 
 ## Web-Interface
-`bash start_ui.sh` starts the MLFlow server to analyze the RL training process (http://hostname:5000) and a web interface (early alpha version) to control COOL-MC via a GUI (http://hostname:12345).
+`bash start_ui.sh` starts the MLFlow server to analyze the RL training process (http://hostname:5000) and a web interface (EARLY ALPHA VERSION) to control COOL-MC via a GUI (http://hostname:12345).
 
 
 ## PRISM Modelling Tips

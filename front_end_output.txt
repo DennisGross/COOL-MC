@@ -1,4 +1,4 @@
-Project ID: 9
-Run ID: gus8q8e4r3tu9fbmc424bhvktgy0ndsdtdosqpw8mx
-Property Query: Pmax=? [F "empty"]
-Property Result: 0.0625
+Project ID: 13
+Run ID: 9rcalu7vvytqbvsk3l40anmc2efpu3t29xq1fghtl8
+Property Query: Pmin=? [F non_renewable=2 & consumption=6]
+Property Result: 0.0
