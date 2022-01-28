@@ -41,8 +41,10 @@ def get_arguments():
                             default='')
     arg_parser.add_argument('--permissive_input', help='Constant definitions of the formal model (e.g. pos=[0,3];...)', type=str,
                             default='')
-    arg_parser.add_argument('--noisy_features', help='Noisy features for model checking (e.g. pos=[0,3];...)', type=str,
-                            default='fuel=[0;3]')
+    arg_parser.add_argument('--noisy_features', help='Noisy features for model checking (e.g. pos=[0;3]...)', type=str,
+                            default='')
+    arg_parser.add_argument('--sensitive_iterations', help='Iterations for sensitive analysis', type=int,
+                            default=3)
     arg_parser.add_argument('--abstract_features', help='', type=str,
                             default='')
     arg_parser.add_argument('--wrong_action_penalty', help='Wrong action penalty', type=int,

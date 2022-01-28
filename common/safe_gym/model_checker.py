@@ -168,6 +168,7 @@ class ModelChecker():
         properties = stormpy.parse_properties(formula_str, prism_program)
         #print(properties[0])
         model_checking_start_time = time.time()
+        print('LOL',properties[0])
         result = stormpy.model_checking(model, properties[0])
 
         initial_state = model.initial_states[0]

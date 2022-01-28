@@ -27,3 +27,9 @@ if __name__ == '__main__':
             parameters=dict(args),
             use_conda=False
         )
+    elif args['task'] == 'sensitivity_analysis':
+        mlflow.run(
+            "sensitivity_analysis",
+            parameters=dict(args),
+            use_conda=False
+        )

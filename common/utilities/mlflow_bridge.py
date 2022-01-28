@@ -100,7 +100,6 @@ class MlFlowBridge:
         if os.path.exists(command_line_arguments_file_path):
             with open(command_line_arguments_file_path) as json_file:
                 command_line_arguments = json.load(json_file)
-                #print(command_line_arguments)
                 return command_line_arguments
         return None
 

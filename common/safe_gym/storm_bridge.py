@@ -59,6 +59,19 @@ class StormBridge:
         json_object = json.dumps(dummy_state)
         return json_object
 
+    def get_features(self):
+        """
+        Get environment features.
+        TODO: DEAL WITH DISABLED FEATURES
+
+        Returns:
+            List : List of all features
+        """
+        all_features = []
+        for feature in json.loads(self.state_json_example).keys():
+            all_features.append(feature)
+        return all_features
+
 
 
 

@@ -1,3 +1,4 @@
+from pyexpat import features
 import random
 class NoisyFeature:
 
@@ -32,9 +33,17 @@ class NoisyManager:
         self.noisy_feature_str = noisy_feature_str
 
     def generate_random_feature_assignments_for_state(self, state):
-        for feature in self.features:
+        i = 0
+        while i < len(self.features):
+            feature = self.features[i]
             random_assignment = random.randint(feature.lower_bound, feature.upper_bound)
-            state[feature.idx] = random_assignment
+            if random_assignment != int(state[feature.idx]):
+                state[feature.idx] = random_assignment
+                i+=1
+            else:
+                state[feature.idx] = random_assignment
+                i+=1
+            
         return state
 
     def is_active(self):
