@@ -8,7 +8,7 @@ from common.safe_gym.action_mapper import ActionMapper
 
 class SafeGym(gym.Env):
 
-    def __init__(self, prism_file_path, constant_definitions, max_steps, wrong_action_penalty, reward_flag, seed, permissive_input='', disabled_features='', abstraction_input=''):
+    def __init__(self, prism_file_path, constant_definitions, max_steps, wrong_action_penalty, reward_flag, seed, permissive_input='', disabled_features='', abstraction_input='',noisy_feature_str=''):
         """Initialize the SafeGym. The SafeGym needs the information about the PRISM environment.
 
         Args:
@@ -21,7 +21,7 @@ class SafeGym(gym.Env):
             disabled_features (str, optional): Disabled features/state-variables (seperated by commatas. Defaults to ''.
             abstraction_input (str, optional): The state variable ranges for the abstraction preprocessing or the file path to the abstraction mapping. Defaults to ''.
         """
-        self.storm_bridge = StormBridge(prism_file_path, constant_definitions, wrong_action_penalty, reward_flag, disabled_features, permissive_input, abstraction_input, seed)
+        self.storm_bridge = StormBridge(prism_file_path, constant_definitions, wrong_action_penalty, reward_flag, disabled_features, permissive_input, abstraction_input, seed, noisy_feature_str)
         self.action_mapper = ActionMapper.collect_actions(self.storm_bridge)
         self.steps = 0
         self.max_steps = max_steps

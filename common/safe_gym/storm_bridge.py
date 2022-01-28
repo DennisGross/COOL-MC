@@ -16,7 +16,7 @@ This class should be the only class that has contact with Storm.
 '''
 class StormBridge:
 
-    def __init__(self, path, constant_definitions, wrong_action_penalty, reward_flag, disabled_features, permissive_input, abstraction_input, seed):
+    def __init__(self, path, constant_definitions, wrong_action_penalty, reward_flag, disabled_features, permissive_input, abstraction_input, seed, noisy_feature_str):
         '''
         Initialize Storm Bridge.
         :param path, path to prism file
@@ -24,6 +24,7 @@ class StormBridge:
         :wrong_action_penalty, penalty for taking wrong action
         :reward_flag, reward (True) or costs (False)
         :seed, seed for simulator
+        :noisy_feature_str, noisy_feature_str for NoisyManager
         '''
         self.seed = seed
         self.disabled_features = disabled_features
@@ -35,7 +36,7 @@ class StormBridge:
         self.path = path
         json_path = os.path.splitext(self.path)[0]+'.json'
         self.state_mapper = StateMapper(json_path, self.state_json_example, self.disabled_features)
-        self.model_checker = ModelChecker(permissive_input, self.state_mapper, abstraction_input)
+        self.model_checker = ModelChecker(permissive_input, self.state_mapper, abstraction_input, noisy_feature_str)
         
         
 

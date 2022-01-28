@@ -1,17 +1,20 @@
 
+from common.safe_gym.noisy_manager import NoisyManager
 import stormpy
 import json
 import sys
 import time
 from common.safe_gym.permissive_manager import PermissiveManager
 from common.safe_gym.abstraction_manager import AbstractionManager
+from common.safe_gym.noisy_manager import NoisyManager
 
 
 class ModelChecker():
 
-    def __init__(self, permissive_input, mapper, abstraction_input):
+    def __init__(self, permissive_input, mapper, abstraction_input, noisy_feature_str):
         self.m_permissive_manager = PermissiveManager(permissive_input, mapper)
         self.m_abstraction_manager = AbstractionManager(mapper, abstraction_input)
+        self.m_noisy_manager = NoisyManager(mapper, noisy_feature_str)
 
 
     def optimal_checking(self, environment, prop):
@@ -122,6 +125,12 @@ class ModelChecker():
             state = self.__get_clean_state_dict(
                 state_valuation.to_json(), env.storm_bridge.state_json_example)
             state = self.__get_numpy_state(env, state)
+
+            # Noisy Manager Injection
+            if self.m_noisy_manager.is_active():
+                state = self.m_noisy_manager.get_random_feature_assignments_for_state(state)
+                #print(state)
+
             # State Abstraction
             if self.m_abstraction_manager.is_active:
                 state = self.m_abstraction_manager.preprocess_state(state)
