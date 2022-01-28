@@ -1,4 +1,4 @@
-Project ID: 13
-Run ID: 9rcalu7vvytqbvsk3l40anmc2efpu3t29xq1fghtl8
-Property Query: Pmin=? [F non_renewable=2 & consumption=6]
+Project ID: 11
+Run ID: 90crp2fdt9hyny1qucvcpshvas720xgvn01tafofkc
+Property Query: Pmax=? [F jobs_done=2]
 Property Result: 0.0

@@ -131,6 +131,17 @@ After the training, we can verify the trained policy:
 
 `python cool_mc.py --parent_run_id=c0b0a71a334e4873b045858bc5be15ed --task=rl_model_checking --project_name="Smart Grid Example" --prism_file_path="smart_grid.prism" --constant_definitions="max_consumption=20,renewable_limit=19,non_renewable_limit=16,grid_upper_bound=25" --prop="Tmin=? [F TOO_MUCH_ENERGY=true]"`
 
+## Example 5 (Warehouse)
+In this environment, a controller controls the distribution of renewable- and non-renewable energy production. The objective is to minimize the production of non-renewable energy by using renewable and storage technologies.
+If there is too much energy in the electricity network, the energy production shuts down which may lead to a blackout (terminal state).
+
+
+`python cool_mc.py --task=safe_training --project_name="Warehouse Example" --rl_algorithm=dqn_agent --prism_file_path="storage.prism" --prop="Tmax=? [F STORAGE_FULL=true]" --reward_flag=0`
+
+After the training, we can verify the trained policy:
+
+`python cool_mc.py --parent_run_id=02462a111bf9436d8bcce71a6334d35b --task=rl_model_checking --project_name="Warehouse Example" --prism_file_path="storage.prism" --prop="Tmax=? [F STORAGE_FULL=true]"`
+
 ## Web-Interface
 `bash start_ui.sh` starts the MLFlow server to analyze the RL training process (http://hostname:5000) and a web interface (EARLY ALPHA VERSION) to control COOL-MC via a GUI (http://hostname:12345).
 

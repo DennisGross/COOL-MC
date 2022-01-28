@@ -11,68 +11,50 @@
 12
 @model
 state 0 init
-//[!blackout	& energy=3	& renewable=3	& non_renewable=0	& consumption=0]
-	action TICK
-		0 : 0.2
-		1 : 0.8
+//[!done	& !passenger	& x=2	& y=2	& fuel=10	& jobs_done=0	& passenger_loc_x=0	& passenger_loc_y=4	& passenger_dest_x=0	& passenger_dest_y=0]
+	action EAST
+		1 : 1
 state 1
-//[!blackout	& energy=3	& renewable=3	& non_renewable=0	& consumption=1]
-	action TICK
-		2 : 0.4
-		3 : 0.4
-		4 : 0.2
+//[!done	& !passenger	& x=3	& y=2	& fuel=9	& jobs_done=0	& passenger_loc_x=0	& passenger_loc_y=4	& passenger_dest_x=0	& passenger_dest_y=0]
+	action EAST
+		2 : 1
 state 2
-//[!blackout	& energy=2	& renewable=3	& non_renewable=0	& consumption=2]
-	action TICK
-		5 : 0.4
-		6 : 0.4
-		7 : 0.2
+//[!done	& !passenger	& x=4	& y=2	& fuel=8	& jobs_done=0	& passenger_loc_x=0	& passenger_loc_y=4	& passenger_dest_x=0	& passenger_dest_y=0]
+	action EAST
+		3 : 1
 state 3
-//[!blackout	& energy=2	& renewable=3	& non_renewable=0	& consumption=0]
-	action TICK
-		0 : 0.2
-		1 : 0.8
+//[!done	& !passenger	& x=4	& y=2	& fuel=7	& jobs_done=0	& passenger_loc_x=0	& passenger_loc_y=4	& passenger_dest_x=0	& passenger_dest_y=0]
+	action EAST
+		4 : 1
 state 4
-//[!blackout	& energy=2	& renewable=3	& non_renewable=0	& consumption=1]
-	action TICK
-		2 : 0.4
-		3 : 0.4
-		4 : 0.2
+//[!done	& !passenger	& x=4	& y=2	& fuel=6	& jobs_done=0	& passenger_loc_x=0	& passenger_loc_y=4	& passenger_dest_x=0	& passenger_dest_y=0]
+	action EAST
+		5 : 1
 state 5
-//[!blackout	& energy=1	& renewable=3	& non_renewable=0	& consumption=3]
-	action TICK
-		8 : 0.4
-		9 : 0.4
-		10 : 0.2
+//[!done	& !passenger	& x=4	& y=2	& fuel=5	& jobs_done=0	& passenger_loc_x=0	& passenger_loc_y=4	& passenger_dest_x=0	& passenger_dest_y=0]
+	action EAST
+		6 : 1
 state 6
-//[!blackout	& energy=1	& renewable=3	& non_renewable=0	& consumption=1]
-	action TICK
-		2 : 0.4
-		3 : 0.4
-		4 : 0.2
+//[!done	& !passenger	& x=4	& y=2	& fuel=4	& jobs_done=0	& passenger_loc_x=0	& passenger_loc_y=4	& passenger_dest_x=0	& passenger_dest_y=0]
+	action EAST
+		7 : 1
 state 7
-//[!blackout	& energy=1	& renewable=3	& non_renewable=0	& consumption=2]
-	action TICK
-		5 : 0.4
-		6 : 0.4
-		7 : 0.2
+//[!done	& !passenger	& x=4	& y=2	& fuel=3	& jobs_done=0	& passenger_loc_x=0	& passenger_loc_y=4	& passenger_dest_x=0	& passenger_dest_y=0]
+	action EAST
+		8 : 1
 state 8
-//[!blackout	& energy=0	& renewable=3	& non_renewable=0	& consumption=4]
-	action TICK
-		11 : 1
+//[!done	& !passenger	& x=4	& y=2	& fuel=2	& jobs_done=0	& passenger_loc_x=0	& passenger_loc_y=4	& passenger_dest_x=0	& passenger_dest_y=0]
+	action EAST
+		9 : 1
 state 9
-//[!blackout	& energy=0	& renewable=3	& non_renewable=0	& consumption=2]
-	action TICK
-		5 : 0.4
-		6 : 0.4
-		7 : 0.2
+//[!done	& !passenger	& x=4	& y=2	& fuel=1	& jobs_done=0	& passenger_loc_x=0	& passenger_loc_y=4	& passenger_dest_x=0	& passenger_dest_y=0]
+	action EAST
+		10 : 1
 state 10
-//[!blackout	& energy=0	& renewable=3	& non_renewable=0	& consumption=3]
-	action TICK
-		8 : 0.4
-		9 : 0.4
-		10 : 0.2
+//[!done	& !passenger	& x=4	& y=2	& fuel=0	& jobs_done=0	& passenger_loc_x=0	& passenger_loc_y=4	& passenger_dest_x=0	& passenger_dest_y=0]
+	action SOUTH
+		11 : 1
 state 11
-//[blackout	& energy=0	& renewable=3	& non_renewable=0	& consumption=4]
-	action INCREASE_NONRENEWABLE
+//[done	& !passenger	& x=4	& y=2	& fuel=0	& jobs_done=0	& passenger_loc_x=0	& passenger_loc_y=4	& passenger_dest_x=0	& passenger_dest_y=0]
+	action EAST
 		11 : 1

@@ -32,7 +32,7 @@ def get_arguments():
     arg_parser.add_argument('--prism_file_path', help='In which folder should we save your projects?', type=str,
                             default='')
     arg_parser.add_argument('--constant_definitions', help='Constant definitions of the formal model (PRISM model)', type=str,
-                            default='xMax=4,yMax=4,slickness=0')
+                            default='')
     arg_parser.add_argument('--prop', help='Property Specification', type=str,
                             default='   ')
     arg_parser.add_argument('--max_steps', help='Maximal steps in environment', type=int,
