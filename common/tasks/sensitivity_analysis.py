@@ -7,12 +7,22 @@ import numpy as np
 from common.utilities.front_end_printer import *
 from common.tasks.verify_rl_agent import run_verify_rl_agent
 import gc
-
+import pandas as pd
 def get_all_assignments_of_feature(feature_part):
     feature_name = feature_part.split("=")[0]
     start_value = int(feature_part[(feature_part.find("[")+1):feature_part.find(";")])
     end_value = int(feature_part[(feature_part.find(";")+1):feature_part.find("]")])+1
     return feature_name, list(range(start_value, end_value))
+
+def pad_dict_list(dict_list, padel):
+    lmax = 0
+    for lname in dict_list.keys():
+        lmax = max(lmax, len(dict_list[lname]))
+    for lname in dict_list.keys():
+        ll = len(dict_list[lname])
+        if  ll < lmax:
+            dict_list[lname] += [padel] * (lmax - ll)
+    return dict_list
 
 def run_sensitivity_analysis(command_line_arguments):
     '''    
@@ -26,14 +36,18 @@ def run_sensitivity_analysis(command_line_arguments):
     print(all_features)
     '''
     N = command_line_arguments['sensitive_iterations']
+    tmp_arguments = command_line_arguments.copy()
+    tmp_arguments['noisy_features'] = ""
+    R = run_verify_rl_agent(tmp_arguments)[0]
     features_results = {}
+    feature_table = {}
     if command_line_arguments['noisy_features'].find(":")==0:
         noisy_features = command_line_arguments['noisy_features'][1:]
         command_line_arguments['noisy_features'] = ""
         for feature_part in noisy_features.split(","):
             feature_name, assignment_list = get_all_assignments_of_feature(feature_part)
             features_results[feature_name] = 0
-
+            first=True
             for assignment in assignment_list:
                 input = feature_name + "=["+str(assignment)+";"+str(assignment)+"]"
                 command_line_arguments["permissive_input"] = input
@@ -41,9 +55,20 @@ def run_sensitivity_analysis(command_line_arguments):
                 prop = run_verify_rl_agent(tmp_args)
                 features_results[feature_name] += prop[0]
                 print(input, prop[0])
+                if first:
+                    feature_table[feature_name] = [prop[0]]
+                    first=False
+                else:
+                    feature_table[feature_name].append(prop[0])
+
+            
+            
             print(features_results[feature_name], len(assignment_list))
             features_results[feature_name] /= len(assignment_list)
             print(features_results[feature_name])
+        feature_table = pad_dict_list(feature_table, None)
+        df = pd.DataFrame.from_dict(feature_table)
+        df.to_csv("feature_table.csv",index=False)
     else:
         for feature_part in command_line_arguments['noisy_features'].split(','):
             tmp_args = command_line_arguments.copy()
@@ -57,6 +82,6 @@ def run_sensitivity_analysis(command_line_arguments):
                 features_results[feature_name] += prop[0]
             features_results[feature_name] /= N
         gc.collect()
-    print("Average Property Results:")
+    print("Importance Values:")
     for feature_name in features_results.keys():
-        print(feature_name, features_results[feature_name])
+        print(feature_name, abs(features_results[feature_name]-R))

@@ -37,12 +37,11 @@ class NoisyManager:
         while i < len(self.features):
             feature = self.features[i]
             random_assignment = random.randint(feature.lower_bound, feature.upper_bound)
-            if random_assignment != int(state[feature.idx]):
-                state[feature.idx] = random_assignment
-                i+=1
-            else:
-                state[feature.idx] = random_assignment
-                i+=1
+            #if random_assignment != int(state[feature.idx]):
+            #state[feature.idx] = random_assignment
+            #i+=1
+            state[feature.idx] = random_assignment
+            i+=1
             
         return state
 

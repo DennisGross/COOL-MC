@@ -1,4 +1,4 @@
 Project ID: 9
-Run ID: u2mrnnba4c572dz64ok249rrwhrk2dvy4u2cqv214w
-Property Query: Pmax=? [F "empty"]
-Property Result: 0.0
+Run ID: ajqh7ywibfkeekqydx5ps8j7dyuy41rxjq40jztghx
+Property Query: Pmin=? [F jobs_done=2]
+Property Result: 1.0
