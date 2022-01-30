@@ -4,6 +4,7 @@ from common.rl_agents.dummy_frozen_lake_agent import DummyFrozenLakeAgent
 from common.rl_agents.sarsa_max_agent import SarsaMaxAgent
 from common.rl_agents.deep_q_agent import DQNAgent
 from common.rl_agents.hillclimbing_agent import HillClimbingAgent
+from common.rl_agents.reinforce_agent import ReinforceAgent
 '''
 HOW TO ADD MORE AGENTS?
 1) Create a new AGENTNAME.py with an AGENTNAME class
@@ -49,6 +50,11 @@ class AgentBuilder():
         elif command_line_arguments['rl_algorithm'] == 'hillclimbing':
             #print("Build SARSAMAX Agent.")
             agent = HillClimbingAgent(state_dimension, action_space.n, gamma=command_line_arguments['gamma'], noise_scale= command_line_arguments['noise_scale'])
+            if model_root_folder_path!= None:
+                agent.load(model_root_folder_path)
+        elif command_line_arguments['rl_algorithm'] == 'reinforce':
+            #print("Build SARSAMAX Agent.")
+            agent = ReinforceAgent(state_dimension=state_dimension, number_of_actions=action_space.n, gamma=command_line_arguments['gamma'], hidden_layer_size= command_line_arguments['neurons'],lr=command_line_arguments['lr'])
             if model_root_folder_path!= None:
                 agent.load(model_root_folder_path)
         elif command_line_arguments['rl_algorithm'] == 'dqn_agent':
