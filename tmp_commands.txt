@@ -36,3 +36,8 @@ python cool_mc.py --project_name "experiments" --parent_run_id=245af89627ec43d89
 # Collision Avoidance
 python cool_mc.py --project_name "experiments" --parent_run_id=646120bda7e44427b7d8b35a38b68e36 --task rl_model_checking --prism_file_path="avoid.prism" --constant_definitions="xMax=4,yMax=4,slickness=0" --prop="Tmax=? [F COLLISION=true]" --permissive_input="obstacle1_x=[0;4],obstacle1_y=[0;4]"
 python cool_mc.py --project_name "experiments" --parent_run_id=646120bda7e44427b7d8b35a38b68e36 --task rl_model_checking --prism_file_path="avoid.prism" --constant_definitions="xMax=4,yMax=4,slickness=0" --prop="Tmax=? [F COLLISION=true]" --abstract_features="x=[0;2;4],y=[0;2;4]"
+
+
+
+# Safety Importance
+python cool_mc.py --project_name "Taxi with Fuel Example" --parent_run_id=3b95314c5d834909bea22402356676b4 --task rl_model_checking --prism_file_path="transporter.prism" --constant_definitions="MAX_FUEL=10,MAX_JOBS=2" --prop="Pmax=? [F jobs_done=2]" --permissive_input="passenger=[1;1]"

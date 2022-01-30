@@ -57,7 +57,10 @@ def get_arguments():
     # Sarsamax
     arg_parser.add_argument('--alpha', help='Gamma', type=float,
                             default=0.99)
-    # Double DQN Agent
+    # Hillclimbing
+    arg_parser.add_argument('--noise_scale', help='Noise Scale for Hillclimbing', type=float,
+                            default=1e-2)
+    # DQN Agent
     arg_parser.add_argument('--layers', help='DummyAgent-Parameter: Which action should the dummy agent choose?', type=int,
                             default=2)
     arg_parser.add_argument('--neurons', help='DummyAgent-Parameter: Which action should the dummy agent choose?', type=int,
