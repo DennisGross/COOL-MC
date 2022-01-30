@@ -142,8 +142,13 @@ After the training, we can verify the trained policy:
 
 `python cool_mc.py --parent_run_id=02462a111bf9436d8bcce71a6334d35b --task=rl_model_checking --project_name="Warehouse Example" --prism_file_path="storage.prism" --prop="Tmax=? [F STORAGE_FULL=true]"`
 
+## Benchmarks
+To replicate the benchmark experiments of our paper, run:
+
+`mlflow run unit_testing --no-conda -e test_experiments`
+
 ## Web-Interface
-`bash start_ui.sh` starts the MLFlow server to analyze the RL training process (http://hostname:5000) and a web interface (EARLY ALPHA VERSION) to control COOL-MC via a GUI (http://hostname:12345).
+`bash start_ui.sh` starts the MLFlow server to analyze the RL training process (http://hostname:5000).
 
 
 ## PRISM Modelling Tips
