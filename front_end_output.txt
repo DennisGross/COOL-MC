@@ -1,4 +1,4 @@
-Project ID: 11
-Run ID: 90crp2fdt9hyny1qucvcpshvas720xgvn01tafofkc
-Property Query: Pmax=? [F jobs_done=2]
-Property Result: 0.0
+Project ID: 10
+Run ID: z5yz3awij7g1jhedylzpi56vpgnwcqmxm4qz0dpv8g
+Property Query: Pmin=? [F WATER=true]
+Property Result: 0.9683682958752937

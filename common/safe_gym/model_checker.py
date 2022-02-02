@@ -1,7 +1,6 @@
 
 import stormpy
 import json
-import sys
 import time
 from common.safe_gym.permissive_manager import PermissiveManager
 from common.safe_gym.abstraction_manager import AbstractionManager
@@ -13,29 +12,6 @@ class ModelChecker():
         self.m_permissive_manager = PermissiveManager(permissive_input, mapper)
         self.m_abstraction_manager = AbstractionManager(mapper, abstraction_input)
 
-
-    def optimal_checking(self, environment, prop):
-        '''
-        Uses Storm to model check the PRISM environment.
-        :environment, it contains the path to the PRISM file and contains the constant defintions
-        :prop, property specifications as a string
-        :return model checking result
-        '''
-        constant_definitions = environment.storm_bridge.constant_definitions
-        formula_str = prop
-        start_time = time.time()
-        prism_program = stormpy.parse_prism_program(environment.storm_bridge.path)
-        prism_program = stormpy.preprocess_symbolic_input(prism_program, [], constant_definitions)[0].as_prism_program()
-        properties = stormpy.parse_properties(formula_str, prism_program)
-        options = stormpy.BuilderOptions([p.raw_formula for p in properties])
-        options.set_build_state_valuations()
-        model = stormpy.build_sparse_model_with_options(prism_program, options)
-        model_size = len(model.states)
-        start_checking_time = time.time()
-        result = stormpy.model_checking(model, properties[0])
-        initial_state = model.initial_states[0]
-        mdp_reward_result = result.at(initial_state)
-        return mdp_reward_result, model_size, (time.time()-start_time), (time.time()-start_checking_time)
 
     def __get_clean_state_dict(self, state_valuation_json: str, example_json: str) -> dict:
         '''
@@ -165,5 +141,4 @@ class ModelChecker():
         #print('Result for initial state', result.at(initial_state))
         mdp_reward_result = result.at(initial_state)
         # Update StateActionCollector
-        stormpy.export_to_drn(model,"test.drn")
         return mdp_reward_result, model_size, (time.time()-start_time), (time.time()-model_checking_start_time)

@@ -52,9 +52,9 @@ state 9
 		10 : 1
 state 10
 //[!done	& !passenger	& x=4	& y=2	& fuel=0	& jobs_done=0	& passenger_loc_x=0	& passenger_loc_y=4	& passenger_dest_x=0	& passenger_dest_y=0]
-	action EAST
+	action PICK_UP
 		11 : 1
 state 11
 //[done	& !passenger	& x=4	& y=2	& fuel=0	& jobs_done=0	& passenger_loc_x=0	& passenger_loc_y=4	& passenger_dest_x=0	& passenger_dest_y=0]
-	action EAST
+	action PICK_UP
 		11 : 1
