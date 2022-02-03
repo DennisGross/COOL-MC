@@ -1,7 +1,6 @@
 """
 This module contains the Safe Gym.
 """
-from faulthandler import disable
 import math
 from typing import Tuple, Union
 import gym
@@ -92,4 +91,5 @@ class SafeGym(gym.Env):
         self.steps = 0
         self.state = self.storm_bridge.reset()
         self.done = False
+        assert isinstance(self.state, np.ndarray)
         return self.state

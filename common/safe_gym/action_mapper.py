@@ -3,7 +3,7 @@ This module maps action names to indices and vice-versa.
 """
 from __future__ import annotations
 import random
-
+from typing import List
 from common.safe_gym.storm_bridge import StormBridge
 
 class ActionMapper:

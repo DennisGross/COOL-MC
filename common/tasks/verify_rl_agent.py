@@ -18,7 +18,7 @@ def run_verify_rl_agent(command_line_arguments):
     if command_line_arguments['constant_definitions'].count('[') == 0 and command_line_arguments['constant_definitions'].count(']') == 0:
         env = SafeGym(prism_file_path,m_project.command_line_arguments['constant_definitions'], 1, 1, False, command_line_arguments['seed'], command_line_arguments['permissive_input'],  m_project.command_line_arguments['disabled_features'], abstraction_input=m_project.command_line_arguments['abstract_features'])
         m_project.create_agent(command_line_arguments, env.observation_space, env.action_space)
-        mdp_reward_result, model_size, _, _ = env.storm_bridge.model_checker.induced_markov_chain(m_project.agent, env, command_line_arguments['constant_definitions'], command_line_arguments['prop'])
+        mdp_reward_result, model_size = env.storm_bridge.model_checker.induced_markov_chain(m_project.agent, env, command_line_arguments['constant_definitions'], command_line_arguments['prop'])
         print(command_line_arguments['prop'], ':', mdp_reward_result)
         print("Model Size", model_size)
         m_project.mlflow_bridge.log_best_property_result(mdp_reward_result)
@@ -37,7 +37,7 @@ def run_verify_rl_agent(command_line_arguments):
         for constant_definitions in all_constant_definitions:
             env = SafeGym(prism_file_path,constant_definitions, 1, 1, False, command_line_arguments['seed'], command_line_arguments['permissive_input'],  m_project.command_line_arguments['disabled_features'], abstraction_input=m_project.command_line_arguments['abstract_features'])
             m_project.create_agent(command_line_arguments, env.observation_space, env.action_space)
-            mdp_reward_result, model_size, _, _ = env.storm_bridge.model_checker.induced_markov_chain(m_project.agent, env, constant_definitions, command_line_arguments['prop'])
+            mdp_reward_result, model_size = env.storm_bridge.model_checker.induced_markov_chain(m_project.agent, env, constant_definitions, command_line_arguments['prop'])
             print("Constant Definitions:", constant_definitions)
             print(command_line_arguments['prop'], ':', mdp_reward_result)
             

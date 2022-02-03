@@ -5,6 +5,7 @@ This module builds the bridge between COOL-MC and Storm.
 import os
 import json
 from typing import Tuple, Union
+from aenum import constant
 import numpy as np
 import stormpy.simulator
 import stormpy.examples.files
@@ -40,6 +41,14 @@ class StormBridge:
             abstraction_input (str): Defines the abstraction of features.
             seed (int): Seed for the simulator.
         """
+        assert isinstance(path, str)
+        assert isinstance(constant_definitions, str)
+        assert isinstance(wrong_action_penalty, int)
+        assert isinstance(reward_flag, bool)
+        assert isinstance(disabled_features, str)
+        assert isinstance(permissive_input, str)
+        assert isinstance(abstraction_input, str)
+        assert isinstance(seed, int)
         self.seed = seed
         self.disabled_features = disabled_features
         self.simulator = self.create_simulator(path, constant_definitions)
@@ -114,7 +123,7 @@ class StormBridge:
             simulator = stormpy.simulator.create_simulator(prism_program)
         simulator.set_action_mode(
             stormpy.simulator.SimulatorActionMode.GLOBAL_NAMES)
-        isinstance(simulator, PrismSimulator)
+        assert isinstance(simulator, PrismSimulator)
         return simulator
 
     def step(self, action_name: str) -> Tuple[np.ndarray, Union[float, int], bool]:

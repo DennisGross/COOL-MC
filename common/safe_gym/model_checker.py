@@ -1,25 +1,54 @@
-
-import stormpy
+"""
+This module provides the ModelChecker for the RL model checking.
+"""
 import json
 import time
+from typing import Tuple
+import numpy as np
+import stormpy
+from stormpy.utility.utility import JsonContainerRational
+from stormpy.storage.storage import SimpleValuation
+import common
 from common.safe_gym.permissive_manager import PermissiveManager
 from common.safe_gym.abstraction_manager import AbstractionManager
+from common.safe_gym.state_mapper import StateMapper
 
 
 class ModelChecker():
+    """
+    The model checker checks the product of the environment and
+    the policy based on a property query.
+    """
 
-    def __init__(self, permissive_input, mapper, abstraction_input):
+    def __init__(self, permissive_input: str, mapper: StateMapper, abstraction_input: str):
+        """Initialization
+
+        Args:
+            permissive_input (str): Permissive input for permissive model checking
+            mapper (StateMapper): State Variable mapper
+            abstraction_input (str): Abstraction input for state variable remapping
+        """
+        assert isinstance(permissive_input, str)
+        assert isinstance(mapper, StateMapper)
+        assert isinstance(abstraction_input, str)
+        self.wrong_choices = 0
         self.m_permissive_manager = PermissiveManager(permissive_input, mapper)
-        self.m_abstraction_manager = AbstractionManager(mapper, abstraction_input)
+        self.m_abstraction_manager = AbstractionManager(
+            mapper, abstraction_input)
 
+    def __get_clean_state_dict(self, state_valuation_json: JsonContainerRational,
+                               example_json: str) -> dict:
+        """Get the clean state dictionary.
 
-    def __get_clean_state_dict(self, state_valuation_json: str, example_json: str) -> dict:
-        '''
-        Get the clean state dictionary
-        :param state_valuation_json: state valuation as json
-        :param example_json: example state json
-        :return:
-        '''
+        Args:
+            state_valuation_json (str): Raw state
+            example_json (str): Example state as json str
+
+        Returns:
+            dict: Clean State
+        """
+        assert isinstance(state_valuation_json, JsonContainerRational)
+        assert isinstance(example_json, str)
         state_valuation_json = json.loads(str(state_valuation_json))
         state = {}
         # print(state_valuation_json)
@@ -29,35 +58,61 @@ class ModelChecker():
             for _key in example_json.keys():
                 if key == _key:
                     state[key] = state_valuation_json[key]
-                    
-        
+
+        assert isinstance(state, dict)
         return state
 
-    def __get_numpy_state(self, env, state_dict):
+    def __get_numpy_state(self, env, state_dict: dict) -> np.ndarray:
+        """Get numpy state
+
+        Args:
+            env (SafeGym): SafeGym
+            state_dict (dict): State as Dictionary
+
+        Returns:
+            np.ndarray: State
+        """
+        assert isinstance(state_dict, dict)
         state = env.storm_bridge.parse_state(json.dumps(state_dict))
+        assert isinstance(state, np.ndarray)
         return state
 
-    def __get_action_for_state(self, env, agent, state):
-        '''
-        Get the action for the current state
-        :param env: environment
-        :param state_dict: current state
-        :param policy: rl policy
-        :return: action name
-        '''
+    def __get_action_for_state(self, env, agent: common.rl_agents, state: np.array) -> str:
+        """Get the action name for the current state
+
+        Args:
+            env (SafeGym): SafeGym
+            agent (common.rl_agents): RL agents
+            state (np.array): Numpy state
+
+        Returns:
+            str: Action name
+        """
+        assert str(agent.__class__).find("common.rl_agents") != -1
+        assert isinstance(state, np.ndarray)
         action_index = agent.select_action(state, True)
-        return env.action_mapper.actions[action_index], state, action_index
+        action_name = env.action_mapper.actions[action_index]
+        assert isinstance(action_name, str)
+        return action_name
 
+    def induced_markov_chain(self, agent: common.rl_agents, env,
+                             constant_definitions: str,
+                             formula_str: str) -> Tuple[float, int]:
+        """Creates a Markov chain of an MDP induced by a policy
+        and applies model checking.py
 
-    def induced_markov_chain(self, agent, env, constant_definitions, formula_str = 'Rmin=? [LRA]'):
-        '''
-        Creates a markov chain of an MDP induced by a Policy and analyze the policy
-        :param agent: agent
-        :param prism_file: prism file with the MDP
-        :param constant_definitions: constants
-        :param property_specification: property specification
-        :return: mdp_reward_result, model_size, total_run_time, model_checking_time
-        '''
+        Args:
+            agent (common.rl_agents): RL policy
+            env (SafeGym): SafeGym
+            constant_definitions (str): Constant definitions
+            formula_str (str): Property query
+
+        Returns:
+            Tuple: Tuple of the property result, model size and performance metrices
+        """
+        assert str(agent.__class__).find("common.rl_agents") != -1
+        assert isinstance(constant_definitions, str)
+        assert isinstance(formula_str, str)
         env.reset()
         self.m_permissive_manager.action_mapper = env.action_mapper
         self.wrong_choices = 0
@@ -65,15 +120,16 @@ class ModelChecker():
         prism_program = stormpy.parse_prism_program(env.storm_bridge.path)
         suggestions = dict()
         i = 0
-        for m in prism_program.modules:
-            for c in m.commands:
-                if not c.is_labeled:
-                    suggestions[c.global_index] = "tau_" + str(i) #str(m.name)
-                    i+=1
+        for module in prism_program.modules:
+            for command in module.commands:
+                if not command.is_labeled:
+                    suggestions[command.global_index] = "tau_" + \
+                        str(i)  # str(m.name)
+                    i += 1
 
-        prism_program = stormpy.preprocess_symbolic_input(prism_program, [], constant_definitions)[0].as_prism_program()
-        
-       
+        prism_program = stormpy.preprocess_symbolic_input(
+            prism_program, [], constant_definitions)[0].as_prism_program()
+
         prism_program = prism_program.label_unlabelled_commands(suggestions)
 
         properties = stormpy.parse_properties(formula_str, prism_program)
@@ -81,16 +137,19 @@ class ModelChecker():
         #options = stormpy.BuilderOptions()
         options.set_build_state_valuations()
         options.set_build_choice_labels(True)
-        
 
+        def permissive_policy(state_valuation: SimpleValuation, action_index: int) -> bool:
+            """Whether for the given state and action, the action should be allowed in the model.
 
-        def permissive_policy(state_valuation, action_index):
+            Args:
+                state_valuation (SimpleValuation): State valuation
+                action_index (int): Action index
+
+            Returns:
+                bool: Allowed?
             """
-            Whether for the given state and action, the action should be allowed in the model.
-            :param state_valuation:
-            :param action_index:
-            :return: True or False
-            """
+            assert isinstance(state_valuation, SimpleValuation)
+            assert isinstance(action_index, int)
             simulator.restart(state_valuation)
             available_actions = sorted(simulator.available_actions())
             action_name = prism_program.get_action_name(action_index)
@@ -101,24 +160,27 @@ class ModelChecker():
             # State Abstraction
             if self.m_abstraction_manager.is_active:
                 state = self.m_abstraction_manager.preprocess_state(state)
-            
-            
-            # Check if selected action is available.. if not set action to the first available action
+
+            # Check if selected action is available..
+            # if not set action to the first available action
             if len(available_actions) == 0:
                 return False
-            
+
             cond1 = False
             if self.m_permissive_manager.is_permissive:
                 self.m_permissive_manager.manage_actions(state, agent)
-                cond1 = self.m_permissive_manager.create_condition(available_actions, action_name)
+                cond1 = self.m_permissive_manager.create_condition(
+                    available_actions, action_name)
             else:
-                selected_action, collected_state, collected_action = self.__get_action_for_state(env, agent, state)
-                if (selected_action in available_actions) == False:
+                selected_action = self.__get_action_for_state(
+                    env, agent, state)
+                if (selected_action in available_actions) is not True:
                     selected_action = available_actions[0]
                 #print(state, selected_action)
                 cond1 = (action_name == selected_action)
 
             # print(str(state_valuation.to_json()), action_name)#, state, selected_action, cond1)
+            assert isinstance(cond1, bool)
             return cond1
 
         simulator = stormpy.simulator.create_simulator(prism_program)
@@ -130,10 +192,10 @@ class ModelChecker():
                                                             permissive_policy))
         model = constructor.build()
         model_size = len(model.states)
-        #print(model)
-        #print(formula_str)
+        # print(model)
+        # print(formula_str)
         properties = stormpy.parse_properties(formula_str, prism_program)
-        #print(properties[0])
+        # print(properties[0])
         model_checking_start_time = time.time()
         result = stormpy.model_checking(model, properties[0])
 
@@ -141,4 +203,6 @@ class ModelChecker():
         #print('Result for initial state', result.at(initial_state))
         mdp_reward_result = result.at(initial_state)
         # Update StateActionCollector
-        return mdp_reward_result, model_size, (time.time()-start_time), (time.time()-model_checking_start_time)
+        assert isinstance(mdp_reward_result, float)
+        assert isinstance(model_size, int)
+        return mdp_reward_result, model_size
