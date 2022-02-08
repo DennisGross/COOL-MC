@@ -27,6 +27,7 @@ We assume that you have docker installed and that you run the following commands
 4. Run the docker container: `docker run --user mycoolmc  -v "$(pwd)/prism_files":"/home/mycoolmc/prism_files" -it coolmc bash`
 
 Please make sure that you either run COOL-MC in on your machine OR in the docker container. Otherwise, it may lead to folder permission problems.
+Please also make sure that you use the `python` default alias.
 
 We discuss how to create the docker container yourself, and how to install the tool natively later.
 
