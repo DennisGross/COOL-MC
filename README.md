@@ -12,11 +12,14 @@ The general workflow of our approach is as follows. First, we model the RL envir
 3. Example 2 (Taxi)
 4. Example 3 (Collision Avoidance)
 5. Example 4 (Smart Grid)
-6. Web Interface
-7. PRISM Modelling Tips
-8. RL Agent Training
-9. COOL-MC Command Line Arguments
-10. Manual Installation
+6. Example 5 (Warehouse)
+7. Example 6 (Stock Market)
+8. Web Interface
+9. Limitations
+10. PRISM Modelling Tips
+11. RL Agent Training
+12. COOL-MC Command Line Arguments
+13. Manual Installation
 
 
 ## Getting Started with COOL-MC
@@ -141,7 +144,20 @@ If there is too much energy in the electricity network, the energy production sh
 
 After the training, we can verify the trained policy:
 
-`python cool_mc.py --parent_run_id=02462a111bf9436d8bcce71a6334d35b --task=rl_model_checking --project_name="Warehouse Example" --prism_file_path="storage.prism" --prop="Tmax=? [F STORAGE_FULL=true]"`
+`python cool_mc.py --parent_run_id=02462a111bf9436d8bcce71a6334d35b --task=rl_model_checking --project_name="Warehouse Example" --prism_file_path="storage.prism" --prop="Tmax=? [F STORAGE_FULL=true]"
+
+## Example 6 (Stock Market)
+This environment is a simplified version of a stock market sim-
+ulation. The agent starts with a initial capital and has to increase it through
+buying and selling stocks without running into bankruptcy.
+
+We now train a RL policy for the stock market example and try to save the policy with the highest probability of successesfully reaching the maximal amount of capital in 1000 time steps.
+
+`python cool_mc.py --task=safe_training --project_name="Stock Market Example" --rl_algorithm=dqn_agent --prism_file_path="stock_market.prism" --prop="Pmax=? [F<1000 \"success\"]" --reward_flag=1`
+
+After the training, we can verify the trained policy:
+
+`python cool_mc.py --parent_run_id=02462a111bf9436d8bcce71a6334d35b --task=rl_model_checking --project_name="Stock Market Example" --prism_file_path="stock_market.prism" --prop="Pmax=? [F<1000 \"bankruptcy\"]"``
 
 ## Benchmarks
 To replicate the benchmark experiments of our paper, run:
@@ -150,6 +166,13 @@ To replicate the benchmark experiments of our paper, run:
 
 ## Web-Interface
 `bash start_ui.sh` starts the MLFlow server to analyze the RL training process (http://hostname:5000).
+
+## Limitations
+COOL-MC needs more time to build the model while using less memory than PRISM/Storm.
+The reason for the performance bottleneck is the iterative building of the induced DTMCs.
+If we disregard model-building time, we receive roughly the same model-checking performance for Storm and COOL-MC.
+Our tool generates near-optimal policies w.r.t. to the different properties and builds smaller DTMCs.
+Therefore, one major advantage of our tool is that we can model check larger MDPs as with PRISM/Storm.
 
 
 ## PRISM Modelling Tips
