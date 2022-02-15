@@ -1,0 +1,22 @@
+name: feature_safety_sensitivity_analysis
+entry_points:
+    main:
+        parameters:
+            project_name : {type: string, default: "experiments"}
+            parent_run_id : {type: string, default: "6f0c5c81d980451288cd02fed0092186"}
+            # Model Checking Parameters
+            prism_dir : {type: string, default: "../prism_files"}
+            prism_file_path : {type: string, default: "stock_market.prism"}
+            constant_definitions : {type: string, default: ""}
+            prop : {type: string, default: "Pmin=? [F \"bankruptcy\"]"}
+            permissive_input: {type: string, default: ""}
+            disabled_features: {type: string, default: ""}
+            # VAR=[LOW;STEP;MAX;METHOD], VAR=[LOW;STEP;MAX]
+            # ,x=[0;4],y=[0;4],obstacle1_x=[0;4],obstacle1_y=[0;4],obstacle2_x=[0;4],obstacle2_x=[0;4]
+            abstract_features: {type: string, default: ":last_action_price=[0;10],buy_price=[0;10],sell_price=[0;10],capital=[0;50],stocks=[0;10]"}
+            range_plotting: {type: float, default: 1}
+
+
+        command: >-
+            python run.py --range_plotting={range_plotting} --abstract_features={abstract_features} --permissive_input={permissive_input} --disabled_features={disabled_features} --project_name={project_name} --parent_run_id={parent_run_id} --prism_dir={prism_dir} --prism_file_path={prism_file_path} --constant_definitions={constant_definitions} --prop={prop}
+
