@@ -164,6 +164,8 @@ To replicate the benchmark experiments of our paper, run:
 
 `mlflow run unit_testing --no-conda -e test_experiments`
 
+We trained RL policies in the taxi (transporter.prism), collision avoidance (avoid.prism), and frozen lake (frozen_lake3-v1.prism) environment.
+
 ## Web-Interface
 `bash start_ui.sh` starts the MLFlow server to analyze the RL training process (http://hostname:5000).
 

@@ -1,7 +1,9 @@
 import numpy as np
+from common.safe_gym.state_mapper import StateMapper
+
 class PStateVariable:
 
-    def __init__(self, name, lower_bound, upper_bound, idx=None, current_assignment = None, step_size=1,is_range=False):
+    def __init__(self, name: str, lower_bound: int, upper_bound: int, idx = None, current_assignment = None, step_size: int = 1, is_range: bool = False):
         self.name = name
         self.lower_bound = lower_bound
         self.upper_bound = upper_bound
@@ -114,7 +116,7 @@ class PStateVariable:
         
 class PermissiveManager:
 
-    def __init__(self, permissive_input, state_var_mapper):
+    def __init__(self, permissive_input: str, state_var_mapper: StateMapper):
         self.current_state = None
         self.state_var_mapper = state_var_mapper.mapper
         self.is_permissive = (permissive_input != '')

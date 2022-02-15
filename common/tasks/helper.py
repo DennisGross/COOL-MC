@@ -1,14 +1,21 @@
+"""This module provides helper functions for COOL-MC."""
 import argparse
 import sys
+import random
+from typing import Any, Dict
 import numpy as np
 import torch
-import random
 
-def get_arguments():
+
+def get_arguments() -> Dict[str, Any]:
+    """Parses all the COOL-MC arguments
+
+    Returns:
+        Dict[str, Any]: dictionary with the command line arguments as key and their assignment as value
+    """
     arg_parser = argparse.ArgumentParser(
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     args = argparse.Namespace()
-    unknown_args = list()
     arg_parser.add_argument('--task', help='What type of task do you want to perform(safe_training, openai_training, rl_model_checking)?', type=str,
                             default='safe_training')
     arg_parser.add_argument('--project_name', help='What is the name of your project?', type=str,
@@ -48,9 +55,9 @@ def get_arguments():
     arg_parser.add_argument('--reward_flag', help='Reward Flag (', type=int,
                             default=0)
     arg_parser.add_argument('--deploy', help='Deploy Flag (', type=int,
-                            default=0)    
+                            default=0)
     arg_parser.add_argument('--range_plotting', help='Range Plotting Flag', type=int,
-                            default=1)        
+                            default=1)
     # Dummy Agent
     arg_parser.add_argument('--always_action', help='DummyAgent-Parameter: Which action should the dummy agent choose?', type=int,
                             default=0)
@@ -84,19 +91,37 @@ def get_arguments():
     arg_parser.add_argument('--seed', help='Random Seed for numpy, random, storm, pytorch', type=int,
                             default=-1)
 
-    args, unknown_args = arg_parser.parse_known_args(sys.argv)
+    args, _ = arg_parser.parse_known_args(sys.argv)
     return vars(args)
 
-def parse_prop_type(prop):
+
+def parse_prop_type(prop: str) -> str:
+    """Guides in Safe training, if we want to maximize or minimize the property result
+    or do normal reward maximization.
+
+    Args:
+        prop (str): Property Query
+
+    Returns:
+        str: type of optimization
+    """
+    assert isinstance(prop, str)
     if prop.find("min") < prop.find("=") and prop.find("min") != -1:
         return "min_prop"
-    elif prop.find("max") < prop.find("=") and prop.find("max") != -1:
+    if prop.find("max") < prop.find("=") and prop.find("max") != -1:
         return "max_prop"
-    else:
-        return "reward"
+    return "reward"
 
-def set_random_seed(seed):
-    if seed!= -1:
+
+def set_random_seed(seed: int):
+    """Set global seed to all used libraries. If you use other libraries too,
+    add them here.
+
+    Args:
+        seed (int): Random Seed
+    """
+    assert isinstance(seed, int)
+    if seed != -1:
         print("Set Seed to", seed)
         torch.manual_seed(seed)
         torch.cuda.manual_seed_all(seed)

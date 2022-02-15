@@ -1,6 +1,6 @@
 mdp
 
-const int max_size=5;
+const int max_size=2;
 const int max_bureaucracy=3;
 
 //done?
