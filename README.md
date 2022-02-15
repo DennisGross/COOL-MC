@@ -168,11 +168,19 @@ To replicate the benchmark experiments of our paper, run:
 `bash start_ui.sh` starts the MLFlow server to analyze the RL training process (http://hostname:5000).
 
 ## Limitations
+All experiments were executed on a NVIDIA GeForce GTX 1060 Mobile GPU, 8 GB RAM, and an Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz x 12.
+
 COOL-MC needs more time to build the model while using less memory than PRISM/Storm.
 The reason for the performance bottleneck is the iterative building of the induced DTMCs.
 If we disregard model-building time, we receive roughly the same model-checking performance for Storm and COOL-MC.
 Our tool generates near-optimal policies w.r.t. to the different properties and builds smaller DTMCs.
 Therefore, one major advantage of our tool is that we can model check larger MDPs as with PRISM/Storm.
+
+We can model check the following command with COOL-MC, while it is not possible on our machine with Storm:
+
+`python cool_mc.py --parent_run_id=02462a111bf9436d8bcce71a6334d35b --task=rl_model_checking --project_name="Smart Grid Example" --constant_definitions "max_consumption=20,renewable_limit=19,non_renewable_limit=16,grid_upper_bound=25" --prism_file_path="stock_market.prism" --prop="Tmin=? [F IS_BLACKOUT=true]"``
+
+With our trained policy, we got a property result of 2.45x10^10 expected steps of running into a blackout.
 
 
 ## PRISM Modelling Tips
