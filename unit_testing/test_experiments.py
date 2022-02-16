@@ -93,7 +93,7 @@ def test_frozen_lake_agent_a():
     command_line_arguments['prism_dir'] = '../prism_files'
     command_line_arguments['prism_file_path'] = 'frozen_lake3-v1.prism'
     command_line_arguments['constant_definitions'] = 'start_position=0,control=0.333'
-    command_line_arguments['prop'] = 'Pmax=? [F AT_FRISBEE=true]'
+    command_line_arguments['prop'] = 'P=? [F AT_FRISBEE=true]'
     result = run_verify_rl_agent(command_line_arguments)
     # Verify
     command_line_arguments['parent_run_id'] = parent_run_id
@@ -102,7 +102,7 @@ def test_frozen_lake_agent_a():
     command_line_arguments['prism_dir'] = '../prism_files'
     command_line_arguments['prism_file_path'] = 'frozen_lake3-v1.prism'
     command_line_arguments['constant_definitions'] = 'start_position=[0;1;16],control=0.333'
-    command_line_arguments['prop'] = 'Pmax=? [F AT_FRISBEE=true]'
+    command_line_arguments['prop'] = 'P=? [F AT_FRISBEE=true]'
     result = run_verify_rl_agent(command_line_arguments)
     # Verify
     command_line_arguments['parent_run_id'] = parent_run_id
@@ -110,7 +110,7 @@ def test_frozen_lake_agent_a():
     command_line_arguments['prism_dir'] = '../prism_files'
     command_line_arguments['prism_file_path'] = 'frozen_lake3-v1.prism'
     command_line_arguments['constant_definitions'] = 'start_position=[0;1;16],control=0.333'
-    command_line_arguments['prop'] = 'Pmax=? [F WATER=true]'
+    command_line_arguments['prop'] = 'P=? [F WATER=true]'
     result = run_verify_rl_agent(command_line_arguments)
     assert 1 == 1
 
@@ -194,7 +194,7 @@ def test_taxi_experiment_section_agent_b():
     # Verify
     command_line_arguments['parent_run_id'] = parent_run_id
     command_line_arguments['task'] = 'rl_model_checking'
-    command_line_arguments['prop'] = 'Pmax=? [F jobs_done=2]'
+    command_line_arguments['prop'] = 'P=? [F jobs_done=2]'
     result = run_verify_rl_agent(command_line_arguments)
     end_time = time.time()
     print("Total Time", end_time-start_time)
@@ -278,7 +278,7 @@ def test_taxi_experiment_section_agent_c():
     # Verify
     command_line_arguments['parent_run_id'] = parent_run_id
     command_line_arguments['task'] = 'rl_model_checking'
-    command_line_arguments['prop'] = 'Pmax=? [F jobs_done=2]'
+    command_line_arguments['prop'] = 'P=? [F jobs_done=2]'
     result = run_verify_rl_agent(command_line_arguments)
     assert 1 == 1
 
@@ -846,7 +846,7 @@ def test_taxi_experiment_section_agent_not_trained():
     # Verify
     command_line_arguments['parent_run_id'] = parent_run_id
     command_line_arguments['task'] = 'rl_model_checking'
-    command_line_arguments['prop'] = 'Pmax=? [F jobs_done=2]'
+    command_line_arguments['prop'] = 'P=? [F jobs_done=2]'
     result = run_verify_rl_agent(command_line_arguments)
     assert 1 == 1
 

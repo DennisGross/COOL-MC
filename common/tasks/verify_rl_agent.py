@@ -32,6 +32,12 @@ def run_verify_rl_agent(command_line_arguments: Dict[str, Any]) -> List[float]:
         m_project.command_line_arguments['prism_dir'], m_project.command_line_arguments['prism_file_path'])
     print(m_project.command_line_arguments)
     if command_line_arguments['constant_definitions'].count('[') == 0 and command_line_arguments['constant_definitions'].count(']') == 0:
+        if command_line_arguments['permissive_input']=="":
+            query = command_line_arguments['prop']
+            # Insert min at second position
+            operator_str = query[:1]
+            min_part = "min"
+            command_line_arguments['prop'] = operator_str + min_part + query[1:]
         env = SafeGym(prism_file_path, m_project.command_line_arguments['constant_definitions'], 1, 1, False, command_line_arguments['seed'], command_line_arguments[
                       'permissive_input'],  m_project.command_line_arguments['disabled_features'], abstraction_input=m_project.command_line_arguments['abstract_features'])
         m_project.create_agent(command_line_arguments,
@@ -57,6 +63,12 @@ def run_verify_rl_agent(command_line_arguments: Dict[str, Any]) -> List[float]:
             command_line_arguments['constant_definitions'])
         all_prop_results = []
         for constant_definitions in all_constant_definitions:
+            if command_line_arguments['permissive_input']=="":
+                query = command_line_arguments['prop']
+                # Insert min at second position
+                operator_str = query[:1]
+                min_part = "min"
+                command_line_arguments['prop'] = operator_str + min_part + query[1:]
             env = SafeGym(prism_file_path, constant_definitions, 1, 1, False, command_line_arguments['seed'], command_line_arguments[
                           'permissive_input'],  m_project.command_line_arguments['disabled_features'], abstraction_input=m_project.command_line_arguments['abstract_features'])
             m_project.create_agent(

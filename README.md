@@ -89,7 +89,7 @@ The taxi agent has to pick up passengers and transport them to their destination
 
 We train a DQN taxi agent in the PRISM environment:
 
-`python cool_mc.py --task=safe_training --project_name="Taxi with Fuel Example" --rl_algorithm=dqn_agent --prism_file_path="transporter.prism" --constant_definitions="MAX_JOBS=2,MAX_FUEL=10" --prop="Pmin=? [F jobs_done=2]"`
+`python cool_mc.py --task=safe_training --project_name="Taxi with Fuel Example" --rl_algorithm=dqn_agent --prism_file_path="transporter.prism" --constant_definitions="MAX_JOBS=2,MAX_FUEL=10" --prop="P=? [F jobs_done=2]"`
 
 
 - `project_name="Taxi with Fuel Example"` for the new `Taxi with Fuel Example` project.
@@ -97,11 +97,11 @@ We train a DQN taxi agent in the PRISM environment:
 
 After the training, we can verify the trained policy:
 
-`python cool_mc.py --parent_run_id=dd790c269b334e4383b580e7c1da9050 --task=rl_model_checking --project_name="Taxi with Fuel Example" --prism_file_path="transporter.prism" --constant_definitions="MAX_JOBS=2,MAX_FUEL=10" --prop="Pmin=? [F OUT_OF_FUEL=true]"`
+`python cool_mc.py --parent_run_id=dd790c269b334e4383b580e7c1da9050 --task=rl_model_checking --project_name="Taxi with Fuel Example" --prism_file_path="transporter.prism" --constant_definitions="MAX_JOBS=2,MAX_FUEL=10" --prop="P=? [F OUT_OF_FUEL=true]"`
 
 State abstraction allows model-checking the trained policy on less precise features without changing the environment. To achieve this, a prepossessing step is applied to the current state in the incremental building process to map the state to a more abstract state for the RL policy. We only have to define a state mapping file and link it to COOL-MC via the command line:
 
-`python cool_mc.py --parent_run_id=dd790c269b334e4383b580e7c1da9050 --task=rl_model_checking --project_name="Taxi with Fuel Example" --prism_file_path="transporter.prism" --constant_definitions="MAX_JOBS=2,MAX_FUEL=10" --prop="Pmin=? [F OUT_OF_FUEL=true]" --abstract_features="../taxi_abstraction.json"`
+`python cool_mc.py --parent_run_id=dd790c269b334e4383b580e7c1da9050 --task=rl_model_checking --project_name="Taxi with Fuel Example" --prism_file_path="transporter.prism" --constant_definitions="MAX_JOBS=2,MAX_FUEL=10" --prop="P=? [F OUT_OF_FUEL=true]" --abstract_features="../taxi_abstraction.json"`
 
 Permissive Model Checking allows the investigation of the worst-/best-case behaviour of the trained policy for certain state variables.
 
@@ -117,11 +117,11 @@ Collision avoidance is an environment which contains one agent and two moving ob
 
 We train a DQN taxi agent in the PRISM environment:
 
-`python cool_mc.py --task=safe_training --project_name="Avoid Example" --rl_algorithm=dqn_agent --prism_file_path="avoid.prism" --constant_definitions="xMax=4,yMax=4,slickness=0.0" --prop="Pmin=? [F COLLISION=true]" --reward_flag=1`
+`python cool_mc.py --task=safe_training --project_name="Avoid Example" --rl_algorithm=dqn_agent --prism_file_path="avoid.prism" --constant_definitions="xMax=4,yMax=4,slickness=0.0" --prop="P=? [F COLLISION=true]" --reward_flag=1`
 
 After the training, we can verify the trained policy:
 
-`python cool_mc.py --parent_run_id=915fd49f5f9342a5b5f124dddfd3f15f --task=rl_model_checking --project_name="Avoid Example" --prism_file_path="avoid.prism" --constant_definitions="xMax=4,yMax=4,slickness=0.0" --prop="Pmin=? [F COLLISION=true]"`
+`python cool_mc.py --parent_run_id=915fd49f5f9342a5b5f124dddfd3f15f --task=rl_model_checking --project_name="Avoid Example" --prism_file_path="avoid.prism" --constant_definitions="xMax=4,yMax=4,slickness=0.0" --prop="P=? [F COLLISION=true]"`
 
 
 ## Example 4 (Smart Grid)
@@ -133,7 +133,7 @@ If there is too much energy in the electricity network, the energy production sh
 
 After the training, we can verify the trained policy:
 
-`python cool_mc.py --parent_run_id=c0b0a71a334e4873b045858bc5be15ed --task=rl_model_checking --project_name="Smart Grid Example" --prism_file_path="smart_grid.prism" --constant_definitions="max_consumption=20,renewable_limit=19,non_renewable_limit=16,grid_upper_bound=25" --prop="Tmin=? [F TOO_MUCH_ENERGY=true]"`
+`python cool_mc.py --parent_run_id=c0b0a71a334e4873b045858bc5be15ed --task=rl_model_checking --project_name="Smart Grid Example" --prism_file_path="smart_grid.prism" --constant_definitions="max_consumption=20,renewable_limit=19,non_renewable_limit=16,grid_upper_bound=25" --prop="T=? [F TOO_MUCH_ENERGY=true]"`
 
 ## Example 5 (Warehouse)
 In this environment, a controller controls the distribution of renewable- and non-renewable energy production. The objective is to minimize the production of non-renewable energy by using renewable and storage technologies.
@@ -144,7 +144,7 @@ If there is too much energy in the electricity network, the energy production sh
 
 After the training, we can verify the trained policy:
 
-`python cool_mc.py --parent_run_id=02462a111bf9436d8bcce71a6334d35b --task=rl_model_checking --project_name="Warehouse Example" --prism_file_path="storage.prism" --prop="Tmax=? [F STORAGE_FULL=true]"
+`python cool_mc.py --parent_run_id=02462a111bf9436d8bcce71a6334d35b --task=rl_model_checking --project_name="Warehouse Example" --prism_file_path="storage.prism" --prop="T=? [F STORAGE_FULL=true]"`
 
 ## Example 6 (Stock Market)
 This environment is a simplified version of a stock market sim-
@@ -157,7 +157,7 @@ We now train a RL policy for the stock market example and try to save the policy
 
 After the training, we can verify the trained policy:
 
-`python cool_mc.py --parent_run_id=02462a111bf9436d8bcce71a6334d35b --task=rl_model_checking --project_name="Stock Market Example" --prism_file_path="stock_market.prism" --prop="Pmax=? [F<1000 \"bankruptcy\"]"``
+`python cool_mc.py --parent_run_id=02462a111bf9436d8bcce71a6334d35b --task=rl_model_checking --project_name="Stock Market Example" --prism_file_path="stock_market.prism" --prop="P=? [F<1000 \"bankruptcy\"]"`
 
 ## Benchmarks
 To replicate the benchmark experiments of our paper, run:
@@ -180,7 +180,7 @@ Therefore, one major advantage of our tool is that we can model check larger MDP
 
 We can model check the following command with COOL-MC, while it is not possible on our machine with Storm:
 
-`python cool_mc.py --parent_run_id=02462a111bf9436d8bcce71a6334d35b --task=rl_model_checking --project_name="Smart Grid Example" --constant_definitions "max_consumption=20,renewable_limit=19,non_renewable_limit=16,grid_upper_bound=25" --prism_file_path="stock_market.prism" --prop="Tmin=? [F IS_BLACKOUT=true]"`
+`python cool_mc.py --parent_run_id=02462a111bf9436d8bcce71a6334d35b --task=rl_model_checking --project_name="Smart Grid Example" --constant_definitions "max_consumption=20,renewable_limit=19,non_renewable_limit=16,grid_upper_bound=25" --prism_file_path="stock_market.prism" --prop="T=? [F IS_BLACKOUT=true]"`
 
 With our trained policy, we got a property result of 2.45x10^10 expected steps of running into a blackout.
 
