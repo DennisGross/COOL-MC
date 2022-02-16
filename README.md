@@ -58,7 +58,7 @@ After the training, we receive an Experiment ID (e.g. 27f2bbe444754ac0bbbce1326a
 We need this ID to identify the experiment.
 Now it is possible to verify the trained RL policy via the COOL-MC verifier by passing the experiment ID and the model checking arguments:
 
-`python cool_mc.py --project_name "Frozen Lake Example" --parent_run_id=27f2bbe444754ac0bbbce1326a410419 --task rl_model_checking --prism_file_path="frozen_lake3-v1.prism" --constant_definitions="control=0.33,start_position=0" --prop="Pmin=? [F WATER=true]"`
+`python cool_mc.py --project_name "Frozen Lake Example" --parent_run_id=27f2bbe444754ac0bbbce1326a410419 --task rl_model_checking --prism_file_path="frozen_lake3-v1.prism" --constant_definitions="control=0.33,start_position=0" --prop="P=? [F WATER=true]"`
 
 Command Line Arguments:
 - `project_name "Frozen Lake Example"` specifies the project name.
@@ -66,7 +66,7 @@ Command Line Arguments:
 - `task=rl_model_checking` sets the current task to model checking the trained RL policy.
 - `prism_file_path="frozen_lake3-v1.prism"` specifies the PRISM environment.
 - `constant_definitions="control=0.33,start_position=0"` sets the constant definitions for the PRISM environment.
-- `prop="Pmin=? [F WATER=true]"` the property query.
+- `prop="P=? [F WATER=true]"` the property query.
 
 It is also possible to plot the property results over a range of PRISM constant definitions. This is useful, when we want to get a overview of the trained RL policy. In the following command, we plot from different frozen lake agent startpositions 0-15 (stepsize 1, 16 excluded) the probability of falling into the water.
 
@@ -89,11 +89,11 @@ The taxi agent has to pick up passengers and transport them to their destination
 
 We train a DQN taxi agent in the PRISM environment:
 
-`python cool_mc.py --task=safe_training --project_name="Taxi with Fuel Example" --rl_algorithm=dqn_agent --prism_file_path="transporter.prism" --constant_definitions="MAX_JOBS=2,MAX_FUEL=10" --prop="P=? [F jobs_done=2]"`
+`python cool_mc.py --task=safe_training --project_name="Taxi with Fuel Example" --rl_algorithm=dqn_agent --prism_file_path="transporter.prism" --constant_definitions="MAX_JOBS=2,MAX_FUEL=10" --prop="Pmax=? [F jobs_done=2]"`
 
 
 - `project_name="Taxi with Fuel Example"` for the new `Taxi with Fuel Example` project.
-- `prop="Pmin=? [F jobs_done=2]"` property query for getting the probability to finish 2 jobs with the trained policy.
+- `prop="Pmax=? [F jobs_done=2]"` property query for getting the probability to finish 2 jobs with the trained policy. `Pmax` also specifies that COOL-MC save only RL agents which higher probabilities of finishing two jobs.
 
 After the training, we can verify the trained policy:
 
@@ -117,11 +117,11 @@ Collision avoidance is an environment which contains one agent and two moving ob
 
 We train a DQN taxi agent in the PRISM environment:
 
-`python cool_mc.py --task=safe_training --project_name="Avoid Example" --rl_algorithm=dqn_agent --prism_file_path="avoid.prism" --constant_definitions="xMax=4,yMax=4,slickness=0.0" --prop="P=? [F COLLISION=true]" --reward_flag=1`
+`python cool_mc.py --task=safe_training --project_name="Avoid Example" --rl_algorithm=dqn_agent --prism_file_path="avoid.prism" --constant_definitions="xMax=4,yMax=4,slickness=0.0" --prop="Pmin=? [F<=100 COLLISION=true]" --reward_flag=1`
 
 After the training, we can verify the trained policy:
 
-`python cool_mc.py --parent_run_id=915fd49f5f9342a5b5f124dddfd3f15f --task=rl_model_checking --project_name="Avoid Example" --prism_file_path="avoid.prism" --constant_definitions="xMax=4,yMax=4,slickness=0.0" --prop="P=? [F COLLISION=true]"`
+`python cool_mc.py --parent_run_id=915fd49f5f9342a5b5f124dddfd3f15f --task=rl_model_checking --project_name="Avoid Example" --prism_file_path="avoid.prism" --constant_definitions="xMax=4,yMax=4,slickness=0.0" --prop="P=? [F<=100 COLLISION=true]"`
 
 
 ## Example 4 (Smart Grid)
@@ -129,18 +129,18 @@ In this environment, a controller controls the distribution of renewable- and no
 If there is too much energy in the electricity network, the energy production shuts down which may lead to a blackout (terminal state).
 
 
-`python cool_mc.py --task=safe_training --project_name="Smart Grid Example" --rl_algorithm=dqn_agent --prism_file_path="smart_grid.prism" --constant_definitions="max_consumption=20,renewable_limit=19,non_renewable_limit=16,grid_upper_bound=25" --prop="Tmin=? [F IS_BLACKOUT=true]" --reward_flag=0`
+`python cool_mc.py --task=safe_training --project_name="Smart Grid Example" --rl_algorithm=dqn_agent --prism_file_path="smart_grid.prism" --constant_definitions="max_consumption=20,renewable_limit=19,non_renewable_limit=16,grid_upper_bound=25" --prop="Pmin=? [F<=1000 IS_BLACKOUT=true]" --reward_flag=0`
 
 After the training, we can verify the trained policy:
 
-`python cool_mc.py --parent_run_id=c0b0a71a334e4873b045858bc5be15ed --task=rl_model_checking --project_name="Smart Grid Example" --prism_file_path="smart_grid.prism" --constant_definitions="max_consumption=20,renewable_limit=19,non_renewable_limit=16,grid_upper_bound=25" --prop="T=? [F TOO_MUCH_ENERGY=true]"`
+`python cool_mc.py --parent_run_id=c0b0a71a334e4873b045858bc5be15ed --task=rl_model_checking --project_name="Smart Grid Example" --prism_file_path="smart_grid.prism" --constant_definitions="max_consumption=20,renewable_limit=19,non_renewable_limit=16,grid_upper_bound=25" --prop="P=? [F<=1000 TOO_MUCH_ENERGY=true]"`
 
 ## Example 5 (Warehouse)
 In this environment, a controller controls the distribution of renewable- and non-renewable energy production. The objective is to minimize the production of non-renewable energy by using renewable and storage technologies.
 If there is too much energy in the electricity network, the energy production shuts down which may lead to a blackout (terminal state).
 
 
-`python cool_mc.py --task=safe_training --project_name="Warehouse Example" --rl_algorithm=dqn_agent --prism_file_path="storage.prism" --prop="Tmax=? [F STORAGE_FULL=true]" --reward_flag=0`
+`python cool_mc.py --task=safe_training --project_name="Warehouse Example" --rl_algorithm=dqn_agent --prism_file_path="storage.prism" --prop="Pmin=? [F<=100 STORAGE_FULL=true]" --reward_flag=0`
 
 After the training, we can verify the trained policy:
 
@@ -197,11 +197,10 @@ We first have to model our RL environment. COOL-MC supports PRISM as modeling la
 After we modeled the environment, we can train RL agents on this environment.
 It is also possible to develop your own RL agents:
 1. Create a AGENT_NAME.py in the src.rl_agents package
-2. Create a class AGENT_NAME and inherit all methods from src.agent.Agent
-3. Set use_tf_environment to true if you use tf_environments instead of py_environments from tf_agents
-4. Override all the needed methods (depends on your agent) + the agent save- and load-method.
-5. In src.rl_agents.agent_builder extends the build_agent method with an additional elif branch for your agent
-6. Add additional command-line arguments in cool_mc.py (if needed)
+2. Create a class AGENT_NAME and inherit all methods from common.rl_agents.Agent
+3. Override all the needed methods (depends on your agent) + the agent save- and load-method.
+4. In src.rl_agents.agent_builder extends the build_agent method with an additional elif branch for your agent
+5. Add additional command-line arguments in cool_mc.py (if needed)
 
 Here are some tips that may improve the training progress:
 
