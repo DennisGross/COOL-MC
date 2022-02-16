@@ -14,12 +14,13 @@ The general workflow of our approach is as follows. First, we model the RL envir
 5. Example 4 (Smart Grid)
 6. Example 5 (Warehouse)
 7. Example 6 (Stock Market)
-8. Web Interface
-9. Limitations
-10. PRISM Modelling Tips
-11. RL Agent Training
-12. COOL-MC Command Line Arguments
-13. Manual Installation
+8. Benchmarks
+9. Web Interface
+10. Limitations
+11. PRISM Modelling Tips
+12. RL Agent Training
+13. COOL-MC Command Line Arguments
+14. Manual Installation
 
 
 ## Getting Started with COOL-MC
