@@ -13,7 +13,7 @@ entry_points:
             disabled_features: {type: string, default: ""}
             # VAR=[LOW;STEP;MAX;METHOD], VAR=[LOW;STEP;MAX]
             # ,x=[0;4],y=[0;4],obstacle1_x=[0;4],obstacle1_y=[0;4],obstacle2_x=[0;4],obstacle2_x=[0;4]
-            abstract_features: {type: string, default: ":last_action_price=[0;10],buy_price=[0;10],sell_price=[0;10],capital=[0;50],stocks=[0;10]"}
+            abstract_features: {type: string, default: ":fixed_state.json*last_action_price=[0;10],buy_price=[0;10],sell_price=[0;10],capital=[0;50],stocks=[0;10]"}
             range_plotting: {type: float, default: 1}
 
 

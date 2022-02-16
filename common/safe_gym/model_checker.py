@@ -20,7 +20,7 @@ class ModelChecker():
     the policy based on a property query.
     """
 
-    def __init__(self, permissive_input: str, mapper: StateMapper, abstraction_input: str):
+    def __init__(self, permissive_input: str, mapper: StateMapper, abstraction_input: str, fixed_state: np.ndarray):
         """Initialization
 
         Args:
@@ -34,7 +34,7 @@ class ModelChecker():
         self.wrong_choices = 0
         self.m_permissive_manager = PermissiveManager(permissive_input, mapper)
         self.m_abstraction_manager = AbstractionManager(
-            mapper, abstraction_input)
+            mapper, abstraction_input, fixed_state)
 
     def __get_clean_state_dict(self, state_valuation_json: JsonContainerRational,
                                example_json: str) -> dict:

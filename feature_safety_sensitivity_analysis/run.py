@@ -1,5 +1,7 @@
 import json
 import sys
+
+from numpy import fix
 sys.path.insert(0, '../')
 from math import sqrt
 from common.tasks.verify_rl_agent import *
@@ -61,7 +63,12 @@ def safe_pdp(command_line_arguments):
         print(s)
 
 def safe_feature_values(command_line_arguments):
-    all_abstraction_features = str(command_line_arguments['abstract_features'])
+    if str(command_line_arguments['abstract_features']).find("*")!=-1:
+        all_abstraction_features = str(command_line_arguments['abstract_features']).split("*")[1]
+        fixed_json_path = str(command_line_arguments['abstract_features']).split("*")[0]
+    else:
+         all_abstraction_features = str(command_line_arguments['abstract_features'])
+         fixed_json_path = None
     # r-value
     command_line_arguments['abstract_features'] = ""
     property_query = str(command_line_arguments['prop'])
@@ -74,9 +81,13 @@ def safe_feature_values(command_line_arguments):
         feature_name, lower_bound, upper_bound, all_fixed_values = parse_mapping_parameters(command_line_arguments['abstract_features'])
         
         REMAPPING_FILE_PATH = "remapping.json"
-        # Verify with this abstraction mapper
-        command_line_arguments['abstract_features'] = REMAPPING_FILE_PATH
+        # For Fixed states
+        if fixed_json_path != None:
+            command_line_arguments['abstract_features'] = fixed_json_path+"*"+REMAPPING_FILE_PATH
+        else:
+            command_line_arguments['abstract_features'] = REMAPPING_FILE_PATH
         all_prop_results = []
+        # Verify with this abstraction mapper
         for fixed_value in all_fixed_values:
             create_mapping_file(REMAPPING_FILE_PATH, feature_name, lower_bound, upper_bound, fixed_value)
             # Verification

@@ -4,6 +4,7 @@ This module builds the bridge between COOL-MC and Storm.
 """
 import os
 import json
+import copy
 from typing import Tuple, Union
 from aenum import constant
 import numpy as np
@@ -14,6 +15,10 @@ from common.safe_gym.model_checker import ModelChecker
 from common.safe_gym.state_mapper import StateMapper
 from stormpy.utility.utility import JsonContainerDouble
 from stormpy.simulator import PrismSimulator
+
+
+
+        
 
 
 class StormBridge:
@@ -63,8 +68,9 @@ class StormBridge:
         json_path = os.path.splitext(self.path)[0]+'.json'
         self.state_mapper = StateMapper(
             json_path, self.state_json_example, self.disabled_features)
+        fixed_state = self.create_fixed_state(self.state_json_example, abstraction_input)
         self.model_checker = ModelChecker(
-            permissive_input, self.state_mapper, abstraction_input)
+            permissive_input, self.state_mapper, abstraction_input, fixed_state)
 
     def __preprocess_state_json_example(self, json_example: JsonContainerDouble) -> str:
         """Preprocess the state by casting boolean values to int values.
@@ -202,4 +208,24 @@ class StormBridge:
         state = np.array(state, dtype=np.int32)
         
         assert isinstance(state, np.ndarray)
+        return state
+
+
+
+    def create_fixed_state(self, json_example: JsonContainerDouble, abstraction_input: str):
+        iint32 = np.iinfo(np.int32)
+        if abstraction_input.find("*")==-1:
+            return None
+        fixed_state_json_file_path = abstraction_input.split("*")[0]
+        f = open(fixed_state_json_file_path)
+        data = json.loads(f.read())
+        f.close()
+        target_state = copy.deepcopy(dict(json.loads(json_example)))
+        for k in target_state:
+            if k not in data:
+                target_state[k] = iint32.max
+            else:
+                target_state[k] = data[k]
+        target_state = str(json.dumps(target_state))
+        state = self.parse_state(target_state)
         return state

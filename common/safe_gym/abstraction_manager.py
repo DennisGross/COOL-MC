@@ -8,6 +8,15 @@ from typing import List
 import numpy as np
 from common.safe_gym.state_mapper import StateMapper
 
+def compare_and_ignore_nan_elements(a,b):
+    iint32 = np.iinfo(np.int32)
+    for i in range(a.shape[0]):
+        if a[i]==iint32.max or b[i]==iint32.max:
+            continue
+        else:
+            if a[i]!=b[i]:
+                return False
+    return True
 
 class AStateVariable:
 
@@ -149,7 +158,7 @@ class AStateVariable:
 
 class AbstractionManager:
 
-    def __init__(self, state_var_mapper: StateMapper, abstraction_input: str) -> None:
+    def __init__(self, state_var_mapper: StateMapper, abstraction_input: str, fixed_state) -> None:
         """Constructor
 
         Args:
@@ -160,7 +169,11 @@ class AbstractionManager:
         assert isinstance(abstraction_input, str)
         self.is_active = (abstraction_input != '')
         self.state_var_mapper = state_var_mapper.mapper
+        self.fixed_state = fixed_state
         if self.is_active:
+            if abstraction_input.find("*")!=-1:
+                abstraction_input = abstraction_input.split("*")[-1]
+            
             if os.path.isfile(abstraction_input):
                 with open(abstraction_input) as json_file:
                     abstraction_mapping = json.load(json_file)
@@ -184,6 +197,11 @@ class AbstractionManager:
             np.ndarray: abstracted state
         """
         assert isinstance(state, np.ndarray)
+        # State Importance Checking
+        if self.fixed_state is not None:
+            # If fixed_state not none, we only apply mapping for the given state ranges
+            if compare_and_ignore_nan_elements(self.fixed_state, state)==False:
+                return state
         for astate_variable in self.astate_variables:
             idx = astate_variable.get_idx()
             state[idx] = astate_variable.round(state[idx])
