@@ -62,13 +62,15 @@ def run_verify_rl_agent(command_line_arguments: Dict[str, Any]) -> List[float]:
         all_constant_definitions, range_tuple, range_state_variable = ConstantDefinitionParser.parse_constant_definition(
             command_line_arguments['constant_definitions'])
         all_prop_results = []
+        first = True
         for constant_definitions in all_constant_definitions:
-            if command_line_arguments['permissive_input']=="":
+            if command_line_arguments['permissive_input']=="" and first:
                 query = command_line_arguments['prop']
                 # Insert min at second position
                 operator_str = query[:1]
                 min_part = "min"
                 command_line_arguments['prop'] = operator_str + min_part + query[1:]
+                first = False
             env = SafeGym(prism_file_path, constant_definitions, 1, 1, False, command_line_arguments['seed'], command_line_arguments[
                           'permissive_input'],  m_project.command_line_arguments['disabled_features'], abstraction_input=m_project.command_line_arguments['abstract_features'])
             m_project.create_agent(
