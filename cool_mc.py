@@ -1,9 +1,7 @@
 import mlflow
 from common.tasks.helper import *
 from common.utilities.error_handler import *
-import numpy as np
-import random
-import torch
+
 
 if __name__ == '__main__':
     args = get_arguments()
@@ -26,6 +24,7 @@ if __name__ == '__main__':
             use_conda=False
         )
     elif args['task'] == 'rl_model_checking':
+        m_error_handler.check_command_line_arguments_for_rl_model_checking(dict(args))
         mlflow.run(
             "verify_rl_agent",
             parameters=dict(args),

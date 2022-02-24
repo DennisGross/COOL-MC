@@ -8,7 +8,7 @@ class ErrorHandler:
     def __init__(self) -> None:
         pass
 
-    def __check_if_file_exists(self, root_dir: str, file_name: str):
+    def __check_prism_file_path(self, root_dir: str, file_name: str):
         """Check if file exists
 
         Args:
@@ -23,6 +23,7 @@ class ErrorHandler:
         if os.path.exists(full_path) == False:
             raise FileNotFoundError("PRISM File path is not correct. You entered:" + str(full_path))
 
+
     def __check_if_openai_environment_exists(self, env: str):
         """Check if the openai environment exists
 
@@ -36,8 +37,6 @@ class ErrorHandler:
             raise ValueError("OpenAI-Gym does not exist. You entered: " + str(env))
 
 
-
-
     def check_command_line_arguments_for_safe_training(self, command_line_arguments: dict) -> None:
         """Check user command line arguments for safe training
 
@@ -45,7 +44,18 @@ class ErrorHandler:
             command_line_arguments (dict): User Command Line Arguments
         """
         # Check if PRISM File exists
-        self.__check_if_file_exists(command_line_arguments['prism_dir'], command_line_arguments['prism_file_path'])
+        self.__check_prism_file_path(command_line_arguments['prism_dir'], command_line_arguments['prism_file_path'])
+
+
+    def check_command_line_arguments_for_rl_model_checking(self, command_line_arguments: dict) -> None:
+        """Check user command line arguments for safe training
+
+        Args:
+            command_line_arguments (dict): User Command Line Arguments
+        """
+        # Check if PRISM File exists
+        self.__check_prism_file_path(command_line_arguments['prism_dir'], command_line_arguments['prism_file_path'])
+
 
     def check_command_line_arguments_for_openai_training(self, command_line_arguments: dict) -> None:
         """Check user command line arguments for open ai gym training
