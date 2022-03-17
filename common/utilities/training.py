@@ -9,7 +9,6 @@ import math
 import numpy as np
 import torch
 from collections import deque
-import time
 import gc
 
 def train(project, env, prop_type=''):
@@ -23,7 +22,6 @@ def train(project, env, prop_type=''):
     
     try:
         for episode in range(project.command_line_arguments['num_episodes']):
-            start_time = time.time()
             state = env.reset()
             last_max_steps_states.append(state)
             episode_reward = 0
@@ -32,7 +30,6 @@ def train(project, env, prop_type=''):
                 if state.__class__.__name__ == 'int':
                     state = [state]
                 #print(project.command_line_arguments['deploy'])
-                
                 action = project.agent.select_action(state, project.command_line_arguments['deploy'])
                 step_counter +=1
                 next_state, reward, terminal, info = env.step(action)
@@ -66,13 +63,13 @@ def train(project, env, prop_type=''):
                     if (all_property_results[-1] == min(all_property_results) and prop_type == "min_prop") or (all_property_results[-1] == max(all_property_results) and prop_type == "max_prop"):
                         if project.command_line_arguments['deploy']==False:
                             project.save()
+    
                     project.mlflow_bridge.log_property(all_property_results[-1], 'Property Result', episode)
                 else:
                     mdp_reward_result = None
                 print(episode, "Episode\tReward", episode_reward, '\tAverage Reward', reward_of_sliding_window, "\tLast Property Result:", mdp_reward_result)
             else:
                 # Only log reward
-                post_processing_start_time = time.time()
                 all_episode_rewards.append(episode_reward)
                 project.mlflow_bridge.log_reward(all_episode_rewards[-1], episode)
                 reward_of_sliding_window = np.mean(list(all_episode_rewards))

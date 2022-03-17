@@ -144,6 +144,7 @@ class StormBridge:
         if action_name not in current_available_actions:
             action_name = current_available_actions[0]
             penalty = -self.wrong_action_penalty
+        
 
         data = self.simulator.step(action_name)
         self._state = str(data[0])
@@ -200,6 +201,5 @@ class StormBridge:
         # Mapping and deleting disabled features
         state = self.state_mapper.map(state)
         state = np.array(state, dtype=np.int32)
-        
         assert isinstance(state, np.ndarray)
         return state

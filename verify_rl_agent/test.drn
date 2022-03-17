@@ -1,0 +1,318 @@
+// Exported by storm
+// Original model type: MDP
+@type: MDP
+@parameters
+
+@reward_models
+
+@nr_states
+53
+@nr_choices
+53
+@model
+state 0 init
+//[buy_price=3	& sell_price=2	& capital=5	& stocks=0	& last_action_price=0]
+	action HOLD
+		0 : 0.25
+		1 : 0.375
+		2 : 0.375
+state 1
+//[buy_price=4	& sell_price=3	& capital=5	& stocks=0	& last_action_price=0]
+	action HOLD
+		0 : 0.375
+		1 : 0.25
+		3 : 0.375
+state 2
+//[buy_price=2	& sell_price=1	& capital=5	& stocks=0	& last_action_price=0]
+	action HOLD
+		0 : 0.375
+		2 : 0.25
+		4 : 0.375
+state 3
+//[buy_price=5	& sell_price=4	& capital=5	& stocks=0	& last_action_price=0]
+	action HOLD
+		1 : 0.375
+		3 : 0.25
+		5 : 0.375
+state 4
+//[buy_price=1	& sell_price=0	& capital=5	& stocks=0	& last_action_price=0]
+	action BUY
+		6 : 0.375
+		7 : 0.625
+state 5
+//[buy_price=6	& sell_price=5	& capital=5	& stocks=0	& last_action_price=0]
+	action HOLD
+		3 : 0.375
+		5 : 0.25
+		8 : 0.375
+state 6
+//[buy_price=2	& sell_price=1	& capital=0	& stocks=5	& last_action_price=1]
+	action HOLD
+		6 : 0.25
+		7 : 0.375
+		9 : 0.375
+state 7
+//[buy_price=1	& sell_price=0	& capital=0	& stocks=5	& last_action_price=1]
+	action HOLD
+		6 : 0.375
+		7 : 0.625
+state 8
+//[buy_price=7	& sell_price=6	& capital=5	& stocks=0	& last_action_price=0]
+	action HOLD
+		5 : 0.375
+		8 : 0.25
+		10 : 0.375
+state 9
+//[buy_price=3	& sell_price=2	& capital=0	& stocks=5	& last_action_price=1]
+	action SELL
+		11 : 0.25
+		12 : 0.375
+		13 : 0.375
+state 10
+//[buy_price=8	& sell_price=7	& capital=5	& stocks=0	& last_action_price=0]
+	action HOLD
+		8 : 0.375
+		10 : 0.25
+		14 : 0.375
+state 11
+//[buy_price=4	& sell_price=3	& capital=10	& stocks=0	& last_action_price=2]
+	action HOLD
+		11 : 0.25
+		12 : 0.375
+		15 : 0.375
+state 12
+//[buy_price=3	& sell_price=2	& capital=10	& stocks=0	& last_action_price=2]
+	action HOLD
+		11 : 0.375
+		12 : 0.25
+		13 : 0.375
+state 13
+//[buy_price=2	& sell_price=1	& capital=10	& stocks=0	& last_action_price=2]
+	action HOLD
+		12 : 0.375
+		13 : 0.25
+		16 : 0.375
+state 14
+//[buy_price=9	& sell_price=8	& capital=5	& stocks=0	& last_action_price=0]
+	action HOLD
+		10 : 0.375
+		14 : 0.25
+		17 : 0.375
+state 15
+//[buy_price=5	& sell_price=4	& capital=10	& stocks=0	& last_action_price=2]
+	action HOLD
+		11 : 0.375
+		15 : 0.25
+		18 : 0.375
+state 16
+//[buy_price=1	& sell_price=0	& capital=10	& stocks=0	& last_action_price=2]
+	action BUY
+		19 : 0.375
+		20 : 0.625
+state 17
+//[buy_price=10	& sell_price=9	& capital=5	& stocks=0	& last_action_price=0]
+	action HOLD
+		14 : 0.375
+		17 : 0.25
+		21 : 0.375
+state 18
+//[buy_price=6	& sell_price=5	& capital=10	& stocks=0	& last_action_price=2]
+	action HOLD
+		15 : 0.375
+		18 : 0.25
+		22 : 0.375
+state 19
+//[buy_price=2	& sell_price=1	& capital=0	& stocks=10	& last_action_price=1]
+	action HOLD
+		19 : 0.25
+		20 : 0.375
+		23 : 0.375
+state 20
+//[buy_price=1	& sell_price=0	& capital=0	& stocks=10	& last_action_price=1]
+	action HOLD
+		19 : 0.375
+		20 : 0.625
+state 21
+//[buy_price=10	& sell_price=10	& capital=5	& stocks=0	& last_action_price=0]
+	action HOLD
+		21 : 0.625
+		24 : 0.375
+state 22
+//[buy_price=7	& sell_price=6	& capital=10	& stocks=0	& last_action_price=2]
+	action HOLD
+		18 : 0.375
+		22 : 0.25
+		25 : 0.375
+state 23
+//[buy_price=3	& sell_price=2	& capital=0	& stocks=10	& last_action_price=1]
+	action HOLD
+		19 : 0.375
+		23 : 0.25
+		26 : 0.375
+state 24
+//[buy_price=9	& sell_price=9	& capital=5	& stocks=0	& last_action_price=0]
+	action HOLD
+		21 : 0.375
+		24 : 0.25
+		27 : 0.375
+state 25
+//[buy_price=8	& sell_price=7	& capital=10	& stocks=0	& last_action_price=2]
+	action HOLD
+		22 : 0.375
+		25 : 0.25
+		28 : 0.375
+state 26
+//[buy_price=4	& sell_price=3	& capital=0	& stocks=10	& last_action_price=1]
+	action HOLD
+		23 : 0.375
+		26 : 0.25
+		29 : 0.375
+state 27
+//[buy_price=8	& sell_price=8	& capital=5	& stocks=0	& last_action_price=0]
+	action HOLD
+		24 : 0.375
+		27 : 0.25
+		30 : 0.375
+state 28
+//[buy_price=9	& sell_price=8	& capital=10	& stocks=0	& last_action_price=2]
+	action HOLD
+		25 : 0.375
+		28 : 0.25
+		31 : 0.375
+state 29
+//[buy_price=5	& sell_price=4	& capital=0	& stocks=10	& last_action_price=1]
+	action HOLD
+		26 : 0.375
+		29 : 0.25
+		32 : 0.375
+state 30
+//[buy_price=7	& sell_price=7	& capital=5	& stocks=0	& last_action_price=0]
+	action HOLD
+		27 : 0.375
+		30 : 0.25
+		33 : 0.375
+state 31
+//[buy_price=10	& sell_price=9	& capital=10	& stocks=0	& last_action_price=2]
+	action HOLD
+		28 : 0.375
+		31 : 0.25
+		34 : 0.375
+state 32
+//[buy_price=6	& sell_price=5	& capital=0	& stocks=10	& last_action_price=1]
+	action HOLD
+		29 : 0.375
+		32 : 0.25
+		35 : 0.375
+state 33
+//[buy_price=6	& sell_price=6	& capital=5	& stocks=0	& last_action_price=0]
+	action HOLD
+		30 : 0.375
+		33 : 0.25
+		36 : 0.375
+state 34
+//[buy_price=10	& sell_price=10	& capital=10	& stocks=0	& last_action_price=2]
+	action HOLD
+		34 : 0.625
+		37 : 0.375
+state 35
+//[buy_price=7	& sell_price=6	& capital=0	& stocks=10	& last_action_price=1]
+	action SELL
+		38 : 0.25
+		39 : 0.375
+		40 : 0.375
+state 36
+//[buy_price=5	& sell_price=5	& capital=5	& stocks=0	& last_action_price=0]
+	action HOLD
+		33 : 0.375
+		36 : 0.25
+		41 : 0.375
+state 37
+//[buy_price=9	& sell_price=9	& capital=10	& stocks=0	& last_action_price=2]
+	action HOLD
+		34 : 0.375
+		37 : 0.25
+		42 : 0.375
+state 38 success
+//[buy_price=8	& sell_price=7	& capital=50	& stocks=0	& last_action_price=6]
+	action __NOLABEL__
+		38 : 1
+state 39 success
+//[buy_price=7	& sell_price=6	& capital=50	& stocks=0	& last_action_price=6]
+	action __NOLABEL__
+		39 : 1
+state 40 success
+//[buy_price=6	& sell_price=5	& capital=50	& stocks=0	& last_action_price=6]
+	action __NOLABEL__
+		40 : 1
+state 41
+//[buy_price=4	& sell_price=4	& capital=5	& stocks=0	& last_action_price=0]
+	action HOLD
+		36 : 0.375
+		41 : 0.25
+		43 : 0.375
+state 42
+//[buy_price=8	& sell_price=8	& capital=10	& stocks=0	& last_action_price=2]
+	action HOLD
+		37 : 0.375
+		42 : 0.25
+		44 : 0.375
+state 43
+//[buy_price=3	& sell_price=3	& capital=5	& stocks=0	& last_action_price=0]
+	action HOLD
+		41 : 0.375
+		43 : 0.25
+		45 : 0.375
+state 44
+//[buy_price=7	& sell_price=7	& capital=10	& stocks=0	& last_action_price=2]
+	action HOLD
+		42 : 0.375
+		44 : 0.25
+		46 : 0.375
+state 45
+//[buy_price=2	& sell_price=2	& capital=5	& stocks=0	& last_action_price=0]
+	action HOLD
+		43 : 0.375
+		45 : 0.25
+		47 : 0.375
+state 46
+//[buy_price=6	& sell_price=6	& capital=10	& stocks=0	& last_action_price=2]
+	action HOLD
+		44 : 0.375
+		46 : 0.25
+		48 : 0.375
+state 47
+//[buy_price=1	& sell_price=1	& capital=5	& stocks=0	& last_action_price=0]
+	action HOLD
+		4 : 0.375
+		45 : 0.375
+		47 : 0.25
+state 48
+//[buy_price=5	& sell_price=5	& capital=10	& stocks=0	& last_action_price=2]
+	action HOLD
+		46 : 0.375
+		48 : 0.25
+		49 : 0.375
+state 49
+//[buy_price=4	& sell_price=4	& capital=10	& stocks=0	& last_action_price=2]
+	action HOLD
+		48 : 0.375
+		49 : 0.25
+		50 : 0.375
+state 50
+//[buy_price=3	& sell_price=3	& capital=10	& stocks=0	& last_action_price=2]
+	action HOLD
+		49 : 0.375
+		50 : 0.25
+		51 : 0.375
+state 51
+//[buy_price=2	& sell_price=2	& capital=10	& stocks=0	& last_action_price=2]
+	action HOLD
+		50 : 0.375
+		51 : 0.25
+		52 : 0.375
+state 52
+//[buy_price=1	& sell_price=1	& capital=10	& stocks=0	& last_action_price=2]
+	action HOLD
+		16 : 0.375
+		51 : 0.375
+		52 : 0.25

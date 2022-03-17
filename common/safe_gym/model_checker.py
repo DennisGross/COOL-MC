@@ -160,6 +160,7 @@ class ModelChecker():
             # State Abstraction
             if self.m_abstraction_manager.is_active:
                 state = self.m_abstraction_manager.preprocess_state(state)
+            
 
             # Check if selected action is available..
             # if not set action to the first available action
@@ -198,7 +199,7 @@ class ModelChecker():
         # print(properties[0])
         model_checking_start_time = time.time()
         result = stormpy.model_checking(model, properties[0])
-
+        stormpy.export_to_drn(model,"test.drn")
         initial_state = model.initial_states[0]
         #print('Result for initial state', result.at(initial_state))
         mdp_reward_result = result.at(initial_state)

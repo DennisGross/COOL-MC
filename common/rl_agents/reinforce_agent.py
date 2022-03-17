@@ -33,7 +33,7 @@ class Policy(nn.Module):
         probs = self.forward(state).cpu()
         m = Categorical(probs)
         action = m.sample()
-        return action.item(), m.log_prob(action)
+        return action.item(), m.log_prob(action), int(torch.argmax(probs))
 
     def save_checkpoint(self, file_name : str):
         """Save model.
@@ -62,9 +62,13 @@ class ReinforceAgent(Agent):
         
 
     def select_action(self, state : np.ndarray, deploy : bool =False):
-        action_index, log_prob = self.policy.act(state)
-        self.saved_log_probs.append(log_prob)
-        return action_index
+
+        action_index, log_prob, max_action = self.policy.act(state)
+        if deploy:
+            return max_action
+        else:
+            self.saved_log_probs.append(log_prob)
+            return action_index
         
 
     def store_experience(self, state  : np.ndarray, action : int, reward : float, next_state : np.ndarray, terminal : bool):
