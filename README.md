@@ -16,7 +16,7 @@ The general workflow of our approach is as follows. First, we model the RL envir
 7. Example 6 (Stock Market)
 8. Benchmarks
 9. Web Interface
-10. Limitations
+10. Model Checking Times and Limitations
 11. PRISM Modelling Tips
 12. RL Agent Training
 13. COOL-MC Command Line Arguments
@@ -172,6 +172,8 @@ We trained RL policies in the taxi (transporter.prism), collision avoidance (avo
 
 ## Model Checking Times and Limitations
 All experiments were executed on a NVIDIA GeForce GTX 1060 Mobile GPU, 8 GB RAM, and an Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz x 12.
+
+In the following table, we list the model-building and model-checking times for different trained policies.
 
 | Environment    | Constants                                                                        | Property Query                        | Property Result | Model Size | Model Building Time (s) | Model Checking Time (s) |
 |----------------|----------------------------------------------------------------------------------|---------------------------------------|--------|------------|-------------------------|-------------------------|
