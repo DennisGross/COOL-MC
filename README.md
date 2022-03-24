@@ -170,8 +170,18 @@ We trained RL policies in the taxi (transporter.prism), collision avoidance (avo
 ## Web-Interface
 `bash start_ui.sh` starts the MLFlow server to analyze the RL training process (http://hostname:5000).
 
-## Limitations
+## Model Checking Times and Limitations
 All experiments were executed on a NVIDIA GeForce GTX 1060 Mobile GPU, 8 GB RAM, and an Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz x 12.
+
+| Environment    | Constants                                                                        | Property Query                        | Property Result | Model Size | Model Building Time (s) | Model Checking Time (s) |
+|----------------|----------------------------------------------------------------------------------|---------------------------------------|--------|------------|-------------------------|-------------------------|
+| Taxi with Fuel | MAX_JOBS=2,MAX_FUEL=10                                                           | P=? [F "empty"]                       | 0      | 252        | 3.3                     | 0                       |
+| Taxi with Fuel | MAX_JOBS=2,MAX_FUEL=10                                                           | P=? [F jobs_done=2]                   | 1      | 252        | 3                       | 0                       |
+| Avoid          | xMax=4,yMax=4,slickness=0                                                        | P=? [F<=100 COLLISION=true]           | 0      | 15133      | 28                      | 0.42                    |
+| Avoid          | xMax=4,yMax=4,slickness=0                                                        | P=? [F<=200 COLLISION=true]           | 0      | 15133      | 28                      | 0.5                     |
+| Stock Market   |                                                                                  | P=? [F<1000 "bankruptcy"]             | 0      | 130        | 0.2                     | 0                       |
+| Smart Grid     | max_consumption=20,renewable_limit=19,non_renewable_limit=16,grid_upper_bound=25 | Pmin=? [F<=1000 TOO_MUCH_ENERGY=true] | 0.99   | 1152       | 3                       | 0.02                    |
+
 
 COOL-MC needs more time to build the model while using less memory than PRISM/Storm.
 The reason for the performance bottleneck is the iterative building of the induced DTMCs.

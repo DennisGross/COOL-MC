@@ -184,6 +184,7 @@ class ModelChecker():
             assert isinstance(cond1, bool)
             return cond1
 
+        model_building_start = time.time()
         simulator = stormpy.simulator.create_simulator(prism_program)
         simulator.set_action_mode(
             stormpy.simulator.SimulatorActionMode.GLOBAL_NAMES)
@@ -193,12 +194,16 @@ class ModelChecker():
                                                             permissive_policy))
         model = constructor.build()
         model_size = len(model.states)
+        print("Model Building Time:", time.time()-model_building_start)
         # print(model)
         # print(formula_str)
-        properties = stormpy.parse_properties(formula_str, prism_program)
-        # print(properties[0])
         model_checking_start_time = time.time()
+        properties = stormpy.parse_properties(formula_str, prism_program)
+
+        
         result = stormpy.model_checking(model, properties[0])
+        print("Model Checking Time:", time.time()-model_checking_start_time)
+        print("Model Size:", model_size)
         stormpy.export_to_drn(model,"test.drn")
         initial_state = model.initial_states[0]
         #print('Result for initial state', result.at(initial_state))
