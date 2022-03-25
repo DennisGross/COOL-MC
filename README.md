@@ -197,7 +197,18 @@ We can model check the following command with COOL-MC, while it is not possible 
 
 With our trained policy, we got a property result of running into an object:
 
-`python cool_mc.py --parent_run_id=02462a111bf9436d8bcce71a6334d35b --task=rl_model_checking --project_name="Collision Avoidance" --constant_definitions "xMax=9,yMax=9,slickness=0.1" --prism_file_path="avoid.prism" --prop="T=? [F COLLISION=true]"`
+`python cool_mc.py --task=safe_training --project_name="Avoid Example" --rl_algorithm=dqn_agent --prism_file_path="avoid.prism" --constant_definitions="xMax=9,yMax=9,slickness=0.1" --prop="" --reward_flag=1`
+
+`python cool_mc.py --parent_run_id=a7caa1e60d5e44d583822433c04d902b --task=rl_model_checking --project_name="Avoid Example" --constant_definitions "xMax=9,yMax=9,slickness=0.1" --prism_file_path="avoid.prism" --prop="T=? [F COLLISION=true]"`
+
+T=? [F COLLISION=true] : 300.4289110398155
+
+Model Size 40000
+
+Model Building Time: 95.92452359199524
+
+Model Checking Time: 2.691767454147339
+
 
 
 

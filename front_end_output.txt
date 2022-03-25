@@ -1,4 +1,4 @@
-Project ID: 4
-Run ID: vmoiwn23dvyhk1o3ph7q76or27l3ae7t0bf31eilh8
-Property Query: Pmin=? [F<=1000 TOO_MUCH_ENERGY=true]
-Property Result: 0.99323184511043
+Project ID: 5
+Run ID: 9n9pity8qyq7tfajz8o5u3xfxkpyc1qh8fi94c8oze
+Property Query: Tmin=? [F COLLISION=true]
+Property Result: 300.4289110398155
