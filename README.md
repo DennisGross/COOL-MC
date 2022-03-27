@@ -65,6 +65,9 @@ If you are not familiar with PRISM/Storm, here are some references:
 ## Example 1 (Frozen Lake)
 FrozenLake is a commonly used OpenAI Gym benchmark, where 
 the agent has to reach the goal (frisbee) on a frozen lake. The movement direction of the agent is uncertain and only depends in $33.33\%$ of the cases on the chosen direction. In $66.66\%$ of the cases, the movement is noisy.
+
+![frozen_lake_mdp](https://github.com/DennisGross/COOL-MC/blob/main/documentation/images/frozen_lake.png)
+
 To demonstrate our tool, we are going to train a RL policy for the OpenAI Gym Frozen Lake environment, verify it, and retrain it in the PRISM environment.
 The following command trains the RL policy in the OpenAI Gym FrozenLake-v0 environment.
 
@@ -349,3 +352,4 @@ For testing the installation, follow the steps [here](https://moves-rwth.github.
 0. `cd $COOL_MC`
 1. `pip install -r requirements.txt`
 2. `mkdir projects`
+

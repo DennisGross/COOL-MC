@@ -1,4 +1,4 @@
-Project ID: 1
-Run ID: b2uhtjp0gntfy7ndu7o6dd0pt47tk6ti3c77wo4w7c
-Property Query: Pmin=? [F WATER=true]
-Property Result: 1.0
+Project ID: 3
+Run ID: 6nzamaemondbs87umxieqnwxcg82lsae4bnbfkg6gm
+Property Query: Pmin=? [F<1000 "bankruptcy"]
+Property Result: 0.0
