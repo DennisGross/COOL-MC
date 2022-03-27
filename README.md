@@ -6,6 +6,14 @@ We are convinced that the basis provided by the tool help those interested in co
 
 ![workflow](https://github.com/DennisGross/COOL-MC/blob/main/documentation/images/workflow_diagram.png)
 
+The following diagram shows the major components of the tool and their interactions.
+Policy Training and Verification allows the training and verification of a
+trained policy for a given PRISM environment.
+Policy Training and Deployment allows the training and deployment of a policy for an OpenAI gym environment.
+The Experiment component manages the data flow between the components and stores the trained policy, the used hyperparameters, and further assets.
+
+
+![components](https://github.com/DennisGross/COOL-MC/blob/main/documentation/images/components.png)
 
 ##### Content
 1. Getting Started with COOL-MC
@@ -72,7 +80,7 @@ Command Line Arguments:
 
 It is also possible to plot the property results over a range of PRISM constant definitions. This is useful, when we want to get a overview of the trained RL policy. In the following command, we plot from different frozen lake agent startpositions 0-15 (stepsize 1, 16 excluded) the probability of falling into the water.
 
-`python cool_mc.py --project_name "Frozen Lake Example" --parent_run_id=27f2bbe444754ac0bbbce1326a410419 --task rl_model_checking --prism_file_path="frozen_lake3-v1.prism" --constant_definitions="control=0.33,start_position=[0;1;16]" --prop="Pmin=? [F WATER=true]"`
+`python cool_mc.py --project_name "Frozen Lake Example" --parent_run_id=27f2bbe444754ac0bbbce1326a410419 --task rl_model_checking --prism_file_path="frozen_lake3-v1.prism" --constant_definitions="control=0.33,start_position=[0;1;16]" --prop="P=? [F WATER=true]"`
 
 `--constant_definitions="control=0.33,start_position=[0;1;16]"` calculates the property results from `start_position=0` up to `start_position=15` with a stepsize of `1`.
 
