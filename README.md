@@ -66,7 +66,6 @@ If you are not familiar with PRISM/Storm, here are some references:
 FrozenLake is a commonly used OpenAI Gym benchmark, where 
 the agent has to reach the goal (frisbee) on a frozen lake. The movement direction of the agent is uncertain and only depends in $33.33\%$ of the cases on the chosen direction. In $66.66\%$ of the cases, the movement is noisy.
 
-![frozen_lake_mdp](https://github.com/DennisGross/COOL-MC/blob/main/documentation/images/frozen_lake.png)
 
 To demonstrate our tool, we are going to train a RL policy for the OpenAI Gym Frozen Lake environment, verify it, and retrain it in the PRISM environment.
 The following command trains the RL policy in the OpenAI Gym FrozenLake-v0 environment.
@@ -109,6 +108,11 @@ If we are not satisfied with the property result, we can retrain the RL policy v
 - `task=safe_training` specifies the safe training task which allows the RL training in the PRISM environment.
 - `prop="Pmin=? [F WATER=true]` tracks the agents probability of falling into the water. `Pmin` also specifies that COOL-MC saves only RL agents which lower probabilities of falling into the water.
 - `reward_flag=1` uses rewards instead of penalties.
+
+The following frozen-lake temperature graph shows from each state s the probability for a trained policy of reaching the frisbee at state 15.
+
+![frozen_lake](https://github.com/DennisGross/COOL-MC/blob/main/documentation/images/frozen_lake.png)
+
 
 ## Example 2 (Taxi with Fuel)
 The taxi agent has to pick up passengers and transport them to their destination without running out of fuel. The environment terminates as soon as the taxi agent does the predefined number of jobs. After the job is done, a new guest spawns randomly at one of the predefined locations.
