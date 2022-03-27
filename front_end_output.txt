@@ -1,4 +1,4 @@
 Project ID: 5
-Run ID: 9n9pity8qyq7tfajz8o5u3xfxkpyc1qh8fi94c8oze
+Run ID: ewxi5bf3u5ck2lirxx5n2f27ltw8wmldidaxrw1kpp
 Property Query: Tmin=? [F COLLISION=true]
-Property Result: 300.4289110398155
+Property Result: 291.1856317546715

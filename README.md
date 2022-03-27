@@ -1,7 +1,8 @@
 # COOL-MC
-COOL-MC provides a variety of environments for reinforcement learning (RL). It is an interface between Model Checking and Reinforcement Learning.
-In particular, it extends the OpenAI Gym to support RL training on PRISM environments and allows verification of the trained RL policies via the Storm model checker.
+COOL-MC provides a framework for connecting state-of-the-art (deep) reinforcement learning (RL) with modern model-checking.
+In particular, COOL-MC extends the OpenAI Gym to support RL training on PRISM environments and allows verification of the trained RL policies via the Storm model checker.
 The general workflow of our approach is as follows. First, we model the RL environment as a MDP in PRISM. Second, we train our RL policy in the PRISM environment or, if available, in the matching OpenAI Gym environment. Third, we verify the trained RL policy via the Storm model checker. Depending on the model checking outcome, we retrain the RL policy or deploy it.
+We are convinced that the basis provided by the tool help those interested in connecting the areas of verification and RL with the proper framework to create new approaches in an effective and reproducible way. 
 
 ![workflow](https://github.com/DennisGross/COOL-MC/blob/main/documentation/images/workflow_diagram.png)
 
@@ -191,25 +192,21 @@ If we disregard model-building time, we receive roughly the same model-checking 
 Our tool generates near-optimal policies w.r.t. to the different properties and builds smaller DTMCs.
 Therefore, one major advantage of our tool is that we can model check larger MDPs as with PRISM/Storm.
 
-We can model check the following command with COOL-MC, while it is not possible on our machine with Storm:
+We can model check the following command with COOL-MC, while it is not possible on our machine with Storm (1077628 states and 118595768 transitions):
 
 `storm --prism "avoid.prism" --constants "xMax=9,yMax=9,slickness=0.1" --prop "Tmin=? [F COLLISION=true]"`
 
-With our trained policy, we got a property result of running into an object:
+ If, however, we apply the trained policy, the induced DTMC has 100000 states/2574532 transitions, clearly within reach for Storm, while the result may not be optimal:
 
-`python cool_mc.py --task=safe_training --project_name="Avoid Example" --rl_algorithm=dqn_agent --prism_file_path="avoid.prism" --constant_definitions="xMax=9,yMax=9,slickness=0.1" --prop="" --reward_flag=1`
+`python cool_mc.py --task=safe_training --project_name="Avoid Example" --rl_algorithm=dqn_agent --prism_file_path="avoid.prism" --constant_definitions="xMax=9,yMax=9,slickness=0.1" --prop="" --reward_flag=1 --num_episodes=2 -seed=128`
 
 `python cool_mc.py --parent_run_id=a7caa1e60d5e44d583822433c04d902b --task=rl_model_checking --project_name="Avoid Example" --constant_definitions "xMax=9,yMax=9,slickness=0.1" --prism_file_path="avoid.prism" --prop="T=? [F COLLISION=true]"`
 
-T=? [F COLLISION=true] : 300.4289110398155
-
-Model Size 40000
+T=? [F COLLISION=true] : 291.1856317546715
 
 Model Building Time: 95.92452359199524
 
 Model Checking Time: 2.691767454147339
-
-
 
 
 

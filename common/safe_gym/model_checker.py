@@ -203,7 +203,8 @@ class ModelChecker():
         
         result = stormpy.model_checking(model, properties[0])
         print("Model Checking Time:", time.time()-model_checking_start_time)
-        print("Model Size:", model_size)
+        print("Model Size:", model.nr_states)
+        print("Transitions", model.nr_transitions)
         stormpy.export_to_drn(model,"test.drn")
         initial_state = model.initial_states[0]
         #print('Result for initial state', result.at(initial_state))
