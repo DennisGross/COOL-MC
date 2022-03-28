@@ -49,8 +49,9 @@ reward to discourage choosing this action.
 We assume that you have docker installed and that you run the following commands in the root of this repository:
 1. Download the docker container [here](https://drive.google.com/file/d/10C3PkC6uU0M-FEY58zeVOER8CK9zUO3L/view?usp=sharing) (not up to date).
 2. Load the docker container: `docker load --input coolmc.tar`
-3. Create a project folder: `mkdir projects`
-4. Run the docker container: `docker run --user mycoolmc  -v "$(pwd)/prism_files":"/home/mycoolmc/prism_files" -it coolmc bash`
+3. Create the project folder: `bash init_docker_workspace.sh`
+4. Run the docker container: `docker run --user mycoolmc  -v "$(pwd)/prism_files":"/home/mycoolmc/prism_files" -v "$(pwd)/mlruns":"/home/mycoolmc/mlruns" -it coolmc bash`
+
 
 Please make sure that you either run COOL-MC in on your machine OR in the docker container. Otherwise, it may lead to folder permission problems.
 Please also make sure that you use the `python` default alias.
@@ -197,7 +198,9 @@ To replicate the benchmark experiments of our paper, run:
 We trained RL policies in the taxi (transporter.prism), collision avoidance (avoid.prism), and frozen lake (frozen_lake3-v1.prism) environment.
 
 ## Web-Interface
-`bash start_ui.sh` starts the MLFlow server to analyze the RL training process (http://hostname:5000).
+`mlflow server -h 0.0.0.0 &` starts the MLFlow server in the background to analyze the RL training process (http://hostname:5000).
+
+To get the IP-address of the docker container, use `ip add | grep global`.
 
 ## Model Checking Times and Limitations
 All experiments were executed on a NVIDIA GeForce GTX 1060 Mobile GPU, 8 GB RAM, and an Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz x 12.

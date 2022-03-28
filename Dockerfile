@@ -49,4 +49,6 @@ COPY start_ui.sh .
 
 RUN chmod -R 777 /home/mycoolmc
 
+RUN apt-get install -y iproute2
+
 ENTRYPOINT /bin/bash
