@@ -47,7 +47,7 @@ reward to discourage choosing this action.
 
 ## Getting Started with COOL-MC
 We assume that you have docker installed and that you run the following commands in the root of this repository:
-1. Download the docker container [here](https://www.dropbox.com/s/2pduk8n0djdkyt0/coolmc.tar?dl=0) (not up to date).
+1. Download the docker container [here](https://www.dropbox.com/s/2pduk8n0djdkyt0/coolmc.tar?dl=0).
 2. Load the docker container: `docker load --input coolmc.tar`
 3. Docker workspace initialization (if you want to save the trained policies permanently on your local machine): `bash init_docker_workspace.sh`
 4. Run the docker container: With docker workspace initialization: `docker run --user mycoolmc  -v "$(pwd)/prism_files":"/home/mycoolmc/prism_files" -v "$(pwd)/mlruns":"/home/mycoolmc/mlruns" -it coolmc bash`. Without docker workspace initialization: `docker run --user mycoolmc  -v "$(pwd)/prism_files":"/home/mycoolmc/prism_files" -it coolmc bash`
@@ -196,6 +196,8 @@ To replicate the benchmark experiments of our paper, run:
 `mlflow run unit_testing --no-conda -e test_experiments`
 
 We trained RL policies in the taxi (transporter.prism), collision avoidance (avoid.prism), and frozen lake (frozen_lake3-v1.prism) environment.
+
+Furthermore, we also support the PRISM-MDPs of the ![Quantitative Verification Benchmark Set](https://qcomp.org/benchmarks/index.html) as long as they contain reward functions.
 
 ## Web-Interface
 `mlflow server -h 0.0.0.0 &` starts the MLFlow server in the background to analyze the RL training process (http://hostname:5000).
