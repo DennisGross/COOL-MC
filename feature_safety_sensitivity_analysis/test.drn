@@ -1,0 +1,20 @@
+// Exported by storm
+// Original model type: MDP
+@type: MDP
+@parameters
+
+@reward_models
+
+@nr_states
+2
+@nr_choices
+2
+@model
+state 0 init
+//[!done	& !passenger	& x=2	& y=2	& fuel=10	& jobs_done=0	& passenger_loc_x=0	& passenger_loc_y=4	& passenger_dest_x=0	& passenger_dest_y=0]
+	action WEST
+		1 : 1
+state 1 deadlock
+//[!done	& !passenger	& x=1	& y=2	& fuel=9	& jobs_done=0	& passenger_loc_x=0	& passenger_loc_y=4	& passenger_dest_x=0	& passenger_dest_y=0]
+	action __NOLABEL__
+		1 : 1

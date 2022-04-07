@@ -167,7 +167,7 @@ class AbstractionManager:
         """
         assert isinstance(state_var_mapper, StateMapper)
         assert isinstance(abstraction_input, str)
-        self.is_active = (abstraction_input != '')
+        self.is_active = self.__is_active(abstraction_input)# HASHTAG is for random input definition
         self.state_var_mapper = state_var_mapper.mapper
         self.fixed_state = fixed_state
         if self.is_active:
@@ -186,6 +186,14 @@ class AbstractionManager:
             for i in range(len(self.astate_variables)):
                 self.astate_variables[i].set_idx(
                     self.state_var_mapper[self.astate_variables[i].name])
+
+    def __is_active(self, abstraction_input:str):
+        if len(abstraction_input)>0:
+            if abstraction_input[0]=="#":
+                return False
+            else:
+                return True
+        return False
 
     def preprocess_state(self, state: np.ndarray) -> np.ndarray:
         """Apply the abstraction on the state.

@@ -1,0 +1,90 @@
+// Exported by storm
+// Original model type: MDP
+@type: MDP
+@parameters
+
+@reward_models
+
+@nr_states
+15
+@nr_choices
+15
+@model
+state 0 init
+//[!done	& stack=0	& bureaucracy=0]
+	action WAIT
+		0 : 0.28
+		1 : 0.12
+		2 : 0.18
+		3 : 0.42
+state 1
+//[!done	& stack=0	& bureaucracy=1]
+	action WAIT
+		1 : 0.28
+		2 : 0.42
+		4 : 0.12
+		5 : 0.18
+state 2
+//[!done	& stack=1	& bureaucracy=1]
+	action WAIT
+		2 : 0.28
+		5 : 0.12
+		6 : 0.18
+		7 : 0.42
+state 3
+//[!done	& stack=1	& bureaucracy=0]
+	action WAIT
+		2 : 0.12
+		3 : 0.28
+		7 : 0.18
+		8 : 0.42
+state 4
+//[!done	& stack=0	& bureaucracy=2]
+	action WAIT
+		4 : 0.28
+		5 : 0.42
+		9 : 0.12
+		10 : 0.18
+state 5
+//[!done	& stack=1	& bureaucracy=2]
+	action WAIT
+		5 : 0.28
+		6 : 0.42
+		10 : 0.12
+		11 : 0.18
+state 6
+//[!done	& stack=2	& bureaucracy=2]
+	action WAIT
+		12 : 1
+state 7
+//[!done	& stack=2	& bureaucracy=1]
+	action WAIT
+		13 : 1
+state 8
+//[!done	& stack=2	& bureaucracy=0]
+	action WAIT
+		14 : 1
+state 9 "((bureaucracy = 3) = true)"
+//[!done	& stack=0	& bureaucracy=3]
+	action __NOLABEL__
+		9 : 1
+state 10 "((bureaucracy = 3) = true)"
+//[!done	& stack=1	& bureaucracy=3]
+	action __NOLABEL__
+		10 : 1
+state 11 "((bureaucracy = 3) = true)"
+//[!done	& stack=2	& bureaucracy=3]
+	action __NOLABEL__
+		11 : 1
+state 12
+//[done	& stack=2	& bureaucracy=2]
+	action WAIT
+		12 : 1
+state 13
+//[done	& stack=2	& bureaucracy=1]
+	action WAIT
+		13 : 1
+state 14
+//[done	& stack=2	& bureaucracy=0]
+	action WAIT
+		14 : 1

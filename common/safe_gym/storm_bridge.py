@@ -213,6 +213,7 @@ class StormBridge:
 
 
     def create_fixed_state(self, json_example: JsonContainerDouble, abstraction_input: str):
+        #print(json_example)
         iint32 = np.iinfo(np.int32)
         if abstraction_input.find("*")==-1:
             return None
@@ -228,4 +229,8 @@ class StormBridge:
                 target_state[k] = data[k]
         target_state = str(json.dumps(target_state))
         state = self.parse_state(target_state)
+        #print(self.parse_state(str(json_example)))
+        #print(state)
+        
+    
         return state

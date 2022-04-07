@@ -4,7 +4,7 @@ const int max_price=10;
 const int max_capital=50;
 const int max_stocks=10;
 const int INIT_CAPITAL = floor(max_capital/max_price);
-
+//buy_price=[1;10],sell_price=[0;10],capital=[0;50],stocks=[0;10],last_action_price=[0;10]
 
 module market
 	buy_price : [1..max_price] init 3;

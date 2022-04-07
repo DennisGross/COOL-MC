@@ -41,3 +41,9 @@ python cool_mc.py --project_name "experiments" --parent_run_id=646120bda7e44427b
 
 # Safety Importance
 python cool_mc.py --project_name "Taxi with Fuel Example" --parent_run_id=3b95314c5d834909bea22402356676b4 --task rl_model_checking --prism_file_path="transporter.prism" --constant_definitions="MAX_FUEL=10,MAX_JOBS=2" --prop="Pmax=? [F jobs_done=2]" --permissive_input="passenger=[1;1]"
+
+
+# Stock Market
+#dd7632749c1b48b5a6fa6ce4436d519e
+python cool_mc.py --task=safe_training --project_name="Stock Market Example" --rl_algorithm=dqn_agent --prism_file_path="stock_market.prism" --prop="Pmax=? [F \"success\"]" --reward_flag=1 --num_episodes=50000 --wrong_action_penalty=10 --seed=128 --layers=3 --neurons=128
+python cool_mc.py --parent_run_id=dd7632749c1b48b5a6fa6ce4436d519e --task=rl_model_checking --project_name="Stock Market Example" --prism_file_path="stock_market.prism" --prop="Pmin=? [F \"success\"]" --seed=128

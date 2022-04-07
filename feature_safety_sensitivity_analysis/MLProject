@@ -1,22 +1,46 @@
 name: feature_safety_sensitivity_analysis
 entry_points:
     main:
+        # Taxi Optimal: 8d138c9d14f04cb9ac45b8245b1ba83c (experiments)
+        # Avoid1: 95f5e75192bd4a5ea21f92270797ca6b (experiments)
+        # Avoid2: 97c730045ab543a0817d81b9526183f6 (experiments)
+        # Stock Market: dd7632749c1b48b5a6fa6ce4436d519e (Stock Market Example)
+        # Smart Grid: 0846996cc42743599f8c8ddb2b4d082b (experiments)
+        # NUMBERS3 f6217776c4c945cda342886addad6390 (experiments)
+        # NUMBERS2 654c7abd62374c8ca0d8f17655472f53 (experiments)
         parameters:
             project_name : {type: string, default: "experiments"}
-            parent_run_id : {type: string, default: "6f0c5c81d980451288cd02fed0092186"}
+            parent_run_id : {type: string, default: "8d138c9d14f04cb9ac45b8245b1ba83c"}
             # Model Checking Parameters
             prism_dir : {type: string, default: "../prism_files"}
-            prism_file_path : {type: string, default: "stock_market.prism"}
-            constant_definitions : {type: string, default: ""}
-            prop : {type: string, default: "Pmin=? [F \"bankruptcy\"]"}
+            prism_file_path : {type: string, default: "transporter.prism"}
+            # MAX_JOBS=2,MAX_FUEL=10
+            # xMax=4,yMax=4,slickness=0
+            # max_consumption=4,renewable_limit=3,non_renewable_limit=3,grid_upper_bound=2
+            # MAX_NUMBERS=3,MAX_STEPS=10,fixed_number1=3,fixed_number2=2,fixed_number3=2,fixed_number4=3
+            # MAX_NUMBERS=2,MAX_STEPS=7,fixed_number1=3,fixed_number2=2,fixed_number3=2,fixed_number4=3
+            constant_definitions : {type: string, default: "MAX_JOBS=2,MAX_FUEL=10"}
+
+            # Pmax=? [F \"empty\"]
+            # Pmax=? [F \"bankruptcy\"]
+            # Pmax=? [F<=100 \"collide\"]
+            # Pmax=? [F<=1000 IS_BLACKOUT=true]
+            # Pmax=? [F<=1000 TOO_MUCH_ENERGY=true]
+            prop : {type: string, default: "Pmax=? [F \"empty\"]"}
             permissive_input: {type: string, default: ""}
             disabled_features: {type: string, default: ""}
             # VAR=[LOW;STEP;MAX;METHOD], VAR=[LOW;STEP;MAX]
-            # ,x=[0;4],y=[0;4],obstacle1_x=[0;4],obstacle1_y=[0;4],obstacle2_x=[0;4],obstacle2_x=[0;4]
-            abstract_features: {type: string, default: ":fixed_state.json*last_action_price=[0;10],buy_price=[0;10],sell_price=[0;10],capital=[0;50],stocks=[0;10]"}
+            # bureaucracy=[0;3],stack=[0;2],done=[0;1]
+            # +capital=[0;50],buy_price=[1;10],sell_price=[0;10],stocks=[0;10],last_action_price=[0;10]
+            # x=[0;4],y=[0;4],obstacle1_x=[0;4],obstacle1_y=[0;4],obstacle2_x=[0;4],obstacle2_y=[0;4],done=[0;1]
+            # fuel=[0;10],x=[0;4],y=[0;4],passenger_loc_x=[0;4],passenger_loc_y=[0;4],passenger_dest_x=[0;4],passenger_dest_y=[0;4],passenger=[0;1],jobs_done=[0;2],done=[0;1]
+            # energy=[0;6],renewable=[0;3],non_renewable=[0;3],consumption=[0;4],blackout=[0;1]
+            # :number1=[0;3],number2=[0;2],number3=[0;2],number4=[0;3],step_counter=[0;10],done=[0;1]
+            abstract_features: {type: string, default: "#fuel=[0;10;0.6],x=[0;4;0.6],y=[0;4;0.6],passenger_loc_x=[0;4;0.6],passenger_loc_y=[0;4;0.6],passenger_dest_x=[0;4;0.6],passenger_dest_y=[0;4;0.6],passenger=[0;1;0.6],jobs_done=[0;2;0.6],done=[0;1;0.6]"}
             range_plotting: {type: float, default: 1}
+            seed: {type: float, default: 128}
 
 
         command: >-
-            python run.py --range_plotting={range_plotting} --abstract_features={abstract_features} --permissive_input={permissive_input} --disabled_features={disabled_features} --project_name={project_name} --parent_run_id={parent_run_id} --prism_dir={prism_dir} --prism_file_path={prism_file_path} --constant_definitions={constant_definitions} --prop={prop}
+            python run.py --seed={seed} --range_plotting={range_plotting} --abstract_features={abstract_features} --permissive_input={permissive_input} --disabled_features={disabled_features} --project_name={project_name} --parent_run_id={parent_run_id} --prism_dir={prism_dir} --prism_file_path={prism_file_path} --constant_definitions={constant_definitions} --prop={prop}
 

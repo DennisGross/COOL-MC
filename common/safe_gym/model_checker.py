@@ -11,6 +11,7 @@ from stormpy.storage.storage import SimpleValuation
 import common
 from common.safe_gym.permissive_manager import PermissiveManager
 from common.safe_gym.abstraction_manager import AbstractionManager
+from common.safe_gym.noise_manager import NoiseManager
 from common.safe_gym.state_mapper import StateMapper
 
 
@@ -35,6 +36,9 @@ class ModelChecker():
         self.m_permissive_manager = PermissiveManager(permissive_input, mapper)
         self.m_abstraction_manager = AbstractionManager(
             mapper, abstraction_input, fixed_state)
+        self.m_noise_manager = NoiseManager(mapper, abstraction_input)
+        
+
 
     def __get_clean_state_dict(self, state_valuation_json: JsonContainerRational,
                                example_json: str) -> dict:
@@ -157,9 +161,14 @@ class ModelChecker():
             state = self.__get_clean_state_dict(
                 state_valuation.to_json(), env.storm_bridge.state_json_example)
             state = self.__get_numpy_state(env, state)
+            
             # State Abstraction
             if self.m_abstraction_manager.is_active:
                 state = self.m_abstraction_manager.preprocess_state(state)
+
+            # Noise Input
+            if self.m_noise_manager.is_active:
+                state = self.m_noise_manager.preprocess_state(state)
 
             # Check if selected action is available..
             # if not set action to the first available action
@@ -202,6 +211,7 @@ class ModelChecker():
         initial_state = model.initial_states[0]
         #print('Result for initial state', result.at(initial_state))
         mdp_reward_result = result.at(initial_state)
+        stormpy.export_to_drn(model,"test.drn")
         # Update StateActionCollector
         assert isinstance(mdp_reward_result, float)
         assert isinstance(model_size, int)

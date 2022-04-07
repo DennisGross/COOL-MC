@@ -1,4 +1,4 @@
 Project ID: 2
-Run ID: y9p4fp9235gktotruvgvty7oq3pbkmhgdmmwvb835q
-Property Query: Pmin=? [F "bankruptcy"]
+Run ID: iet5jwacf4w6yt9x0g3tm2iclldovzcikzg4y5h70z
+Property Query: Pmax=? [F "empty"]
 Property Result: 0.0
