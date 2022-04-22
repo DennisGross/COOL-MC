@@ -200,9 +200,13 @@ We trained RL policies in the taxi (transporter.prism), collision avoidance (avo
 Furthermore, we also support the PRISM-MDPs of the ![Quantitative Verification Benchmark Set](https://qcomp.org/benchmarks/index.html) as long as they contain reward functions.
 
 ## Web-Interface
-`mlflow server -h 0.0.0.0 &` starts the MLFlow server in the background to analyze the RL training process (http://hostname:5000).
+COOL-MC provides a web interface to analyze the RL training process and the model-checking results.
+First, run `mlflow server -h 0.0.0.0 &` to start the MLFlow server in the background (http://DOCKERIP:5000).
 
-To get the IP-address of the docker container, use `ip add | grep global`.
+Second, get the IP address of the docker (DOCKERIP) container via `ip add | grep global`.
+
+Third, use your web browser on your local machine to access http://DOCKERIP:5000.
+
 
 ## Model Checking Times and Limitations
 All experiments were executed on a NVIDIA GeForce GTX 1060 Mobile GPU, 8 GB RAM, and an Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz x 12.
