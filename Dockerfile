@@ -44,6 +44,7 @@ COPY safe_gym_training safe_gym_training
 COPY unit_testing unit_testing
 COPY verify_rl_agent verify_rl_agent
 #COPY control_ui.py .
+COPY taxi_abstraction.json .
 COPY cool_mc.py .
 COPY start_ui.sh .
 

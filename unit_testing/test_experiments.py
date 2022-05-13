@@ -13,7 +13,7 @@ from common.tasks.openai_gym_training import *
 from common.tasks.verify_rl_agent import *
 from common.tasks.helper import *
 
-@pytest.mark.skip(reason="no way of currently testing this")
+#@pytest.mark.skip(reason="no way of currently testing this")
 def test_frozen_lake_agent_a():
     arg_parser = argparse.ArgumentParser(
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
@@ -247,7 +247,7 @@ def test_taxi_experiment_section_agent_c():
     arg_parser.add_argument('--deploy', help='Deploy Flag (', type=int,
                             default=0)       
                              
-    # Double DQN Agent
+
     arg_parser.add_argument('--layers', help='DummyAgent-Parameter: Which action should the dummy agent choose?', type=int,
                             default=4)
     arg_parser.add_argument('--neurons', help='DummyAgent-Parameter: Which action should the dummy agent choose?', type=int,
@@ -850,6 +850,7 @@ def test_taxi_experiment_section_agent_not_trained():
     result = run_verify_rl_agent(command_line_arguments)
     assert 1 == 1
 
+@pytest.mark.skip(reason="no way of currently testing this")
 def test_stock_market():
     import time
     start_time = time.time()

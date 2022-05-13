@@ -1,4 +1,4 @@
-Project ID: 3
-Run ID: 6nzamaemondbs87umxieqnwxcg82lsae4bnbfkg6gm
-Property Query: Pmin=? [F<1000 "bankruptcy"]
-Property Result: 0.0
+Project ID: 2
+Run ID: ggtdk20crskqee3pdynkt0oih8jziaft0g8t7drj70
+Property Query: Pmin=? [F OUT_OF_FUEL=true]
+Property Result: 1.0

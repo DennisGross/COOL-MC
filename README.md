@@ -47,7 +47,7 @@ reward to discourage choosing this action.
 
 ## Getting Started with COOL-MC
 We assume that you have docker installed and that you run the following commands in the root of this repository:
-1. Download the docker container [here](https://www.dropbox.com/s/2pduk8n0djdkyt0/coolmc.tar?dl=0).
+1. Download the docker container [here](https://www.dropbox.com/s/rrc4d7ooh803qlp/coolmc.tar?dl=0).
 2. Load the docker container: `docker load --input coolmc.tar`
 3. Docker workspace initialization (if you want to save the trained policies permanently on your local machine): `bash init_docker_workspace.sh`
 4. Run the docker container: With docker workspace initialization: `docker run --user mycoolmc  -v "$(pwd)/prism_files":"/home/mycoolmc/prism_files" -v "$(pwd)/mlruns":"/home/mycoolmc/mlruns" -it coolmc bash`. Without docker workspace initialization: `docker run --user mycoolmc  -v "$(pwd)/prism_files":"/home/mycoolmc/prism_files" -it coolmc bash`

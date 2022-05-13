@@ -6,125 +6,59 @@
 @reward_models
 
 @nr_states
-20
+13
 @nr_choices
-20
+13
 @model
 state 0 init
-//[buy_price=3	& sell_price=2	& capital=5	& stocks=0	& last_action_price=0]
-	action HOLD
-		0 : 0.25
-		1 : 0.375
-		2 : 0.375
+//[!done	& !passenger	& x=2	& y=2	& fuel=10	& jobs_done=0	& passenger_loc_x=0	& passenger_loc_y=4	& passenger_dest_x=0	& passenger_dest_y=0]
+	action WEST
+		1 : 1
 state 1
-//[buy_price=4	& sell_price=3	& capital=5	& stocks=0	& last_action_price=0]
-	action HOLD
-		0 : 0.375
-		1 : 0.25
-		3 : 0.375
+//[!done	& !passenger	& x=1	& y=2	& fuel=9	& jobs_done=0	& passenger_loc_x=0	& passenger_loc_y=4	& passenger_dest_x=0	& passenger_dest_y=0]
+	action WEST
+		2 : 1
 state 2
-//[buy_price=2	& sell_price=1	& capital=5	& stocks=0	& last_action_price=0]
-	action HOLD
-		0 : 0.375
-		2 : 0.25
-		4 : 0.375
+//[!done	& !passenger	& x=0	& y=2	& fuel=10	& jobs_done=0	& passenger_loc_x=0	& passenger_loc_y=4	& passenger_dest_x=0	& passenger_dest_y=0]
+	action WEST
+		3 : 1
 state 3
-//[buy_price=5	& sell_price=4	& capital=5	& stocks=0	& last_action_price=0]
-	action HOLD
-		1 : 0.375
-		3 : 0.25
-		5 : 0.375
+//[!done	& !passenger	& x=0	& y=2	& fuel=9	& jobs_done=0	& passenger_loc_x=0	& passenger_loc_y=4	& passenger_dest_x=0	& passenger_dest_y=0]
+	action WEST
+		4 : 1
 state 4
-//[buy_price=1	& sell_price=0	& capital=5	& stocks=0	& last_action_price=0]
-	action HOLD
-		2 : 0.375
-		4 : 0.625
+//[!done	& !passenger	& x=0	& y=2	& fuel=8	& jobs_done=0	& passenger_loc_x=0	& passenger_loc_y=4	& passenger_dest_x=0	& passenger_dest_y=0]
+	action WEST
+		5 : 1
 state 5
-//[buy_price=6	& sell_price=5	& capital=5	& stocks=0	& last_action_price=0]
-	action HOLD
-		3 : 0.375
-		5 : 0.25
-		6 : 0.375
+//[!done	& !passenger	& x=0	& y=2	& fuel=7	& jobs_done=0	& passenger_loc_x=0	& passenger_loc_y=4	& passenger_dest_x=0	& passenger_dest_y=0]
+	action WEST
+		6 : 1
 state 6
-//[buy_price=7	& sell_price=6	& capital=5	& stocks=0	& last_action_price=0]
-	action HOLD
-		5 : 0.375
-		6 : 0.25
-		7 : 0.375
+//[!done	& !passenger	& x=0	& y=2	& fuel=6	& jobs_done=0	& passenger_loc_x=0	& passenger_loc_y=4	& passenger_dest_x=0	& passenger_dest_y=0]
+	action WEST
+		7 : 1
 state 7
-//[buy_price=8	& sell_price=7	& capital=5	& stocks=0	& last_action_price=0]
-	action HOLD
-		6 : 0.375
-		7 : 0.25
-		8 : 0.375
+//[!done	& !passenger	& x=0	& y=2	& fuel=5	& jobs_done=0	& passenger_loc_x=0	& passenger_loc_y=4	& passenger_dest_x=0	& passenger_dest_y=0]
+	action WEST
+		8 : 1
 state 8
-//[buy_price=9	& sell_price=8	& capital=5	& stocks=0	& last_action_price=0]
-	action HOLD
-		7 : 0.375
-		8 : 0.25
-		9 : 0.375
+//[!done	& !passenger	& x=0	& y=2	& fuel=4	& jobs_done=0	& passenger_loc_x=0	& passenger_loc_y=4	& passenger_dest_x=0	& passenger_dest_y=0]
+	action WEST
+		9 : 1
 state 9
-//[buy_price=10	& sell_price=9	& capital=5	& stocks=0	& last_action_price=0]
-	action HOLD
-		8 : 0.375
-		9 : 0.25
-		10 : 0.375
+//[!done	& !passenger	& x=0	& y=2	& fuel=3	& jobs_done=0	& passenger_loc_x=0	& passenger_loc_y=4	& passenger_dest_x=0	& passenger_dest_y=0]
+	action WEST
+		10 : 1
 state 10
-//[buy_price=10	& sell_price=10	& capital=5	& stocks=0	& last_action_price=0]
-	action HOLD
-		10 : 0.625
-		11 : 0.375
+//[!done	& !passenger	& x=0	& y=2	& fuel=2	& jobs_done=0	& passenger_loc_x=0	& passenger_loc_y=4	& passenger_dest_x=0	& passenger_dest_y=0]
+	action WEST
+		11 : 1
 state 11
-//[buy_price=9	& sell_price=9	& capital=5	& stocks=0	& last_action_price=0]
-	action HOLD
-		10 : 0.375
-		11 : 0.25
-		12 : 0.375
-state 12
-//[buy_price=8	& sell_price=8	& capital=5	& stocks=0	& last_action_price=0]
-	action HOLD
-		11 : 0.375
-		12 : 0.25
-		13 : 0.375
-state 13
-//[buy_price=7	& sell_price=7	& capital=5	& stocks=0	& last_action_price=0]
-	action HOLD
-		12 : 0.375
-		13 : 0.25
-		14 : 0.375
-state 14
-//[buy_price=6	& sell_price=6	& capital=5	& stocks=0	& last_action_price=0]
-	action HOLD
-		13 : 0.375
-		14 : 0.25
-		15 : 0.375
-state 15
-//[buy_price=5	& sell_price=5	& capital=5	& stocks=0	& last_action_price=0]
-	action HOLD
-		14 : 0.375
-		15 : 0.25
-		16 : 0.375
-state 16
-//[buy_price=4	& sell_price=4	& capital=5	& stocks=0	& last_action_price=0]
-	action HOLD
-		15 : 0.375
-		16 : 0.25
-		17 : 0.375
-state 17
-//[buy_price=3	& sell_price=3	& capital=5	& stocks=0	& last_action_price=0]
-	action HOLD
-		16 : 0.375
-		17 : 0.25
-		18 : 0.375
-state 18
-//[buy_price=2	& sell_price=2	& capital=5	& stocks=0	& last_action_price=0]
-	action HOLD
-		17 : 0.375
-		18 : 0.25
-		19 : 0.375
-state 19
-//[buy_price=1	& sell_price=1	& capital=5	& stocks=0	& last_action_price=0]
-	action HOLD
-		4 : 0.375
-		18 : 0.375
-		19 : 0.25
+//[!done	& !passenger	& x=0	& y=2	& fuel=1	& jobs_done=0	& passenger_loc_x=0	& passenger_loc_y=4	& passenger_dest_x=0	& passenger_dest_y=0]
+	action WEST
+		12 : 1
+state 12 "((fuel = 0) = true)"
+//[!done	& !passenger	& x=0	& y=2	& fuel=0	& jobs_done=0	& passenger_loc_x=0	& passenger_loc_y=4	& passenger_dest_x=0	& passenger_dest_y=0]
+	action __NOLABEL__
+		12 : 1
