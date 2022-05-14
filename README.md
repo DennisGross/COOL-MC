@@ -191,7 +191,8 @@ Use the templates `permissive_policy_plotting.py` and `three_plot_plotting.py` t
 Furthermore, we also support the PRISM-MDPs of the ![Quantitative Verification Benchmark Set](https://qcomp.org/benchmarks/index.html) as long as they contain reward functions.
 
 ## Web-Interface
-COOL-MC provides a web interface to analyze the RL training process and the model-checking results.
+COOL-MC provides a web interface to analyze the RL training progress and the model-checking results.
+It also allows the comparison between different trained policies.
 First, run `mlflow server -h 0.0.0.0 &` to start the MLFlow server in the background (http://DOCKERIP:5000).
 
 Second, get the IP address of the docker (DOCKERIP) container via `ip add | grep global`.
@@ -205,6 +206,10 @@ Project Overview with all its experiments:
 Training Progress:
 
 ![web_ui](https://github.com/DennisGross/COOL-MC/blob/main/documentation/images/training_progress.png)
+
+Compare different policies with each other:
+
+![web_ui](https://github.com/DennisGross/COOL-MC/blob/main/documentation/images/comparison.png)
 
 
 ## Model Checking Times and Limitations
