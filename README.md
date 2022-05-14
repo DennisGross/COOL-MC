@@ -198,7 +198,13 @@ Second, get the IP address of the docker (DOCKERIP) container via `ip add | grep
 
 Third, use your web browser on your local machine to access http://DOCKERIP:5000.
 
+Project Overview with all its experiments:
+
 ![web_ui](https://github.com/DennisGross/COOL-MC/blob/main/documentation/images/web_ui.png)
+
+Training Progress:
+
+![web_ui](https://github.com/DennisGross/COOL-MC/blob/main/documentation/images/training_progress.png)
 
 
 ## Model Checking Times and Limitations
