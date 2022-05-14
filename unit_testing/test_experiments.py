@@ -200,7 +200,7 @@ def test_taxi_experiment_section_agent_b():
     print("Total Time", end_time-start_time)
     assert 1 == 1
 
-#@pytest.mark.skip(reason="no way of currently testing this")
+
 def test_taxi_experiment_section_agent_c():
     arg_parser = argparse.ArgumentParser(
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
@@ -282,7 +282,7 @@ def test_taxi_experiment_section_agent_c():
     result = run_verify_rl_agent(command_line_arguments)
     assert 1 == 1
 
-#@pytest.mark.skip(reason="no way of currently testing this")
+
 def test_collision_avoidance_experiment_agent_d():
     import time
     start_time = time.time()
@@ -365,7 +365,7 @@ def test_collision_avoidance_experiment_agent_d():
 
 
 
-#@pytest.mark.skip(reason="no way of currently testing this")
+
 def test_smart_grid_agent_e():
     import time
     start_time = time.time()

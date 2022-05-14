@@ -55,9 +55,10 @@ We assume that you have docker installed and that you run the following commands
 
 Please make sure that you either run COOL-MC in on your machine OR in the docker container. Otherwise, it may lead to folder permission problems.
 If there is any problem regarding the docker, it is also possible to download a virtual machine that allows the execution of the docker.
+Note that the virtual machine docker container may not be up to date since the Zenodo repository is immutable. In this case, following the Getting Started instructions inside the virtual machine.
 Please also make sure that you use the `python` default alias.
 
-We discuss how to create the docker container yourself, and how to install the tool natively later.
+We discuss how to create the docker container, and how to install the tool natively later.
 
 If you are not familiar with PRISM/Storm, here are some references:
 
@@ -67,7 +68,6 @@ If you are not familiar with PRISM/Storm, here are some references:
 ## Example 1 (Frozen Lake)
 Frozen Lake is a commonly used OpenAI Gym benchmark, where 
 the agent has to reach the goal (frisbee) on a frozen lake. The movement direction of the agent is uncertain and only depends in $33.33\%$ of the cases on the chosen direction. In $66.66\%$ of the cases, the movement is noisy.
-
 
 To demonstrate our tool, we are going to train a RL policy for the OpenAI Gym Frozen Lake environment, verify it, and retrain it in the PRISM environment.
 The following command trains the RL policy in the OpenAI Gym FrozenLake-v0 environment.
