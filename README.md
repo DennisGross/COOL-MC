@@ -198,6 +198,8 @@ Second, get the IP address of the docker (DOCKERIP) container via `ip add | grep
 
 Third, use your web browser on your local machine to access http://DOCKERIP:5000.
 
+![web_ui](https://github.com/DennisGross/COOL-MC/blob/main/documentation/images/web_ui.png)
+
 
 ## Model Checking Times and Limitations
 All experiments were executed on a NVIDIA GeForce GTX 1060 Mobile GPU, 8 GB RAM, and an Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz x 12.
