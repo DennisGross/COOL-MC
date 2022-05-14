@@ -186,6 +186,8 @@ To replicate the benchmark experiments of our paper, run:
 
 This command will train and verify the RL policies in the taxi (transporter.prism), collision avoidance (avoid.prism), stock market (stock_market.prism), smart grid (smart_grid.prism) and frozen lake (frozen_lake3-v1.prism) environment.
 
+Use the templates `permissive_policy_plotting.py` and `three_plot_plotting.py` to plot the diagrams from the tool paper.
+
 Furthermore, we also support the PRISM-MDPs of the ![Quantitative Verification Benchmark Set](https://qcomp.org/benchmarks/index.html) as long as they contain reward functions.
 
 ## Web-Interface
