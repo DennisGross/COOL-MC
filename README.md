@@ -54,6 +54,7 @@ We assume that you have docker installed and that you run the following commands
 
 
 Please make sure that you either run COOL-MC in on your machine OR in the docker container. Otherwise, it may lead to folder permission problems.
+If there is any problem regarding the docker, it is also possible to download a virtual machine that allows the execution of the docker.
 Please also make sure that you use the `python` default alias.
 
 We discuss how to create the docker container yourself, and how to install the tool natively later.
@@ -64,7 +65,7 @@ If you are not familiar with PRISM/Storm, here are some references:
 - [Storm Getting Started](https://www.stormchecker.org/getting-started.html)
 
 ## Example 1 (Frozen Lake)
-FrozenLake is a commonly used OpenAI Gym benchmark, where 
+Frozen Lake is a commonly used OpenAI Gym benchmark, where 
 the agent has to reach the goal (frisbee) on a frozen lake. The movement direction of the agent is uncertain and only depends in $33.33\%$ of the cases on the chosen direction. In $66.66\%$ of the cases, the movement is noisy.
 
 

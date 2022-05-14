@@ -1,4 +1,4 @@
-Project ID: 2
-Run ID: ggtdk20crskqee3pdynkt0oih8jziaft0g8t7drj70
-Property Query: Pmin=? [F OUT_OF_FUEL=true]
-Property Result: 1.0
+Project ID: 4
+Run ID: di07oso08fkedozimwbzol1l1web9g1tj2lvl9rsxf
+Property Query: Tmin=? [F COLLISION=true]
+Property Result: 546.1811797089732
