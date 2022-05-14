@@ -8,25 +8,13 @@ We are convinced that the basis provided by the tool help those interested in co
 
 The following diagram shows the major components of the tool and their interactions:
 
-**Policy Training and Verification** allows the training and verification of a trained policy for a given PRISM environment.
-The inputs of this component are an MDP that is defined via a PRISM model and a property in PCTL. COOL-MC uses
-Open AI gym as a wrapper around a novel syntax-based simulator within Storm.
-Basically, this simulator allows RL agents to interact with a PRISM model the
-same way as with OpenAI gym environments without explicitly constructing the
-MDP. Hence, the MDP must have state-action rewards to mimic the behavior
-of an Open AI gym environment. A common assumption is that all actions are
-available at each state. As this does not generally hold for PRISM models, the
-RL agent may propose actions that are not available. In such cases, the wrapper
-chooses the minimal available action and penalizes the agent via a negative
-reward to discourage choosing this action.
+The *RL agent* is a wrapper around the trained policy and interacts with the environment. Currently implemented agents include Q-Learning, Hillclimbing, Deep Q-Learning, and REINFORCE.
+From a training perspective, the RL agent can be trained via the *Storm simulator* or an *OpenAI Gym*.
+From a verification perspective, the *model builder* uses the Storm
+simulator to incrementally build a DTMC which is then *model checked* by Storm.
 
 
-**Policy Training and Deployment** allows the training and deployment of a policy for an OpenAI gym environment.
-
-**The Experiment component** manages the data flow between the components and stores the trained policy, the used hyperparameters, and further assets.
-
-
-![components](https://github.com/DennisGross/COOL-MC/blob/main/documentation/images/components.png)
+![components](https://github.com/DennisGross/COOL-MC/blob/main/documentation/images/use-case-diagram.png)
 
 ##### Content
 1. Getting Started with COOL-MC
