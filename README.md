@@ -41,9 +41,9 @@ We assume that you have docker installed and that you run the following commands
 4. Run the docker container: With docker workspace initialization: `docker run --user mycoolmc  -v "$(pwd)/prism_files":"/home/mycoolmc/prism_files" -v "$(pwd)/mlruns":"/home/mycoolmc/mlruns" -it coolmc bash`. Without docker workspace initialization: `docker run --user mycoolmc  -v "$(pwd)/prism_files":"/home/mycoolmc/prism_files" -it coolmc bash`
 
 
-Please make sure that you either run COOL-MC in on your machine OR in the docker container. Otherwise, it may lead to folder permission problems.
+Please make sure that you either run COOL-MC on your machine OR in the docker container. Otherwise, it may lead to folder permission problems.
 If there is any problem regarding the docker, it is also possible to download a virtual machine that allows the execution of the docker.
-Note that the virtual machine docker container may not be up to date since the Zenodo repository is immutable. In this case, following the Getting Started instructions inside the virtual machine.
+Note that the virtual machine is only for trouble handling and should only be used if the docker container is not executable on your local machine. The virtual machine docker container may not be up to date since the Zenodo repository is immutable and need to be updated via the Getting Started instructions.
 Please also make sure that you use the `python` default alias.
 
 We discuss how to create the docker container, and how to install the tool natively later.
@@ -184,7 +184,7 @@ To replicate the benchmark experiments of our paper, run:
 
 `mlflow run unit_testing --no-conda -e test_experiments`
 
-We trained RL policies in the taxi (transporter.prism), collision avoidance (avoid.prism), and frozen lake (frozen_lake3-v1.prism) environment.
+This command will train and verify the RL policies in the taxi (transporter.prism), collision avoidance (avoid.prism), stock market (stock_market.prism), smart grid (smart_grid.prism) and frozen lake (frozen_lake3-v1.prism) environment.
 
 Furthermore, we also support the PRISM-MDPs of the ![Quantitative Verification Benchmark Set](https://qcomp.org/benchmarks/index.html) as long as they contain reward functions.
 
@@ -283,7 +283,7 @@ The following list contains all the major COOL-MC command line arguments. It doe
 | abstract_features    | It allows model-checking the trained policy on less precise sensors without changing the environment.                                                                                                                                                                                       |                                                   |                |
 | wrong_action_penalty | If an action is not available but still chosen by the policy, return a penalty of [DEFINED HERE].                                                                                                                                                                                           |                                                   |                |
 | reward_flag          | If true (1), the agent receives rewards instead of penalties.                                                                                                                                                                                                                               |                                                   | 0              |
-| range_plotting       | Range Plotting Flag for plotting the range plot on the screen.                                                                                                                                                                                                                              |                                                   |                |
+| range_plotting       | Range Plotting Flag for plotting the range plot on the screen.                                                                                                                                                                                                                              |                                                   |       1        |
 | seed                 | Random seed for PyTorch, Numpy, Python.                                                                                                                                                                                                                                                     | INTEGER NUMBER                                    | None (-1)      |
 
 
