@@ -24,7 +24,7 @@ class StormBridge:
 
     def __init__(self, path: str, constant_definitions: str, wrong_action_penalty: int,
                  reward_flag: bool, disabled_features: str, permissive_input: str,
-                 abstraction_input: str, seed: int, attack_config_str):
+                 abstraction_input: str, seed: int, attack_config_str: str):
         """
         Initialize the Storm Bridge.
 
