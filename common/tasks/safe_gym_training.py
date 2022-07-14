@@ -28,7 +28,7 @@ def run_safe_gym_training(command_line_arguments: Dict[str, Any]) -> int:
                 command_line_arguments['max_steps'], command_line_arguments['wrong_action_penalty'],
                   command_line_arguments['reward_flag'], 
                   command_line_arguments['seed'], command_line_arguments['permissive_input'],
-                  command_line_arguments['disabled_features'])
+                  command_line_arguments['disabled_features'], command_line_arguments['attack_config'])
     # Project
     m_project = Project(command_line_arguments)
     m_project.init_mlflow_bridge(

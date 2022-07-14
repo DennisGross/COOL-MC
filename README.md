@@ -31,6 +31,7 @@ simulator to incrementally build a DTMC which is then *model checked* by Storm.
 12. RL Agent Training
 13. COOL-MC Command Line Arguments
 14. Manual Installation
+15. Adversarial Attacks
 
 
 ## Getting Started with COOL-MC
@@ -370,3 +371,10 @@ For testing the installation, follow the steps [here](https://moves-rwth.github.
 1. `pip install -r requirements.txt`
 2. `mkdir projects`
 
+## 15. Adversarial attacks
+We introduce adversarial attacks that allows to attack the RL agent.
+All adversarial attacks are placed in the adversarial_attack package and allows the easy extention of new adversarial attacks.
+
+A simple example of an adversarial attack during verification:
+
+`python cool_mc.py --parent_run_id=5c4ce6ffbca841ada9d7bce304f9417c --task=rl_model_checking --project_name="Taxi with Fuel Example" --prism_file_path="transporter.prism" --constant_definitions="MAX_JOBS=2,MAX_FUEL=10" --prop="P=? [F OUT_OF_FUEL=true]" --attack_config="specific_direction,1,fuel"`

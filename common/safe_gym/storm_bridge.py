@@ -24,7 +24,7 @@ class StormBridge:
 
     def __init__(self, path: str, constant_definitions: str, wrong_action_penalty: int,
                  reward_flag: bool, disabled_features: str, permissive_input: str,
-                 abstraction_input: str, seed: int):
+                 abstraction_input: str, seed: int, attack_config_str):
         """
         Initialize the Storm Bridge.
 
@@ -64,7 +64,7 @@ class StormBridge:
         self.state_mapper = StateMapper(
             json_path, self.state_json_example, self.disabled_features)
         self.model_checker = ModelChecker(
-            permissive_input, self.state_mapper, abstraction_input)
+            permissive_input, self.state_mapper, abstraction_input, attack_config_str)
 
     def __preprocess_state_json_example(self, json_example: JsonContainerDouble) -> str:
         """Preprocess the state by casting boolean values to int values.

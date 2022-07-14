@@ -70,6 +70,13 @@ class Project():
             except:
                 pass
 
+            try:
+                # Because everytime there will be another attack config.
+                # So delete the old one.
+                del saved_command_line_arguments['attack_config']
+            except:
+                pass
+
             if old_task == 'openai_gym_training':
                 try:
                     del saved_command_line_arguments['prism_dir']

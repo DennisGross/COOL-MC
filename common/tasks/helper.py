@@ -91,6 +91,9 @@ def get_arguments() -> Dict[str, Any]:
     arg_parser.add_argument('--seed', help='Random Seed for numpy, random, storm, pytorch', type=int,
                             default=-1)
 
+    # Attack config
+    arg_parser.add_argument('--attack_config', help='Attack config in csv format', type=str, default="")
+
     args, _ = arg_parser.parse_known_args(sys.argv)
     return vars(args)
 
