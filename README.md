@@ -24,14 +24,16 @@ simulator to incrementally build a DTMC which is then *model checked* by Storm.
 5. Example 4 (Smart Grid)
 6. Example 5 (Warehouse)
 7. Example 6 (Stock Market)
-8. Benchmarks
-9. Web Interface
-10. Model Checking Times and Limitations
-11. PRISM Modelling Tips
-12. RL Agent Training
-13. COOL-MC Command Line Arguments
-14. Manual Installation
-15. Adversarial Attacks
+8. Example 7 (Crazy Climber (Atari Game, Images as states))
+9. Example 8 (James Bond (Atari Game, Images as states))
+10. Benchmarks
+11. Web Interface
+12. Model Checking Times and Limitations
+13. PRISM Modelling Tips
+14. RL Agent Training
+15. COOL-MC Command Line Arguments
+16. Manual Installation
+17. Adversarial Attacks
 
 
 ## Getting Started with COOL-MC
@@ -118,7 +120,9 @@ We train a DQN taxi agent in the PRISM environment:
 
 After the training, we can verify the trained policy:
 
-`python cool_mc.py --parent_run_id=dd790c269b334e4383b580e7c1da9050 --task=rl_model_checking --project_name="Taxi with Fuel Example" --prism_file_path="transporter.prism" --constant_definitions="MAX_JOBS=2,MAX_FUEL=10" --prop="P=? [F OUT_OF_FUEL=true]"`
+`python cool_mc.py --parent_run_id=8d138c9d14f04cb9ac45b8245b1ba83c --task=rl_model_checking --project_name="Taxi with Fuel Example" --prism_file_path="transporter.prism" --constant_definitions="MAX_JOBS=2,MAX_FUEL=10" --prop="P=? [F \"empty\"]"`
+
+
 
 State abstraction allows model-checking the trained policy on less precise features without changing the environment. To achieve this, a prepossessing step is applied to the current state in the incremental building process to map the state to a more abstract state for the RL policy. We only have to define a state mapping file and link it to COOL-MC via the command line:
 
@@ -179,6 +183,40 @@ We now train a RL policy for the stock market example and try to save the policy
 After the training, we can verify the trained policy:
 
 `python cool_mc.py --parent_run_id=02462a111bf9436d8bcce71a6334d35b --task=rl_model_checking --project_name="Stock Market Example" --prism_file_path="stock_market.prism" --prop="P=? [F<1000 \"bankruptcy\"]"`
+
+## Example 6 (Crazy Climber (Atari Game, Images as states))
+Crazy climber is a game where the player has to climb up a wall.
+This is a PRISM abstraction based on this game.
+The game is a grid of pixels.
+A pixel with a One indicates the player position.
+A pixel with a Zero indicates an empty pixel.
+A pixel with a Three indicates a falling object.
+A pixel with a Four indicates a collision of the player with a object.
+The right side of the wall consists of a window front. The player has to avoid climbing up there since the windows are not stable.
+For every level the play climbs, the player gets an reward of 1.
+The player can also move left and right to avoid falling obstacles.
+
+We now train a RL policy for the stock market example and try to save the policy with the highest probability of successesfully reaching the maximal amount of capital in 1000 time steps.
+
+`python cool_mc.py --task=safe_training --project_name="Crazy Climber Example" --rl_algorithm=dqn_agent --prism_file_path="crazy_climber.prism" --prop="Pmax=? [F<1000 \"success\"]" --reward_flag=1 --max_steps=100 --num_episodes=10000`
+
+After the training, we can verify the trained policy:
+
+`python cool_mc.py --parent_run_id=02462a111bf9436d8bcce71a6334d35b --task=rl_model_checking --project_name="Stock Market Example" --prism_file_path="stock_market.prism" --prop="P=? [F<1000 \"bankruptcy\"]"`
+
+## Example 8 (James Bond (Atari Game, Images as states))
+This environment is a simplified version of a stock market sim-
+ulation. The agent starts with a initial capital and has to increase it through
+buying and selling stocks without running into bankruptcy.
+
+We now train a RL policy for the stock market example and try to save the policy with the highest probability of successesfully reaching the maximal amount of capital in 1000 time steps.
+
+`python cool_mc.py --task=safe_training --project_name="James Bond Example" --rl_algorithm=dqn_agent --prism_file_path="james_bond007.prism" --prop="" --reward_flag=1 --max_steps=100 --num_episodes=5000 --seed=128`
+
+After the training, we can verify the trained policy:
+
+`python cool_mc.py --parent_run_id=52a655daff524fd0a31b8862144c29ee --task=rl_model_checking --project_name="James Bond Example" --prism_file_path="james_bond007.prism" --prop="P=? [F<=25 done=true]"`
+
 
 ## Benchmarks
 To replicate the benchmark experiments of our paper, run:
@@ -377,4 +415,4 @@ All adversarial attacks are placed in the adversarial_attack package and allows 
 
 A simple example of an adversarial attack during verification:
 
-`python cool_mc.py --parent_run_id=5c4ce6ffbca841ada9d7bce304f9417c --task=rl_model_checking --project_name="Taxi with Fuel Example" --prism_file_path="transporter.prism" --constant_definitions="MAX_JOBS=2,MAX_FUEL=10" --prop="P=? [F OUT_OF_FUEL=true]" --attack_config="specific_direction,1,fuel"`
+`python cool_mc.py --parent_run_id=c8b757d0f7ba449c89cb670df5f1764c --task=rl_model_checking --project_name="James Bond Example" --prism_file_path="james_bond007.prism" --constant_definitions="" --prop="P=? [F<=25 done=true]" --attack_config="specific_direction,1,px0"`

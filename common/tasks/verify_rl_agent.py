@@ -56,7 +56,7 @@ def run_verify_rl_agent(command_line_arguments: Dict[str, Any]) -> List[float]:
             command_line_arguments['prop'] + " for " + command_line_arguments['constant_definitions'])
         m_project.save()
         m_project.close()
-        return [mdp_reward_result]
+        return [mdp_reward_result, model_size]
     elif command_line_arguments['constant_definitions'].count('[') == 1 and command_line_arguments['constant_definitions'].count(']') == 1:
         # For each step make model checking and save results in list
         all_constant_definitions, range_tuple, range_state_variable = ConstantDefinitionParser.parse_constant_definition(

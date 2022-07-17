@@ -24,16 +24,20 @@ class RandomAttack(AdversarialAttack):
         Add a to the state.
         Return the adversarial state.
         """
-        a = np.random.randint(0, self.magnitude, state.shape)
-        while np.linalg.norm(a, ord=1) > self.magnitude:
+        if self.already_attacked(state):
+            return state + self.attack_buffer[str(state)]
+        else:
             a = np.random.randint(0, self.magnitude, state.shape)
-        # Randomly multiply each element in a with either -1 or 1.
-        a = a * np.random.choice([-1, 1], size=state.shape)
-        # Cast array a from float to int32
-        a = a.astype(np.int32)
-        # Add a to the state.
-        state += a
-        return state
+            while np.linalg.norm(a, ord=1) > self.magnitude:
+                a = np.random.randint(0, self.magnitude, state.shape)
+            # Randomly multiply each element in a with either -1 or 1.
+            a = a * np.random.choice([-1, 1], size=state.shape)
+            # Cast array a from float to int32
+            attack = a.astype(np.int32)
+            self.update_attack_buffer(state, attack)
+            # Add a to the state.
+            state += attack
+            return state
         
     
         

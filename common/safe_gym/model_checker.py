@@ -213,7 +213,7 @@ class ModelChecker():
         result = stormpy.model_checking(model, properties[0])
         print("Model Checking Time:", time.time()-model_checking_start_time)
         
-        #stormpy.export_to_drn(model,"test.drn")
+        stormpy.export_to_drn(model,"test.drn")
         initial_state = model.initial_states[0]
         #print('Result for initial state', result.at(initial_state))
         mdp_reward_result = result.at(initial_state)

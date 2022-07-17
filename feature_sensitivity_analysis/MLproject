@@ -1,0 +1,59 @@
+name: feature_safety_sensitivity_analysis
+entry_points:
+    main:
+        #python cool_mc.py --project_name "experiments" --parent_run_id=97c730045ab543a0817d81b9526183f6 --task rl_model_checking --prism_file_path="avoid_obs1.prism" --constant_definitions="xMax=4,yMax=4,slickness=0" --prop="Pmax=? [F<=100 \"collide\"]"
+
+        # Taxi Optimal: 8d138c9d14f04cb9ac45b8245b1ba83c (Taxi Example)
+        # Avoid1: 95f5e75192bd4a5ea21f92270797ca6b (experiments)
+        # Avoid2: 97c730045ab543a0817d81b9526183f6 (experiments)
+        # Stock Market: dd7632749c1b48b5a6fa6ce4436d519e (Stock Market Example)
+        # Smart Grid: 0846996cc42743599f8c8ddb2b4d082b (experiments)
+        # NUMBERS3 f6217776c4c945cda342886addad6390 (experiments)
+        # NUMBERS2 654c7abd62374c8ca0d8f17655472f53 (experiments)
+        # James Bond 52a655daff524fd0a31b8862144c29ee (James Bond Example)
+        parameters:
+            project_name : {type: string, default: "Taxi Example"}
+            parent_run_id : {type: string, default: "8d138c9d14f04cb9ac45b8245b1ba83c"}
+            # Model Checking Parameters
+            prism_dir : {type: string, default: "../prism_files"}
+            prism_file_path : {type: string, default: "transporter.prism"}
+            # MAX_JOBS=2,MAX_FUEL=10
+            # xMax=4,yMax=4,slickness=0
+            # max_consumption=4,renewable_limit=3,non_renewable_limit=3,grid_upper_bound=2
+            # MAX_NUMBERS=3,MAX_STEPS=10,fixed_number1=3,fixed_number2=2,fixed_number3=2,fixed_number4=3
+            # MAX_NUMBERS=2,MAX_STEPS=7,fixed_number1=3,fixed_number2=2,fixed_number3=2,fixed_number4=3
+            constant_definitions : {type: string, default: "MAX_JOBS=2,MAX_FUEL=10"}
+
+            # Pmax=? [F \"empty\"]
+            # Pmax=? [F jobs_done=2]
+            # Pmax=? [F jobs_done=1]
+            # Pmax=? [F \"bankruptcy\"]
+            # Pmax=? [F<=100 \"collide\"]
+            # Pmax=? [F<=1000 IS_BLACKOUT=true]
+            # Pmax=? [F<=1000 TOO_MUCH_ENERGY=true]
+            prop : {type: string, default: "P=? [F \"empty\"]"}
+            permissive_input: {type: string, default: ""}
+            disabled_features: {type: string, default: ""}
+            # VAR=[LOW;STEP;MAX;METHOD], VAR=[LOW;STEP;MAX]
+            # bureaucracy=[0;3],stack=[0;2],done=[0;1]
+            # +capital=[0;50],buy_price=[1;10],sell_price=[0;10],stocks=[0;10],last_action_price=[0;10]
+            # x=[0;4],y=[0;4],obstacle1_x=[0;4],obstacle1_y=[0;4],obstacle2_x=[0;4],obstacle2_y=[0;4],done=[0;1]
+            # fuel=[0;10],x=[0;4],y=[0;4],passenger_loc_x=[0;4],passenger_loc_y=[0;4],passenger_dest_x=[0;4],passenger_dest_y=[0;4],passenger=[0;1],jobs_done=[0;2],done=[0;1]
+            # energy=[0;6],renewable=[0;3],non_renewable=[0;3],consumption=[0;4],blackout=[0;1]
+            # :number1=[0;3],number2=[0;2],number3=[0;2],number4=[0;3],step_counter=[0;10],done=[0;1]
+
+            # NOISE SIMULATION
+            # 3#fuel:1,x:1,y:1,passenger_loc_x:1,passenger_loc_y:1,passenger_dest_x:1,passenger_dest_y:1,passenger:1,jobs_done:1,done:1
+            # :fuel=[0;10],x=[0;4],y=[0;4],passenger_loc_x=[0;4],passenger_loc_y=[0;4],passenger_dest_x=[0;4],passenger_dest_y=[0;4],passenger=[0;1],jobs_done=[0;2],done=[0;1]
+            # #capital=[0;50;1],buy_price=[1;10;1],sell_price=[0;10;1],stocks=[0;10;1],last_action_price=[0;10;1]
+            # #energy=[0;6;1],renewable=[0;3;1],non_renewable=[0;3;1],consumption=[0;4;1],blackout=[0;1;1]
+            # #x=[0;4;1],y=[0;4;1],obstacle1_x=[0;4;1],obstacle1_y=[0;4;1],obstacle2_x=[0;4;1],obstacle2_y=[0;4;1],done=[0;1;1]
+            # :px0=[0;4],px1=[0;4],px2=[0;4],px3=[0;4],px4=[0;4],px5=[0;4],px6=[0;4],px7=[0;4],px8=[0;4],px9=[0;4],px10=[0;4],px11=[0;4],px12=[0;4],px13=[0;4],px14=[0;4],px15=[0;4],px16=[0;4],px17=[0;4],done=[0;1]
+            # :px0=[0;4],px1=[0;4],px2=[0;4],px3=[0;4],px4=[0;4],px5=[0;4],px6=[0;4],px7=[0;4],px8=[0;4],px9=[0;4],px10=[0;4],px11=[0;4],px12=[0;4],px13=[0;4],px14=[0;4],px15=[0;4],px16=[0;4],px17=[0;4],px18=[0;4],px19=[0;5],px20=[0;5],px21=[0;5],done=[0;1]
+            abstract_features: {type: string, default: "15#fuel:1,x:1,y:1,passenger_loc_x:1,passenger_loc_y:1,passenger_dest_x:1,passenger_dest_y:1,passenger:1,jobs_done:1,done:1"}
+            range_plotting: {type: float, default: 1}
+            seed: {type: float, default: 128}
+
+
+        command: >-
+            python run.py --seed={seed} --range_plotting={range_plotting} --abstract_features={abstract_features} --permissive_input={permissive_input} --disabled_features={disabled_features} --project_name={project_name} --parent_run_id={parent_run_id} --prism_dir={prism_dir} --prism_file_path={prism_file_path} --constant_definitions={constant_definitions} --prop={prop}

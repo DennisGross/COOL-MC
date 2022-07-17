@@ -9,6 +9,7 @@ class AdversarialAttack:
         """
         self.state_mapper = state_mapper
         self.attack_config_str = attack_config_str
+        self.attack_buffer = {}
 
     def parse_attack_config(self, attack_config_str:str) -> None:
         """
@@ -24,3 +25,12 @@ class AdversarialAttack:
         :return: The adversarial state.
         """
         raise NotImplementedError()
+
+    def already_attacked(self, state: np.ndarray) -> bool:
+        if str(state) in self.attack_buffer.keys():
+            return True
+        return False
+    
+    def update_attack_buffer(self, state, attack):
+        self.attack_buffer = {}
+        self.attack_buffer[str(state)] = attack

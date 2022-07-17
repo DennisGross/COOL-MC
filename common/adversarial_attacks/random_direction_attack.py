@@ -19,17 +19,21 @@ class RandomDirectionAttack(AdversarialAttack):
         self.magnitude = int(magnitude)
 
     def attack(self, rl_agent, state: np.ndarray) -> np.ndarray:
-        # Initialize a identity matrix called a of the same shape as state.
-        a = np.identity(state.shape[0])
-        # Pick randomly a row in a.
-        a = a[np.random.randint(0, a.shape[0]), :]
-        # Multiply a with magnitude and either -1 or 1.
-        a = a * self.magnitude * np.random.choice([-1, 1], size=state.shape)
-        # Cast array a from float to int32
-        a = a.astype(np.int32)
-        # Add a to the state.
-        state += a
-        return state
+        if self.already_attacked(state):
+            return state + self.attack_buffer[str(state)]
+        else:
+            # Initialize a identity matrix called a of the same shape as state.
+            a = np.identity(state.shape[0])
+            # Pick randomly a row in a.
+            a = a[np.random.randint(0, a.shape[0]), :]
+            # Multiply a with magnitude and either -1 or 1.
+            a = a * self.magnitude * np.random.choice([-1, 1], size=state.shape)
+            # Cast array a from float to int32
+            attack = a.astype(np.int32)
+            self.update_attack_buffer(state, attack)
+            # Add a to the state.
+            state += attack
+            return state
 
 
 
