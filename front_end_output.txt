@@ -1,4 +1,4 @@
 Project ID: 4
-Run ID: di07oso08fkedozimwbzol1l1web9g1tj2lvl9rsxf
-Property Query: Tmin=? [F COLLISION=true]
-Property Result: 546.1811797089732
+Run ID: khjlx82ivttdeiukxc0h5ylfnpqjgobqxi8ymk8emk
+Property Query: Pmin=? [F<=15 done=true]
+Property Result: 0.0

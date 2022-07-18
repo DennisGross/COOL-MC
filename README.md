@@ -24,6 +24,8 @@ simulator to incrementally build a DTMC which is then *model checked* by Storm.
 5. Example 4 (Smart Grid)
 6. Example 5 (Warehouse)
 7. Example 6 (Stock Market)
+7. Example 7 (James Bond 007)
+7. Example 8 (Crazy Climber)
 8. Benchmarks
 9. Web Interface
 10. Model Checking Times and Limitations
@@ -178,6 +180,39 @@ We now train a RL policy for the stock market example and try to save the policy
 After the training, we can verify the trained policy:
 
 `python cool_mc.py --parent_run_id=02462a111bf9436d8bcce71a6334d35b --task=rl_model_checking --project_name="Stock Market Example" --prism_file_path="stock_market.prism" --prop="P=? [F<1000 \"bankruptcy\"]"`
+
+## Example 7 (Crazy Climber)
+Crazy climber is a game where the player has to climb up a wall.
+This is a PRISM abstraction based on this game.
+The game is a grid of pixels.
+A pixel with a One indicates the player position.
+A pixel with a Zero indicates an empty pixel.
+A pixel with a Three indicates a falling object.
+A pixel with a Four indicates a collision of the player with a object.
+The right side of the wall consists of a window front. The player has to avoid climbing up there since the windows are not stable.
+For every level the play climbs, the player gets an reward of 1.
+The player can also move left and right to avoid falling obstacles.
+
+We now train a RL policy for the crazy climber example and try to save the policy with the highest average reward.
+
+`python cool_mc.py --task=safe_training --project_name="Crazy Climber Example" --rl_algorithm=dqn_agent --prism_file_path="crazy_climber.prism" --prop="" --reward_flag=1 --max_steps=100 --num_episodes=3000 --seed=128`
+
+After the training, we can verify the trained policy:
+
+`python cool_mc.py --parent_run_id=e3d5c0d086fa482bba2ec65f1ba58ad5 --task=rl_model_checking --project_name="Crazy Climber Example" --prism_file_path="crazy_climber.prism" --prop="P=? [F<=15 done=true]"`
+
+## Example 8 (James Bond)
+This environment is a simplified version of a stock market sim- ulation. The agent starts with a initial capital and has to increase it
+through buying and selling stocks without running into bankruptcy. 
+We now train a RL policy for the stock market example and try to save the policy with the highest probability of successesfully
+reaching the maximal amount of capital in 1000 time steps. 
+
+`python cool_mc.py --task=safe_training --project_name="James Bond Example" --rl_algorithm=dqn_agent --prism_file_path="james_bond007.prism" --prop="" --reward_flag=1 --max_steps=100 --num_episodes=3000 --seed=128`
+
+After the training, we can verify the trained policy:
+
+`python cool_mc.py --parent_run_id=90761357347440c8baf4833b3dcfb330 --task=rl_model_checking --project_name="James Bond Example" --prism_file_path="james_bond007.prism" --prop="P=? [F<=15 done=true]"`
+
 
 ## Benchmarks
 To replicate the benchmark experiments of our paper, run:
