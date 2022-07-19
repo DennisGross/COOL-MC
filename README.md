@@ -215,7 +215,7 @@ We now train a RL policy for the stock market example and try to save the policy
 
 After the training, we can verify the trained policy:
 
-`python cool_mc.py --parent_run_id=52a655daff524fd0a31b8862144c29ee --task=rl_model_checking --project_name="James Bond Example" --prism_file_path="james_bond007.prism" --prop="P=? [F<=25 done=true]"`
+`python cool_mc.py --parent_run_id=85ce767bef334ab5b0c9a51d06c36471 --task=rl_model_checking --project_name="James Bond Example" --prism_file_path="james_bond007.prism" --prop="P=? [F<=25 done=true]"`
 
 
 ## Benchmarks

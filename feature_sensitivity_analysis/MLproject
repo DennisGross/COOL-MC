@@ -50,7 +50,7 @@ entry_points:
             # #x=[0;4;1],y=[0;4;1],obstacle1_x=[0;4;1],obstacle1_y=[0;4;1],obstacle2_x=[0;4;1],obstacle2_y=[0;4;1],done=[0;1;1]
             # :px0=[0;4],px1=[0;4],px2=[0;4],px3=[0;4],px4=[0;4],px5=[0;4],px6=[0;4],px7=[0;4],px8=[0;4],px9=[0;4],px10=[0;4],px11=[0;4],px12=[0;4],px13=[0;4],px14=[0;4],px15=[0;4],px16=[0;4],px17=[0;4],done=[0;1]
             # :px0=[0;4],px1=[0;4],px2=[0;4],px3=[0;4],px4=[0;4],px5=[0;4],px6=[0;4],px7=[0;4],px8=[0;4],px9=[0;4],px10=[0;4],px11=[0;4],px12=[0;4],px13=[0;4],px14=[0;4],px15=[0;4],px16=[0;4],px17=[0;4],px18=[0;4],px19=[0;5],px20=[0;5],px21=[0;5],done=[0;1]
-            abstract_features: {type: string, default: "15#fuel:1,x:1,y:1,passenger_loc_x:1,passenger_loc_y:1,passenger_dest_x:1,passenger_dest_y:1,passenger:1,jobs_done:1,done:1"}
+            abstract_features: {type: string, default: "50#fuel:1,x:1,y:1,passenger_loc_x:1,passenger_loc_y:1,passenger_dest_x:1,passenger_dest_y:1,passenger:1,jobs_done:1,done:1"}
             range_plotting: {type: float, default: 1}
             seed: {type: float, default: 128}
 

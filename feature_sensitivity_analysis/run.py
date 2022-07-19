@@ -106,8 +106,10 @@ def korkmaz_analysis(command_line_arguments, method='mean'):
     r = results[0]
     feature_results = {}
     for feature_part in feature_parts:
+        
         # feature_name:magnitude:n,
         feature_name, magnitude = parse_korkmaz_parameters(feature_part)
+        """
         for i in range(n):
             # Set Random direction attack config
             command_line_arguments['attack_config'] = "random_direction,"+str(magnitude)
@@ -115,9 +117,10 @@ def korkmaz_analysis(command_line_arguments, method='mean'):
             prop_result = results[0]
             model_size = results[1]
             random_attack_results.append(prop_result)
+        distance_random_to_real = abs(sum(random_attack_results)/len(random_attack_results)-r)
+        """
         # N times specific direction attack
         specific_attack_results = []
-
         for i in range(n):
             # Set Specific direction attack config
             command_line_arguments['attack_config'] = "specific_direction,"+str(magnitude)+','+feature_name
@@ -125,9 +128,11 @@ def korkmaz_analysis(command_line_arguments, method='mean'):
             prop_result = results[0]
             model_size = results[1]
             specific_attack_results.append(prop_result)
-        distance_random_to_real = abs(sum(random_attack_results)/len(random_attack_results)-r)
+        
         distance_specific_to_real = abs(sum(specific_attack_results)/len(specific_attack_results)-r)
-        feature_results[feature_name] = abs(distance_random_to_real-distance_specific_to_real)
+
+        #feature_results[feature_name] = abs(r-distance_specific_to_real)
+        feature_results[feature_name] = abs(sum(specific_attack_results)/len(specific_attack_results)-r)
         print("####################################")
     for feature in feature_results.keys():
         print(feature, ":", feature_results[feature])
