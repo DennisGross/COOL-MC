@@ -25,7 +25,7 @@ class SarsaMaxAgent(Agent):
         action_index = None
         if deploy == True:
             action_index = np.argmax(self.Q[str(state)])
-            return action_index
+            return int(action_index)
         if self.epsilon >= self.epsilon_min:
             self.epsilon *= self.epsilon_dec
         if np.random.rand() < self.epsilon:
@@ -34,7 +34,7 @@ class SarsaMaxAgent(Agent):
         else:
             # Greedy Choice
             action_index = np.argmax(self.Q[str(state)])
-        return action_index
+        return int(action_index)
         
 
     def __make_sure_that_states_in_dictionary(self, state, next_state=None):
