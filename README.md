@@ -8,13 +8,22 @@ We are convinced that the basis provided by the tool help those interested in co
 
 The following diagram shows the major components of the tool and their interactions:
 
+
+![components](https://github.com/DennisGross/COOL-MC/blob/main/documentation/images/use-case-diagram.png)
+
 The *RL agent* is a wrapper around the trained policy and interacts with the environment. Currently implemented agents include Q-Learning, Hillclimbing, Deep Q-Learning, and REINFORCE.
 From a training perspective, the RL agent can be trained via the *Storm simulator* or an *OpenAI Gym*.
 From a verification perspective, the *model builder* uses the Storm
-simulator to incrementally build a DTMC which is then *model checked* by Storm.
+simulator to incrementally build a DTMC (see next diagram) which is then *model checked* by Storm.
+Note that we only build the part of the model which is visited by the policy. 
+For every state, the policy (the RL agent) is queried for an action. Now, according to the PRISM model,
+all transitions and states that may be reached via that action are explored to
+incrementally build a model that is restricted to the action-choices of the trained
+policy. The resulting model is fully probabilistic, as no action choices are left
+open, and is in fact a Markov chain induced by the original MDP and the policy.
 
 
-![components](https://github.com/DennisGross/COOL-MC/blob/main/documentation/images/use-case-diagram.png)
+![components](https://github.com/DennisGross/COOL-MC/blob/main/documentation/images/incremental_building.png)
 
 ##### Content
 1. Getting Started with COOL-MC
