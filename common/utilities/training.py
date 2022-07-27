@@ -82,7 +82,7 @@ def train(project, env, prop_type=''):
                     print(episode, "Episode\tReward", episode_reward, '\tAverage Reward', reward_of_sliding_window, "\tLast Property Result:", None)
                 
 
-            if reward_of_sliding_window  > best_reward_of_sliding_window and len(reward_of_sliding_window)>=project.command_line_arguments['sliding_window_size']:
+            if reward_of_sliding_window  > best_reward_of_sliding_window and len(all_episode_rewards)>=project.command_line_arguments['sliding_window_size']:
                 best_reward_of_sliding_window = reward_of_sliding_window
                 if prop_type=='reward' and project.command_line_arguments['deploy']==False:
                     project.save()
