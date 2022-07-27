@@ -11,14 +11,14 @@ import torch
 from collections import deque
 import gc
 
-def fill_deque_with_zeros(deque, size):
+def fill_deque_with_infs(deque, size):
     while len(deque) < size:
-        deque.append(0)
+        deque.append(-math.inf)
     return deque
 
 def train(project, env, prop_type=''):
     all_episode_rewards = deque(maxlen=project.command_line_arguments['sliding_window_size'])
-    all_episode_rewards = fill_deque_with_zeros(all_episode_rewards, project.command_line_arguments['sliding_window_size'])
+    all_episode_rewards = fill_deque_with_infs(all_episode_rewards, project.command_line_arguments['sliding_window_size'])
     all_property_results = deque(maxlen=project.command_line_arguments['sliding_window_size'])
     best_reward_of_sliding_window = -math.inf
     last_max_steps_states = deque(maxlen=project.command_line_arguments['max_steps']*2)
