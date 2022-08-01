@@ -211,10 +211,9 @@ After the training, we can verify the trained policy:
 `python cool_mc.py --parent_run_id=e3d5c0d086fa482bba2ec65f1ba58ad5 --task=rl_model_checking --project_name="Crazy Climber Example" --prism_file_path="crazy_climber.prism" --prop="P=? [F<=15 done=true]"`
 
 ## Example 8 (James Bond)
-This environment is a simplified version of a stock market sim- ulation. The agent starts with a initial capital and has to increase it
-through buying and selling stocks without running into bankruptcy. 
-We now train a RL policy for the stock market example and try to save the policy with the highest probability of successesfully
-reaching the maximal amount of capital in 1000 time steps. 
+This environment is a abstraction of the James Bond game for the Atari 2600. The goal is to collect rewards by shooting helicopters/diamonds and collecting diamonds. James Bond needs to avoid falling into radioactive pixels, which would terminate the environment.
+The state space consists of images. Each image consists of three pixel rows with 6 pixels each (3x6), and one extra pixel as auxiliary variable for PRISM.
+The actions are jump, tick, and shoot.
 
 `python cool_mc.py --task=safe_training --project_name="James Bond Example" --rl_algorithm=dqn_agent --prism_file_path="james_bond007.prism" --prop="" --reward_flag=1 --max_steps=100 --num_episodes=3000 --seed=128`
 

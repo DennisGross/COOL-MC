@@ -23,7 +23,7 @@ def get_arguments() -> Dict[str, Any]:
     arg_parser.add_argument('--parent_run_id', help='Do you want to continue training of a RL agent? Name the run_id of the last training unit (see mlflow ui).', type=str,
                             default='')
     arg_parser.add_argument('--num_episodes', help='What is the number of training episodes?', type=int,
-                            default=10)
+                            default=1000)
     arg_parser.add_argument('--eval_interval', help='What is the number of training episodes?', type=int,
                             default=9)
     arg_parser.add_argument('--sliding_window_size', help='What is the sliding window size for the reward averaging?', type=int,

@@ -1,4 +1,4 @@
-Project ID: 4
-Run ID: khjlx82ivttdeiukxc0h5ylfnpqjgobqxi8ymk8emk
-Property Query: Pmin=? [F<=15 done=true]
-Property Result: 0.0
+Project ID: 1
+Run ID: 0umoi0pmkyzvgmbea8um59q2wu80u2r4dkbmbkwn3z
+Property Query: Pmin=? [F WATER=true]
+Property Result: 0.9141708035229639
