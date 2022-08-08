@@ -5,4 +5,5 @@ pytest==6.2.5
 matplotlib==3.3.4
 #streamlit==0.88.0
 #streamlit_autorefresh
+protobuf==3.20
 aenum

@@ -6,6 +6,12 @@ RUN apt-get update
 RUN apt-get -y install build-essential git cmake libboost-all-dev libcln-dev libgmp-dev libginac-dev automake libglpk-dev libhwloc-dev libz3-dev libxerces-c-dev libeigen3-dev
 
 WORKDIR /home/mycoolmc
+RUN wget -q -O - https://www.lrde.epita.fr/repo/debian.gpg | apt-key add -
+RUN echo 'deb http://www.lrde.epita.fr/repo/debian/ stable/' >> /etc/apt/sources.list
+RUN apt-get update
+RUN apt-get -y install spot libspot-dev spot-doc python3-spot
+
+WORKDIR /home/mycoolmc
 RUN git clone https://github.com/moves-rwth/storm.git
 WORKDIR /home/mycoolmc/storm
 RUN mkdir build
