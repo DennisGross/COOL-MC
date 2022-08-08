@@ -1,8 +1,6 @@
 # COOL-MC
-COOL-MC provides a framework for connecting state-of-the-art (deep) reinforcement learning (RL) with modern model-checking.
-In particular, COOL-MC extends the OpenAI Gym to support RL training on PRISM environments and allows verification of the trained RL policies via the Storm model checker.
-The general workflow of our approach is as follows. First, we model the RL environment as a MDP in PRISM. Second, we train our RL policy in the PRISM environment or, if available, in the matching OpenAI Gym environment. Third, we verify the trained RL policy via the Storm model checker. Depending on the model checking outcome, we retrain the RL policy or deploy it.
-We are convinced that the basis provided by the tool help those interested in connecting the areas of verification and RL with the proper framework to create new approaches in an effective and reproducible way. 
+COOL-MC provides a framework for connecting state-of-the-art (deep) reinforcement learning (RL) with modern model-checking. In particular, COOL-MC extends the OpenAI Gym to support RL training on PRISM environments and allows verification of the trained RL policies via the Storm model checker.
+The general workflow of our approach is as follows. First, we model the RL environment as a MDP in PRISM. Second, we train our RL policy in the PRISM environment or, if available, in the matching OpenAI Gym environment. Third, we verify the trained RL policy via the Storm model checker. Depending on the model checking outcome, we retrain the RL policy or deploy it. We are convinced that the basis provided by the tool helps those interested in connecting the areas of verification and RL with the proper framework to create new approaches in an effective and reproducible way.
 
 ![workflow](https://github.com/DennisGross/COOL-MC/blob/main/documentation/images/workflow_diagram.png)
 
@@ -14,13 +12,13 @@ The following diagram shows the major components of the tool and their interacti
 The *RL agent* is a wrapper around the trained policy and interacts with the environment. Currently implemented agents include Q-Learning, Hillclimbing, Deep Q-Learning, and REINFORCE.
 From a training perspective, the RL agent can be trained via the *Storm simulator* or an *OpenAI Gym*.
 From a verification perspective, the *model builder* uses the Storm
-simulator to incrementally build a DTMC (see next diagram) which is then *model checked* by Storm.
+simulator to incrementally build a DTMC (see next diagram), which is then *model checked* by Storm.
 Note that we only build the part of the model which is visited by the policy. 
 For every state, the policy (the RL agent) is queried for an action. Now, according to the PRISM model,
 all transitions and states that may be reached via that action are explored to
 incrementally build a model that is restricted to the action-choices of the trained
 policy. The resulting model is fully probabilistic, as no action choices are left
-open, and is in fact a Markov chain induced by the original MDP and the policy.
+open, and is a Markov chain induced by the original MDP and the policy.
 
 
 ![components](https://github.com/DennisGross/COOL-MC/blob/main/documentation/images/incremental_building.png)
@@ -57,7 +55,7 @@ If there is any problem regarding the docker, it is also possible to download a 
 Note that the virtual machine is only for trouble handling and should only be used if the docker container is not executable on your local machine. The virtual machine docker container may not be up to date since the Zenodo repository is immutable and need to be updated via the Getting Started instructions.
 Please also make sure that you use the `python` default alias.
 
-We discuss how to create the docker container, and how to install the tool natively later.
+We discuss how to create the docker container and how to install the tool natively later.
 
 If you are not familiar with PRISM/Storm, here are some references:
 
@@ -68,7 +66,7 @@ If you are not familiar with PRISM/Storm, here are some references:
 Frozen Lake is a commonly used OpenAI Gym benchmark, where 
 the agent has to reach the goal (frisbee) on a frozen lake. The movement direction of the agent is uncertain and only depends in $33.33\%$ of the cases on the chosen direction. In $66.66\%$ of the cases, the movement is noisy.
 
-To demonstrate our tool, we are going to train a RL policy for the OpenAI Gym Frozen Lake environment, verify it, and retrain it in the PRISM environment.
+To demonstrate our tool, we will train an RL policy for the OpenAI Gym Frozen Lake environment, verify it, and retrain it in the PRISM environment.
 The following command trains the RL policy in the OpenAI Gym FrozenLake-v0 environment.
 
 `python cool_mc.py --task=openai_training --project_name="Frozen Lake Example" --env=FrozenLake-v0 --rl_algorithm=dqn_agent`
@@ -227,7 +225,7 @@ To replicate the benchmark experiments of our paper, run:
 
 `mlflow run unit_testing --no-conda -e test_experiments`
 
-This command will train and verify the RL policies in the taxi (transporter.prism), collision avoidance (avoid.prism), stock market (stock_market.prism), smart grid (smart_grid.prism) and frozen lake (frozen_lake3-v1.prism) environment.
+This command will train and verify the RL policies in the taxi (transporter.prism), collision avoidance (avoid.prism), stock market (stock_market.prism), smart grid (smart_grid.prism), and frozen lake (frozen_lake3-v1.prism) environment.
 
 Use the templates `permissive_policy_plotting.py` and `three_plot_plotting.py` to plot the diagrams from the tool paper.
 
@@ -295,17 +293,17 @@ Model Checking Time: 2.691767454147339
 
 
 ## PRISM Modelling Tips
-We first have to model our RL environment. COOL-MC supports PRISM as modeling language. It can be difficult to design own PRISM environments. Here are some tips how to make sure that your PRISM environment works correctly with COOL-MC:
+We first have to model our RL environment. COOL-MC supports PRISM as a modeling language. It can be difficult to design your own PRISM environments. Here are some tips on how to make sure that your PRISM environment works correctly with COOL-MC:
 
 - Make sure that you only use transition-rewards
-- After the agent reaches a terminal state, the storm simulator stops the simulation. Therefore, terminal state transitions will not executed. So, do not use self-looping terminal states.
-- To improve the training performance, try to make all actions at every state available. Otherwise, the agent may chooses a not available action and receives a penalty.
+- After the agent reaches a terminal state, the storm simulator stops the simulation. Therefore, terminal state transitions will not be executed. So, do not use self-looping terminal states.
+- To improve the training performance, try to make all actions at every state available. Otherwise, the agent may choose a not available action and receives a penalty.
 - Try to unit test your PRISM environment before RL training. Does it behave as you want?
 
 ## RL Agent Training
-After we modeled the environment, we can train RL agents on this environment.
+After we have modeled the environment, we can train RL agents in this environment.
 It is also possible to develop your own RL agents:
-1. Create a AGENT_NAME.py in the src.rl_agents package
+1. Create an AGENT_NAME.py in the src.rl_agents package
 2. Create a class AGENT_NAME and inherit all methods from common.rl_agents.Agent
 3. Override all the needed methods (depends on your agent) + the agent save- and load-method.
 4. In src.rl_agents.agent_builder extends the build_agent method with an additional elif branch for your agent
@@ -313,10 +311,9 @@ It is also possible to develop your own RL agents:
 
 Here are some tips that may improve the training progress:
 
-- Try to use the disable_state parameter to disable state variables from PRISM which are only relevant for the PRISM environment architecture.
+- Try to use the disable_state parameter to disable state variables from PRISM, which are only relevant for the PRISM environment architecture.
 - Play around with the RL parameters.
-- Think especially about the size of the max_steps if you have only one terminal state and if this terminal state is a  negative outcome with a huge penalty. Too large max_steps values lead to always reaching this negative step in the beginning of the training. Instead, decrease the max_steps so that the RL agent may not reach this terminal state and stops training earlier. So the huge penality is not influencing the RL training too much in the beginning.
-- The model checking part while RL training can take time. Therefore, the best way to train and verify your model is to first use reward_max. After the RL model may reaches an execptable reward the change the parameter prop_type to min_prop or max_prop and adjust the evaluation intervals.
+- The model checking part while RL training can take time. Therefore, the best way to train and verify your model is first to use reward_max. After the RL model reaches an acceptable reward, change the parameter prop_type to min_prop or max_prop and adjust the evaluation intervals.
 
 ## COOL-MC Command Line Arguments
 The following list contains all the major COOL-MC command line arguments. It does not contain the arguments which are related to the RL algorithms. For a detailed description, we refer to the common.rl_agents package.
@@ -346,11 +343,7 @@ The following list contains all the major COOL-MC command line arguments. It doe
 
 
 ### permissive_input
-It allows the investigation of the worst-/best-case behaviour of the trained policy for certain state variables. Let's assume we have a formal model with state variables $a=[0,5]$, $b=[0,5]$, $c=[0,2]$.
-We now want to investigate the permissive policies independent of $c$. Therefore, we generate at each state all the different RL policy actions for the different $c$ assignments and incrementally build the MDP.
-- $c=[0,2]$ generates all the actions for the different c-assignments between $[0,2]$.
-- $c=[0,1]$ generates all the actions for the different c-assignments between $[0,1]$.
-- $c<>=[1,2]$ generates all the actions for the different c-assignments [1,2] only if the c value is between $[1,2]$. Otherwise, treat $c$ normally.
+It allows the investigation of the worst-/best-case behavior of the trained policy for certain state variables. Let's assume we have a formal model with state variables $a=[0,5]$, $b=[0,5]$, $c=[0,2]$. We now want to investigate the permissive policies independent of $c$. Therefore, we generate all the RL policy actions for each state for the different $c$ assignments and incrementally build the MDP. - $c=[0,2]$ generates all the actions for the different c-assignments between $[0,2]$. - $c=[0,1]$ generates all the actions for the different c-assignments between $[0,1]$. - $c<>=[1,2]$ generates all the actions for the different c-assignments [1,2] only if the c value is between $[1,2]$. Otherwise, treat $c$ normally.
 
 ### abstract_features
 It allows model-checking the trained policy on less precise sensors without changing the environment.
