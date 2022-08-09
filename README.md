@@ -1,5 +1,5 @@
 # COOL-MC
-COOL-MC provides a framework for connecting state-of-the-art (deep) reinforcement learning (RL) with modern model-checking. In particular, COOL-MC extends the OpenAI Gym to support RL training on PRISM environments and allows verification of the trained RL policies via the Storm model checker.
+COOL-MC provides a framework for connecting state-of-the-art (deep) reinforcement learning (RL) with modern model checking. In particular, COOL-MC extends the OpenAI Gym to support RL training on PRISM environments and allows verification of the trained RL policies via the Storm model checker.
 The general workflow of our approach is as follows. First, we model the RL environment as a MDP in PRISM. Second, we train our RL policy in the PRISM environment or, if available, in the matching OpenAI Gym environment. Third, we verify the trained RL policy via the Storm model checker. Depending on the model checking outcome, we retrain the RL policy or deploy it. We are convinced that the basis provided by the tool helps those interested in connecting the areas of verification and RL with the proper framework to create new approaches in an effective and reproducible way.
 
 ![workflow](https://github.com/DennisGross/COOL-MC/blob/main/documentation/images/workflow_diagram.png)
@@ -126,19 +126,19 @@ We train a DQN taxi agent in the PRISM environment:
 
 After the training, we can verify the trained policy:
 
-`python cool_mc.py --parent_run_id=dd790c269b334e4383b580e7c1da9050 --task=rl_model_checking --project_name="Taxi with Fuel Example" --prism_file_path="transporter.prism" --constant_definitions="MAX_JOBS=2,MAX_FUEL=10" --prop="P=? [F OUT_OF_FUEL=true]"`
+`python cool_mc.py --parent_run_id=dd790c269b334e4383b580e7c1da9050 --task=rl_model_checking --project_name="Taxi with Fuel Example" --prism_file_path="transporter.prism" --constant_definitions="MAX_JOBS=2,MAX_FUEL=10" --prop="P=? [F \"empty\"]"`
 
-State abstraction allows model-checking the trained policy on less precise features without changing the environment. To achieve this, a prepossessing step is applied to the current state in the incremental building process to map the state to a more abstract state for the RL policy. We only have to define a state mapping file and link it to COOL-MC via the command line:
+State abstraction allows model checking the trained policy on less precise features without changing the environment. To achieve this, a prepossessing step is applied to the current state in the incremental building process to map the state to a more abstract state for the RL policy. We only have to define a state mapping file and link it to COOL-MC via the command line:
 
-`python cool_mc.py --parent_run_id=dd790c269b334e4383b580e7c1da9050 --task=rl_model_checking --project_name="Taxi with Fuel Example" --prism_file_path="transporter.prism" --constant_definitions="MAX_JOBS=2,MAX_FUEL=10" --prop="P=? [F OUT_OF_FUEL=true]" --abstract_features="../taxi_abstraction.json"`
+`python cool_mc.py --parent_run_id=dd790c269b334e4383b580e7c1da9050 --task=rl_model_checking --project_name="Taxi with Fuel Example" --prism_file_path="transporter.prism" --constant_definitions="MAX_JOBS=2,MAX_FUEL=10" --prop="P=? [F \"empty\"]" --abstract_features="../taxi_abstraction.json"`
 
 Permissive Model Checking allows the investigation of the worst-/best-case behaviour of the trained policy for certain state variables.
 
 Minimal Probability of running out of fuel for a fuel level between 4 and 10 (Pmin):
-`python cool_mc.py --parent_run_id=dd790c269b334e4383b580e7c1da9050 --task=rl_model_checking --project_name="Taxi with Fuel Example" --prism_file_path="transporter.prism" --constant_definitions="MAX_JOBS=2,MAX_FUEL=10" --prop="Pmin=? [F OUT_OF_FUEL=true]" --permissive_input="fuel<>=[4;10]"`
+`python cool_mc.py --parent_run_id=dd790c269b334e4383b580e7c1da9050 --task=rl_model_checking --project_name="Taxi with Fuel Example" --prism_file_path="transporter.prism" --constant_definitions="MAX_JOBS=2,MAX_FUEL=10" --prop="Pmin=? [F \"empty\"]" --permissive_input="fuel<>=[4;10]"`
 
 Maximal Probability of running out of fuel for a fuel level between 4 and 10 (Pmin):
-`python cool_mc.py --parent_run_id=dd790c269b334e4383b580e7c1da9050 --task=rl_model_checking --project_name="Taxi with Fuel Example" --prism_file_path="transporter.prism" --constant_definitions="MAX_JOBS=2,MAX_FUEL=10" --prop="Pmax=? [F OUT_OF_FUEL=true]" --permissive_input="fuel<>=[4;10]"`
+`python cool_mc.py --parent_run_id=dd790c269b334e4383b580e7c1da9050 --task=rl_model_checking --project_name="Taxi with Fuel Example" --prism_file_path="transporter.prism" --constant_definitions="MAX_JOBS=2,MAX_FUEL=10" --prop="Pmax=? [F \"empty\"]" --permissive_input="fuel<>=[4;10]"`
 
 
 ## Example 3 (Avoid)
@@ -232,7 +232,7 @@ Use the templates `permissive_policy_plotting.py` and `three_plot_plotting.py` t
 Furthermore, we also support the PRISM-MDPs of the ![Quantitative Verification Benchmark Set](https://qcomp.org/benchmarks/index.html) as long as they contain reward functions.
 
 ## Web-Interface
-COOL-MC provides a web interface to analyze the RL training progress and the model-checking results.
+COOL-MC provides a web interface to analyze the RL training progress and the model checking results.
 It also allows the comparison between different trained policies.
 First, run `mlflow server -h 0.0.0.0 &` to start the MLFlow server in the background (http://DOCKERIP:5000).
 
@@ -256,7 +256,7 @@ Compare different policies with each other:
 ## Model Checking Times and Limitations
 All experiments were executed on a NVIDIA GeForce GTX 1060 Mobile GPU, 8 GB RAM, and an Intel(R) Core(TM) i7-8750H CPU @ 2.20GHz x 12.
 
-In the following table, we list the model-building and model-checking times for different trained policies.
+In the following table, we list the model-building and model checking times for different trained policies.
 
 | Environment    | Constants                                                                        | Property Query                        | Property Result | Model Size | Model Building Time (s) | Model Checking Time (s) |
 |----------------|----------------------------------------------------------------------------------|---------------------------------------|--------|------------|-------------------------|-------------------------|
@@ -270,7 +270,7 @@ In the following table, we list the model-building and model-checking times for 
 
 COOL-MC needs more time to build the model while using less memory than PRISM/Storm.
 The reason for the performance bottleneck is the iterative building of the induced DTMCs.
-If we disregard model-building time, we receive roughly the same model-checking performance for Storm and COOL-MC.
+If we disregard model-building time, we receive roughly the same model checking performance for Storm and COOL-MC.
 Our tool generates near-optimal policies w.r.t. to the different properties and builds smaller DTMCs.
 Therefore, one major advantage of our tool is that we can model check larger MDPs as with PRISM/Storm.
 
@@ -335,7 +335,7 @@ The following list contains all the major COOL-MC command line arguments. It doe
 | max_steps            | Maximal steps in the safe gym environment.                                                                                                                                                                                                                                                  |                                                   | 100            |
 | disabled_features    | Disable features in the state space.                                                                                                                                                                                                                                                        | FEATURES SEPERATED BY A COMMATA                   |                |
 | permissive_input     | It allows the investigation of the worst-/best-case behaviour of the trained policy for certain state variables.                                                                                                                                                                            |                                                   |                |
-| abstract_features    | It allows model-checking the trained policy on less precise sensors without changing the environment.                                                                                                                                                                                       |                                                   |                |
+| abstract_features    | It allows model checking the trained policy on less precise sensors without changing the environment.                                                                                                                                                                                       |                                                   |                |
 | wrong_action_penalty | If an action is not available but still chosen by the policy, return a penalty of [DEFINED HERE].                                                                                                                                                                                           |                                                   |                |
 | reward_flag          | If true (1), the agent receives rewards instead of penalties.                                                                                                                                                                                                                               |                                                   | 0              |
 | range_plotting       | Range Plotting Flag for plotting the range plot on the screen.                                                                                                                                                                                                                              |                                                   |       1        |
@@ -346,7 +346,7 @@ The following list contains all the major COOL-MC command line arguments. It doe
 It allows the investigation of the worst-/best-case behavior of the trained policy for certain state variables. Let's assume we have a formal model with state variables $a=[0,5]$, $b=[0,5]$, $c=[0,2]$. We now want to investigate the permissive policies independent of $c$. Therefore, we generate all the RL policy actions for each state for the different $c$ assignments and incrementally build the MDP. - $c=[0,2]$ generates all the actions for the different c-assignments between $[0,2]$. - $c=[0,1]$ generates all the actions for the different c-assignments between $[0,1]$. - $c<>=[1,2]$ generates all the actions for the different c-assignments [1,2] only if the c value is between $[1,2]$. Otherwise, treat $c$ normally.
 
 ### abstract_features
-It allows model-checking the trained policy on less precise sensors without changing the environment.
+It allows model checking the trained policy on less precise sensors without changing the environment.
 To achieve this, a prepossessing step is applied to the current state in the incremental building process to map the state to a more abstract state for the RL policy. We can archive the abstraction by:
 
 - Passing the abstraction mapping file via the command line (e.g. taxi_abstraction.json)
