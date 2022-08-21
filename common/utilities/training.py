@@ -1,8 +1,11 @@
+from matplotlib.pyplot import fill
 from common.utilities.project import Project
 import sys
 from common.rl_agents.dummy_agent import DummyAgent
 from common.safe_gym.safe_gym import SafeGym
 from common.utilities.front_end_printer import *
+from common.adversarial_attacks.adversarial_attack_builder import *
+from common.utilities.state_observer_reward import StateObserverReward
 import gym
 import random
 import math
@@ -11,7 +14,12 @@ import torch
 from collections import deque
 import gc
 
+
 def train(project, env, prop_type=''):
+    try:
+        m_state_observer_reward = StateObserverReward(env.storm_bridge.state_mapper.mapper[project.command_line_arguments['feature_observer'].split('=')[0]], project.command_line_arguments['feature_observer'].split('=')[1])
+    except:
+        pass
     all_episode_rewards = deque(maxlen=project.command_line_arguments['sliding_window_size'])
     all_property_results = deque(maxlen=project.command_line_arguments['sliding_window_size'])
     best_reward_of_sliding_window = -math.inf
@@ -19,10 +27,16 @@ def train(project, env, prop_type=''):
     last_max_steps_actions = deque(maxlen=project.command_line_arguments['max_steps']*2)
     last_max_steps_rewards = deque(maxlen=project.command_line_arguments['max_steps']*2)
     last_max_steps_terminals = deque(maxlen=project.command_line_arguments['max_steps']*2)
-    
+    if project.command_line_arguments['task'] == 'safe_training':
+        adv_builder = AdversarialAttackBuilder()
+        adversarial_attack = adv_builder.build_adversarial_attack(env.storm_bridge.state_mapper, project.command_line_arguments['attack_config'])
     try:
         for episode in range(project.command_line_arguments['num_episodes']):
             state = env.reset()
+            try:
+                m_state_observer_reward.reset()
+            except:
+                pass
             last_max_steps_states.append(state)
             episode_reward = 0
             step_counter = 0
@@ -30,9 +44,16 @@ def train(project, env, prop_type=''):
                 if state.__class__.__name__ == 'int':
                     state = [state]
                 #print(project.command_line_arguments['deploy'])
+                # Adversarial Attack here
+                if project.command_line_arguments['deploy'] == True and project.command_line_arguments['attack_config'] != '':
+                    state = adversarial_attack.attack(project.agent, state)
                 action = project.agent.select_action(state, project.command_line_arguments['deploy'])
                 step_counter +=1
                 next_state, reward, terminal, info = env.step(action)
+                try:
+                    m_state_observer_reward.observe(next_state, reward)
+                except:
+                    pass
                 if next_state.__class__.__name__ == 'int':
                     next_state = [next_state]
                 if project.command_line_arguments['deploy']==False:
@@ -80,12 +101,19 @@ def train(project, env, prop_type=''):
                     print(episode, "Episode\tReward", episode_reward, '\tAverage Reward', reward_of_sliding_window, "\tLast Property Result:", None)
                 
 
-            if reward_of_sliding_window  > best_reward_of_sliding_window:
+            if reward_of_sliding_window  > best_reward_of_sliding_window and len(all_episode_rewards)>=project.command_line_arguments['sliding_window_size']:
                 best_reward_of_sliding_window = reward_of_sliding_window
                 if prop_type=='reward' and project.command_line_arguments['deploy']==False:
                     project.save()
 
             gc.collect()
+            #print(state)
+            try:
+                m_state_observer_reward.after_episode()
+            except:
+                pass
+            
+
     except KeyboardInterrupt:
         torch.cuda.empty_cache()
         gc.collect()
@@ -97,7 +125,9 @@ def train(project, env, prop_type=''):
             if project.command_line_arguments['task']=='safe_training':
                 #TODO: Save Metrics
                 pass
-    
-    return list(last_max_steps_states), list(last_max_steps_actions), list(last_max_steps_rewards), list(last_max_steps_terminals)
+    try:
+        return list(last_max_steps_states), list(last_max_steps_actions), list(last_max_steps_rewards), list(last_max_steps_terminals), all_episode_rewards[-1], m_state_observer_reward.rewards[-1]
+    except:
+        return list(last_max_steps_states), list(last_max_steps_actions), list(last_max_steps_rewards), list(last_max_steps_terminals), all_episode_rewards[-1], 0
 
 

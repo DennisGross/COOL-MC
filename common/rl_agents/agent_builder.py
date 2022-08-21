@@ -5,6 +5,7 @@ from common.rl_agents.sarsa_max_agent import SarsaMaxAgent
 from common.rl_agents.deep_q_agent import DQNAgent
 from common.rl_agents.hillclimbing_agent import HillClimbingAgent
 from common.rl_agents.reinforce_agent import ReinforceAgent
+from common.rl_agents.double_deep_q_agent import DDQNAgent
 '''
 HOW TO ADD MORE AGENTS?
 1) Create a new AGENTNAME.py with an AGENTNAME class
@@ -61,11 +62,10 @@ class AgentBuilder():
             #print("Build DQN Agent.", state_dimension, action_space.n)
             number_of_neurons = AgentBuilder.layers_neurons_to_number_of_neurons(command_line_arguments['layers'],command_line_arguments['neurons'])
             agent = DQNAgent(state_dimension, number_of_neurons, action_space.n, epsilon=command_line_arguments['epsilon'], epsilon_dec=command_line_arguments['epsilon_dec'], epsilon_min=command_line_arguments['epsilon_min'], gamma=command_line_arguments['gamma'], learning_rate=command_line_arguments['lr'], replace=command_line_arguments['replace'], batch_size=command_line_arguments['batch_size'], replay_buffer_size=command_line_arguments['replay_buffer_size'])
-            #print(model_root_folder_path, model_root_folder_path.find("mlruns"))
-            #import os
-            #first_part_of_path = str(os.getcwd()).replace("safe_gym_training","")
-            #second_part = model_root_folder_path[model_root_folder_path.find("mlruns"):]
-            #model_root_folder_path = os.path.join(first_part_of_path, second_part)
-            #print(model_root_folder_path)
+            agent.load(model_root_folder_path)
+        elif command_line_arguments['rl_algorithm'] == 'ddqn_agent':
+            #print("Build DQN Agent.", state_dimension, action_space.n)
+            number_of_neurons = AgentBuilder.layers_neurons_to_number_of_neurons(command_line_arguments['layers'],command_line_arguments['neurons'])
+            agent = DDQNAgent(state_dimension, number_of_neurons, action_space.n, epsilon=command_line_arguments['epsilon'], epsilon_dec=command_line_arguments['epsilon_dec'], epsilon_min=command_line_arguments['epsilon_min'], gamma=command_line_arguments['gamma'], learning_rate=command_line_arguments['lr'], replace=command_line_arguments['replace'], batch_size=command_line_arguments['batch_size'], replay_buffer_size=command_line_arguments['replay_buffer_size'])
             agent.load(model_root_folder_path)
         return agent

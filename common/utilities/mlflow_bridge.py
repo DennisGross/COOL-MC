@@ -97,10 +97,10 @@ class MlFlowBridge:
         meta_folder_path = mlflow.get_artifact_uri(artifact_path="meta").replace('/file:/','')
         # If rerun, take all the command line arguments from previous run into account except the following:
         command_line_arguments_file_path = os.path.join(meta_folder_path, 'command_line_arguments.json')[5:]
+        #print(command_line_arguments_file_path)
         if os.path.exists(command_line_arguments_file_path):
             with open(command_line_arguments_file_path) as json_file:
                 command_line_arguments = json.load(json_file)
-                #print(command_line_arguments)
                 return command_line_arguments
         return None
 

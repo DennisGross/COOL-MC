@@ -18,7 +18,7 @@ class SpecificDirectionAttack(AdversarialAttack):
         self.attack_name = attack_name
         self.magnitude = int(magnitude)
         self.direction = self.state_mapper.mapper[str(direction)]
-    
+        
     
 
     def attack(self, rl_agent, state: np.ndarray) -> np.ndarray:
@@ -27,10 +27,10 @@ class SpecificDirectionAttack(AdversarialAttack):
         else:
             # Initialize a identity matrix called a of the same shape as state.
             a = np.identity(state.shape[0])
-            # Pick randomly a row in a.
+            # Pick the direction row in a.
             a = a[self.direction, :]
-            # Multiply a with magnitude and either a -1 or 1.
-            a = a * self.magnitude * np.random.choice([-1, 1], size=state.shape)
+            # Multiply a with magnitude.
+            a = a * self.magnitude
             # Cast array a from float to int32
             attack = a.astype(np.int32)
             # Add a to the state.

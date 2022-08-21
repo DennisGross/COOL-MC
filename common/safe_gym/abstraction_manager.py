@@ -105,6 +105,7 @@ class AStateVariable:
         assert isinstance(abstraction_input, str)
         # VAR=[LOW;STEP;MAX;METHOD], VAR=[LOW;STEP;MAX]
         astate_variables = []
+        print("Should be empty:", abstraction_input)
         for abstraction_variable_str in abstraction_input.split(","):
             name = abstraction_variable_str.split('=')[0]
             start_interval = abstraction_variable_str.find('[')

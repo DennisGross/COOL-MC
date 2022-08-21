@@ -64,7 +64,7 @@ class StormBridge:
         self.state_mapper = StateMapper(
             json_path, self.state_json_example, self.disabled_features)
         self.model_checker = ModelChecker(
-            permissive_input, self.state_mapper, abstraction_input, attack_config_str)
+            permissive_input, self.state_mapper, abstraction_input, attack_config_str=attack_config_str)
 
     def __preprocess_state_json_example(self, json_example: JsonContainerDouble) -> str:
         """Preprocess the state by casting boolean values to int values.
@@ -103,6 +103,7 @@ class StormBridge:
         """
         assert isinstance(path, str)
         assert isinstance(constant_definitions, str)
+        print(path, constant_definitions)
         prism_program = stormpy.parse_prism_program(path)
         prism_program = stormpy.preprocess_symbolic_input(
             prism_program, [], constant_definitions)[0].as_prism_program()

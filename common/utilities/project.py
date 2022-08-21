@@ -9,6 +9,7 @@ class Project():
         self.agent = None
 
     def init_mlflow_bridge(self, project_name, task, parent_run_id):
+        print(project_name, task, parent_run_id)
         self.mlflow_bridge = MlFlowBridge(project_name, task, parent_run_id)
 
     def load_saved_command_line_arguments(self):
@@ -21,6 +22,14 @@ class Project():
                 pass
             del saved_command_line_arguments['task']
             del saved_command_line_arguments['parent_run_id']
+            try:
+                del saved_command_line_arguments['attack_config']
+            except:
+                pass
+            try:
+                del saved_command_line_arguments['feature_observer']
+            except:
+                pass
             try:
                 del saved_command_line_arguments['constant_definitions']
             except:

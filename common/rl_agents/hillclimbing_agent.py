@@ -33,7 +33,7 @@ class HillClimbingAgent(Agent):
             x = np.dot(state, self.w)
         probs = np.exp(x)/sum(np.exp(x))
         action_index = np.argmax(probs)
-        return action_index
+        return int(action_index)
         
 
     def store_experience(self, state  : np.ndarray, action : int, reward : float, next_state : np.ndarray, terminal : bool):

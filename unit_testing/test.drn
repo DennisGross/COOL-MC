@@ -6,15 +6,432 @@
 @reward_models
 
 @nr_states
-2
+38
 @nr_choices
-2
+59
 @model
 state 0 init
-//[pos=15]
-	action a1_down
-		1 : 1
+//[!blackout	& energy=3	& renewable=3	& non_renewable=0	& consumption=0]
+	action DECREASE_BOTH
+		1 : 0.72
+		2 : 0.18
+		3 : 0.08
+		4 : 0.02
+	action DECREASE_BOTH
+		1 : 0.24
+		2 : 0.06
+		3 : 0.56
+		4 : 0.14
 state 1
-//[pos=16]
-	action a1_down
-		1 : 1
+//[!blackout	& energy=2	& renewable=2	& non_renewable=0	& consumption=1]
+	action DECREASE_RENEWABLE
+		5 : 0.36
+		6 : 0.36
+		7 : 0.18
+		8 : 0.04
+		9 : 0.04
+		10 : 0.02
+state 2
+//[!blackout	& energy=2	& renewable=2	& non_renewable=0	& consumption=0]
+	action DECREASE_BOTH
+		1 : 0.08
+		2 : 0.02
+		11 : 0.72
+		12 : 0.18
+	action DECREASE_BOTH
+		1 : 0.32
+		2 : 0.08
+		3 : 0.24
+		4 : 0.06
+		11 : 0.24
+		12 : 0.06
+state 3
+//[!blackout	& energy=2	& renewable=3	& non_renewable=0	& consumption=1]
+	action DECREASE_BOTH
+		1 : 0.18
+		2 : 0.36
+		3 : 0.02
+		4 : 0.04
+		13 : 0.36
+		14 : 0.04
+	action DECREASE_BOTH
+		1 : 0.06
+		2 : 0.12
+		3 : 0.14
+		4 : 0.28
+		13 : 0.12
+		14 : 0.28
+state 4
+//[!blackout	& energy=2	& renewable=3	& non_renewable=0	& consumption=0]
+	action DECREASE_BOTH
+		1 : 0.72
+		2 : 0.18
+		3 : 0.08
+		4 : 0.02
+	action DECREASE_BOTH
+		1 : 0.24
+		2 : 0.06
+		3 : 0.56
+		4 : 0.14
+state 5 "((((renewable + non_renewable) - consumption) < 0) = true)"
+//[!blackout	& energy=1	& renewable=1	& non_renewable=0	& consumption=2]
+	action __NOLABEL__
+		5 : 1
+state 6
+//[!blackout	& energy=1	& renewable=1	& non_renewable=0	& consumption=0]
+	action DECREASE_RENEWABLE
+		6 : 0.02
+		7 : 0.08
+		15 : 0.72
+		16 : 0.18
+state 7
+//[!blackout	& energy=1	& renewable=1	& non_renewable=0	& consumption=1]
+	action DECREASE_BOTH
+		17 : 0.36
+		18 : 0.36
+		19 : 0.18
+		20 : 0.04
+		21 : 0.04
+		22 : 0.02
+	action DECREASE_BOTH
+		17 : 0.12
+		18 : 0.12
+		19 : 0.06
+		20 : 0.16
+		21 : 0.16
+		22 : 0.08
+		23 : 0.12
+		24 : 0.12
+		25 : 0.06
+state 8
+//[!blackout	& energy=1	& renewable=2	& non_renewable=0	& consumption=2]
+	action DECREASE_BOTH
+		20 : 0.18
+		22 : 0.36
+		23 : 0.02
+		25 : 0.04
+		26 : 0.36
+		27 : 0.04
+	action DECREASE_BOTH
+		20 : 0.06
+		22 : 0.12
+		23 : 0.08
+		25 : 0.16
+		26 : 0.12
+		27 : 0.16
+		28 : 0.12
+		29 : 0.12
+		30 : 0.06
+state 9
+//[!blackout	& energy=1	& renewable=2	& non_renewable=0	& consumption=0]
+	action DECREASE_BOTH
+		1 : 0.08
+		2 : 0.02
+		11 : 0.72
+		12 : 0.18
+	action DECREASE_BOTH
+		1 : 0.32
+		2 : 0.08
+		3 : 0.24
+		4 : 0.06
+		11 : 0.24
+		12 : 0.06
+state 10
+//[!blackout	& energy=1	& renewable=2	& non_renewable=0	& consumption=1]
+	action DECREASE_BOTH
+		5 : 0.36
+		6 : 0.36
+		7 : 0.18
+		8 : 0.04
+		9 : 0.04
+		10 : 0.02
+	action DECREASE_BOTH
+		5 : 0.12
+		6 : 0.12
+		7 : 0.06
+		8 : 0.16
+		9 : 0.16
+		10 : 0.08
+		31 : 0.12
+		32 : 0.12
+		33 : 0.06
+state 11
+//[!blackout	& energy=2	& renewable=1	& non_renewable=0	& consumption=1]
+	action DECREASE_RENEWABLE
+		17 : 0.36
+		18 : 0.36
+		19 : 0.18
+		20 : 0.04
+		21 : 0.04
+		22 : 0.02
+state 12
+//[!blackout	& energy=2	& renewable=1	& non_renewable=0	& consumption=0]
+	action DECREASE_RENEWABLE
+		6 : 0.02
+		7 : 0.08
+		15 : 0.72
+		16 : 0.18
+state 13
+//[!blackout	& energy=2	& renewable=2	& non_renewable=0	& consumption=2]
+	action DECREASE_RENEWABLE
+		20 : 0.18
+		22 : 0.36
+		23 : 0.02
+		25 : 0.04
+		26 : 0.36
+		27 : 0.04
+state 14
+//[!blackout	& energy=2	& renewable=3	& non_renewable=0	& consumption=2]
+	action DECREASE_BOTH
+		8 : 0.18
+		10 : 0.36
+		31 : 0.02
+		33 : 0.04
+		34 : 0.36
+		35 : 0.04
+	action DECREASE_BOTH
+		8 : 0.06
+		10 : 0.12
+		31 : 0.14
+		33 : 0.28
+		34 : 0.12
+		35 : 0.28
+state 15 "((((renewable + non_renewable) - consumption) < 0) = true)"
+//[!blackout	& energy=1	& renewable=0	& non_renewable=0	& consumption=1]
+	action __NOLABEL__
+		15 : 1
+state 16
+//[!blackout	& energy=1	& renewable=0	& non_renewable=0	& consumption=0]
+	action DECREASE_RENEWABLE
+		18 : 0.2
+		19 : 0.8
+state 17 "((((renewable + non_renewable) - consumption) < 0) = true)"
+//[!blackout	& energy=0	& renewable=0	& non_renewable=0	& consumption=2]
+	action __NOLABEL__
+		17 : 1
+state 18
+//[!blackout	& energy=0	& renewable=0	& non_renewable=0	& consumption=0]
+	action DECREASE_RENEWABLE
+		18 : 0.2
+		19 : 0.8
+state 19 "((((renewable + non_renewable) - consumption) < 0) = true)"
+//[!blackout	& energy=0	& renewable=0	& non_renewable=0	& consumption=1]
+	action __NOLABEL__
+		19 : 1
+state 20 "((((renewable + non_renewable) - consumption) < 0) = true)"
+//[!blackout	& energy=0	& renewable=1	& non_renewable=0	& consumption=2]
+	action __NOLABEL__
+		20 : 1
+state 21
+//[!blackout	& energy=0	& renewable=1	& non_renewable=0	& consumption=0]
+	action DECREASE_BOTH
+		6 : 0.02
+		7 : 0.08
+		15 : 0.72
+		16 : 0.18
+	action DECREASE_BOTH
+		6 : 0.08
+		7 : 0.32
+		9 : 0.06
+		10 : 0.24
+		15 : 0.24
+		16 : 0.06
+state 22
+//[!blackout	& energy=0	& renewable=1	& non_renewable=0	& consumption=1]
+	action DECREASE_BOTH
+		17 : 0.36
+		18 : 0.36
+		19 : 0.18
+		20 : 0.04
+		21 : 0.04
+		22 : 0.02
+	action DECREASE_BOTH
+		17 : 0.12
+		18 : 0.12
+		19 : 0.06
+		20 : 0.16
+		21 : 0.16
+		22 : 0.08
+		23 : 0.12
+		24 : 0.12
+		25 : 0.06
+state 23
+//[!blackout	& energy=0	& renewable=2	& non_renewable=0	& consumption=2]
+	action DECREASE_BOTH
+		20 : 0.18
+		22 : 0.36
+		23 : 0.02
+		25 : 0.04
+		26 : 0.36
+		27 : 0.04
+	action DECREASE_BOTH
+		20 : 0.06
+		22 : 0.12
+		23 : 0.08
+		25 : 0.16
+		26 : 0.12
+		27 : 0.16
+		28 : 0.12
+		29 : 0.12
+		30 : 0.06
+state 24
+//[!blackout	& energy=0	& renewable=2	& non_renewable=0	& consumption=0]
+	action DECREASE_BOTH
+		1 : 0.08
+		2 : 0.02
+		11 : 0.72
+		12 : 0.18
+	action DECREASE_BOTH
+		1 : 0.32
+		2 : 0.08
+		3 : 0.24
+		4 : 0.06
+		11 : 0.24
+		12 : 0.06
+state 25
+//[!blackout	& energy=0	& renewable=2	& non_renewable=0	& consumption=1]
+	action DECREASE_BOTH
+		5 : 0.36
+		6 : 0.36
+		7 : 0.18
+		8 : 0.04
+		9 : 0.04
+		10 : 0.02
+	action DECREASE_BOTH
+		5 : 0.12
+		6 : 0.12
+		7 : 0.06
+		8 : 0.16
+		9 : 0.16
+		10 : 0.08
+		31 : 0.12
+		32 : 0.12
+		33 : 0.06
+state 26 "((((renewable + non_renewable) - consumption) < 0) = true)"
+//[!blackout	& energy=0	& renewable=1	& non_renewable=0	& consumption=3]
+	action __NOLABEL__
+		26 : 1
+state 27 "((((renewable + non_renewable) - consumption) < 0) = true)"
+//[!blackout	& energy=0	& renewable=2	& non_renewable=0	& consumption=3]
+	action __NOLABEL__
+		27 : 1
+state 28
+//[!blackout	& energy=0	& renewable=3	& non_renewable=0	& consumption=3]
+	action DECREASE_BOTH
+		23 : 0.36
+		27 : 0.18
+		28 : 0.02
+		30 : 0.04
+		36 : 0.36
+		37 : 0.04
+	action DECREASE_BOTH
+		23 : 0.12
+		27 : 0.06
+		28 : 0.14
+		30 : 0.28
+		36 : 0.12
+		37 : 0.28
+state 29
+//[!blackout	& energy=0	& renewable=3	& non_renewable=0	& consumption=1]
+	action DECREASE_BOTH
+		1 : 0.18
+		2 : 0.36
+		3 : 0.02
+		4 : 0.04
+		13 : 0.36
+		14 : 0.04
+	action DECREASE_BOTH
+		1 : 0.06
+		2 : 0.12
+		3 : 0.14
+		4 : 0.28
+		13 : 0.12
+		14 : 0.28
+state 30
+//[!blackout	& energy=0	& renewable=3	& non_renewable=0	& consumption=2]
+	action DECREASE_BOTH
+		8 : 0.18
+		10 : 0.36
+		31 : 0.02
+		33 : 0.04
+		34 : 0.36
+		35 : 0.04
+	action DECREASE_BOTH
+		8 : 0.06
+		10 : 0.12
+		31 : 0.14
+		33 : 0.28
+		34 : 0.12
+		35 : 0.28
+state 31
+//[!blackout	& energy=1	& renewable=3	& non_renewable=0	& consumption=2]
+	action DECREASE_BOTH
+		8 : 0.18
+		10 : 0.36
+		31 : 0.02
+		33 : 0.04
+		34 : 0.36
+		35 : 0.04
+	action DECREASE_BOTH
+		8 : 0.06
+		10 : 0.12
+		31 : 0.14
+		33 : 0.28
+		34 : 0.12
+		35 : 0.28
+state 32
+//[!blackout	& energy=1	& renewable=3	& non_renewable=0	& consumption=0]
+	action DECREASE_BOTH
+		1 : 0.72
+		2 : 0.18
+		3 : 0.08
+		4 : 0.02
+	action DECREASE_BOTH
+		1 : 0.24
+		2 : 0.06
+		3 : 0.56
+		4 : 0.14
+state 33
+//[!blackout	& energy=1	& renewable=3	& non_renewable=0	& consumption=1]
+	action DECREASE_BOTH
+		1 : 0.18
+		2 : 0.36
+		3 : 0.02
+		4 : 0.04
+		13 : 0.36
+		14 : 0.04
+	action DECREASE_BOTH
+		1 : 0.06
+		2 : 0.12
+		3 : 0.14
+		4 : 0.28
+		13 : 0.12
+		14 : 0.28
+state 34 "((((renewable + non_renewable) - consumption) < 0) = true)"
+//[!blackout	& energy=1	& renewable=2	& non_renewable=0	& consumption=3]
+	action __NOLABEL__
+		34 : 1
+state 35
+//[!blackout	& energy=1	& renewable=3	& non_renewable=0	& consumption=3]
+	action DECREASE_BOTH
+		23 : 0.36
+		27 : 0.18
+		28 : 0.02
+		30 : 0.04
+		36 : 0.36
+		37 : 0.04
+	action DECREASE_BOTH
+		23 : 0.12
+		27 : 0.06
+		28 : 0.14
+		30 : 0.28
+		36 : 0.12
+		37 : 0.28
+state 36 "((((renewable + non_renewable) - consumption) < 0) = true)"
+//[!blackout	& energy=0	& renewable=2	& non_renewable=0	& consumption=4]
+	action __NOLABEL__
+		36 : 1
+state 37 "((((renewable + non_renewable) - consumption) < 0) = true)"
+//[!blackout	& energy=0	& renewable=3	& non_renewable=0	& consumption=4]
+	action __NOLABEL__
+		37 : 1

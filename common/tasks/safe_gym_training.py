@@ -1,6 +1,8 @@
 """This module manages the safe gym training task."""
 import os
 from typing import Any, Dict
+
+from click import command
 from common.utilities.project import Project
 from common.utilities.training import train
 from common.safe_gym.safe_gym import SafeGym
@@ -28,7 +30,7 @@ def run_safe_gym_training(command_line_arguments: Dict[str, Any]) -> int:
                 command_line_arguments['max_steps'], command_line_arguments['wrong_action_penalty'],
                   command_line_arguments['reward_flag'], 
                   command_line_arguments['seed'], command_line_arguments['permissive_input'],
-                  command_line_arguments['disabled_features'], command_line_arguments['attack_config'])
+                  command_line_arguments['disabled_features'], abstraction_input=command_line_arguments['abstract_features'], attack_config_str=command_line_arguments['attack_config'])
     # Project
     m_project = Project(command_line_arguments)
     m_project.init_mlflow_bridge(
@@ -40,7 +42,7 @@ def run_safe_gym_training(command_line_arguments: Dict[str, Any]) -> int:
                            env.observation_space, env.action_space)
     m_project.mlflow_bridge.set_property_query_as_run_name(
         command_line_arguments['prop'] + " for " + command_line_arguments['constant_definitions'])
-    train(m_project, env, prop_type=command_line_arguments['prop_type'])
+    all_states, all_actions, all_rewards, all_terminals, last_reward, observer_reward = train(m_project, env, prop_type=command_line_arguments['prop_type'])
     run_id = m_project.mlflow_bridge.get_run_id()
     m_project.close()
-    return run_id
+    return run_id, last_reward, observer_reward
