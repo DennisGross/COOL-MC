@@ -395,7 +395,7 @@ If permission problems: `sudo chmod 777 /usr/local/lib/python3.8/dist-packages/`
 0. `cd $COOL_MC`
 1. `git clone https://github.com/moves-rwth/stormpy.git`
 2. `cd stormpy`
-3. `python setup.py build_ext --storm-dir "${COOL_MC}/build/" --jobs 1 develop`
+3. `python setup.py build_ext --storm-dir "${COOL_MC}/storm/build/" --jobs 1 develop`
 
 For more information about the Stormpy installation, click [here](https://moves-rwth.github.io/stormpy/installation.html#installation-steps).
 
