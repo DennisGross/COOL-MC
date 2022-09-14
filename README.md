@@ -21,8 +21,6 @@ policy. The resulting model is fully probabilistic, as no action choices are lef
 open, and is a Markov chain induced by the original MDP and the policy.
 
 
-![components](https://github.com/DennisGross/COOL-MC/blob/main/documentation/images/incremental_building.png)
-
 ##### Content
 1. Getting Started with COOL-MC
 2. Example 1 (Frozen Lake)
