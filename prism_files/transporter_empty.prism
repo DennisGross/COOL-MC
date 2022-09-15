@@ -120,38 +120,14 @@ endmodule
 
 
 rewards
-	//Passenger arrived
-	[DROP] DROP_LOCATION & PASSENGER_ON_BOARD : 0;
-	//Pick up Passenger
-	[PICK_UP] NOT_PASSENGER_ON_BOARD & PICK_UP_LOCATION : 21; 
-	//Life penality for each action if passenger is not on board
-	[NORTH] NOT_PASSENGER_ON_BOARD : 21 + (max(passenger_loc_x-x, x-passenger_loc_x) + max(passenger_loc_y-y, y-passenger_loc_y));
-	[EAST] NOT_PASSENGER_ON_BOARD : 21 + (max(passenger_loc_x-x, x-passenger_loc_x) + max(passenger_loc_y-y, y-passenger_loc_y));
-	[SOUTH] NOT_PASSENGER_ON_BOARD : 21 + (max(passenger_loc_x-x, x-passenger_loc_x) + max(passenger_loc_y-y, y-passenger_loc_y));
-	[WEST] NOT_PASSENGER_ON_BOARD : 21 + (max(passenger_loc_x-x, x-passenger_loc_x) + max(passenger_loc_y-y, y-passenger_loc_y));
-	//NOT ON BOARD BUT PICK UP AT WRONG LOCATION
-	[PICK_UP] NOT_PASSENGER_ON_BOARD & NOT_PICK_UP_LOCATION: 21 + (max(passenger_loc_x-x, x-passenger_loc_x) + max(passenger_loc_y-y, y-passenger_loc_y));
-	//DROP NOT POSSIBLE BECAUSE NO PASSENGER
-	[DROP] NOT_PASSENGER_ON_BOARD : 21 + (max(passenger_loc_x-x, x-passenger_loc_x) + max(passenger_loc_y-y, y-passenger_loc_y));
-	//Life penality for each action if passenger is on board
-	[NORTH] PASSENGER_ON_BOARD : 21 + (max(passenger_dest_x-x, x-passenger_dest_x-x) + max(passenger_dest_y-y, y- passenger_dest_y));
-	[EAST] PASSENGER_ON_BOARD : 21 + (max(passenger_dest_x-x, x-passenger_dest_x-x) + max(passenger_dest_y-y, y- passenger_dest_y));
-	[SOUTH] PASSENGER_ON_BOARD : 21 + (max(passenger_dest_x-x, x-passenger_dest_x-x) + max(passenger_dest_y-y, y- passenger_dest_y));
-	[WEST] PASSENGER_ON_BOARD : 21 + (max(passenger_dest_x-x, x-passenger_dest_x-x) + max(passenger_dest_y-y, y- passenger_dest_y));
-	//PASSENGER ALREADY PICKED UP
-	[PICK_UP] PASSENGER_ON_BOARD : 21 + (max(passenger_dest_x-x, x-passenger_dest_x-x) + max(passenger_dest_y-y, y- passenger_dest_y));
-	//PASSENGER ON BOARD BUT NOT AT DROP LOCATION
-	[DROP] NOT_DROP_LOCATION & PASSENGER_ON_BOARD: 21 + (max(passenger_dest_x-x, x-passenger_dest_x-x) + max(passenger_dest_y-y, y- passenger_dest_y));
-	//OUT OF FUEL
-	[NORTH] OUT_OF_FUEL & NOT_ON_GAS_STATION : 1500;
-	[EAST] OUT_OF_FUEL & NOT_ON_GAS_STATION : 1500;
-	[SOUTH] OUT_OF_FUEL & NOT_ON_GAS_STATION : 1500;
-	[WEST] OUT_OF_FUEL & NOT_ON_GAS_STATION: 1500;
-	[PICK_UP] OUT_OF_FUEL & NOT_ON_GAS_STATION: 1500;
-	[DROP] OUT_OF_FUEL & NOT_ON_GAS_STATION: 1500;
+	[NORTH] OUT_OF_FUEL & NOT_ON_GAS_STATION : 1;
+	[EAST] OUT_OF_FUEL & NOT_ON_GAS_STATION : 1;
+	[SOUTH] OUT_OF_FUEL & NOT_ON_GAS_STATION : 1;
+	[WEST] OUT_OF_FUEL & NOT_ON_GAS_STATION: 1;
+	[PICK_UP] OUT_OF_FUEL & NOT_ON_GAS_STATION: 1;
+	[DROP] OUT_OF_FUEL & NOT_ON_GAS_STATION: 1;
 endrewards
 
 
 label "empty" = (OUT_OF_FUEL & NOT_ON_GAS_STATION);
-label "not_empty" = !(OUT_OF_FUEL & NOT_ON_GAS_STATION);
 

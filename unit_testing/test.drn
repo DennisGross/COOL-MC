@@ -6,15 +6,2024 @@
 @reward_models
 
 @nr_states
-2
+337
 @nr_choices
-2
+337
 @model
 state 0 init
-//[pos=15]
-	action a1_down
-		1 : 1
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=2	& px4=2	& px5=2	& px6=2	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=0]
+	action UP
+		1 : 0.5
+		2 : 0.2
+		3 : 0.2
+		4 : 0.1
 state 1
-//[pos=16]
-	action a1_down
-		1 : 1
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=2	& px4=2	& px5=2	& px6=2	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=2	& px22=2	& px23=2	& px24=0	& px25=2	& px26=2	& px27=2	& px31=2]
+	action NOP
+		1 : 0.5
+		2 : 0.2
+		3 : 0.2
+		4 : 0.1
+state 2
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=2	& px4=2	& px5=2	& px6=1	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=2	& px22=2	& px23=2	& px24=0	& px25=2	& px26=2	& px27=2	& px31=2]
+	action NOP
+		5 : 0.5
+		6 : 0.2
+		7 : 0.2
+		8 : 0.1
+state 3
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=2	& px4=2	& px5=2	& px6=2	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=1	& px22=2	& px23=2	& px24=0	& px25=1	& px26=2	& px27=2	& px31=2]
+	action NOP
+		9 : 0.5
+		10 : 0.2
+		11 : 0.2
+		12 : 0.1
+state 4
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=2	& px4=2	& px5=2	& px6=1	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=1	& px22=2	& px23=2	& px24=0	& px25=1	& px26=2	& px27=2	& px31=2]
+	action NOP
+		13 : 0.5
+		14 : 0.2
+		15 : 0.2
+		16 : 0.1
+state 5
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=2	& px4=2	& px5=1	& px6=2	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=2	& px22=2	& px23=2	& px24=0	& px25=2	& px26=2	& px27=2	& px31=2]
+	action NOP
+		17 : 0.5
+		18 : 0.2
+		19 : 0.2
+		20 : 0.1
+state 6
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=2	& px4=2	& px5=1	& px6=1	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=2	& px22=2	& px23=2	& px24=0	& px25=2	& px26=2	& px27=2	& px31=2]
+	action NOP
+		21 : 0.5
+		22 : 0.2
+		23 : 0.2
+		24 : 0.1
+state 7
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=2	& px4=2	& px5=1	& px6=2	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=1	& px22=2	& px23=2	& px24=0	& px25=1	& px26=2	& px27=2	& px31=2]
+	action UP
+		25 : 0.5
+		26 : 0.2
+		27 : 0.2
+		28 : 0.1
+state 8
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=2	& px4=2	& px5=1	& px6=1	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=1	& px22=2	& px23=2	& px24=0	& px25=1	& px26=2	& px27=2	& px31=2]
+	action NOP
+		29 : 0.5
+		30 : 0.2
+		31 : 0.2
+		32 : 0.1
+state 9
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=2	& px4=2	& px5=2	& px6=2	& px7=2	& px8=1	& px9=2	& px10=2	& px11=2	& px12=1	& px13=2	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=2	& px22=1	& px23=2	& px24=0	& px25=2	& px26=1	& px27=2	& px31=2]
+	action NOP
+		33 : 0.5
+		34 : 0.2
+		35 : 0.2
+		36 : 0.1
+state 10
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=2	& px4=2	& px5=2	& px6=1	& px7=2	& px8=1	& px9=2	& px10=2	& px11=2	& px12=1	& px13=2	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=2	& px22=1	& px23=2	& px24=0	& px25=2	& px26=1	& px27=2	& px31=2]
+	action NOP
+		37 : 0.5
+		38 : 0.2
+		39 : 0.2
+		40 : 0.1
+state 11
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=2	& px4=2	& px5=2	& px6=2	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=1	& px22=1	& px23=2	& px24=0	& px25=1	& px26=1	& px27=2	& px31=2]
+	action NOP
+		41 : 0.5
+		42 : 0.2
+		43 : 0.2
+		44 : 0.1
+state 12
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=2	& px4=2	& px5=2	& px6=1	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=1	& px22=1	& px23=2	& px24=0	& px25=1	& px26=1	& px27=2	& px31=2]
+	action DOWN
+		45 : 0.5
+		46 : 0.2
+		47 : 0.2
+		48 : 0.1
+state 13
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=2	& px4=2	& px5=1	& px6=2	& px7=2	& px8=1	& px9=2	& px10=2	& px11=2	& px12=1	& px13=2	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=2	& px22=1	& px23=2	& px24=0	& px25=2	& px26=1	& px27=2	& px31=2]
+	action DOWN
+		49 : 0.5
+		50 : 0.2
+		51 : 0.2
+		52 : 0.1
+state 14
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=2	& px4=2	& px5=1	& px6=1	& px7=2	& px8=1	& px9=2	& px10=2	& px11=2	& px12=1	& px13=2	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=2	& px22=1	& px23=2	& px24=0	& px25=2	& px26=1	& px27=2	& px31=2]
+	action DOWN
+		53 : 0.5
+		54 : 0.2
+		55 : 0.2
+		56 : 0.1
+state 15
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=2	& px4=2	& px5=1	& px6=2	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=1	& px22=1	& px23=2	& px24=0	& px25=1	& px26=1	& px27=2	& px31=2]
+	action NOP
+		57 : 0.5
+		58 : 0.2
+		59 : 0.2
+		60 : 0.1
+state 16
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=2	& px4=2	& px5=1	& px6=1	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=1	& px22=1	& px23=2	& px24=0	& px25=1	& px26=1	& px27=2	& px31=2]
+	action NOP
+		61 : 0.5
+		62 : 0.2
+		63 : 0.2
+		64 : 0.1
+state 17
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=2	& px4=1	& px5=2	& px6=2	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=2	& px22=2	& px23=2	& px24=0	& px25=2	& px26=2	& px27=2	& px31=2]
+	action NOP
+		1 : 0.5
+		2 : 0.2
+		3 : 0.2
+		4 : 0.1
+state 18
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=2	& px4=1	& px5=2	& px6=1	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=2	& px22=2	& px23=2	& px24=0	& px25=2	& px26=2	& px27=2	& px31=2]
+	action NOP
+		5 : 0.5
+		6 : 0.2
+		7 : 0.2
+		8 : 0.1
+state 19
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=2	& px4=1	& px5=2	& px6=2	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=1	& px22=2	& px23=2	& px24=0	& px25=1	& px26=2	& px27=2	& px31=2]
+	action NOP
+		9 : 0.5
+		10 : 0.2
+		11 : 0.2
+		12 : 0.1
+state 20
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=2	& px4=1	& px5=2	& px6=1	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=1	& px22=2	& px23=2	& px24=0	& px25=1	& px26=2	& px27=2	& px31=2]
+	action DOWN
+		65 : 0.5
+		66 : 0.2
+		67 : 0.2
+		68 : 0.1
+state 21
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=2	& px4=1	& px5=1	& px6=2	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=2	& px22=2	& px23=2	& px24=0	& px25=2	& px26=2	& px27=2	& px31=2]
+	action NOP
+		17 : 0.5
+		18 : 0.2
+		19 : 0.2
+		20 : 0.1
+state 22
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=2	& px4=1	& px5=1	& px6=1	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=2	& px22=2	& px23=2	& px24=0	& px25=2	& px26=2	& px27=2	& px31=2]
+	action NOP
+		21 : 0.5
+		22 : 0.2
+		23 : 0.2
+		24 : 0.1
+state 23
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=2	& px4=1	& px5=1	& px6=2	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=1	& px22=2	& px23=2	& px24=0	& px25=1	& px26=2	& px27=2	& px31=2]
+	action DOWN
+		69 : 0.5
+		70 : 0.2
+		71 : 0.2
+		72 : 0.1
+state 24
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=2	& px4=1	& px5=1	& px6=1	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=1	& px22=2	& px23=2	& px24=0	& px25=1	& px26=2	& px27=2	& px31=2]
+	action DOWN
+		73 : 0.5
+		74 : 0.2
+		75 : 0.2
+		76 : 0.1
+state 25
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=2	& px4=1	& px5=2	& px6=2	& px7=2	& px8=1	& px9=2	& px10=2	& px11=2	& px12=1	& px13=2	& px14=2	& px15=2	& px16=1	& px17=0	& px18=2	& px19=2	& px20=1	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=2]
+	action UP
+		77 : 0.5
+		78 : 0.2
+		79 : 0.2
+		80 : 0.1
+state 26
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=2	& px4=1	& px5=2	& px6=1	& px7=2	& px8=1	& px9=2	& px10=2	& px11=2	& px12=1	& px13=2	& px14=1	& px15=2	& px16=1	& px17=0	& px18=1	& px19=2	& px20=1	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=2]
+	action DOWN
+		37 : 0.5
+		38 : 0.2
+		39 : 0.2
+		40 : 0.1
+state 27
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=2	& px4=1	& px5=2	& px6=2	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=2	& px15=2	& px16=1	& px17=0	& px18=2	& px19=2	& px20=1	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=2]
+	action UP
+		81 : 0.5
+		82 : 0.2
+		83 : 0.2
+		84 : 0.1
+state 28
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=2	& px4=1	& px5=2	& px6=1	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=1	& px15=2	& px16=1	& px17=0	& px18=1	& px19=2	& px20=1	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=2]
+	action UP
+		85 : 0.5
+		86 : 0.2
+		87 : 0.2
+		88 : 0.1
+state 29
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=2	& px4=1	& px5=1	& px6=2	& px7=2	& px8=1	& px9=2	& px10=2	& px11=2	& px12=1	& px13=2	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=2	& px22=1	& px23=2	& px24=0	& px25=2	& px26=1	& px27=2	& px31=2]
+	action DOWN
+		49 : 0.5
+		50 : 0.2
+		51 : 0.2
+		52 : 0.1
+state 30
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=2	& px4=1	& px5=1	& px6=1	& px7=2	& px8=1	& px9=2	& px10=2	& px11=2	& px12=1	& px13=2	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=2	& px22=1	& px23=2	& px24=0	& px25=2	& px26=1	& px27=2	& px31=2]
+	action NOP
+		89 : 0.5
+		90 : 0.2
+		91 : 0.2
+		92 : 0.1
+state 31
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=2	& px4=1	& px5=1	& px6=2	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=1	& px22=1	& px23=2	& px24=0	& px25=1	& px26=1	& px27=2	& px31=2]
+	action DOWN
+		93 : 0.5
+		94 : 0.2
+		95 : 0.2
+		96 : 0.1
+state 32
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=2	& px4=1	& px5=1	& px6=1	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=1	& px22=1	& px23=2	& px24=0	& px25=1	& px26=1	& px27=2	& px31=2]
+	action DOWN
+		97 : 0.5
+		98 : 0.2
+		99 : 0.2
+		100 : 0.1
+state 33
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=2	& px4=2	& px5=2	& px6=2	& px7=1	& px8=2	& px9=2	& px10=2	& px11=1	& px12=2	& px13=2	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=2	& px22=2	& px23=1	& px24=0	& px25=2	& px26=2	& px27=1	& px31=2]
+	action UP
+		101 : 0.5
+		102 : 0.2
+		103 : 0.2
+		104 : 0.1
+state 34
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=2	& px4=2	& px5=2	& px6=1	& px7=1	& px8=2	& px9=2	& px10=2	& px11=1	& px12=2	& px13=2	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=2	& px22=2	& px23=1	& px24=0	& px25=2	& px26=2	& px27=1	& px31=2]
+	action UP
+		105 : 0.5
+		106 : 0.2
+		107 : 0.2
+		108 : 0.1
+state 35
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=2	& px4=2	& px5=2	& px6=2	& px7=1	& px8=2	& px9=1	& px10=2	& px11=1	& px12=2	& px13=1	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=1	& px22=2	& px23=1	& px24=0	& px25=1	& px26=2	& px27=1	& px31=2]
+	action UP
+		109 : 0.5
+		110 : 0.2
+		111 : 0.2
+		112 : 0.1
+state 36
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=2	& px4=2	& px5=2	& px6=1	& px7=1	& px8=2	& px9=1	& px10=2	& px11=1	& px12=2	& px13=1	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=1	& px22=2	& px23=1	& px24=0	& px25=1	& px26=2	& px27=1	& px31=2]
+	action DOWN
+		65 : 0.5
+		66 : 0.2
+		67 : 0.2
+		68 : 0.1
+state 37
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=2	& px4=2	& px5=1	& px6=2	& px7=1	& px8=2	& px9=2	& px10=2	& px11=1	& px12=2	& px13=2	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=2	& px22=2	& px23=1	& px24=0	& px25=2	& px26=2	& px27=1	& px31=2]
+	action UP
+		113 : 0.5
+		114 : 0.2
+		115 : 0.2
+		116 : 0.1
+state 38
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=2	& px4=2	& px5=1	& px6=1	& px7=1	& px8=2	& px9=2	& px10=2	& px11=1	& px12=2	& px13=2	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=2	& px22=2	& px23=1	& px24=0	& px25=2	& px26=2	& px27=1	& px31=2]
+	action UP
+		117 : 0.5
+		118 : 0.2
+		119 : 0.2
+		120 : 0.1
+state 39
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=2	& px4=2	& px5=1	& px6=2	& px7=1	& px8=2	& px9=1	& px10=2	& px11=1	& px12=2	& px13=1	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=1	& px22=2	& px23=1	& px24=0	& px25=1	& px26=2	& px27=1	& px31=2]
+	action UP
+		25 : 0.5
+		26 : 0.2
+		27 : 0.2
+		28 : 0.1
+state 40
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=2	& px4=2	& px5=1	& px6=1	& px7=1	& px8=2	& px9=1	& px10=2	& px11=1	& px12=2	& px13=1	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=1	& px22=2	& px23=1	& px24=0	& px25=1	& px26=2	& px27=1	& px31=2]
+	action DOWN
+		73 : 0.5
+		74 : 0.2
+		75 : 0.2
+		76 : 0.1
+state 41
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=2	& px4=2	& px5=2	& px6=2	& px7=1	& px8=1	& px9=2	& px10=2	& px11=1	& px12=1	& px13=2	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=2	& px22=1	& px23=1	& px24=0	& px25=2	& px26=1	& px27=1	& px31=2]
+	action UP
+		121 : 0.5
+		122 : 0.2
+		123 : 0.2
+		124 : 0.1
+state 42
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=2	& px4=2	& px5=2	& px6=1	& px7=1	& px8=1	& px9=2	& px10=2	& px11=1	& px12=1	& px13=2	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=2	& px22=1	& px23=1	& px24=0	& px25=2	& px26=1	& px27=1	& px31=2]
+	action DOWN
+		125 : 0.5
+		126 : 0.2
+		127 : 0.2
+		128 : 0.1
+state 43
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=2	& px4=2	& px5=2	& px6=2	& px7=1	& px8=1	& px9=1	& px10=2	& px11=1	& px12=1	& px13=1	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=1	& px22=1	& px23=1	& px24=0	& px25=1	& px26=1	& px27=1	& px31=2]
+	action DOWN
+		129 : 0.5
+		130 : 0.2
+		131 : 0.2
+		132 : 0.1
+state 44
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=2	& px4=2	& px5=2	& px6=1	& px7=1	& px8=1	& px9=1	& px10=2	& px11=1	& px12=1	& px13=1	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=1	& px22=1	& px23=1	& px24=0	& px25=1	& px26=1	& px27=1	& px31=2]
+	action DOWN
+		45 : 0.5
+		46 : 0.2
+		47 : 0.2
+		48 : 0.1
+state 45
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=2	& px4=2	& px5=1	& px6=2	& px7=1	& px8=1	& px9=2	& px10=2	& px11=1	& px12=1	& px13=2	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=0]
+	action NOP
+		49 : 0.5
+		50 : 0.2
+		51 : 0.2
+		52 : 0.1
+state 46
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=2	& px4=2	& px5=1	& px6=1	& px7=1	& px8=1	& px9=2	& px10=2	& px11=1	& px12=1	& px13=2	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=0]
+	action NOP
+		53 : 0.5
+		54 : 0.2
+		55 : 0.2
+		56 : 0.1
+state 47
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=2	& px4=2	& px5=1	& px6=2	& px7=1	& px8=1	& px9=1	& px10=2	& px11=1	& px12=1	& px13=1	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=0]
+	action DOWN
+		93 : 0.5
+		94 : 0.2
+		95 : 0.2
+		96 : 0.1
+state 48
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=2	& px4=2	& px5=1	& px6=1	& px7=1	& px8=1	& px9=1	& px10=2	& px11=1	& px12=1	& px13=1	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=0]
+	action DOWN
+		97 : 0.5
+		98 : 0.2
+		99 : 0.2
+		100 : 0.1
+state 49
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=2	& px4=1	& px5=2	& px6=2	& px7=1	& px8=2	& px9=2	& px10=2	& px11=1	& px12=2	& px13=2	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=0]
+	action DOWN
+		0 : 0.5
+		133 : 0.2
+		134 : 0.2
+		135 : 0.1
+state 50
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=2	& px4=1	& px5=2	& px6=1	& px7=1	& px8=2	& px9=2	& px10=2	& px11=1	& px12=2	& px13=2	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=0]
+	action DOWN
+		136 : 0.5
+		137 : 0.2
+		138 : 0.2
+		139 : 0.1
+state 51
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=2	& px4=1	& px5=2	& px6=2	& px7=1	& px8=2	& px9=1	& px10=2	& px11=1	& px12=2	& px13=1	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=0]
+	action NOP
+		140 : 0.5
+		141 : 0.2
+		142 : 0.2
+		143 : 0.1
+state 52
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=2	& px4=1	& px5=2	& px6=1	& px7=1	& px8=2	& px9=1	& px10=2	& px11=1	& px12=2	& px13=1	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=0]
+	action NOP
+		65 : 0.5
+		66 : 0.2
+		67 : 0.2
+		68 : 0.1
+state 53
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=2	& px4=1	& px5=1	& px6=2	& px7=1	& px8=2	& px9=2	& px10=2	& px11=1	& px12=2	& px13=2	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=0]
+	action NOP
+		144 : 0.5
+		145 : 0.2
+		146 : 0.2
+		147 : 0.1
+state 54
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=2	& px4=1	& px5=1	& px6=1	& px7=1	& px8=2	& px9=2	& px10=2	& px11=1	& px12=2	& px13=2	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=0]
+	action DOWN
+		148 : 0.5
+		149 : 0.2
+		150 : 0.2
+		151 : 0.1
+state 55
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=2	& px4=1	& px5=1	& px6=2	& px7=1	& px8=2	& px9=1	& px10=2	& px11=1	& px12=2	& px13=1	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=0]
+	action DOWN
+		69 : 0.5
+		70 : 0.2
+		71 : 0.2
+		72 : 0.1
+state 56
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=2	& px4=1	& px5=1	& px6=1	& px7=1	& px8=2	& px9=1	& px10=2	& px11=1	& px12=2	& px13=1	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=0]
+	action DOWN
+		73 : 0.5
+		74 : 0.2
+		75 : 0.2
+		76 : 0.1
+state 57
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=2	& px4=1	& px5=2	& px6=2	& px7=1	& px8=1	& px9=2	& px10=2	& px11=1	& px12=1	& px13=2	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=2	& px22=1	& px23=1	& px24=0	& px25=2	& px26=1	& px27=1	& px31=2]
+	action DOWN
+		152 : 0.5
+		153 : 0.2
+		154 : 0.2
+		155 : 0.1
+state 58
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=2	& px4=1	& px5=2	& px6=1	& px7=1	& px8=1	& px9=2	& px10=2	& px11=1	& px12=1	& px13=2	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=2	& px22=1	& px23=1	& px24=0	& px25=2	& px26=1	& px27=1	& px31=2]
+	action DOWN
+		125 : 0.5
+		126 : 0.2
+		127 : 0.2
+		128 : 0.1
+state 59
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=2	& px4=1	& px5=2	& px6=2	& px7=1	& px8=1	& px9=1	& px10=2	& px11=1	& px12=1	& px13=1	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=1	& px22=1	& px23=1	& px24=0	& px25=1	& px26=1	& px27=1	& px31=2]
+	action DOWN
+		129 : 0.5
+		130 : 0.2
+		131 : 0.2
+		132 : 0.1
+state 60
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=2	& px4=1	& px5=2	& px6=1	& px7=1	& px8=1	& px9=1	& px10=2	& px11=1	& px12=1	& px13=1	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=1	& px22=1	& px23=1	& px24=0	& px25=1	& px26=1	& px27=1	& px31=2]
+	action DOWN
+		45 : 0.5
+		46 : 0.2
+		47 : 0.2
+		48 : 0.1
+state 61
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=2	& px4=1	& px5=1	& px6=2	& px7=1	& px8=1	& px9=2	& px10=2	& px11=1	& px12=1	& px13=2	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=2	& px22=1	& px23=1	& px24=0	& px25=2	& px26=1	& px27=1	& px31=2]
+	action DOWN
+		49 : 0.5
+		50 : 0.2
+		51 : 0.2
+		52 : 0.1
+state 62
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=2	& px4=1	& px5=1	& px6=1	& px7=1	& px8=1	& px9=2	& px10=2	& px11=1	& px12=1	& px13=2	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=2	& px22=1	& px23=1	& px24=0	& px25=2	& px26=1	& px27=1	& px31=2]
+	action DOWN
+		53 : 0.5
+		54 : 0.2
+		55 : 0.2
+		56 : 0.1
+state 63
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=2	& px4=1	& px5=1	& px6=2	& px7=1	& px8=1	& px9=1	& px10=2	& px11=1	& px12=1	& px13=1	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=1	& px22=1	& px23=1	& px24=0	& px25=1	& px26=1	& px27=1	& px31=2]
+	action DOWN
+		93 : 0.5
+		94 : 0.2
+		95 : 0.2
+		96 : 0.1
+state 64
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=2	& px4=1	& px5=1	& px6=1	& px7=1	& px8=1	& px9=1	& px10=2	& px11=1	& px12=1	& px13=1	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=1	& px22=1	& px23=1	& px24=0	& px25=1	& px26=1	& px27=1	& px31=2]
+	action DOWN
+		97 : 0.5
+		98 : 0.2
+		99 : 0.2
+		100 : 0.1
+state 65
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=2	& px4=2	& px5=1	& px6=2	& px7=2	& px8=1	& px9=2	& px10=2	& px11=2	& px12=1	& px13=2	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=0]
+	action DOWN
+		49 : 0.5
+		50 : 0.2
+		51 : 0.2
+		52 : 0.1
+state 66
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=2	& px4=2	& px5=1	& px6=1	& px7=2	& px8=1	& px9=2	& px10=2	& px11=2	& px12=1	& px13=2	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=0]
+	action DOWN
+		53 : 0.5
+		54 : 0.2
+		55 : 0.2
+		56 : 0.1
+state 67
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=2	& px4=2	& px5=1	& px6=2	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=0]
+	action NOP
+		93 : 0.5
+		94 : 0.2
+		95 : 0.2
+		96 : 0.1
+state 68
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=2	& px4=2	& px5=1	& px6=1	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=0]
+	action NOP
+		97 : 0.5
+		98 : 0.2
+		99 : 0.2
+		100 : 0.1
+state 69
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=2	& px4=1	& px5=2	& px6=2	& px7=2	& px8=1	& px9=2	& px10=2	& px11=2	& px12=1	& px13=2	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=0]
+	action NOP
+		152 : 0.5
+		153 : 0.2
+		154 : 0.2
+		155 : 0.1
+state 70
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=2	& px4=1	& px5=2	& px6=1	& px7=2	& px8=1	& px9=2	& px10=2	& px11=2	& px12=1	& px13=2	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=0]
+	action DOWN
+		125 : 0.5
+		126 : 0.2
+		127 : 0.2
+		128 : 0.1
+state 71
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=2	& px4=1	& px5=2	& px6=2	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=0]
+	action DOWN
+		129 : 0.5
+		130 : 0.2
+		131 : 0.2
+		132 : 0.1
+state 72
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=2	& px4=1	& px5=2	& px6=1	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=0]
+	action DOWN
+		45 : 0.5
+		46 : 0.2
+		47 : 0.2
+		48 : 0.1
+state 73
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=2	& px4=1	& px5=1	& px6=2	& px7=2	& px8=1	& px9=2	& px10=2	& px11=2	& px12=1	& px13=2	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=0]
+	action NOP
+		49 : 0.5
+		50 : 0.2
+		51 : 0.2
+		52 : 0.1
+state 74
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=2	& px4=1	& px5=1	& px6=1	& px7=2	& px8=1	& px9=2	& px10=2	& px11=2	& px12=1	& px13=2	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=0]
+	action DOWN
+		53 : 0.5
+		54 : 0.2
+		55 : 0.2
+		56 : 0.1
+state 75
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=2	& px4=1	& px5=1	& px6=2	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=0]
+	action DOWN
+		93 : 0.5
+		94 : 0.2
+		95 : 0.2
+		96 : 0.1
+state 76
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=2	& px4=1	& px5=1	& px6=1	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=0]
+	action NOP
+		97 : 0.5
+		98 : 0.2
+		99 : 0.2
+		100 : 0.1
+state 77
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=2	& px4=2	& px5=2	& px6=2	& px7=1	& px8=2	& px9=2	& px10=0	& px11=1	& px12=2	& px13=2	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=2]
+	action UP
+		156 : 0.5
+		157 : 0.2
+		158 : 0.2
+		159 : 0.1
+state 78
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=2	& px4=2	& px5=2	& px6=1	& px7=1	& px8=2	& px9=2	& px10=0	& px11=1	& px12=2	& px13=2	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=2]
+	action UP
+		160 : 0.5
+		161 : 0.2
+		162 : 0.2
+		163 : 0.1
+state 79
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=2	& px4=2	& px5=2	& px6=2	& px7=1	& px8=2	& px9=1	& px10=0	& px11=1	& px12=2	& px13=1	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=2]
+	action UP
+		164 : 0.5
+		165 : 0.2
+		166 : 0.2
+		167 : 0.1
+state 80
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=2	& px4=2	& px5=2	& px6=1	& px7=1	& px8=2	& px9=1	& px10=0	& px11=1	& px12=2	& px13=1	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=2]
+	action UP
+		168 : 0.5
+		169 : 0.2
+		170 : 0.2
+		171 : 0.1
+state 81
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=2	& px4=2	& px5=2	& px6=2	& px7=1	& px8=1	& px9=2	& px10=0	& px11=1	& px12=1	& px13=2	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=2]
+	action UP
+		172 : 0.5
+		173 : 0.2
+		174 : 0.2
+		175 : 0.1
+state 82
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=2	& px4=2	& px5=2	& px6=1	& px7=1	& px8=1	& px9=2	& px10=0	& px11=1	& px12=1	& px13=2	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=2]
+	action UP
+		176 : 0.5
+		177 : 0.2
+		178 : 0.2
+		179 : 0.1
+state 83
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=2	& px4=2	& px5=2	& px6=2	& px7=1	& px8=1	& px9=1	& px10=0	& px11=1	& px12=1	& px13=1	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=2]
+	action UP
+		180 : 0.5
+		181 : 0.2
+		182 : 0.2
+		183 : 0.1
+state 84
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=2	& px4=2	& px5=2	& px6=1	& px7=1	& px8=1	& px9=1	& px10=0	& px11=1	& px12=1	& px13=1	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=2]
+	action UP
+		184 : 0.5
+		185 : 0.2
+		186 : 0.2
+		187 : 0.1
+state 85
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=2	& px4=2	& px5=1	& px6=2	& px7=1	& px8=1	& px9=2	& px10=0	& px11=1	& px12=1	& px13=2	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=2]
+	action UP
+		188 : 0.5
+		189 : 0.2
+		190 : 0.2
+		191 : 0.1
+state 86
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=2	& px4=2	& px5=1	& px6=1	& px7=1	& px8=1	& px9=2	& px10=0	& px11=1	& px12=1	& px13=2	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=2]
+	action UP
+		192 : 0.5
+		193 : 0.2
+		194 : 0.2
+		195 : 0.1
+state 87
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=2	& px4=2	& px5=1	& px6=2	& px7=1	& px8=1	& px9=1	& px10=0	& px11=1	& px12=1	& px13=1	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=2]
+	action UP
+		196 : 0.5
+		197 : 0.2
+		198 : 0.2
+		199 : 0.1
+state 88
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=2	& px4=2	& px5=1	& px6=1	& px7=1	& px8=1	& px9=1	& px10=0	& px11=1	& px12=1	& px13=1	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=2]
+	action UP
+		200 : 0.5
+		201 : 0.2
+		202 : 0.2
+		203 : 0.1
+state 89
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=2	& px4=1	& px5=1	& px6=2	& px7=1	& px8=2	& px9=2	& px10=2	& px11=1	& px12=2	& px13=2	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=2	& px22=2	& px23=1	& px24=0	& px25=2	& px26=2	& px27=1	& px31=2]
+	action DOWN
+		144 : 0.5
+		145 : 0.2
+		146 : 0.2
+		147 : 0.1
+state 90
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=2	& px4=1	& px5=1	& px6=1	& px7=1	& px8=2	& px9=2	& px10=2	& px11=1	& px12=2	& px13=2	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=2	& px22=2	& px23=1	& px24=0	& px25=2	& px26=2	& px27=1	& px31=2]
+	action DOWN
+		148 : 0.5
+		149 : 0.2
+		150 : 0.2
+		151 : 0.1
+state 91
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=2	& px4=1	& px5=1	& px6=2	& px7=1	& px8=2	& px9=1	& px10=2	& px11=1	& px12=2	& px13=1	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=1	& px22=2	& px23=1	& px24=0	& px25=1	& px26=2	& px27=1	& px31=2]
+	action DOWN
+		69 : 0.5
+		70 : 0.2
+		71 : 0.2
+		72 : 0.1
+state 92
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=2	& px4=1	& px5=1	& px6=1	& px7=1	& px8=2	& px9=1	& px10=2	& px11=1	& px12=2	& px13=1	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=1	& px22=2	& px23=1	& px24=0	& px25=1	& px26=2	& px27=1	& px31=2]
+	action DOWN
+		73 : 0.5
+		74 : 0.2
+		75 : 0.2
+		76 : 0.1
+state 93
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=2	& px4=1	& px5=2	& px6=2	& px7=1	& px8=1	& px9=2	& px10=2	& px11=1	& px12=1	& px13=2	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=0]
+	action NOP
+		152 : 0.5
+		153 : 0.2
+		154 : 0.2
+		155 : 0.1
+state 94
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=2	& px4=1	& px5=2	& px6=1	& px7=1	& px8=1	& px9=2	& px10=2	& px11=1	& px12=1	& px13=2	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=0]
+	action DOWN
+		125 : 0.5
+		126 : 0.2
+		127 : 0.2
+		128 : 0.1
+state 95
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=2	& px4=1	& px5=2	& px6=2	& px7=1	& px8=1	& px9=1	& px10=2	& px11=1	& px12=1	& px13=1	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=0]
+	action NOP
+		129 : 0.5
+		130 : 0.2
+		131 : 0.2
+		132 : 0.1
+state 96
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=2	& px4=1	& px5=2	& px6=1	& px7=1	& px8=1	& px9=1	& px10=2	& px11=1	& px12=1	& px13=1	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=0]
+	action NOP
+		45 : 0.5
+		46 : 0.2
+		47 : 0.2
+		48 : 0.1
+state 97
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=2	& px4=1	& px5=1	& px6=2	& px7=1	& px8=1	& px9=2	& px10=2	& px11=1	& px12=1	& px13=2	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=0]
+	action DOWN
+		49 : 0.5
+		50 : 0.2
+		51 : 0.2
+		52 : 0.1
+state 98
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=2	& px4=1	& px5=1	& px6=1	& px7=1	& px8=1	& px9=2	& px10=2	& px11=1	& px12=1	& px13=2	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=0]
+	action DOWN
+		53 : 0.5
+		54 : 0.2
+		55 : 0.2
+		56 : 0.1
+state 99
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=2	& px4=1	& px5=1	& px6=2	& px7=1	& px8=1	& px9=1	& px10=2	& px11=1	& px12=1	& px13=1	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=0]
+	action DOWN
+		93 : 0.5
+		94 : 0.2
+		95 : 0.2
+		96 : 0.1
+state 100
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=2	& px4=1	& px5=1	& px6=1	& px7=1	& px8=1	& px9=1	& px10=2	& px11=1	& px12=1	& px13=1	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=0]
+	action DOWN
+		97 : 0.5
+		98 : 0.2
+		99 : 0.2
+		100 : 0.1
+state 101
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=2	& px4=2	& px5=2	& px6=2	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=2	& px15=2	& px16=2	& px17=0	& px18=2	& px19=2	& px20=2	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=2]
+	action UP
+		204 : 0.5
+		205 : 0.2
+		206 : 0.2
+		207 : 0.1
+state 102
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=2	& px4=2	& px5=2	& px6=1	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=1	& px15=2	& px16=2	& px17=0	& px18=1	& px19=2	& px20=2	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=2]
+	action UP
+		208 : 0.5
+		209 : 0.2
+		210 : 0.2
+		211 : 0.1
+state 103
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=2	& px4=2	& px5=2	& px6=2	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=2	& px15=2	& px16=2	& px17=0	& px18=2	& px19=2	& px20=2	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=2]
+	action UP
+		212 : 0.5
+		213 : 0.2
+		214 : 0.2
+		215 : 0.1
+state 104
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=2	& px4=2	& px5=2	& px6=1	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=1	& px15=2	& px16=2	& px17=0	& px18=1	& px19=2	& px20=2	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=2]
+	action UP
+		216 : 0.5
+		217 : 0.2
+		218 : 0.2
+		219 : 0.1
+state 105
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=2	& px4=2	& px5=1	& px6=2	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=2	& px15=1	& px16=2	& px17=0	& px18=2	& px19=1	& px20=2	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=2]
+	action UP
+		220 : 0.5
+		221 : 0.2
+		222 : 0.2
+		223 : 0.1
+state 106
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=2	& px4=2	& px5=1	& px6=1	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=1	& px15=1	& px16=2	& px17=0	& px18=1	& px19=1	& px20=2	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=2]
+	action NOP
+		117 : 0.5
+		118 : 0.2
+		119 : 0.2
+		120 : 0.1
+state 107
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=2	& px4=2	& px5=1	& px6=2	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=2	& px15=1	& px16=2	& px17=0	& px18=2	& px19=1	& px20=2	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=2]
+	action UP
+		224 : 0.5
+		225 : 0.2
+		226 : 0.2
+		227 : 0.1
+state 108
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=2	& px4=2	& px5=1	& px6=1	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=1	& px15=1	& px16=2	& px17=0	& px18=1	& px19=1	& px20=2	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=2]
+	action DOWN
+		29 : 0.5
+		30 : 0.2
+		31 : 0.2
+		32 : 0.1
+state 109
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=2	& px4=2	& px5=2	& px6=2	& px7=2	& px8=1	& px9=2	& px10=2	& px11=2	& px12=1	& px13=2	& px14=2	& px15=2	& px16=2	& px17=0	& px18=2	& px19=2	& px20=2	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=2]
+	action UP
+		77 : 0.5
+		78 : 0.2
+		79 : 0.2
+		80 : 0.1
+state 110
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=2	& px4=2	& px5=2	& px6=1	& px7=2	& px8=1	& px9=2	& px10=2	& px11=2	& px12=1	& px13=2	& px14=1	& px15=2	& px16=2	& px17=0	& px18=1	& px19=2	& px20=2	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=2]
+	action UP
+		228 : 0.5
+		229 : 0.2
+		230 : 0.2
+		231 : 0.1
+state 111
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=2	& px4=2	& px5=2	& px6=2	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=2	& px15=2	& px16=2	& px17=0	& px18=2	& px19=2	& px20=2	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=2]
+	action UP
+		81 : 0.5
+		82 : 0.2
+		83 : 0.2
+		84 : 0.1
+state 112
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=2	& px4=2	& px5=2	& px6=1	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=1	& px15=2	& px16=2	& px17=0	& px18=1	& px19=2	& px20=2	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=2]
+	action UP
+		85 : 0.5
+		86 : 0.2
+		87 : 0.2
+		88 : 0.1
+state 113
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=2	& px4=1	& px5=2	& px6=2	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=2	& px15=2	& px16=1	& px17=0	& px18=2	& px19=2	& px20=1	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=2]
+	action UP
+		204 : 0.5
+		205 : 0.2
+		206 : 0.2
+		207 : 0.1
+state 114
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=2	& px4=1	& px5=2	& px6=1	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=1	& px15=2	& px16=1	& px17=0	& px18=1	& px19=2	& px20=1	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=2]
+	action UP
+		208 : 0.5
+		209 : 0.2
+		210 : 0.2
+		211 : 0.1
+state 115
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=2	& px4=1	& px5=2	& px6=2	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=2	& px15=2	& px16=1	& px17=0	& px18=2	& px19=2	& px20=1	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=2]
+	action UP
+		212 : 0.5
+		213 : 0.2
+		214 : 0.2
+		215 : 0.1
+state 116
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=2	& px4=1	& px5=2	& px6=1	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=1	& px15=2	& px16=1	& px17=0	& px18=1	& px19=2	& px20=1	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=2]
+	action UP
+		216 : 0.5
+		217 : 0.2
+		218 : 0.2
+		219 : 0.1
+state 117
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=2	& px4=1	& px5=1	& px6=2	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=2	& px15=1	& px16=1	& px17=0	& px18=2	& px19=1	& px20=1	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=2]
+	action UP
+		220 : 0.5
+		221 : 0.2
+		222 : 0.2
+		223 : 0.1
+state 118
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=2	& px4=1	& px5=1	& px6=1	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=1	& px15=1	& px16=1	& px17=0	& px18=1	& px19=1	& px20=1	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=2]
+	action UP
+		232 : 0.5
+		233 : 0.2
+		234 : 0.2
+		235 : 0.1
+state 119
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=2	& px4=1	& px5=1	& px6=2	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=2	& px15=1	& px16=1	& px17=0	& px18=2	& px19=1	& px20=1	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=2]
+	action UP
+		224 : 0.5
+		225 : 0.2
+		226 : 0.2
+		227 : 0.1
+state 120
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=2	& px4=1	& px5=1	& px6=1	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=1	& px15=1	& px16=1	& px17=0	& px18=1	& px19=1	& px20=1	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=2]
+	action DOWN
+		29 : 0.5
+		30 : 0.2
+		31 : 0.2
+		32 : 0.1
+state 121
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=2	& px4=2	& px5=2	& px6=2	& px7=1	& px8=2	& px9=2	& px10=2	& px11=1	& px12=2	& px13=2	& px14=2	& px15=2	& px16=2	& px17=0	& px18=2	& px19=2	& px20=2	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=2]
+	action NOP
+		101 : 0.5
+		102 : 0.2
+		103 : 0.2
+		104 : 0.1
+state 122
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=2	& px4=2	& px5=2	& px6=1	& px7=1	& px8=2	& px9=2	& px10=2	& px11=1	& px12=2	& px13=2	& px14=1	& px15=2	& px16=2	& px17=0	& px18=1	& px19=2	& px20=2	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=2]
+	action NOP
+		105 : 0.5
+		106 : 0.2
+		107 : 0.2
+		108 : 0.1
+state 123
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=2	& px4=2	& px5=2	& px6=2	& px7=1	& px8=2	& px9=1	& px10=2	& px11=1	& px12=2	& px13=1	& px14=2	& px15=2	& px16=2	& px17=0	& px18=2	& px19=2	& px20=2	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=2]
+	action NOP
+		109 : 0.5
+		110 : 0.2
+		111 : 0.2
+		112 : 0.1
+state 124
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=2	& px4=2	& px5=2	& px6=1	& px7=1	& px8=2	& px9=1	& px10=2	& px11=1	& px12=2	& px13=1	& px14=1	& px15=2	& px16=2	& px17=0	& px18=1	& px19=2	& px20=2	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=2]
+	action NOP
+		236 : 0.5
+		237 : 0.2
+		238 : 0.2
+		239 : 0.1
+state 125
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=2	& px4=2	& px5=1	& px6=2	& px7=1	& px8=2	& px9=2	& px10=2	& px11=1	& px12=2	& px13=2	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=0]
+	action DOWN
+		144 : 0.5
+		145 : 0.2
+		146 : 0.2
+		147 : 0.1
+state 126
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=2	& px4=2	& px5=1	& px6=1	& px7=1	& px8=2	& px9=2	& px10=2	& px11=1	& px12=2	& px13=2	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=0]
+	action DOWN
+		148 : 0.5
+		149 : 0.2
+		150 : 0.2
+		151 : 0.1
+state 127
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=2	& px4=2	& px5=1	& px6=2	& px7=1	& px8=2	& px9=1	& px10=2	& px11=1	& px12=2	& px13=1	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=0]
+	action DOWN
+		69 : 0.5
+		70 : 0.2
+		71 : 0.2
+		72 : 0.1
+state 128
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=2	& px4=2	& px5=1	& px6=1	& px7=1	& px8=2	& px9=1	& px10=2	& px11=1	& px12=2	& px13=1	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=0]
+	action DOWN
+		73 : 0.5
+		74 : 0.2
+		75 : 0.2
+		76 : 0.1
+state 129
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=2	& px4=2	& px5=2	& px6=2	& px7=1	& px8=1	& px9=2	& px10=2	& px11=1	& px12=1	& px13=2	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=0]
+	action DOWN
+		152 : 0.5
+		153 : 0.2
+		154 : 0.2
+		155 : 0.1
+state 130
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=2	& px4=2	& px5=2	& px6=1	& px7=1	& px8=1	& px9=2	& px10=2	& px11=1	& px12=1	& px13=2	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=0]
+	action NOP
+		125 : 0.5
+		126 : 0.2
+		127 : 0.2
+		128 : 0.1
+state 131
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=2	& px4=2	& px5=2	& px6=2	& px7=1	& px8=1	& px9=1	& px10=2	& px11=1	& px12=1	& px13=1	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=0]
+	action DOWN
+		129 : 0.5
+		130 : 0.2
+		131 : 0.2
+		132 : 0.1
+state 132
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=2	& px4=2	& px5=2	& px6=1	& px7=1	& px8=1	& px9=1	& px10=2	& px11=1	& px12=1	& px13=1	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=0]
+	action NOP
+		45 : 0.5
+		46 : 0.2
+		47 : 0.2
+		48 : 0.1
+state 133
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=2	& px4=2	& px5=2	& px6=1	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=0]
+	action UP
+		5 : 0.5
+		6 : 0.2
+		7 : 0.2
+		8 : 0.1
+state 134
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=2	& px4=2	& px5=2	& px6=2	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=0]
+	action NOP
+		140 : 0.5
+		141 : 0.2
+		142 : 0.2
+		143 : 0.1
+state 135
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=2	& px4=2	& px5=2	& px6=1	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=0]
+	action NOP
+		65 : 0.5
+		66 : 0.2
+		67 : 0.2
+		68 : 0.1
+state 136
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=2	& px4=2	& px5=1	& px6=2	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=0]
+	action DOWN
+		144 : 0.5
+		145 : 0.2
+		146 : 0.2
+		147 : 0.1
+state 137
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=2	& px4=2	& px5=1	& px6=1	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=0]
+	action DOWN
+		148 : 0.5
+		149 : 0.2
+		150 : 0.2
+		151 : 0.1
+state 138
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=2	& px4=2	& px5=1	& px6=2	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=0]
+	action DOWN
+		69 : 0.5
+		70 : 0.2
+		71 : 0.2
+		72 : 0.1
+state 139
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=2	& px4=2	& px5=1	& px6=1	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=0]
+	action DOWN
+		73 : 0.5
+		74 : 0.2
+		75 : 0.2
+		76 : 0.1
+state 140
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=2	& px4=2	& px5=2	& px6=2	& px7=2	& px8=1	& px9=2	& px10=2	& px11=2	& px12=1	& px13=2	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=0]
+	action UP
+		33 : 0.5
+		34 : 0.2
+		35 : 0.2
+		36 : 0.1
+state 141
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=2	& px4=2	& px5=2	& px6=1	& px7=2	& px8=1	& px9=2	& px10=2	& px11=2	& px12=1	& px13=2	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=0]
+	action UP
+		37 : 0.5
+		38 : 0.2
+		39 : 0.2
+		40 : 0.1
+state 142
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=2	& px4=2	& px5=2	& px6=2	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=0]
+	action UP
+		41 : 0.5
+		42 : 0.2
+		43 : 0.2
+		44 : 0.1
+state 143
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=2	& px4=2	& px5=2	& px6=1	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=0]
+	action DOWN
+		45 : 0.5
+		46 : 0.2
+		47 : 0.2
+		48 : 0.1
+state 144
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=2	& px4=1	& px5=2	& px6=2	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=0]
+	action UP
+		1 : 0.5
+		2 : 0.2
+		3 : 0.2
+		4 : 0.1
+state 145
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=2	& px4=1	& px5=2	& px6=1	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=0]
+	action DOWN
+		136 : 0.5
+		137 : 0.2
+		138 : 0.2
+		139 : 0.1
+state 146
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=2	& px4=1	& px5=2	& px6=2	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=0]
+	action DOWN
+		140 : 0.5
+		141 : 0.2
+		142 : 0.2
+		143 : 0.1
+state 147
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=2	& px4=1	& px5=2	& px6=1	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=0]
+	action DOWN
+		65 : 0.5
+		66 : 0.2
+		67 : 0.2
+		68 : 0.1
+state 148
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=2	& px4=1	& px5=1	& px6=2	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=0]
+	action DOWN
+		144 : 0.5
+		145 : 0.2
+		146 : 0.2
+		147 : 0.1
+state 149
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=2	& px4=1	& px5=1	& px6=1	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=0]
+	action DOWN
+		148 : 0.5
+		149 : 0.2
+		150 : 0.2
+		151 : 0.1
+state 150
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=2	& px4=1	& px5=1	& px6=2	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=0]
+	action DOWN
+		69 : 0.5
+		70 : 0.2
+		71 : 0.2
+		72 : 0.1
+state 151
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=2	& px4=1	& px5=1	& px6=1	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=0]
+	action DOWN
+		73 : 0.5
+		74 : 0.2
+		75 : 0.2
+		76 : 0.1
+state 152
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=2	& px4=2	& px5=2	& px6=2	& px7=1	& px8=2	& px9=2	& px10=2	& px11=1	& px12=2	& px13=2	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=0]
+	action NOP
+		0 : 0.5
+		133 : 0.2
+		134 : 0.2
+		135 : 0.1
+state 153
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=2	& px4=2	& px5=2	& px6=1	& px7=1	& px8=2	& px9=2	& px10=2	& px11=1	& px12=2	& px13=2	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=0]
+	action DOWN
+		136 : 0.5
+		137 : 0.2
+		138 : 0.2
+		139 : 0.1
+state 154
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=2	& px4=2	& px5=2	& px6=2	& px7=1	& px8=2	& px9=1	& px10=2	& px11=1	& px12=2	& px13=1	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=0]
+	action DOWN
+		140 : 0.5
+		141 : 0.2
+		142 : 0.2
+		143 : 0.1
+state 155
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=2	& px4=2	& px5=2	& px6=1	& px7=1	& px8=2	& px9=1	& px10=2	& px11=1	& px12=2	& px13=1	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=0]
+	action DOWN
+		65 : 0.5
+		66 : 0.2
+		67 : 0.2
+		68 : 0.1
+state 156
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=0	& px4=2	& px5=2	& px6=2	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=2]
+	action NOP
+		156 : 0.5
+		157 : 0.2
+		158 : 0.2
+		159 : 0.1
+state 157
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=0	& px4=2	& px5=2	& px6=1	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=2]
+	action DOWN
+		208 : 0.5
+		209 : 0.2
+		210 : 0.2
+		211 : 0.1
+state 158
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=0	& px4=2	& px5=2	& px6=2	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=2]
+	action DOWN
+		212 : 0.5
+		213 : 0.2
+		214 : 0.2
+		215 : 0.1
+state 159
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=0	& px4=2	& px5=2	& px6=1	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=2]
+	action DOWN
+		216 : 0.5
+		217 : 0.2
+		218 : 0.2
+		219 : 0.1
+state 160
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=0	& px4=2	& px5=1	& px6=2	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=2]
+	action NOP
+		240 : 0.5
+		241 : 0.2
+		242 : 0.2
+		243 : 0.1
+state 161
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=0	& px4=2	& px5=1	& px6=1	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=2]
+	action NOP
+		244 : 0.5
+		245 : 0.2
+		246 : 0.2
+		247 : 0.1
+state 162
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=0	& px4=2	& px5=1	& px6=2	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=2]
+	action UP
+		248 : 1
+state 163
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=0	& px4=2	& px5=1	& px6=1	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=2]
+	action UP
+		249 : 1
+state 164
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=0	& px4=2	& px5=2	& px6=2	& px7=2	& px8=1	& px9=2	& px10=2	& px11=2	& px12=1	& px13=2	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=2]
+	action NOP
+		172 : 0.5
+		173 : 0.2
+		174 : 0.2
+		175 : 0.1
+state 165
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=0	& px4=2	& px5=2	& px6=1	& px7=2	& px8=1	& px9=2	& px10=2	& px11=2	& px12=1	& px13=2	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=2]
+	action NOP
+		176 : 0.5
+		177 : 0.2
+		178 : 0.2
+		179 : 0.1
+state 166
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=0	& px4=2	& px5=2	& px6=2	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=2]
+	action DOWN
+		81 : 0.5
+		82 : 0.2
+		83 : 0.2
+		84 : 0.1
+state 167
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=0	& px4=2	& px5=2	& px6=1	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=2]
+	action UP
+		250 : 1
+state 168
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=0	& px4=2	& px5=1	& px6=2	& px7=2	& px8=1	& px9=2	& px10=2	& px11=2	& px12=1	& px13=2	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=2]
+	action UP
+		251 : 1
+state 169
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=0	& px4=2	& px5=1	& px6=1	& px7=2	& px8=1	& px9=2	& px10=2	& px11=2	& px12=1	& px13=2	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=2]
+	action NOP
+		192 : 0.5
+		193 : 0.2
+		194 : 0.2
+		195 : 0.1
+state 170
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=0	& px4=2	& px5=1	& px6=2	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=2]
+	action UP
+		252 : 1
+state 171
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=0	& px4=2	& px5=1	& px6=1	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=2]
+	action UP
+		253 : 1
+state 172
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=0	& px4=2	& px5=2	& px6=2	& px7=1	& px8=2	& px9=2	& px10=2	& px11=1	& px12=2	& px13=2	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=2]
+	action NOP
+		156 : 0.5
+		157 : 0.2
+		158 : 0.2
+		159 : 0.1
+state 173
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=0	& px4=2	& px5=2	& px6=1	& px7=1	& px8=2	& px9=2	& px10=2	& px11=1	& px12=2	& px13=2	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=2]
+	action NOP
+		160 : 0.5
+		161 : 0.2
+		162 : 0.2
+		163 : 0.1
+state 174
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=0	& px4=2	& px5=2	& px6=2	& px7=1	& px8=2	& px9=1	& px10=2	& px11=1	& px12=2	& px13=1	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=2]
+	action UP
+		254 : 1
+state 175
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=0	& px4=2	& px5=2	& px6=1	& px7=1	& px8=2	& px9=1	& px10=2	& px11=1	& px12=2	& px13=1	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=2]
+	action NOP
+		168 : 0.5
+		169 : 0.2
+		170 : 0.2
+		171 : 0.1
+state 176
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=0	& px4=2	& px5=1	& px6=2	& px7=1	& px8=2	& px9=2	& px10=2	& px11=1	& px12=2	& px13=2	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=2]
+	action NOP
+		240 : 0.5
+		241 : 0.2
+		242 : 0.2
+		243 : 0.1
+state 177
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=0	& px4=2	& px5=1	& px6=1	& px7=1	& px8=2	& px9=2	& px10=2	& px11=1	& px12=2	& px13=2	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=2]
+	action NOP
+		244 : 0.5
+		245 : 0.2
+		246 : 0.2
+		247 : 0.1
+state 178
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=0	& px4=2	& px5=1	& px6=2	& px7=1	& px8=2	& px9=1	& px10=2	& px11=1	& px12=2	& px13=1	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=2]
+	action NOP
+		255 : 0.5
+		256 : 0.2
+		257 : 0.2
+		258 : 0.1
+state 179
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=0	& px4=2	& px5=1	& px6=1	& px7=1	& px8=2	& px9=1	& px10=2	& px11=1	& px12=2	& px13=1	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=2]
+	action NOP
+		259 : 0.5
+		260 : 0.2
+		261 : 0.2
+		262 : 0.1
+state 180
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=0	& px4=2	& px5=2	& px6=2	& px7=1	& px8=1	& px9=2	& px10=2	& px11=1	& px12=1	& px13=2	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=2]
+	action NOP
+		172 : 0.5
+		173 : 0.2
+		174 : 0.2
+		175 : 0.1
+state 181
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=0	& px4=2	& px5=2	& px6=1	& px7=1	& px8=1	& px9=2	& px10=2	& px11=1	& px12=1	& px13=2	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=2]
+	action NOP
+		176 : 0.5
+		177 : 0.2
+		178 : 0.2
+		179 : 0.1
+state 182
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=0	& px4=2	& px5=2	& px6=2	& px7=1	& px8=1	& px9=1	& px10=2	& px11=1	& px12=1	& px13=1	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=2]
+	action NOP
+		180 : 0.5
+		181 : 0.2
+		182 : 0.2
+		183 : 0.1
+state 183
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=0	& px4=2	& px5=2	& px6=1	& px7=1	& px8=1	& px9=1	& px10=2	& px11=1	& px12=1	& px13=1	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=2]
+	action UP
+		263 : 1
+state 184
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=0	& px4=2	& px5=1	& px6=2	& px7=1	& px8=1	& px9=2	& px10=2	& px11=1	& px12=1	& px13=2	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=2]
+	action NOP
+		188 : 0.5
+		189 : 0.2
+		190 : 0.2
+		191 : 0.1
+state 185
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=0	& px4=2	& px5=1	& px6=1	& px7=1	& px8=1	& px9=2	& px10=2	& px11=1	& px12=1	& px13=2	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=2]
+	action UP
+		264 : 1
+state 186
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=0	& px4=2	& px5=1	& px6=2	& px7=1	& px8=1	& px9=1	& px10=2	& px11=1	& px12=1	& px13=1	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=2]
+	action UP
+		265 : 1
+state 187
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=0	& px4=2	& px5=1	& px6=1	& px7=1	& px8=1	& px9=1	& px10=2	& px11=1	& px12=1	& px13=1	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=2]
+	action UP
+		266 : 1
+state 188
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=0	& px4=1	& px5=2	& px6=2	& px7=1	& px8=2	& px9=2	& px10=2	& px11=1	& px12=2	& px13=2	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=2]
+	action UP
+		267 : 1
+state 189
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=0	& px4=1	& px5=2	& px6=1	& px7=1	& px8=2	& px9=2	& px10=2	& px11=1	& px12=2	& px13=2	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=2]
+	action UP
+		268 : 1
+state 190
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=0	& px4=1	& px5=2	& px6=2	& px7=1	& px8=2	& px9=1	& px10=2	& px11=1	& px12=2	& px13=1	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=2]
+	action UP
+		269 : 1
+state 191
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=0	& px4=1	& px5=2	& px6=1	& px7=1	& px8=2	& px9=1	& px10=2	& px11=1	& px12=2	& px13=1	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=2]
+	action UP
+		270 : 1
+state 192
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=0	& px4=1	& px5=1	& px6=2	& px7=1	& px8=2	& px9=2	& px10=2	& px11=1	& px12=2	& px13=2	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=2]
+	action UP
+		271 : 1
+state 193
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=0	& px4=1	& px5=1	& px6=1	& px7=1	& px8=2	& px9=2	& px10=2	& px11=1	& px12=2	& px13=2	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=2]
+	action UP
+		272 : 1
+state 194
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=0	& px4=1	& px5=1	& px6=2	& px7=1	& px8=2	& px9=1	& px10=2	& px11=1	& px12=2	& px13=1	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=2]
+	action UP
+		273 : 1
+state 195
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=0	& px4=1	& px5=1	& px6=1	& px7=1	& px8=2	& px9=1	& px10=2	& px11=1	& px12=2	& px13=1	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=2]
+	action UP
+		274 : 1
+state 196
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=0	& px4=1	& px5=2	& px6=2	& px7=1	& px8=1	& px9=2	& px10=2	& px11=1	& px12=1	& px13=2	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=2]
+	action UP
+		275 : 1
+state 197
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=0	& px4=1	& px5=2	& px6=1	& px7=1	& px8=1	& px9=2	& px10=2	& px11=1	& px12=1	& px13=2	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=2]
+	action UP
+		276 : 1
+state 198
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=0	& px4=1	& px5=2	& px6=2	& px7=1	& px8=1	& px9=1	& px10=2	& px11=1	& px12=1	& px13=1	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=2]
+	action UP
+		277 : 1
+state 199
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=0	& px4=1	& px5=2	& px6=1	& px7=1	& px8=1	& px9=1	& px10=2	& px11=1	& px12=1	& px13=1	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=2]
+	action UP
+		278 : 1
+state 200
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=0	& px4=1	& px5=1	& px6=2	& px7=1	& px8=1	& px9=2	& px10=2	& px11=1	& px12=1	& px13=2	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=2]
+	action UP
+		279 : 1
+state 201
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=0	& px4=1	& px5=1	& px6=1	& px7=1	& px8=1	& px9=2	& px10=2	& px11=1	& px12=1	& px13=2	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=2]
+	action UP
+		280 : 1
+state 202
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=0	& px4=1	& px5=1	& px6=2	& px7=1	& px8=1	& px9=1	& px10=2	& px11=1	& px12=1	& px13=1	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=2]
+	action UP
+		281 : 1
+state 203
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=0	& px4=1	& px5=1	& px6=1	& px7=1	& px8=1	& px9=1	& px10=2	& px11=1	& px12=1	& px13=1	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=2]
+	action UP
+		282 : 1
+state 204
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=2	& px4=2	& px5=2	& px6=2	& px7=2	& px8=2	& px9=2	& px10=0	& px11=2	& px12=2	& px13=2	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=2]
+	action NOP
+		204 : 0.5
+		205 : 0.2
+		206 : 0.2
+		207 : 0.1
+state 205
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=2	& px4=2	& px5=2	& px6=1	& px7=2	& px8=2	& px9=2	& px10=0	& px11=2	& px12=2	& px13=2	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=2]
+	action NOP
+		208 : 0.5
+		209 : 0.2
+		210 : 0.2
+		211 : 0.1
+state 206
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=2	& px4=2	& px5=2	& px6=2	& px7=2	& px8=2	& px9=1	& px10=0	& px11=2	& px12=2	& px13=1	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=2]
+	action NOP
+		212 : 0.5
+		213 : 0.2
+		214 : 0.2
+		215 : 0.1
+state 207
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=2	& px4=2	& px5=2	& px6=1	& px7=2	& px8=2	& px9=1	& px10=0	& px11=2	& px12=2	& px13=1	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=2]
+	action UP
+		168 : 0.5
+		169 : 0.2
+		170 : 0.2
+		171 : 0.1
+state 208
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=2	& px4=2	& px5=1	& px6=2	& px7=2	& px8=2	& px9=2	& px10=0	& px11=2	& px12=2	& px13=2	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=2]
+	action NOP
+		220 : 0.5
+		221 : 0.2
+		222 : 0.2
+		223 : 0.1
+state 209
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=2	& px4=2	& px5=1	& px6=1	& px7=2	& px8=2	& px9=2	& px10=0	& px11=2	& px12=2	& px13=2	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=2]
+	action UP
+		244 : 0.5
+		245 : 0.2
+		246 : 0.2
+		247 : 0.1
+state 210
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=2	& px4=2	& px5=1	& px6=2	& px7=2	& px8=2	& px9=1	& px10=0	& px11=2	& px12=2	& px13=1	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=2]
+	action UP
+		255 : 0.5
+		256 : 0.2
+		257 : 0.2
+		258 : 0.1
+state 211
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=2	& px4=2	& px5=1	& px6=1	& px7=2	& px8=2	& px9=1	& px10=0	& px11=2	& px12=2	& px13=1	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=2]
+	action UP
+		259 : 0.5
+		260 : 0.2
+		261 : 0.2
+		262 : 0.1
+state 212
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=2	& px4=2	& px5=2	& px6=2	& px7=2	& px8=1	& px9=2	& px10=0	& px11=2	& px12=1	& px13=2	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=2]
+	action NOP
+		77 : 0.5
+		78 : 0.2
+		79 : 0.2
+		80 : 0.1
+state 213
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=2	& px4=2	& px5=2	& px6=1	& px7=2	& px8=1	& px9=2	& px10=0	& px11=2	& px12=1	& px13=2	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=2]
+	action NOP
+		228 : 0.5
+		229 : 0.2
+		230 : 0.2
+		231 : 0.1
+state 214
+//[!done	& !won	& px0=2	& px1=2	& px2=2	& px3=2	& px4=2	& px5=2	& px6=2	& px7=2	& px8=1	& px9=1	& px10=0	& px11=2	& px12=1	& px13=1	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=2]
+	action NOP
+		81 : 0.5
+		82 : 0.2
+		83 : 0.2
+		84 : 0.1
+state 215
+//[!done	& !won	& px0=2	& px1=2	& px2=1	& px3=2	& px4=2	& px5=2	& px6=1	& px7=2	& px8=1	& px9=1	& px10=0	& px11=2	& px12=1	& px13=1	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=2]
+	action NOP
+		85 : 0.5
+		86 : 0.2
+		87 : 0.2
+		88 : 0.1
+state 216
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=2	& px4=2	& px5=1	& px6=2	& px7=2	& px8=1	& px9=2	& px10=0	& px11=2	& px12=1	& px13=2	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=2]
+	action UP
+		188 : 0.5
+		189 : 0.2
+		190 : 0.2
+		191 : 0.1
+state 217
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=2	& px4=2	& px5=1	& px6=1	& px7=2	& px8=1	& px9=2	& px10=0	& px11=2	& px12=1	& px13=2	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=2]
+	action UP
+		192 : 0.5
+		193 : 0.2
+		194 : 0.2
+		195 : 0.1
+state 218
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=2	& px4=2	& px5=1	& px6=2	& px7=2	& px8=1	& px9=1	& px10=0	& px11=2	& px12=1	& px13=1	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=2]
+	action UP
+		196 : 0.5
+		197 : 0.2
+		198 : 0.2
+		199 : 0.1
+state 219
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=2	& px4=2	& px5=1	& px6=1	& px7=2	& px8=1	& px9=1	& px10=0	& px11=2	& px12=1	& px13=1	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=2]
+	action UP
+		200 : 0.5
+		201 : 0.2
+		202 : 0.2
+		203 : 0.1
+state 220
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=2	& px4=1	& px5=2	& px6=2	& px7=2	& px8=2	& px9=2	& px10=0	& px11=2	& px12=2	& px13=2	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=2]
+	action NOP
+		204 : 0.5
+		205 : 0.2
+		206 : 0.2
+		207 : 0.1
+state 221
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=2	& px4=1	& px5=2	& px6=1	& px7=2	& px8=2	& px9=2	& px10=0	& px11=2	& px12=2	& px13=2	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=2]
+	action NOP
+		208 : 0.5
+		209 : 0.2
+		210 : 0.2
+		211 : 0.1
+state 222
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=2	& px4=1	& px5=2	& px6=2	& px7=2	& px8=2	& px9=1	& px10=0	& px11=2	& px12=2	& px13=1	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=2]
+	action NOP
+		212 : 0.5
+		213 : 0.2
+		214 : 0.2
+		215 : 0.1
+state 223
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=2	& px4=1	& px5=2	& px6=1	& px7=2	& px8=2	& px9=1	& px10=0	& px11=2	& px12=2	& px13=1	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=2]
+	action NOP
+		216 : 0.5
+		217 : 0.2
+		218 : 0.2
+		219 : 0.1
+state 224
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=2	& px4=1	& px5=2	& px6=2	& px7=2	& px8=1	& px9=2	& px10=0	& px11=2	& px12=1	& px13=2	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=2]
+	action NOP
+		77 : 0.5
+		78 : 0.2
+		79 : 0.2
+		80 : 0.1
+state 225
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=2	& px4=1	& px5=2	& px6=1	& px7=2	& px8=1	& px9=2	& px10=0	& px11=2	& px12=1	& px13=2	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=2]
+	action NOP
+		228 : 0.5
+		229 : 0.2
+		230 : 0.2
+		231 : 0.1
+state 226
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=2	& px4=1	& px5=2	& px6=2	& px7=2	& px8=1	& px9=1	& px10=0	& px11=2	& px12=1	& px13=1	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=2]
+	action NOP
+		81 : 0.5
+		82 : 0.2
+		83 : 0.2
+		84 : 0.1
+state 227
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=2	& px4=1	& px5=2	& px6=1	& px7=2	& px8=1	& px9=1	& px10=0	& px11=2	& px12=1	& px13=1	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=2]
+	action NOP
+		85 : 0.5
+		86 : 0.2
+		87 : 0.2
+		88 : 0.1
+state 228
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=2	& px4=2	& px5=1	& px6=2	& px7=1	& px8=2	& px9=2	& px10=0	& px11=1	& px12=2	& px13=2	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=2]
+	action UP
+		240 : 0.5
+		241 : 0.2
+		242 : 0.2
+		243 : 0.1
+state 229
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=2	& px4=2	& px5=1	& px6=1	& px7=1	& px8=2	& px9=2	& px10=0	& px11=1	& px12=2	& px13=2	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=2]
+	action UP
+		244 : 0.5
+		245 : 0.2
+		246 : 0.2
+		247 : 0.1
+state 230
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=2	& px4=2	& px5=1	& px6=2	& px7=1	& px8=2	& px9=1	& px10=0	& px11=1	& px12=2	& px13=1	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=2]
+	action UP
+		255 : 0.5
+		256 : 0.2
+		257 : 0.2
+		258 : 0.1
+state 231
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=2	& px4=2	& px5=1	& px6=1	& px7=1	& px8=2	& px9=1	& px10=0	& px11=1	& px12=2	& px13=1	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=2]
+	action UP
+		259 : 0.5
+		260 : 0.2
+		261 : 0.2
+		262 : 0.1
+state 232
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=2	& px4=1	& px5=1	& px6=2	& px7=2	& px8=2	& px9=2	& px10=0	& px11=2	& px12=2	& px13=2	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=2]
+	action NOP
+		220 : 0.5
+		221 : 0.2
+		222 : 0.2
+		223 : 0.1
+state 233
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=2	& px4=1	& px5=1	& px6=1	& px7=2	& px8=2	& px9=2	& px10=0	& px11=2	& px12=2	& px13=2	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=2]
+	action NOP
+		232 : 0.5
+		233 : 0.2
+		234 : 0.2
+		235 : 0.1
+state 234
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=2	& px4=1	& px5=1	& px6=2	& px7=2	& px8=2	& px9=1	& px10=0	& px11=2	& px12=2	& px13=1	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=2]
+	action NOP
+		224 : 0.5
+		225 : 0.2
+		226 : 0.2
+		227 : 0.1
+state 235
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=2	& px4=1	& px5=1	& px6=1	& px7=2	& px8=2	& px9=1	& px10=0	& px11=2	& px12=2	& px13=1	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=2]
+	action NOP
+		283 : 0.5
+		284 : 0.2
+		285 : 0.2
+		286 : 0.1
+state 236
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=2	& px4=2	& px5=1	& px6=2	& px7=2	& px8=1	& px9=2	& px10=2	& px11=2	& px12=1	& px13=2	& px14=2	& px15=1	& px16=2	& px17=0	& px18=2	& px19=1	& px20=2	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=2]
+	action DOWN
+		287 : 0.5
+		288 : 0.2
+		289 : 0.2
+		290 : 0.1
+state 237
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=2	& px4=2	& px5=1	& px6=1	& px7=2	& px8=1	& px9=2	& px10=2	& px11=2	& px12=1	& px13=2	& px14=1	& px15=1	& px16=2	& px17=0	& px18=1	& px19=1	& px20=2	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=2]
+	action DOWN
+		89 : 0.5
+		90 : 0.2
+		91 : 0.2
+		92 : 0.1
+state 238
+//[!done	& !won	& px0=2	& px1=1	& px2=2	& px3=2	& px4=2	& px5=1	& px6=2	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=2	& px15=1	& px16=2	& px17=0	& px18=2	& px19=1	& px20=2	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=2]
+	action DOWN
+		57 : 0.5
+		58 : 0.2
+		59 : 0.2
+		60 : 0.1
+state 239
+//[!done	& !won	& px0=2	& px1=1	& px2=1	& px3=2	& px4=2	& px5=1	& px6=1	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=1	& px15=1	& px16=2	& px17=0	& px18=1	& px19=1	& px20=2	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=2]
+	action DOWN
+		61 : 0.5
+		62 : 0.2
+		63 : 0.2
+		64 : 0.1
+state 240
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=0	& px4=1	& px5=2	& px6=2	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=2]
+	action UP
+		291 : 1
+state 241
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=0	& px4=1	& px5=2	& px6=1	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=2]
+	action UP
+		292 : 1
+state 242
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=0	& px4=1	& px5=2	& px6=2	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=2]
+	action UP
+		293 : 1
+state 243
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=0	& px4=1	& px5=2	& px6=1	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=2]
+	action UP
+		294 : 1
+state 244
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=0	& px4=1	& px5=1	& px6=2	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=2]
+	action UP
+		295 : 1
+state 245
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=0	& px4=1	& px5=1	& px6=1	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=2]
+	action UP
+		296 : 1
+state 246
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=0	& px4=1	& px5=1	& px6=2	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=2]
+	action UP
+		297 : 1
+state 247
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=0	& px4=1	& px5=1	& px6=1	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=2]
+	action UP
+		298 : 1
+state 248 "(won = true)"
+//[done	& won	& px0=2	& px1=1	& px2=2	& px3=0	& px4=2	& px5=1	& px6=2	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=2]
+	action __NOLABEL__
+		248 : 1
+state 249 "(won = true)"
+//[done	& won	& px0=2	& px1=1	& px2=1	& px3=0	& px4=2	& px5=1	& px6=1	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=2]
+	action __NOLABEL__
+		249 : 1
+state 250 "(won = true)"
+//[done	& won	& px0=2	& px1=2	& px2=1	& px3=0	& px4=2	& px5=2	& px6=1	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=2]
+	action __NOLABEL__
+		250 : 1
+state 251 "(won = true)"
+//[done	& won	& px0=2	& px1=1	& px2=2	& px3=0	& px4=2	& px5=1	& px6=2	& px7=2	& px8=1	& px9=2	& px10=2	& px11=2	& px12=1	& px13=2	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=2]
+	action __NOLABEL__
+		251 : 1
+state 252 "(won = true)"
+//[done	& won	& px0=2	& px1=1	& px2=2	& px3=0	& px4=2	& px5=1	& px6=2	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=2]
+	action __NOLABEL__
+		252 : 1
+state 253 "(won = true)"
+//[done	& won	& px0=2	& px1=1	& px2=1	& px3=0	& px4=2	& px5=1	& px6=1	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=2]
+	action __NOLABEL__
+		253 : 1
+state 254 "(won = true)"
+//[done	& won	& px0=2	& px1=2	& px2=2	& px3=0	& px4=2	& px5=2	& px6=2	& px7=1	& px8=2	& px9=1	& px10=2	& px11=1	& px12=2	& px13=1	& px14=2	& px15=2	& px16=2	& px17=2	& px18=2	& px19=2	& px20=2	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=2]
+	action __NOLABEL__
+		254 : 1
+state 255
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=0	& px4=1	& px5=2	& px6=2	& px7=2	& px8=1	& px9=2	& px10=2	& px11=2	& px12=1	& px13=2	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=2]
+	action DOWN
+		77 : 0.5
+		78 : 0.2
+		79 : 0.2
+		80 : 0.1
+state 256
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=0	& px4=1	& px5=2	& px6=1	& px7=2	& px8=1	& px9=2	& px10=2	& px11=2	& px12=1	& px13=2	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=2]
+	action UP
+		299 : 1
+state 257
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=0	& px4=1	& px5=2	& px6=2	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=2]
+	action DOWN
+		81 : 0.5
+		82 : 0.2
+		83 : 0.2
+		84 : 0.1
+state 258
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=0	& px4=1	& px5=2	& px6=1	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=2]
+	action UP
+		300 : 1
+state 259
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=0	& px4=1	& px5=1	& px6=2	& px7=2	& px8=1	& px9=2	& px10=2	& px11=2	& px12=1	& px13=2	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=2]
+	action UP
+		301 : 1
+state 260
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=0	& px4=1	& px5=1	& px6=1	& px7=2	& px8=1	& px9=2	& px10=2	& px11=2	& px12=1	& px13=2	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=2]
+	action UP
+		302 : 1
+state 261
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=0	& px4=1	& px5=1	& px6=2	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=2]
+	action UP
+		303 : 1
+state 262
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=0	& px4=1	& px5=1	& px6=1	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=2]
+	action UP
+		304 : 1
+state 263 "(won = true)"
+//[done	& won	& px0=2	& px1=2	& px2=1	& px3=0	& px4=2	& px5=2	& px6=1	& px7=1	& px8=1	& px9=1	& px10=2	& px11=1	& px12=1	& px13=1	& px14=1	& px15=2	& px16=2	& px17=2	& px18=1	& px19=2	& px20=2	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=2]
+	action __NOLABEL__
+		263 : 1
+state 264 "(won = true)"
+//[done	& won	& px0=2	& px1=1	& px2=1	& px3=0	& px4=2	& px5=1	& px6=1	& px7=1	& px8=1	& px9=2	& px10=2	& px11=1	& px12=1	& px13=2	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=2]
+	action __NOLABEL__
+		264 : 1
+state 265 "(won = true)"
+//[done	& won	& px0=2	& px1=1	& px2=2	& px3=0	& px4=2	& px5=1	& px6=2	& px7=1	& px8=1	& px9=1	& px10=2	& px11=1	& px12=1	& px13=1	& px14=2	& px15=1	& px16=2	& px17=2	& px18=2	& px19=1	& px20=2	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=2]
+	action __NOLABEL__
+		265 : 1
+state 266 "(won = true)"
+//[done	& won	& px0=2	& px1=1	& px2=1	& px3=0	& px4=2	& px5=1	& px6=1	& px7=1	& px8=1	& px9=1	& px10=2	& px11=1	& px12=1	& px13=1	& px14=1	& px15=1	& px16=2	& px17=2	& px18=1	& px19=1	& px20=2	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=2]
+	action __NOLABEL__
+		266 : 1
+state 267 "(won = true)"
+//[done	& won	& px0=1	& px1=2	& px2=2	& px3=0	& px4=1	& px5=2	& px6=2	& px7=1	& px8=2	& px9=2	& px10=2	& px11=1	& px12=2	& px13=2	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=2]
+	action __NOLABEL__
+		267 : 1
+state 268 "(won = true)"
+//[done	& won	& px0=1	& px1=2	& px2=1	& px3=0	& px4=1	& px5=2	& px6=1	& px7=1	& px8=2	& px9=2	& px10=2	& px11=1	& px12=2	& px13=2	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=2]
+	action __NOLABEL__
+		268 : 1
+state 269 "(won = true)"
+//[done	& won	& px0=1	& px1=2	& px2=2	& px3=0	& px4=1	& px5=2	& px6=2	& px7=1	& px8=2	& px9=1	& px10=2	& px11=1	& px12=2	& px13=1	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=2]
+	action __NOLABEL__
+		269 : 1
+state 270 "(won = true)"
+//[done	& won	& px0=1	& px1=2	& px2=1	& px3=0	& px4=1	& px5=2	& px6=1	& px7=1	& px8=2	& px9=1	& px10=2	& px11=1	& px12=2	& px13=1	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=2]
+	action __NOLABEL__
+		270 : 1
+state 271 "(won = true)"
+//[done	& won	& px0=1	& px1=1	& px2=2	& px3=0	& px4=1	& px5=1	& px6=2	& px7=1	& px8=2	& px9=2	& px10=2	& px11=1	& px12=2	& px13=2	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=2]
+	action __NOLABEL__
+		271 : 1
+state 272 "(won = true)"
+//[done	& won	& px0=1	& px1=1	& px2=1	& px3=0	& px4=1	& px5=1	& px6=1	& px7=1	& px8=2	& px9=2	& px10=2	& px11=1	& px12=2	& px13=2	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=2]
+	action __NOLABEL__
+		272 : 1
+state 273 "(won = true)"
+//[done	& won	& px0=1	& px1=1	& px2=2	& px3=0	& px4=1	& px5=1	& px6=2	& px7=1	& px8=2	& px9=1	& px10=2	& px11=1	& px12=2	& px13=1	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=2]
+	action __NOLABEL__
+		273 : 1
+state 274 "(won = true)"
+//[done	& won	& px0=1	& px1=1	& px2=1	& px3=0	& px4=1	& px5=1	& px6=1	& px7=1	& px8=2	& px9=1	& px10=2	& px11=1	& px12=2	& px13=1	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=2]
+	action __NOLABEL__
+		274 : 1
+state 275 "(won = true)"
+//[done	& won	& px0=1	& px1=2	& px2=2	& px3=0	& px4=1	& px5=2	& px6=2	& px7=1	& px8=1	& px9=2	& px10=2	& px11=1	& px12=1	& px13=2	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=2]
+	action __NOLABEL__
+		275 : 1
+state 276 "(won = true)"
+//[done	& won	& px0=1	& px1=2	& px2=1	& px3=0	& px4=1	& px5=2	& px6=1	& px7=1	& px8=1	& px9=2	& px10=2	& px11=1	& px12=1	& px13=2	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=2]
+	action __NOLABEL__
+		276 : 1
+state 277 "(won = true)"
+//[done	& won	& px0=1	& px1=2	& px2=2	& px3=0	& px4=1	& px5=2	& px6=2	& px7=1	& px8=1	& px9=1	& px10=2	& px11=1	& px12=1	& px13=1	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=2]
+	action __NOLABEL__
+		277 : 1
+state 278 "(won = true)"
+//[done	& won	& px0=1	& px1=2	& px2=1	& px3=0	& px4=1	& px5=2	& px6=1	& px7=1	& px8=1	& px9=1	& px10=2	& px11=1	& px12=1	& px13=1	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=2]
+	action __NOLABEL__
+		278 : 1
+state 279 "(won = true)"
+//[done	& won	& px0=1	& px1=1	& px2=2	& px3=0	& px4=1	& px5=1	& px6=2	& px7=1	& px8=1	& px9=2	& px10=2	& px11=1	& px12=1	& px13=2	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=2]
+	action __NOLABEL__
+		279 : 1
+state 280 "(won = true)"
+//[done	& won	& px0=1	& px1=1	& px2=1	& px3=0	& px4=1	& px5=1	& px6=1	& px7=1	& px8=1	& px9=2	& px10=2	& px11=1	& px12=1	& px13=2	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=2]
+	action __NOLABEL__
+		280 : 1
+state 281 "(won = true)"
+//[done	& won	& px0=1	& px1=1	& px2=2	& px3=0	& px4=1	& px5=1	& px6=2	& px7=1	& px8=1	& px9=1	& px10=2	& px11=1	& px12=1	& px13=1	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=2]
+	action __NOLABEL__
+		281 : 1
+state 282 "(won = true)"
+//[done	& won	& px0=1	& px1=1	& px2=1	& px3=0	& px4=1	& px5=1	& px6=1	& px7=1	& px8=1	& px9=1	& px10=2	& px11=1	& px12=1	& px13=1	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=2]
+	action __NOLABEL__
+		282 : 1
+state 283
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=2	& px4=1	& px5=1	& px6=2	& px7=2	& px8=1	& px9=2	& px10=0	& px11=2	& px12=1	& px13=2	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=2]
+	action NOP
+		305 : 0.5
+		306 : 0.2
+		307 : 0.2
+		308 : 0.1
+state 284
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=2	& px4=1	& px5=1	& px6=1	& px7=2	& px8=1	& px9=2	& px10=0	& px11=2	& px12=1	& px13=2	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=2]
+	action NOP
+		309 : 0.5
+		310 : 0.2
+		311 : 0.2
+		312 : 0.1
+state 285
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=2	& px4=1	& px5=1	& px6=2	& px7=2	& px8=1	& px9=1	& px10=0	& px11=2	& px12=1	& px13=1	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=2]
+	action NOP
+		313 : 0.5
+		314 : 0.2
+		315 : 0.2
+		316 : 0.1
+state 286
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=2	& px4=1	& px5=1	& px6=1	& px7=2	& px8=1	& px9=1	& px10=0	& px11=2	& px12=1	& px13=1	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=2]
+	action NOP
+		317 : 0.5
+		318 : 0.2
+		319 : 0.2
+		320 : 0.1
+state 287
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=2	& px4=1	& px5=2	& px6=2	& px7=1	& px8=2	& px9=2	& px10=2	& px11=1	& px12=2	& px13=2	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=2	& px22=2	& px23=1	& px24=0	& px25=2	& px26=2	& px27=1	& px31=2]
+	action DOWN
+		0 : 0.5
+		133 : 0.2
+		134 : 0.2
+		135 : 0.1
+state 288
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=2	& px4=1	& px5=2	& px6=1	& px7=1	& px8=2	& px9=2	& px10=2	& px11=1	& px12=2	& px13=2	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=2	& px22=2	& px23=1	& px24=0	& px25=2	& px26=2	& px27=1	& px31=2]
+	action DOWN
+		136 : 0.5
+		137 : 0.2
+		138 : 0.2
+		139 : 0.1
+state 289
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=2	& px4=1	& px5=2	& px6=2	& px7=1	& px8=2	& px9=1	& px10=2	& px11=1	& px12=2	& px13=1	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=1	& px22=2	& px23=1	& px24=0	& px25=1	& px26=2	& px27=1	& px31=2]
+	action DOWN
+		140 : 0.5
+		141 : 0.2
+		142 : 0.2
+		143 : 0.1
+state 290
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=2	& px4=1	& px5=2	& px6=1	& px7=1	& px8=2	& px9=1	& px10=2	& px11=1	& px12=2	& px13=1	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=1	& px22=2	& px23=1	& px24=0	& px25=1	& px26=2	& px27=1	& px31=2]
+	action DOWN
+		65 : 0.5
+		66 : 0.2
+		67 : 0.2
+		68 : 0.1
+state 291 "(won = true)"
+//[done	& won	& px0=1	& px1=2	& px2=2	& px3=0	& px4=1	& px5=2	& px6=2	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=2]
+	action __NOLABEL__
+		291 : 1
+state 292 "(won = true)"
+//[done	& won	& px0=1	& px1=2	& px2=1	& px3=0	& px4=1	& px5=2	& px6=1	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=2]
+	action __NOLABEL__
+		292 : 1
+state 293 "(won = true)"
+//[done	& won	& px0=1	& px1=2	& px2=2	& px3=0	& px4=1	& px5=2	& px6=2	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=2]
+	action __NOLABEL__
+		293 : 1
+state 294 "(won = true)"
+//[done	& won	& px0=1	& px1=2	& px2=1	& px3=0	& px4=1	& px5=2	& px6=1	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=2]
+	action __NOLABEL__
+		294 : 1
+state 295 "(won = true)"
+//[done	& won	& px0=1	& px1=1	& px2=2	& px3=0	& px4=1	& px5=1	& px6=2	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=2]
+	action __NOLABEL__
+		295 : 1
+state 296 "(won = true)"
+//[done	& won	& px0=1	& px1=1	& px2=1	& px3=0	& px4=1	& px5=1	& px6=1	& px7=2	& px8=2	& px9=2	& px10=2	& px11=2	& px12=2	& px13=2	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=2	& px22=2	& px23=2	& px24=2	& px25=2	& px26=2	& px27=2	& px31=2]
+	action __NOLABEL__
+		296 : 1
+state 297 "(won = true)"
+//[done	& won	& px0=1	& px1=1	& px2=2	& px3=0	& px4=1	& px5=1	& px6=2	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=2]
+	action __NOLABEL__
+		297 : 1
+state 298 "(won = true)"
+//[done	& won	& px0=1	& px1=1	& px2=1	& px3=0	& px4=1	& px5=1	& px6=1	& px7=2	& px8=2	& px9=1	& px10=2	& px11=2	& px12=2	& px13=1	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=1	& px22=2	& px23=2	& px24=2	& px25=1	& px26=2	& px27=2	& px31=2]
+	action __NOLABEL__
+		298 : 1
+state 299 "(won = true)"
+//[done	& won	& px0=1	& px1=2	& px2=1	& px3=0	& px4=1	& px5=2	& px6=1	& px7=2	& px8=1	& px9=2	& px10=2	& px11=2	& px12=1	& px13=2	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=2]
+	action __NOLABEL__
+		299 : 1
+state 300 "(won = true)"
+//[done	& won	& px0=1	& px1=2	& px2=1	& px3=0	& px4=1	& px5=2	& px6=1	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=2]
+	action __NOLABEL__
+		300 : 1
+state 301 "(won = true)"
+//[done	& won	& px0=1	& px1=1	& px2=2	& px3=0	& px4=1	& px5=1	& px6=2	& px7=2	& px8=1	& px9=2	& px10=2	& px11=2	& px12=1	& px13=2	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=2]
+	action __NOLABEL__
+		301 : 1
+state 302 "(won = true)"
+//[done	& won	& px0=1	& px1=1	& px2=1	& px3=0	& px4=1	& px5=1	& px6=1	& px7=2	& px8=1	& px9=2	& px10=2	& px11=2	& px12=1	& px13=2	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=2	& px22=1	& px23=2	& px24=2	& px25=2	& px26=1	& px27=2	& px31=2]
+	action __NOLABEL__
+		302 : 1
+state 303 "(won = true)"
+//[done	& won	& px0=1	& px1=1	& px2=2	& px3=0	& px4=1	& px5=1	& px6=2	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=2]
+	action __NOLABEL__
+		303 : 1
+state 304 "(won = true)"
+//[done	& won	& px0=1	& px1=1	& px2=1	& px3=0	& px4=1	& px5=1	& px6=1	& px7=2	& px8=1	& px9=1	& px10=2	& px11=2	& px12=1	& px13=1	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=1	& px22=1	& px23=2	& px24=2	& px25=1	& px26=1	& px27=2	& px31=2]
+	action __NOLABEL__
+		304 : 1
+state 305
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=2	& px4=1	& px5=2	& px6=2	& px7=1	& px8=2	& px9=2	& px10=0	& px11=1	& px12=2	& px13=2	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=2]
+	action NOP
+		321 : 1
+state 306
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=2	& px4=1	& px5=2	& px6=1	& px7=1	& px8=2	& px9=2	& px10=0	& px11=1	& px12=2	& px13=2	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=2]
+	action NOP
+		322 : 1
+state 307
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=2	& px4=1	& px5=2	& px6=2	& px7=1	& px8=2	& px9=1	& px10=0	& px11=1	& px12=2	& px13=1	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=2]
+	action NOP
+		323 : 1
+state 308
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=2	& px4=1	& px5=2	& px6=1	& px7=1	& px8=2	& px9=1	& px10=0	& px11=1	& px12=2	& px13=1	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=2]
+	action NOP
+		324 : 1
+state 309
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=2	& px4=1	& px5=1	& px6=2	& px7=1	& px8=2	& px9=2	& px10=0	& px11=1	& px12=2	& px13=2	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=2]
+	action NOP
+		325 : 1
+state 310
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=2	& px4=1	& px5=1	& px6=1	& px7=1	& px8=2	& px9=2	& px10=0	& px11=1	& px12=2	& px13=2	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=2]
+	action NOP
+		326 : 1
+state 311
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=2	& px4=1	& px5=1	& px6=2	& px7=1	& px8=2	& px9=1	& px10=0	& px11=1	& px12=2	& px13=1	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=2]
+	action NOP
+		327 : 1
+state 312
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=2	& px4=1	& px5=1	& px6=1	& px7=1	& px8=2	& px9=1	& px10=0	& px11=1	& px12=2	& px13=1	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=2]
+	action DOWN
+		328 : 1
+state 313
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=2	& px4=1	& px5=2	& px6=2	& px7=1	& px8=1	& px9=2	& px10=0	& px11=1	& px12=1	& px13=2	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=2]
+	action NOP
+		329 : 1
+state 314
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=2	& px4=1	& px5=2	& px6=1	& px7=1	& px8=1	& px9=2	& px10=0	& px11=1	& px12=1	& px13=2	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=2]
+	action UP
+		330 : 1
+state 315
+//[!done	& !won	& px0=1	& px1=2	& px2=2	& px3=2	& px4=1	& px5=2	& px6=2	& px7=1	& px8=1	& px9=1	& px10=0	& px11=1	& px12=1	& px13=1	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=2]
+	action NOP
+		331 : 1
+state 316
+//[!done	& !won	& px0=1	& px1=2	& px2=1	& px3=2	& px4=1	& px5=2	& px6=1	& px7=1	& px8=1	& px9=1	& px10=0	& px11=1	& px12=1	& px13=1	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=2]
+	action NOP
+		332 : 1
+state 317
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=2	& px4=1	& px5=1	& px6=2	& px7=1	& px8=1	& px9=2	& px10=0	& px11=1	& px12=1	& px13=2	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=2]
+	action NOP
+		333 : 1
+state 318
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=2	& px4=1	& px5=1	& px6=1	& px7=1	& px8=1	& px9=2	& px10=0	& px11=1	& px12=1	& px13=2	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=2]
+	action UP
+		334 : 1
+state 319
+//[!done	& !won	& px0=1	& px1=1	& px2=2	& px3=2	& px4=1	& px5=1	& px6=2	& px7=1	& px8=1	& px9=1	& px10=0	& px11=1	& px12=1	& px13=1	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=2]
+	action NOP
+		335 : 1
+state 320
+//[!done	& !won	& px0=1	& px1=1	& px2=1	& px3=2	& px4=1	& px5=1	& px6=1	& px7=1	& px8=1	& px9=1	& px10=0	& px11=1	& px12=1	& px13=1	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=2]
+	action UP
+		336 : 1
+state 321
+//[done	& !won	& px0=1	& px1=2	& px2=2	& px3=2	& px4=1	& px5=2	& px6=2	& px7=1	& px8=2	& px9=2	& px10=0	& px11=1	& px12=2	& px13=2	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=2]
+	action NOP
+		321 : 1
+state 322
+//[done	& !won	& px0=1	& px1=2	& px2=1	& px3=2	& px4=1	& px5=2	& px6=1	& px7=1	& px8=2	& px9=2	& px10=0	& px11=1	& px12=2	& px13=2	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=2]
+	action NOP
+		322 : 1
+state 323
+//[done	& !won	& px0=1	& px1=2	& px2=2	& px3=2	& px4=1	& px5=2	& px6=2	& px7=1	& px8=2	& px9=1	& px10=0	& px11=1	& px12=2	& px13=1	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=2]
+	action NOP
+		323 : 1
+state 324
+//[done	& !won	& px0=1	& px1=2	& px2=1	& px3=2	& px4=1	& px5=2	& px6=1	& px7=1	& px8=2	& px9=1	& px10=0	& px11=1	& px12=2	& px13=1	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=2]
+	action NOP
+		324 : 1
+state 325
+//[done	& !won	& px0=1	& px1=1	& px2=2	& px3=2	& px4=1	& px5=1	& px6=2	& px7=1	& px8=2	& px9=2	& px10=0	& px11=1	& px12=2	& px13=2	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=2]
+	action NOP
+		325 : 1
+state 326
+//[done	& !won	& px0=1	& px1=1	& px2=1	& px3=2	& px4=1	& px5=1	& px6=1	& px7=1	& px8=2	& px9=2	& px10=0	& px11=1	& px12=2	& px13=2	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=2	& px22=2	& px23=1	& px24=2	& px25=2	& px26=2	& px27=1	& px31=2]
+	action NOP
+		326 : 1
+state 327
+//[done	& !won	& px0=1	& px1=1	& px2=2	& px3=2	& px4=1	& px5=1	& px6=2	& px7=1	& px8=2	& px9=1	& px10=0	& px11=1	& px12=2	& px13=1	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=2]
+	action NOP
+		327 : 1
+state 328
+//[done	& !won	& px0=1	& px1=1	& px2=1	& px3=2	& px4=1	& px5=1	& px6=1	& px7=1	& px8=2	& px9=1	& px10=0	& px11=1	& px12=2	& px13=1	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=1	& px22=2	& px23=1	& px24=2	& px25=1	& px26=2	& px27=1	& px31=2]
+	action NOP
+		328 : 1
+state 329
+//[done	& !won	& px0=1	& px1=2	& px2=2	& px3=2	& px4=1	& px5=2	& px6=2	& px7=1	& px8=1	& px9=2	& px10=0	& px11=1	& px12=1	& px13=2	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=2]
+	action NOP
+		329 : 1
+state 330
+//[done	& !won	& px0=1	& px1=2	& px2=1	& px3=2	& px4=1	& px5=2	& px6=1	& px7=1	& px8=1	& px9=2	& px10=0	& px11=1	& px12=1	& px13=2	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=2]
+	action NOP
+		330 : 1
+state 331
+//[done	& !won	& px0=1	& px1=2	& px2=2	& px3=2	& px4=1	& px5=2	& px6=2	& px7=1	& px8=1	& px9=1	& px10=0	& px11=1	& px12=1	& px13=1	& px14=2	& px15=2	& px16=1	& px17=2	& px18=2	& px19=2	& px20=1	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=2]
+	action NOP
+		331 : 1
+state 332
+//[done	& !won	& px0=1	& px1=2	& px2=1	& px3=2	& px4=1	& px5=2	& px6=1	& px7=1	& px8=1	& px9=1	& px10=0	& px11=1	& px12=1	& px13=1	& px14=1	& px15=2	& px16=1	& px17=2	& px18=1	& px19=2	& px20=1	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=2]
+	action NOP
+		332 : 1
+state 333
+//[done	& !won	& px0=1	& px1=1	& px2=2	& px3=2	& px4=1	& px5=1	& px6=2	& px7=1	& px8=1	& px9=2	& px10=0	& px11=1	& px12=1	& px13=2	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=2]
+	action NOP
+		333 : 1
+state 334
+//[done	& !won	& px0=1	& px1=1	& px2=1	& px3=2	& px4=1	& px5=1	& px6=1	& px7=1	& px8=1	& px9=2	& px10=0	& px11=1	& px12=1	& px13=2	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=2	& px22=1	& px23=1	& px24=2	& px25=2	& px26=1	& px27=1	& px31=2]
+	action NOP
+		334 : 1
+state 335
+//[done	& !won	& px0=1	& px1=1	& px2=2	& px3=2	& px4=1	& px5=1	& px6=2	& px7=1	& px8=1	& px9=1	& px10=0	& px11=1	& px12=1	& px13=1	& px14=2	& px15=1	& px16=1	& px17=2	& px18=2	& px19=1	& px20=1	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=2]
+	action NOP
+		335 : 1
+state 336
+//[done	& !won	& px0=1	& px1=1	& px2=1	& px3=2	& px4=1	& px5=1	& px6=1	& px7=1	& px8=1	& px9=1	& px10=0	& px11=1	& px12=1	& px13=1	& px14=1	& px15=1	& px16=1	& px17=2	& px18=1	& px19=1	& px20=1	& px21=1	& px22=1	& px23=1	& px24=2	& px25=1	& px26=1	& px27=1	& px31=2]
+	action NOP
+		336 : 1

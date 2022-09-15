@@ -32,7 +32,10 @@ def train(project, env, prop_type=''):
                 if state.__class__.__name__ == 'int':
                     state = [state]
                 #print(project.command_line_arguments['deploy'])
+                if project.command_line_arguments['task'] == "safe_training" and project.command_line_arguments['attack_config'] != "":
+                    state = env.storm_bridge.model_checker.m_adversarial_attack.attack(project.agent,state)
                 action = project.agent.select_action(state, project.command_line_arguments['deploy'])
+                
                 step_counter +=1
                 next_state, reward, terminal, info = env.step(action)
                 if next_state.__class__.__name__ == 'int':

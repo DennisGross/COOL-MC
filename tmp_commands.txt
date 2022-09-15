@@ -21,3 +21,11 @@ python cool_mc.py --project_name "experiments" --parent_run_id=dd7632749c1b48b5a
 
 # Smart Grid: 0846996cc42743599f8c8ddb2b4d082b (experiments)
 python cool_mc.py --project_name "experiments" --parent_run_id=0846996cc42743599f8c8ddb2b4d082b --task rl_model_checking --prism_file_path="smart_grid.prism" --constant_definitions="max_consumption=4,renewable_limit=3,non_renewable_limit=3,grid_upper_bound=2" --prop="P=? [F<=1000 IS_BLACKOUT=true]"
+
+# Adversarial Training
+python cool_mc.py --parent_run_id=a06c920b73be4015ad456011d60ffdd8 --task=safe_training --project_name="experiments" --rl_algorithm=dqn_agent --prism_file_path="transporter.prism" --constant_definitions="MAX_JOBS=2,MAX_FUEL=10" --prop="" --num_episodes=5000 --attack_config="feature_fgsm,1,done" --epsilon=0 --epsilon_min=0
+python cool_mc.py --parent_run_id=a06c920b73be4015ad456011d60ffdd8 --task=safe_training --project_name="experiments" --rl_algorithm=dqn_agent --prism_file_path="transporter.prism" --constant_definitions="MAX_JOBS=2,MAX_FUEL=10" --prop="" --num_episodes=102 --deploy=1
+python cool_mc.py --parent_run_id=ph4e9bq31c5ntqdfe8rg0oxu32xdwexqmtvc5i9ms9 --task=rl_model_checking --project_name="experiments" --prism_file_path="transporter.prism" --constant_definitions="MAX_JOBS=2,MAX_FUEL=10" --prop="P=? [F \"empty\"]"
+
+
+python cool_mc.py --parent_run_id=a06c920b73be4015ad456011d60ffdd8 --task=safe_training --project_name="experiments" --rl_algorithm=dqn_agent --prism_file_path="transporter.prism" --constant_definitions="MAX_JOBS=2,MAX_FUEL=10" --prop="" --num_episodes=5000 --attack_config="feature_fgsm,2,fuel" --epsilon=0 --epsilon_min=0

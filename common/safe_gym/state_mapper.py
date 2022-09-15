@@ -34,6 +34,7 @@ class StateMapper:
         else:
             self.disabled_features = disabled_features.split(",")
         self.mapper = self.update_mapper(self.mapper, self.disabled_features)
+        
 
     def update_mapper(self, mapper: dict, disabled_features: list) -> dict:
         """Update mapper based on disabled features.

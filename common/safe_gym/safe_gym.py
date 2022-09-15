@@ -19,7 +19,7 @@ class SafeGym(gym.Env):
     def __init__(self, prism_file_path: str, constant_definitions: str, max_steps: int,
                  wrong_action_penalty: int, reward_flag: bool, seed: int,
                  permissive_input: str = '', disabled_features: str = '',
-                 abstraction_input: str = ''):
+                 abstraction_input: str = '', attack_config_str: str = ''):
         """Initialize the SafeGym. The SafeGym needs the information about the PRISM environment.
 
         Args:
@@ -49,7 +49,7 @@ class SafeGym(gym.Env):
         assert isinstance(seed, int)
         self.storm_bridge = StormBridge(prism_file_path, constant_definitions, wrong_action_penalty,
                                         reward_flag, disabled_features,
-                                        permissive_input, abstraction_input, seed)
+                                        permissive_input, abstraction_input, seed, attack_config_str)
         self.action_mapper = ActionMapper.collect_actions(self.storm_bridge)
         self.steps = 0
         self.max_steps = max_steps

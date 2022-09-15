@@ -31,15 +31,16 @@ open, and is a Markov chain induced by the original MDP and the policy.
 5. Example 4 (Smart Grid)
 6. Example 5 (Warehouse)
 7. Example 6 (Stock Market)
-7. Example 7 (James Bond 007)
-7. Example 8 (Crazy Climber)
-8. Benchmarks
-9. Web Interface
-10. Model Checking Times and Limitations
-11. PRISM Modelling Tips
-12. RL Agent Training
-13. COOL-MC Command Line Arguments
-14. Manual Installation
+8. Example 7 (James Bond 007)
+9. Example 8 (Crazy Climber)
+10. Example 9 (Freeway)
+11. Benchmarks
+12. Web Interface
+13. Model Checking Times and Limitations
+14. PRISM Modelling Tips
+15. RL Agent Training
+16. COOL-MC Command Line Arguments
+17. Manual Installation
 
 
 ## Getting Started with COOL-MC
@@ -219,6 +220,15 @@ After the training, we can verify the trained policy:
 
 `python cool_mc.py --parent_run_id=90761357347440c8baf4833b3dcfb330 --task=rl_model_checking --project_name="James Bond Example" --prism_file_path="james_bond007.prism" --prop="P=? [F<=15 done=true]"`
 
+## Example 9 (Freeway)
+Freeway is an action video game for the Atari 2600. A player controls a chicken who can be made to run across a highway filled with traffic in an effort to "get to the other side". Every time a chicken gets across a point is earned for that player. If hit by a car, a chicken is pushed back to the bottom of the screen.
+
+`python cool_mc.py --task=safe_training --project_name="Freeway Example" --rl_algorithm=dqn_agent --prism_file_path="freeway.prism" --prop="" --reward_flag=1 --max_steps=100 --num_episodes=1000 --seed=128`
+
+After the training, we can verify the trained policy:
+
+`python cool_mc.py --parent_run_id=eb228d45f182499d985dc88480fa6315 --task=rl_model_checking --project_name="Freeway Example" --prism_file_path="freeway.prism" --prop="R=? [F won=true]"`
+
 
 ## Benchmarks
 To replicate the benchmark experiments of our paper, run:
@@ -367,6 +377,8 @@ Switch to the repository folder and define environment variable `COOL_MC="$PWD"`
 
 #### (1) Install Dependencies
 `sudo apt-get update && sudo apt-get -y install build-essential git cmake libboost-all-dev libcln-dev libgmp-dev libginac-dev automake libglpk-dev libhwloc-dev libz3-dev libxerces-c-dev libeigen3-dev python3 python-is-python3 python3-setuptools python3-pip graphviz && sudo apt-get install -y --no-install-recommends maven uuid-dev virtualenv`
+
+Install the stable version of Spot: [https://spot.lrde.epita.fr/index.html](https://spot.lrde.epita.fr/index.html).
 
 #### (2) Install Storm
 0. `cd $COOL_MC`

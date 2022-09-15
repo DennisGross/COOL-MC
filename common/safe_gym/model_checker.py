@@ -12,6 +12,7 @@ import common
 from common.safe_gym.permissive_manager import PermissiveManager
 from common.safe_gym.abstraction_manager import AbstractionManager
 from common.safe_gym.state_mapper import StateMapper
+from common.adversarial_attacks.adversarial_attack_builder import AdversarialAttackBuilder
 
 
 class ModelChecker():
@@ -20,7 +21,7 @@ class ModelChecker():
     the policy based on a property query.
     """
 
-    def __init__(self, permissive_input: str, mapper: StateMapper, abstraction_input: str):
+    def __init__(self, permissive_input: str, mapper: StateMapper, abstraction_input: str, attack_config_str: str):
         """Initialization
 
         Args:
@@ -35,6 +36,8 @@ class ModelChecker():
         self.m_permissive_manager = PermissiveManager(permissive_input, mapper)
         self.m_abstraction_manager = AbstractionManager(
             mapper, abstraction_input)
+        attack_builder = AdversarialAttackBuilder()
+        self.m_adversarial_attack = attack_builder.build_adversarial_attack(mapper, attack_config_str)
 
     def __get_clean_state_dict(self, state_valuation_json: JsonContainerRational,
                                example_json: str) -> dict:
@@ -90,6 +93,9 @@ class ModelChecker():
         """
         assert str(agent.__class__).find("common.rl_agents") != -1
         assert isinstance(state, np.ndarray)
+        # Adversarial attacks happen at this point
+        if self.m_adversarial_attack != None:
+            state = self.m_adversarial_attack.attack(agent, state)
         action_index = agent.select_action(state, True)
         action_name = env.action_mapper.actions[action_index]
         assert isinstance(action_name, str)
@@ -131,7 +137,6 @@ class ModelChecker():
             prism_program, [], constant_definitions)[0].as_prism_program()
 
         prism_program = prism_program.label_unlabelled_commands(suggestions)
-
         properties = stormpy.parse_properties(formula_str, prism_program)
         options = stormpy.BuilderOptions([p.raw_formula for p in properties])
         #options = stormpy.BuilderOptions()
@@ -206,7 +211,7 @@ class ModelChecker():
         result = stormpy.model_checking(model, properties[0])
         print("Model Checking Time:", time.time()-model_checking_start_time)
         
-        #stormpy.export_to_drn(model,"test.drn")
+        stormpy.export_to_drn(model,"test.drn")
         initial_state = model.initial_states[0]
         #print('Result for initial state', result.at(initial_state))
         mdp_reward_result = result.at(initial_state)

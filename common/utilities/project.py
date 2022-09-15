@@ -69,6 +69,14 @@ class Project():
                 del saved_command_line_arguments['range_plotting']
             except:
                 pass
+            try:
+                del saved_command_line_arguments['attack_config']
+            except:
+                pass
+            try:
+                del saved_command_line_arguments['prism_file_path']
+            except:
+                pass
 
             if old_task == 'openai_gym_training':
                 try:
