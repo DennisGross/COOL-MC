@@ -168,6 +168,7 @@ class ModelChecker():
                 return False
 
             cond1 = False
+            # Create new conditions with current state, policy, and current action name
             if self.m_permissive_manager.is_permissive:
                 self.m_permissive_manager.manage_actions(state, agent)
                 cond1 = self.m_permissive_manager.create_condition(
