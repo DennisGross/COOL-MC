@@ -51,6 +51,7 @@ class SafeGym(gym.Env):
                                         reward_flag, disabled_features,
                                         permissive_input, abstraction_input, seed)
         self.action_mapper = ActionMapper.collect_actions(self.storm_bridge)
+        self.storm_bridge.model_checker.action_mapper = self.action_mapper
         self.steps = 0
         self.max_steps = max_steps
         self.state = self.reset()

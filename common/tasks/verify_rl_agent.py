@@ -31,6 +31,7 @@ def run_verify_rl_agent(command_line_arguments: Dict[str, Any]) -> List[float]:
     prism_file_path = os.path.join(
         m_project.command_line_arguments['prism_dir'], m_project.command_line_arguments['prism_file_path'])
     print(m_project.command_line_arguments)
+    # Add new if and allow to check the robustness of an RL policy
     if command_line_arguments['constant_definitions'].count('[') == 0 and command_line_arguments['constant_definitions'].count(']') == 0:
         if command_line_arguments['permissive_input']=="":
             query = command_line_arguments['prop']

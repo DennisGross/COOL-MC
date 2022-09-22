@@ -2,6 +2,7 @@
 This module provides the ModelChecker for the RL model checking.
 """
 import json
+from os import stat
 import time
 from typing import Tuple
 import numpy as np
@@ -12,6 +13,7 @@ import common
 from common.safe_gym.permissive_manager import PermissiveManager
 from common.safe_gym.abstraction_manager import AbstractionManager
 from common.safe_gym.state_mapper import StateMapper
+from common.adversarial_attacks.adversarial_attack_builder import AdversarialAttackBuilder
 
 
 class ModelChecker():
@@ -32,9 +34,18 @@ class ModelChecker():
         assert isinstance(mapper, StateMapper)
         assert isinstance(abstraction_input, str)
         self.wrong_choices = 0
+        if permissive_input.find("robustness")==0:
+            self.attack_config_str = permissive_input
+            permissive_input = ""
+            attack_builder = AdversarialAttackBuilder()
+            self.m_adversarial_attack = attack_builder.build_adversarial_attack(mapper, self.attack_config_str)
+        else:
+            self.m_adversarial_attack = None
+            self.attack_config_str = ""
         self.m_permissive_manager = PermissiveManager(permissive_input, mapper)
         self.m_abstraction_manager = AbstractionManager(
             mapper, abstraction_input)
+        self.action_mapper = None
 
     def __get_clean_state_dict(self, state_valuation_json: JsonContainerRational,
                                example_json: str) -> dict:
@@ -153,6 +164,7 @@ class ModelChecker():
             simulator.restart(state_valuation)
             available_actions = sorted(simulator.available_actions())
             action_name = prism_program.get_action_name(action_index)
+            my_action_index = self.action_mapper.action_name_to_action_index(action_name)
             # conditions on the action
             state = self.__get_clean_state_dict(
                 state_valuation.to_json(), env.storm_bridge.state_json_example)
@@ -168,8 +180,14 @@ class ModelChecker():
                 return False
 
             cond1 = False
+            
             # Create new conditions with current state, policy, and current action name
-            if self.m_permissive_manager.is_permissive:
+            if self.attack_config_str != "":
+                self.m_adversarial_attack.max_actions = len(available_actions)
+                self.m_adversarial_attack.attack(self.m_permissive_manager.action_mapper, agent, state, my_action_index)
+                cond1 = self.m_adversarial_attack.create_condition(available_actions, action_name)
+                
+            elif self.m_permissive_manager.is_permissive:
                 self.m_permissive_manager.manage_actions(state, agent)
                 cond1 = self.m_permissive_manager.create_condition(
                     available_actions, action_name)
@@ -204,10 +222,22 @@ class ModelChecker():
         print("Parse Properties...")
         properties = stormpy.parse_properties(formula_str, prism_program)
         print("Model Cheking...")
-        result = stormpy.model_checking(model, properties[0])
+        result = stormpy.model_checking(model, properties[0], extract_scheduler=True)
         print("Model Checking Time:", time.time()-model_checking_start_time)
-        
-        #stormpy.export_to_drn(model,"test.drn")
+        try:
+            print("All actions found", self.m_adversarial_attack.all_actions_found)
+            print("Not all actions found", self.m_adversarial_attack.not_all_actions_found)
+            print("Total Robust States", self.m_adversarial_attack.totally_robust)
+        except:
+            pass
+        #scheduler = result.scheduler
+        #print(scheduler.__dir__())
+        #print(scheduler.__class__.__name__)
+        #print(scheduler.get_choice(0))
+        #print(scheduler.memoryless)
+        #print(scheduler.deterministic)
+        #print(scheduler)
+        stormpy.export_to_drn(model,"test.drn")
         initial_state = model.initial_states[0]
         #print('Result for initial state', result.at(initial_state))
         mdp_reward_result = result.at(initial_state)

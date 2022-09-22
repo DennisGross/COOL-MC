@@ -10,8 +10,28 @@ import numpy as np
 import torch
 from collections import deque
 import gc
+import hashlib
+import os
+import shutil
+# 1. Add state collection procedure
+# 1.1 Delete state collection folder
+# 1.2 Create state collection folder
+# 1.3 Add state as numpy array file to collection folder
+# 1.4 Keep track of the different collected states
 
-
+def store_state(collected_state_hashes, state, parent_id):
+    a = str(state)
+    state_hash = hashlib.sha256(a.encode('utf-8')).hexdigest()
+    if (state_hash in collected_state_hashes.keys()) == False:
+        state_folder_path = "autoencoder_data"+"_"+parent_id+"/"
+        if os.path.exists(state_folder_path)==False:
+            os.mkdir(state_folder_path)
+        elif os.path.exists(state_folder_path)==True and len(list(collected_state_hashes.keys()))==0:
+            shutil.rmtree(state_folder_path)
+            os.mkdir(state_folder_path)
+        collected_state_hashes[state_hash] = True
+        np.save(state_folder_path+state_hash+".npy", state)
+            
 
 def train(project, env, prop_type=''):
     all_episode_rewards = deque(maxlen=project.command_line_arguments['sliding_window_size'])
@@ -21,7 +41,7 @@ def train(project, env, prop_type=''):
     last_max_steps_actions = deque(maxlen=project.command_line_arguments['max_steps']*2)
     last_max_steps_rewards = deque(maxlen=project.command_line_arguments['max_steps']*2)
     last_max_steps_terminals = deque(maxlen=project.command_line_arguments['max_steps']*2)
-    
+    collected_state_hashes = {}
     try:
         for episode in range(project.command_line_arguments['num_episodes']):
             state = env.reset()
@@ -31,6 +51,7 @@ def train(project, env, prop_type=''):
             while True:
                 if state.__class__.__name__ == 'int':
                     state = [state]
+                store_state(collected_state_hashes, state, project.command_line_arguments['parent_run_id'])
                 #print(project.command_line_arguments['deploy'])
                 action = project.agent.select_action(state, project.command_line_arguments['deploy'])
                 step_counter +=1
