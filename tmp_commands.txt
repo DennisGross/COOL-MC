@@ -21,3 +21,4 @@ python cool_mc.py --project_name "experiments" --parent_run_id=dd7632749c1b48b5a
 
 # Smart Grid: 0846996cc42743599f8c8ddb2b4d082b (experiments)
 python cool_mc.py --project_name "experiments" --parent_run_id=0846996cc42743599f8c8ddb2b4d082b --task rl_model_checking --prism_file_path="smart_grid.prism" --constant_definitions="max_consumption=4,renewable_limit=3,non_renewable_limit=3,grid_upper_bound=2" --prop="P=? [F<=1000 IS_BLACKOUT=true]"
+ 
