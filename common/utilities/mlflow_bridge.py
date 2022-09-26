@@ -121,10 +121,10 @@ class MlFlowBridge:
 
 
     def get_run_id(self):
-        return self.get_agent_path().split('/')[-3]
+        return self.get_agent_path()[0].split('/')[-3]
 
     def get_project_id(self):
-        return self.get_agent_path().split('/')[-4] 
+        return self.get_agent_path()[0].split('/')[-4] 
 
     def log_reward(self, reward, episode):
         mlflow.log_metric(key='episode_reward', value=reward, step= episode)
