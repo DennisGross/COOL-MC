@@ -82,17 +82,17 @@ class Project():
 
             for key in saved_command_line_arguments.keys():
                 self.command_line_arguments[key] = saved_command_line_arguments[key]
-        
 
-    def create_agent(self, command_line_arguments, observation_space, number_of_actions):
+
+    def create_agent(self, command_line_arguments, observation_space, number_of_actions, all_actions):
         agent = None
         try:
             model_folder_path = self.mlflow_bridge.get_agent_path()
             # Build agent with the model and the hyperparameters
-            agent = AgentBuilder.build_agent(model_folder_path, command_line_arguments, observation_space, number_of_actions)
+            agent = AgentBuilder.build_agent(model_folder_path, command_line_arguments, observation_space, number_of_actions, all_actions)
         except Exception as msg:
             # If Model was not saved
-            agent = AgentBuilder.build_agent(None, command_line_arguments, observation_space, number_of_actions)
+            agent = AgentBuilder.build_agent(None, command_line_arguments, observation_space, number_of_actions, all_actions)
         self.agent = agent
 
     def save(self):

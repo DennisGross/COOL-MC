@@ -174,7 +174,7 @@ class DQNAgent(Agent):
         self.exp_counter = 0
         self.learn_step_counter = 0
 
-    def save(self):
+    def save(self, artifact_path='model'):
         """
         Saves the agent onto the MLFLow Server.
         """
@@ -185,7 +185,7 @@ class DQNAgent(Agent):
             username = getpass.getuser()
         self.q_eval.save_checkpoint('tmp_model/q_eval.chkpt')
         self.q_next.save_checkpoint('tmp_model/q_next.chkpt')
-        mlflow.log_artifacts("tmp_model", artifact_path="model")
+        mlflow.log_artifacts("tmp_model", artifact_path=artifact_path)
         shutil.rmtree('tmp_model')
 
     def load(self, model_root_folder_path :str):

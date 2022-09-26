@@ -5,6 +5,7 @@ from common.rl_agents.sarsa_max_agent import SarsaMaxAgent
 from common.rl_agents.deep_q_agent import DQNAgent
 from common.rl_agents.hillclimbing_agent import HillClimbingAgent
 from common.rl_agents.reinforce_agent import ReinforceAgent
+from common.rl_agents.CooperativeAgents import CooperativeAgents
 '''
 HOW TO ADD MORE AGENTS?
 1) Create a new AGENTNAME.py with an AGENTNAME class
@@ -24,7 +25,7 @@ class AgentBuilder():
         return number_of_neurons
 
     @staticmethod
-    def build_agent(model_root_folder_path, command_line_arguments, observation_space, action_space):
+    def build_agent(model_root_folder_path, command_line_arguments, observation_space, action_space, all_actions):
         #print('Build model with', model_root_folder_path, command_line_arguments)
         #print('Environment', observation_space.shape, action_space.n)
         try:
@@ -36,27 +37,27 @@ class AgentBuilder():
             #print("Build Dummy Agent.")
             agent = DummyAgent(state_dimension, action_space.n, command_line_arguments['always_action'])
             if model_root_folder_path!= None:
-                agent.load(model_root_folder_path)
+                agent.load(model_root_folder_path[0])
         elif command_line_arguments['rl_algorithm'] == 'dummy_frozen_lake_agent':
             #print("Build Dummy Frozen Lake Agent.")
             agent = DummyFrozenLakeAgent(state_dimension, action_space.n, command_line_arguments['always_action'])
             if model_root_folder_path!= None:
-                agent.load(model_root_folder_path)
+                agent.load(model_root_folder_path[0])
         elif command_line_arguments['rl_algorithm'] == 'sarsamax':
             #print("Build SARSAMAX Agent.")
             agent = SarsaMaxAgent(action_space.n, epsilon=command_line_arguments['epsilon'], epsilon_dec=command_line_arguments['epsilon_dec'], epsilon_min=command_line_arguments['epsilon_min'], alpha=command_line_arguments['alpha'], gamma=command_line_arguments['gamma'])
             if model_root_folder_path!= None:
-                agent.load(model_root_folder_path)
+                agent.load(model_root_folder_path[0])
         elif command_line_arguments['rl_algorithm'] == 'hillclimbing':
             #print("Build SARSAMAX Agent.")
             agent = HillClimbingAgent(state_dimension, action_space.n, gamma=command_line_arguments['gamma'], noise_scale= command_line_arguments['noise_scale'])
             if model_root_folder_path!= None:
-                agent.load(model_root_folder_path)
+                agent.load(model_root_folder_path[0])
         elif command_line_arguments['rl_algorithm'] == 'reinforce':
             #print("Build SARSAMAX Agent.")
             agent = ReinforceAgent(state_dimension=state_dimension, number_of_actions=action_space.n, gamma=command_line_arguments['gamma'], hidden_layer_size= command_line_arguments['neurons'],lr=command_line_arguments['lr'])
             if model_root_folder_path!= None:
-                agent.load(model_root_folder_path)
+                agent.load(model_root_folder_path[0])
         elif command_line_arguments['rl_algorithm'] == 'dqn_agent':
             #print("Build DQN Agent.", state_dimension, action_space.n)
             number_of_neurons = AgentBuilder.layers_neurons_to_number_of_neurons(command_line_arguments['layers'],command_line_arguments['neurons'])
@@ -67,5 +68,11 @@ class AgentBuilder():
             #second_part = model_root_folder_path[model_root_folder_path.find("mlruns"):]
             #model_root_folder_path = os.path.join(first_part_of_path, second_part)
             #print(model_root_folder_path)
-            agent.load(model_root_folder_path)
+            agent.load(model_root_folder_path[0])
+        elif command_line_arguments['rl_algorithm'] == "cooperative_agents":
+            print("Build Cooperative Agents")
+            number_of_neurons = AgentBuilder.layers_neurons_to_number_of_neurons(command_line_arguments['layers'],command_line_arguments['neurons'])
+            agent = CooperativeAgents(command_line_arguments, state_dimension, action_space.n, all_actions, number_of_neurons)
+            if model_root_folder_path!= None:
+                agent.load(model_root_folder_path)
         return agent

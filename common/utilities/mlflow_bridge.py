@@ -105,8 +105,20 @@ class MlFlowBridge:
         return None
 
     def get_agent_path(self):
-        model_folder_path = mlflow.get_artifact_uri(artifact_path="model").replace('file:///home/','/home/')
-        return model_folder_path
+        try:
+            model_folder_path = mlflow.get_artifact_uri(artifact_path="model").replace('file:///home/','/home/')
+            return [model_folder_path]
+        except:
+            idx = 0
+            all_model_paths = []
+            while True:
+                try:
+                    model_folder_path = mlflow.get_artifact_uri(artifact_path="model"+str(idx)).replace('file:///home/','/home/')
+                    all_model_paths.append(model_folder_path)
+                except:
+                    return all_model_paths
+
+
 
     def get_run_id(self):
         return self.get_agent_path().split('/')[-3]

@@ -18,7 +18,7 @@ def dummy_agent_safe_frozen_lake():
     m_project = Project(command_line_arguments)
     m_project.init_mlflow_bridge(command_line_arguments['project_name'],command_line_arguments['task'],command_line_arguments['parent_run_id'])
     m_project.load_saved_command_line_arguments()
-    m_project.create_agent(command_line_arguments, env.observation_space, env.action_space)
+    m_project.create_agent(command_line_arguments, env.observation_space, env.action_space, actions=env.action_mapper.actions)
     return m_project, env
 
 @pytest.fixture(scope='session')
@@ -32,7 +32,7 @@ def dummy_agent_safe_frozen_lake_dqn_agent():
     m_project = Project(command_line_arguments)
     m_project.init_mlflow_bridge(command_line_arguments['project_name'],command_line_arguments['task'],command_line_arguments['parent_run_id'])
     m_project.load_saved_command_line_arguments()
-    m_project.create_agent(command_line_arguments, env.observation_space, env.action_space)
+    m_project.create_agent(command_line_arguments, env.observation_space, env.action_space, , actions=env.action_mapper.actions)
     return m_project, env
     
 
@@ -47,7 +47,7 @@ def dummy_agent_safe_frozen_lake_dummy_frozen_lake_agent():
     m_project = Project(command_line_arguments)
     m_project.init_mlflow_bridge(command_line_arguments['project_name'],command_line_arguments['task'],command_line_arguments['parent_run_id'])
     m_project.load_saved_command_line_arguments()
-    m_project.create_agent(command_line_arguments, env.observation_space, env.action_space)
+    m_project.create_agent(command_line_arguments, env.observation_space, env.action_space, , actions=env.action_mapper.actions)
     return m_project, env
 
 def test_frozen_lake_3_steps_fall_in_water_but_penalty_state_after_4(dummy_agent_safe_frozen_lake):

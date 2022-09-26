@@ -36,8 +36,9 @@ def run_safe_gym_training(command_line_arguments: Dict[str, Any]) -> int:
         command_line_arguments['parent_run_id'])
     m_project.load_saved_command_line_arguments()
     print(m_project.command_line_arguments)
+    # TODO: do something else if multiagent
     m_project.create_agent(command_line_arguments,
-                           env.observation_space, env.action_space)
+                           env.observation_space, env.action_space, all_actions=env.action_mapper.actions)
     m_project.mlflow_bridge.set_property_query_as_run_name(
         command_line_arguments['prop'] + " for " + command_line_arguments['constant_definitions'])
     train(m_project, env, prop_type=command_line_arguments['prop_type'])
