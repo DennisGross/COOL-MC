@@ -1,6 +1,6 @@
-//AGENT1_CONFIGURATION:p1o1 p2o1 p3o1 
-//AGENT2_CONFIGURATION:p1o2 p2o2 p3o2 
-//AGENT3_CONFIGURATION:p1o3 p2o3 p3o3 
+//AGENT1_CONFIGURATION:p1o1 p2o1 p3o1 energy_price available_budget time
+//AGENT2_CONFIGURATION:p1o2 p2o2 p3o2 energy_price available_budget time 
+//AGENT3_CONFIGURATION:p1o3 p2o3 p3o3 energy_price available_budget time 
 mdp
 const int oec1 = 1;
 const int oec2 = 1;

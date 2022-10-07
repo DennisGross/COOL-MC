@@ -440,7 +440,7 @@ Verification via:
 ### PO-MA Scheduling
 Run the following code to train a cooperative multi-agent policy:
 
-`python cool_mc.py --task=safe_training --project_name="MA" --rl_algorithm=cooperative_poagents --prism_file_path="ma_scheduling.prism" --constant_definitions="" --prop="" --num_episodes=102  --reward_flag=0`
+`python cool_mc.py --task=safe_training --project_name="MA" --rl_algorithm=cooperative_poagents --prism_file_path="ma_scheduling.prism" --constant_definitions="" --prop="" --num_episodes=5000  --reward_flag=0`
 
 Verification via:
 

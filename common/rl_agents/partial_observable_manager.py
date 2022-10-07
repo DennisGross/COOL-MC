@@ -29,7 +29,7 @@ class PartialObservableManager:
                 variable_parts = line_parts[1].split(" ")
                 for j, variable_part in enumerate(variable_parts):
                     if variable_part.strip() != '':
-                        agent_variables.append(variable_part)
+                        agent_variables.append(variable_part.strip())
                 agent_counter+=1
                 all_agent_variables.append(agent_variables)
         return all_agent_variables
@@ -43,6 +43,6 @@ class PartialObservableManager:
         observation = []
         for variable_name in self.all_agent_variables[agent_index]:
             if variable_name.strip() != '':
-                variable_idx = self.state_mapper.mapper[variable_name]
+                variable_idx = self.state_mapper.mapper[variable_name.strip()]
                 observation.append(full_state[variable_idx])
         return np.array(observation)
