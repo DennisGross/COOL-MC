@@ -41,7 +41,11 @@ def run_verify_rl_agent(command_line_arguments: Dict[str, Any]) -> List[float]:
         env = SafeGym(prism_file_path, m_project.command_line_arguments['constant_definitions'], 1, 1, False, command_line_arguments['seed'], command_line_arguments[
                       'permissive_input'],  m_project.command_line_arguments['disabled_features'], abstraction_input=m_project.command_line_arguments['abstract_features'])
         m_project.create_agent(command_line_arguments,
-                               env.observation_space, env.action_space, actions=env.action_mapper.actions)
+                               env.observation_space, env.action_space, all_actions=env.action_mapper.actions)
+        try:
+            m_project.agent.load_env(env)
+        except:
+            pass
         mdp_reward_result, model_size = env.storm_bridge.model_checker.induced_markov_chain(
             m_project.agent, env, command_line_arguments['constant_definitions'], command_line_arguments['prop'])
         print(command_line_arguments['prop'], ':', mdp_reward_result)
@@ -74,7 +78,11 @@ def run_verify_rl_agent(command_line_arguments: Dict[str, Any]) -> List[float]:
             env = SafeGym(prism_file_path, constant_definitions, 1, 1, False, command_line_arguments['seed'], command_line_arguments[
                           'permissive_input'],  m_project.command_line_arguments['disabled_features'], abstraction_input=m_project.command_line_arguments['abstract_features'])
             m_project.create_agent(
-                command_line_arguments, env.observation_space, env.action_space, actions=env.action_mapper.actions)
+                command_line_arguments, env.observation_space, env.action_space, all_actions=env.action_mapper.actions)
+            try:
+                m_project.agent.load_env(env)
+            except:
+                pass
             mdp_reward_result, model_size = env.storm_bridge.model_checker.induced_markov_chain(
                 m_project.agent, env, constant_definitions, command_line_arguments['prop'])
             print("Constant Definitions:", constant_definitions)

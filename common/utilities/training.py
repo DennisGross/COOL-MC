@@ -21,7 +21,10 @@ def train(project, env, prop_type=''):
     last_max_steps_actions = deque(maxlen=project.command_line_arguments['max_steps']*2)
     last_max_steps_rewards = deque(maxlen=project.command_line_arguments['max_steps']*2)
     last_max_steps_terminals = deque(maxlen=project.command_line_arguments['max_steps']*2)
-    
+    try:
+        project.agent.load_env(env)
+    except:
+        pass
     try:
         for episode in range(project.command_line_arguments['num_episodes']):
             state = env.reset()

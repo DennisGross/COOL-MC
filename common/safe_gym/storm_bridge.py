@@ -103,6 +103,7 @@ class StormBridge:
         """
         assert isinstance(path, str)
         assert isinstance(constant_definitions, str)
+        print(path)
         prism_program = stormpy.parse_prism_program(path)
         prism_program = stormpy.preprocess_symbolic_input(
             prism_program, [], constant_definitions)[0].as_prism_program()

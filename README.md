@@ -414,14 +414,34 @@ For testing the installation, follow the steps [here](https://moves-rwth.github.
 
 ## Multi-Agent Environments
 
+### Tiger Problem
+
 Run the following code to train a cooperative multi-agent policy:
 
-`python cool_mc.py --task=safe_training --project_name="MA" --rl_algorithm=cooperative_agents --prism_file_path="tiger.prism" --constant_definitions="" --prop="" --num_episodes=11`
-
-For partial observerability, add features via the disabled_features argument:
-
-`python cool_mc.py --task=safe_training --project_name="MA" --rl_algorithm=cooperative_agents --prism_file_path="tiger.prism" --constant_definitions="" --prop="" --num_episodes=11 --disabled_features=ts`
+`python cool_mc.py --task=safe_training --project_name="MA" --rl_algorithm=cooperative_agents --prism_file_path="tiger.prism" --constant_definitions="" --prop="" --num_episodes=102  --reward_flag=0`
 
 Verification via:
 
-`python cool_mc.py --parent_run_id=3f5248d351ab4cca992b01ab1a3aa23a --task=rl_model_checking --project_name="MA" --prism_file_path="transporter.prism" --constant_definitions="" --prop="PCTL FORMULA"`
+`python cool_mc.py --parent_run_id=1618a8c8fbbd45d78497bb86a32bb7bb --task=rl_model_checking --project_name="MA" --constant_definitions="" --prop="P=? [F ts=1]" `
+
+For partial observerability, add features via the disabled_features argument:
+
+`python cool_mc.py --task=safe_training --project_name="MA" --rl_algorithm=cooperative_agents --prism_file_path="tiger.prism" --constant_definitions="" --prop="" --num_episodes=11 --disabled_features=ts --reward_flag=0`
+
+### MA Scheduling
+Run the following code to train a cooperative multi-agent policy:
+
+`python cool_mc.py --task=safe_training --project_name="MA" --rl_algorithm=cooperative_agents --prism_file_path="ma_scheduling.prism" --constant_definitions="" --prop="" --num_episodes=102  --reward_flag=0`
+
+Verification via:
+
+`python cool_mc.py --parent_run_id=d2081740e678485b862489a2d0575b9a --task=rl_model_checking --project_name="MA" --constant_definitions="" --prop="P=? [F ALL_OPS_ZERO=true ]"`
+
+### PO-MA Scheduling
+Run the following code to train a cooperative multi-agent policy:
+
+`python cool_mc.py --task=safe_training --project_name="MA" --rl_algorithm=cooperative_poagents --prism_file_path="ma_scheduling.prism" --constant_definitions="" --prop="" --num_episodes=102  --reward_flag=0`
+
+Verification via:
+
+`python cool_mc.py --parent_run_id=9f6adcd6605a4e00926b88cb8ea591b4 --task=rl_model_checking --project_name="MA" --constant_definitions="" --prop="P=? [F ALL_OPS_ZERO=true ]"`
