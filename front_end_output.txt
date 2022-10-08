@@ -1,4 +1,4 @@
 Project ID: 1
-Run ID: wsurdhovhabs5jkuvzsymqhj460fprs9lvrn27ux2m
+Run ID: vqkrfbbf64jzaf7m2ubvwgaiilkaxru0ldi2ax093j
 Property Query: Pmin=? [F ALL_OPS_ZERO=true ]
-Property Result: 0.0
+Property Result: 0.8829575844756689

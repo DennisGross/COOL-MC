@@ -16,6 +16,9 @@ device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 device = 'cpu'
 
 
+    
+
+
 class CooperativePOAgents(Agent):
 
     def __init__(self, command_line_arguments, state_dimension : int, number_of_actions : int, combined_actions, number_of_neurons : int):
@@ -33,12 +36,13 @@ class CooperativePOAgents(Agent):
         # Extract all actions for each agent (for each list element, there is a list of actions for the corresponding agent at position i)
         self.all_actions = self.extract_actions_for_agents(self.combined_actions)
         self.command_line_arguments = command_line_arguments
-        
+       
 
     def load_env(self, env):
         """
         Load the environment.
         """
+        print("LOAD ENVIRONMENT")
         self.env = env
         prism_path = os.path.join(self.command_line_arguments['prism_dir'], self.command_line_arguments['prism_file_path'])
         self.po_manager = PartialObservableManager(prism_path, self.env.storm_bridge.state_mapper)
@@ -48,7 +52,7 @@ class CooperativePOAgents(Agent):
             # Extract state_dimension from prism file for each agent
             state_dimension = self.po_manager.get_observation_dimension_for_agent_idx(i)
             self.agents.append(DQNAgent(state_dimension, self.number_of_neurons,len(self.all_actions[i]), epsilon=self.command_line_arguments['epsilon'], epsilon_dec=self.command_line_arguments['epsilon_dec'], epsilon_min=self.command_line_arguments['epsilon_min'], gamma=self.command_line_arguments['gamma'], learning_rate=self.command_line_arguments['lr'], replace=self.command_line_arguments['replace'], batch_size=self.command_line_arguments['batch_size'], replay_buffer_size=self.command_line_arguments['replay_buffer_size']))
-
+            self.agents[i].load(self.model_root_folder_path[0]+str(i))
     
 
 
@@ -108,8 +112,8 @@ class CooperativePOAgents(Agent):
         Args:
             model_root_folder_path (str): Model root folder path.
         """
-        for idx, path in enumerate(model_root_folder_path):
-            self.agents[idx].load(path)
+        self.model_root_folder_path = model_root_folder_path
+        # LOAD IN LOAD ENV
 
     
 
@@ -150,7 +154,8 @@ class CooperativePOAgents(Agent):
             observation = self.po_manager.get_observation(state, i)
             action_idx = self.agents[i].select_action(observation, deploy)
             all_action_idizes.append(action_idx)
-        return self.combine_actions(all_action_idizes)
+        action_idx = self.combine_actions(all_action_idizes)
+        return action_idx
 
 
 

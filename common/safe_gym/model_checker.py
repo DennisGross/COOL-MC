@@ -198,7 +198,8 @@ class ModelChecker():
         print("Model Size:", model.nr_states)
         print("Transitions", model.nr_transitions)
         # print(model)
-        # print(formula_str)
+        #formula_str = formula_str.replace("min", "max")
+        print(formula_str)
         model_checking_start_time = time.time()
         print("Parse Properties...")
         properties = stormpy.parse_properties(formula_str, prism_program)
@@ -206,7 +207,7 @@ class ModelChecker():
         result = stormpy.model_checking(model, properties[0])
         print("Model Checking Time:", time.time()-model_checking_start_time)
         
-        #stormpy.export_to_drn(model,"test.drn")
+        stormpy.export_to_drn(model,"test.drn")
         initial_state = model.initial_states[0]
         #print('Result for initial state', result.at(initial_state))
         mdp_reward_result = result.at(initial_state)

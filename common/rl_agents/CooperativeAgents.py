@@ -38,7 +38,7 @@ class CooperativeAgents(Agent):
             self.agents.append(DQNAgent(state_dimension, number_of_neurons,len(self.all_actions[i]), epsilon=command_line_arguments['epsilon'], epsilon_dec=command_line_arguments['epsilon_dec'], epsilon_min=command_line_arguments['epsilon_min'], gamma=command_line_arguments['gamma'], learning_rate=command_line_arguments['lr'], replace=command_line_arguments['replace'], batch_size=command_line_arguments['batch_size'], replay_buffer_size=command_line_arguments['replay_buffer_size']))
 
 
-
+    
 
 
     def extract_actions_for_agents(self, actions):

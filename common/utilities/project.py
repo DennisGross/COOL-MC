@@ -98,6 +98,7 @@ class Project():
     def save(self):
         # Agent
         self.agent.save()
+        
         # Save Command Line Arguments
         self.mlflow_bridge.save_command_line_arguments(self.command_line_arguments)
 

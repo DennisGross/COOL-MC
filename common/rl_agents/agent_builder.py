@@ -77,7 +77,7 @@ class AgentBuilder():
             if model_root_folder_path!= None:
                 agent.load(model_root_folder_path)
         elif command_line_arguments['rl_algorithm'] == "cooperative_poagents":
-            print("Build Cooperative Agents")
+            print("Build Cooperative Agents",all_actions)
             number_of_neurons = AgentBuilder.layers_neurons_to_number_of_neurons(command_line_arguments['layers'],command_line_arguments['neurons'])
             agent = CooperativePOAgents(command_line_arguments, state_dimension, action_space.n, all_actions, number_of_neurons)
             if model_root_folder_path!= None:

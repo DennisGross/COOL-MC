@@ -197,8 +197,9 @@ class DQNAgent(Agent):
         try:
             self.q_eval.load_checkpoint(os.path.join(model_root_folder_path,'q_eval.chkpt'))
             self.q_next.load_checkpoint(os.path.join(model_root_folder_path,'q_next.chkpt'))
+            print("Model loaded successfully", os.path.join(model_root_folder_path,'q_eval.chkpt'))
         except:
-            pass
+            print("No model found",model_root_folder_path)
 
     
 
