@@ -1,4 +1,4 @@
-Project ID: 1
-Run ID: vqkrfbbf64jzaf7m2ubvwgaiilkaxru0ldi2ax093j
-Property Query: Pmin=? [F ALL_OPS_ZERO=true ]
-Property Result: 0.8829575844756689
+Project ID: 2
+Run ID: ql3r75cejviclagygb4o68c9dgmuqwe229odoq8wkp
+Property Query: Rmin=? [ LRA ]
+Property Result: 49.99999999999999

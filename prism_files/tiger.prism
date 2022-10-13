@@ -1,4 +1,6 @@
 mdp
+//AGENT1_CONFIGURATION:o1
+//AGENT2_CONFIGURATION:o2
 //observables o1, o2 endobservables
 //observable "agent_one_hear_left" = o1=1;
 //observable "agent_one_hear_right" = o1=2;

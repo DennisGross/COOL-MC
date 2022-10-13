@@ -440,8 +440,13 @@ Verification via:
 ### PO-MA Scheduling
 Run the following code to train a cooperative multi-agent policy:
 
-`python cool_mc.py --task=safe_training --project_name="MA" --rl_algorithm=cooperative_poagents --prism_file_path="probs_ma_scheduling.prism" --constant_definitions="" --prop="" --num_episodes=5000  --reward_flag=0`
+`python cool_mc.py --task=safe_training --project_name="experiments" --rl_algorithm=cooperative_poagents --prism_file_path="ma_scheduling_reward2_4ops.prism" --constant_definitions="" --prop="" --num_episodes=25000  --reward_flag=0 --seed=128 --epsilon=0.1 --layers=1 --neurons=32 --epsilon_min=0.01`
 
 Verification via:
 
-`python cool_mc.py --parent_run_id=4f8dffc8809b499083b31dc96c250abd --task=rl_model_checking --project_name="MA" --constant_definitions="" --prop="P=? [F ALL_OPS_ZERO=true ]"`
+`python cool_mc.py --parent_run_id=4e09ca5e595a40c19ebac17fbddf06d8 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F ALL_OPS_ZERO=true ]"`
+
+python cool_mc.py --task=safe_training --project_name="experiments" --rl_algorithm=cooperative_poagents --prism_file_path="tiger.prism" --constant_definitions="" --prop="" --num_episodes=101  --reward_flag=1
+
+
+python cool_mc.py --parent_run_id=e91d1112609d415bbfc9ab8e756a3e5b --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="R=? [ LRA ]"
