@@ -9,7 +9,7 @@ import math
 from numpy import linalg as LA
 import itertools
 
-def cartesian_coord(*arrays, epsilon, feature_map=None):
+def cartesian_coord2(*arrays, epsilon, feature_map=None):
     grid = np.meshgrid(*arrays)      
     coord_list = [entry.ravel() for entry in grid]
     points = np.vstack(coord_list).T
@@ -18,8 +18,53 @@ def cartesian_coord(*arrays, epsilon, feature_map=None):
             target_feature = col in feature_map.values()
             if target_feature==False:
                 points=points[~(points[:,col] != 0),:]
-
     return list(points[np.absolute(points).max(axis=1) <= epsilon,:])
+    
+
+def cartesian_coord(*arrays, epsilon, feature_map=None, state=None, rl_agent=None, original_action_idx=None):
+    NORM = np.inf
+    length = len(arrays)
+    values = arrays[0]
+    all_action_idizes = [original_action_idx]
+    already_existed = []
+    counter = 0
+    #print(state)
+    if feature_map != None:
+        for combination in itertools.product(values, repeat=len(feature_map.values())):
+            # Create list with only zeroes
+            zero_vector = [0] * length
+            counter+=1
+            for i, idx in enumerate(feature_map.values()):
+                zero_vector[idx] = combination[i]
+            if LA.norm(zero_vector,ord=NORM) <= epsilon:
+                action_idx = rl_agent.select_action(state+np.array(zero_vector),deploy=True)
+                if action_idx != original_action_idx:
+                    if action_idx not in already_existed:
+                        already_existed.append(action_idx)
+                        all_action_idizes.append(action_idx)
+                        if len(all_action_idizes) == rl_agent.number_of_actions:
+                            #print(rl_agent.number_of_actions, len(all_action_idizes),"Counter",counter)
+                            #print("Early Ending")
+                            return all_action_idizes
+
+    else:
+        for combination in itertools.product(values, repeat=length):
+            counter+=1
+            if LA.norm(combination,ord=NORM) <= epsilon:
+                action_idx = rl_agent.select_action(state+np.array(combination),deploy=True)
+                if action_idx != original_action_idx:
+                    if action_idx not in already_existed:
+                        already_existed.append(action_idx)
+                        all_action_idizes.append(action_idx)
+                        if len(all_action_idizes) == rl_agent.number_of_actions:
+                            #print(rl_agent.number_of_actions, len(all_action_idizes),"Counter",counter)
+                            #print("Early Ending")
+                            return all_action_idizes
+    #print(rl_agent.number_of_actions, len(all_action_idizes),"Counter",counter)
+    return all_action_idizes
+    
+        
+    
 
 
 class RobustnessAttacker(AdversarialAttack):
@@ -33,6 +78,7 @@ class RobustnessAttacker(AdversarialAttack):
         self.all_actions_found = 0
         self.not_all_actions_found = 0
         self.totally_robust = 0
+        self.failed_once = False
 
     def get_feature_mapping(self, features):
         feature_map = {}
@@ -63,7 +109,6 @@ class RobustnessAttacker(AdversarialAttack):
 
 
 
-
     def action_dict_full(self, all_actions_idizes):
         # Check if all actions are present
         return len(list(all_actions_idizes.keys())) == self.max_actions
@@ -74,8 +119,7 @@ class RobustnessAttacker(AdversarialAttack):
         else:
             return False
 
-
-    def attack(self, action_mapper, rl_agent, state:np.ndarray, current_model_checking_action_idx: int = -1) -> np.ndarray:
+    def fast_attack(self, action_mapper, rl_agent, state:np.ndarray, current_model_checking_action_idx: int = -1) -> np.ndarray:
         if (self.current_state is None) or (np.array_equal(self.current_state, state) == False):
             #print("New State", state)
             # Original Action
@@ -88,13 +132,13 @@ class RobustnessAttacker(AdversarialAttack):
             tries = 0
             counter=0
             if self.max_counter == math.inf:
-                all_possible_attacks = cartesian_coord(*len(state)*[np.arange(-self.epsilon, self.epsilon+1)],epsilon=self.epsilon,feature_map=self.feature_map)
+                all_possible_attacks = cartesian_coord2(*len(state)*[np.arange(-self.epsilon, self.epsilon+1)],epsilon=self.epsilon,feature_map=self.feature_map)
             else:
                 all_possible_attacks = self.valid_attacks
             for idx, attack in enumerate(all_possible_attacks):
                 attack = np.array(attack)
                 tries+=1
-                if LA.norm(attack, ord=1) <= self.epsilon:
+                if True:
                     #print(attack)
                     counter+=1
                     if self.max_counter == math.inf:
@@ -130,7 +174,6 @@ class RobustnessAttacker(AdversarialAttack):
                 self.permissive_actions.append(action)
             
 
-            
             if tries == len(all_possible_attacks) and self.max_counter == math.inf:
                 tmp_valid_attacks.sort()
                 self.valid_attacks = list(k for k,_ in itertools.groupby(tmp_valid_attacks))
@@ -138,6 +181,29 @@ class RobustnessAttacker(AdversarialAttack):
                 self.max_counter = len(self.valid_attacks)
                 print(len(self.valid_attacks))
 
+        return self.permissive_actions
+
+
+    def attack(self, action_mapper, rl_agent, state:np.ndarray, current_model_checking_action_idx: int = -1) -> np.ndarray:
+        if (self.current_state is None) or (np.array_equal(self.current_state, state) == False):
+            if self.failed_once == False:
+                try:
+                    self.permissive_actions = self.fast_attack(action_mapper, rl_agent, state, current_model_checking_action_idx)
+                except:
+                    self.failed_once = True
+            
+            if self.failed_once==True:
+                # Original Action
+                original_action_idx = rl_agent.select_action(state,deploy=True)
+                # Reset Actions
+                self.current_state = state
+                self.permissive_actions = []
+                all_actions_idizes = cartesian_coord(*len(state)*[np.arange(-self.epsilon, self.epsilon+1)],epsilon=self.epsilon,feature_map=self.feature_map, state=state, rl_agent=rl_agent, original_action_idx=original_action_idx)
+                    
+                for action_idx in all_actions_idizes:
+                    action = action_mapper.action_index_to_action_name(int(action_idx))
+                    self.permissive_actions.append(action)
+            
         return self.permissive_actions
      
 
