@@ -18,11 +18,11 @@ def cartesian_coord2(*arrays, epsilon, feature_map=None):
             target_feature = col in feature_map.values()
             if target_feature==False:
                 points=points[~(points[:,col] != 0),:]
-    return list(points[np.absolute(points).max(axis=1) <= epsilon,:])
+    return list(points[np.absolute(points).sum(axis=1) <= epsilon,:])
     
 
 def cartesian_coord(*arrays, epsilon, feature_map=None, state=None, rl_agent=None, original_action_idx=None):
-    NORM = np.inf
+    NORM = 1
     length = len(arrays)
     values = arrays[0]
     all_action_idizes = [original_action_idx]

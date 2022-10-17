@@ -17,4 +17,4 @@
 # Stock Market
 #python cool_mc.py --parent_run_id=2ff1fb06d338455f8508b0c837e66039 --task=rl_model_checking --project_name="experiments" --prism_file_path="stock_market.prism" --constant_definitions="" --prop="Pmax=? [F \"bankruptcy\"]" --permissive_input="robustness,1"
 # Freeway
-#python cool_mc.py --parent_run_id=eb228d45f182499d985dc88480fa6315 --task=rl_model_checking --project_name="experiments" --prism_file_path="freeway.prism" --constant_definitions="" --prop="Pmin=? [F won=true]" --permissive_input="robustness,1"
+python cool_mc.py --parent_run_id=eb228d45f182499d985dc88480fa6315 --task=rl_model_checking --project_name="experiments" --prism_file_path="freeway.prism" --constant_definitions="" --prop="Pmin=? [F won=true]" --permissive_input="robustness,1,px0+px1+px2+px3"
