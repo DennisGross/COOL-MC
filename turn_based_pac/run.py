@@ -27,10 +27,11 @@ if __name__ == '__main__':
         rand_state_idx = random.randint(0, int(outputs[1]/2) -1)
         outputs = run_verify_rl_agent(command_line_arguments,random_state_idx=rand_state_idx, prop_extension="min")
         clean_folder("../mlruns",start_timestemp)
-        print(rand_state_idx)
+        print("Current Sample IDX:", i)
         all_results.append(outputs[0])
     print("Average Result:", sum(all_results)/N)
     g = exp(-N *(alpha**2)/2) + exp(-N *(alpha**2)/3)
     print(f"Probability that we are further away from the Expected Result than {alpha}:", g)
+    print("Running time:", time.time() - start_time)
         
     

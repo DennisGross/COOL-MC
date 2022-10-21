@@ -6,59 +6,599 @@
 @reward_models
 
 @nr_states
-13
+124
 @nr_choices
-13
+124
 @model
 state 0 init
-//[cell00=0	& cell01=0	& cell02=0	& cell03=0	& cell04=0	& cell05=0	& cell06=0	& cell10=0	& cell11=0	& cell12=0	& cell13=0	& cell14=0	& cell15=0	& cell16=0	& cell20=0	& cell21=0	& cell22=0	& cell23=0	& cell24=0	& cell25=0	& cell26=0	& cell30=0	& cell31=0	& cell32=0	& cell33=0	& cell34=0	& cell35=0	& cell36=0	& cell40=0	& cell41=0	& cell42=0	& cell43=0	& cell44=0	& cell45=0	& cell46=0	& cell50=0	& cell51=0	& cell52=0	& cell53=0	& cell54=0	& cell55=0	& cell56=0	& cell60=0	& cell61=0	& cell62=0	& cell63=0	& cell64=0	& cell65=0	& cell66=0	& cell70=0	& cell71=0	& cell72=0	& cell73=0	& cell74=0	& cell75=0	& cell76=0	& turn=0]
-	action ACTION5
-		1 : 1
+//[cell00=0	& cell01=0	& cell02=0	& cell10=0	& cell11=0	& cell12=0	& cell20=0	& cell21=0	& cell22=0	& turn=0]
+	action cell02
+		1 : 0.9
+		2 : 0.1
 state 1
-//[cell00=0	& cell01=0	& cell02=0	& cell03=0	& cell04=0	& cell05=0	& cell06=0	& cell10=0	& cell11=0	& cell12=0	& cell13=0	& cell14=0	& cell15=0	& cell16=0	& cell20=0	& cell21=0	& cell22=0	& cell23=0	& cell24=0	& cell25=0	& cell26=0	& cell30=0	& cell31=0	& cell32=0	& cell33=0	& cell34=0	& cell35=0	& cell36=0	& cell40=0	& cell41=0	& cell42=0	& cell43=0	& cell44=0	& cell45=0	& cell46=0	& cell50=0	& cell51=0	& cell52=0	& cell53=0	& cell54=0	& cell55=0	& cell56=0	& cell60=0	& cell61=0	& cell62=0	& cell63=0	& cell64=0	& cell65=0	& cell66=0	& cell70=0	& cell71=0	& cell72=0	& cell73=0	& cell74=0	& cell75=1	& cell76=0	& turn=1]
-	action ACTION5
-		2 : 1
+//[cell00=0	& cell01=0	& cell02=1	& cell10=0	& cell11=0	& cell12=0	& cell20=0	& cell21=0	& cell22=0	& turn=1]
+	action cell01
+		3 : 0.9
+		4 : 0.1
 state 2
-//[cell00=0	& cell01=0	& cell02=0	& cell03=0	& cell04=0	& cell05=0	& cell06=0	& cell10=0	& cell11=0	& cell12=0	& cell13=0	& cell14=0	& cell15=0	& cell16=0	& cell20=0	& cell21=0	& cell22=0	& cell23=0	& cell24=0	& cell25=0	& cell26=0	& cell30=0	& cell31=0	& cell32=0	& cell33=0	& cell34=0	& cell35=0	& cell36=0	& cell40=0	& cell41=0	& cell42=0	& cell43=0	& cell44=0	& cell45=0	& cell46=0	& cell50=0	& cell51=0	& cell52=0	& cell53=0	& cell54=0	& cell55=0	& cell56=0	& cell60=0	& cell61=0	& cell62=0	& cell63=0	& cell64=0	& cell65=2	& cell66=0	& cell70=0	& cell71=0	& cell72=0	& cell73=0	& cell74=0	& cell75=1	& cell76=0	& turn=0]
-	action ACTION6
-		3 : 1
+//[cell00=0	& cell01=0	& cell02=0	& cell10=0	& cell11=0	& cell12=0	& cell20=0	& cell21=0	& cell22=0	& turn=1]
+	action cell01
+		0 : 0.1
+		5 : 0.9
 state 3
-//[cell00=0	& cell01=0	& cell02=0	& cell03=0	& cell04=0	& cell05=0	& cell06=0	& cell10=0	& cell11=0	& cell12=0	& cell13=0	& cell14=0	& cell15=0	& cell16=0	& cell20=0	& cell21=0	& cell22=0	& cell23=0	& cell24=0	& cell25=0	& cell26=0	& cell30=0	& cell31=0	& cell32=0	& cell33=0	& cell34=0	& cell35=0	& cell36=0	& cell40=0	& cell41=0	& cell42=0	& cell43=0	& cell44=0	& cell45=0	& cell46=0	& cell50=0	& cell51=0	& cell52=0	& cell53=0	& cell54=0	& cell55=0	& cell56=0	& cell60=0	& cell61=0	& cell62=0	& cell63=0	& cell64=0	& cell65=2	& cell66=0	& cell70=0	& cell71=0	& cell72=0	& cell73=0	& cell74=0	& cell75=1	& cell76=1	& turn=1]
-	action ACTION3
-		4 : 1
+//[cell00=0	& cell01=2	& cell02=1	& cell10=0	& cell11=0	& cell12=0	& cell20=0	& cell21=0	& cell22=0	& turn=0]
+	action cell10
+		6 : 0.9
+		7 : 0.1
 state 4
-//[cell00=0	& cell01=0	& cell02=0	& cell03=0	& cell04=0	& cell05=0	& cell06=0	& cell10=0	& cell11=0	& cell12=0	& cell13=0	& cell14=0	& cell15=0	& cell16=0	& cell20=0	& cell21=0	& cell22=0	& cell23=0	& cell24=0	& cell25=0	& cell26=0	& cell30=0	& cell31=0	& cell32=0	& cell33=0	& cell34=0	& cell35=0	& cell36=0	& cell40=0	& cell41=0	& cell42=0	& cell43=0	& cell44=0	& cell45=0	& cell46=0	& cell50=0	& cell51=0	& cell52=0	& cell53=0	& cell54=0	& cell55=0	& cell56=0	& cell60=0	& cell61=0	& cell62=0	& cell63=0	& cell64=0	& cell65=2	& cell66=0	& cell70=0	& cell71=0	& cell72=0	& cell73=2	& cell74=0	& cell75=1	& cell76=1	& turn=0]
-	action ACTION1
-		5 : 1
+//[cell00=0	& cell01=0	& cell02=1	& cell10=0	& cell11=0	& cell12=0	& cell20=0	& cell21=0	& cell22=0	& turn=0]
+	action cell10
+		1 : 0.1
+		8 : 0.9
 state 5
-//[cell00=0	& cell01=0	& cell02=0	& cell03=0	& cell04=0	& cell05=0	& cell06=0	& cell10=0	& cell11=0	& cell12=0	& cell13=0	& cell14=0	& cell15=0	& cell16=0	& cell20=0	& cell21=0	& cell22=0	& cell23=0	& cell24=0	& cell25=0	& cell26=0	& cell30=0	& cell31=0	& cell32=0	& cell33=0	& cell34=0	& cell35=0	& cell36=0	& cell40=0	& cell41=0	& cell42=0	& cell43=0	& cell44=0	& cell45=0	& cell46=0	& cell50=0	& cell51=0	& cell52=0	& cell53=0	& cell54=0	& cell55=0	& cell56=0	& cell60=0	& cell61=0	& cell62=0	& cell63=0	& cell64=0	& cell65=2	& cell66=0	& cell70=0	& cell71=1	& cell72=0	& cell73=2	& cell74=0	& cell75=1	& cell76=1	& turn=1]
-	action ACTION3
-		6 : 1
+//[cell00=0	& cell01=2	& cell02=0	& cell10=0	& cell11=0	& cell12=0	& cell20=0	& cell21=0	& cell22=0	& turn=0]
+	action cell02
+		7 : 0.9
+		9 : 0.1
 state 6
-//[cell00=0	& cell01=0	& cell02=0	& cell03=0	& cell04=0	& cell05=0	& cell06=0	& cell10=0	& cell11=0	& cell12=0	& cell13=0	& cell14=0	& cell15=0	& cell16=0	& cell20=0	& cell21=0	& cell22=0	& cell23=0	& cell24=0	& cell25=0	& cell26=0	& cell30=0	& cell31=0	& cell32=0	& cell33=0	& cell34=0	& cell35=0	& cell36=0	& cell40=0	& cell41=0	& cell42=0	& cell43=0	& cell44=0	& cell45=0	& cell46=0	& cell50=0	& cell51=0	& cell52=0	& cell53=0	& cell54=0	& cell55=0	& cell56=0	& cell60=0	& cell61=0	& cell62=0	& cell63=2	& cell64=0	& cell65=2	& cell66=0	& cell70=0	& cell71=1	& cell72=0	& cell73=2	& cell74=0	& cell75=1	& cell76=1	& turn=0]
-	action ACTION1
-		7 : 1
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=0	& cell12=0	& cell20=0	& cell21=0	& cell22=0	& turn=1]
+	action cell11
+		10 : 0.9
+		11 : 0.1
 state 7
-//[cell00=0	& cell01=0	& cell02=0	& cell03=0	& cell04=0	& cell05=0	& cell06=0	& cell10=0	& cell11=0	& cell12=0	& cell13=0	& cell14=0	& cell15=0	& cell16=0	& cell20=0	& cell21=0	& cell22=0	& cell23=0	& cell24=0	& cell25=0	& cell26=0	& cell30=0	& cell31=0	& cell32=0	& cell33=0	& cell34=0	& cell35=0	& cell36=0	& cell40=0	& cell41=0	& cell42=0	& cell43=0	& cell44=0	& cell45=0	& cell46=0	& cell50=0	& cell51=0	& cell52=0	& cell53=0	& cell54=0	& cell55=0	& cell56=0	& cell60=0	& cell61=1	& cell62=0	& cell63=2	& cell64=0	& cell65=2	& cell66=0	& cell70=0	& cell71=1	& cell72=0	& cell73=2	& cell74=0	& cell75=1	& cell76=1	& turn=1]
-	action ACTION3
-		8 : 1
+//[cell00=0	& cell01=2	& cell02=1	& cell10=0	& cell11=0	& cell12=0	& cell20=0	& cell21=0	& cell22=0	& turn=1]
+	action cell11
+		3 : 0.1
+		12 : 0.9
 state 8
-//[cell00=0	& cell01=0	& cell02=0	& cell03=0	& cell04=0	& cell05=0	& cell06=0	& cell10=0	& cell11=0	& cell12=0	& cell13=0	& cell14=0	& cell15=0	& cell16=0	& cell20=0	& cell21=0	& cell22=0	& cell23=0	& cell24=0	& cell25=0	& cell26=0	& cell30=0	& cell31=0	& cell32=0	& cell33=0	& cell34=0	& cell35=0	& cell36=0	& cell40=0	& cell41=0	& cell42=0	& cell43=0	& cell44=0	& cell45=0	& cell46=0	& cell50=0	& cell51=0	& cell52=0	& cell53=2	& cell54=0	& cell55=0	& cell56=0	& cell60=0	& cell61=1	& cell62=0	& cell63=2	& cell64=0	& cell65=2	& cell66=0	& cell70=0	& cell71=1	& cell72=0	& cell73=2	& cell74=0	& cell75=1	& cell76=1	& turn=0]
-	action ACTION1
-		9 : 1
+//[cell00=0	& cell01=0	& cell02=1	& cell10=1	& cell11=0	& cell12=0	& cell20=0	& cell21=0	& cell22=0	& turn=1]
+	action cell11
+		13 : 0.9
+		14 : 0.1
 state 9
-//[cell00=0	& cell01=0	& cell02=0	& cell03=0	& cell04=0	& cell05=0	& cell06=0	& cell10=0	& cell11=0	& cell12=0	& cell13=0	& cell14=0	& cell15=0	& cell16=0	& cell20=0	& cell21=0	& cell22=0	& cell23=0	& cell24=0	& cell25=0	& cell26=0	& cell30=0	& cell31=0	& cell32=0	& cell33=0	& cell34=0	& cell35=0	& cell36=0	& cell40=0	& cell41=0	& cell42=0	& cell43=0	& cell44=0	& cell45=0	& cell46=0	& cell50=0	& cell51=1	& cell52=0	& cell53=2	& cell54=0	& cell55=0	& cell56=0	& cell60=0	& cell61=1	& cell62=0	& cell63=2	& cell64=0	& cell65=2	& cell66=0	& cell70=0	& cell71=1	& cell72=0	& cell73=2	& cell74=0	& cell75=1	& cell76=1	& turn=1]
-	action ACTION3
-		10 : 1
+//[cell00=0	& cell01=2	& cell02=0	& cell10=0	& cell11=0	& cell12=0	& cell20=0	& cell21=0	& cell22=0	& turn=1]
+	action cell11
+		5 : 0.1
+		15 : 0.9
 state 10
-//[cell00=0	& cell01=0	& cell02=0	& cell03=0	& cell04=0	& cell05=0	& cell06=0	& cell10=0	& cell11=0	& cell12=0	& cell13=0	& cell14=0	& cell15=0	& cell16=0	& cell20=0	& cell21=0	& cell22=0	& cell23=0	& cell24=0	& cell25=0	& cell26=0	& cell30=0	& cell31=0	& cell32=0	& cell33=0	& cell34=0	& cell35=0	& cell36=0	& cell40=0	& cell41=0	& cell42=0	& cell43=2	& cell44=0	& cell45=0	& cell46=0	& cell50=0	& cell51=1	& cell52=0	& cell53=2	& cell54=0	& cell55=0	& cell56=0	& cell60=0	& cell61=1	& cell62=0	& cell63=2	& cell64=0	& cell65=2	& cell66=0	& cell70=0	& cell71=1	& cell72=0	& cell73=2	& cell74=0	& cell75=1	& cell76=1	& turn=0]
-	action ACTION4
-		11 : 1
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=0	& cell21=0	& cell22=0	& turn=0]
+	action cell21
+		16 : 0.9
+		17 : 0.1
 state 11
-//[cell00=0	& cell01=0	& cell02=0	& cell03=0	& cell04=0	& cell05=0	& cell06=0	& cell10=0	& cell11=0	& cell12=0	& cell13=0	& cell14=0	& cell15=0	& cell16=0	& cell20=0	& cell21=0	& cell22=0	& cell23=0	& cell24=0	& cell25=0	& cell26=0	& cell30=0	& cell31=0	& cell32=0	& cell33=0	& cell34=0	& cell35=0	& cell36=0	& cell40=0	& cell41=0	& cell42=0	& cell43=2	& cell44=0	& cell45=0	& cell46=0	& cell50=0	& cell51=1	& cell52=0	& cell53=2	& cell54=0	& cell55=0	& cell56=0	& cell60=0	& cell61=1	& cell62=0	& cell63=2	& cell64=0	& cell65=2	& cell66=0	& cell70=0	& cell71=1	& cell72=0	& cell73=2	& cell74=1	& cell75=1	& cell76=1	& turn=1]
-	action ACTION3
-		12 : 1
-state 12 player1_win
-//[cell00=0	& cell01=0	& cell02=0	& cell03=0	& cell04=0	& cell05=0	& cell06=0	& cell10=0	& cell11=0	& cell12=0	& cell13=0	& cell14=0	& cell15=0	& cell16=0	& cell20=0	& cell21=0	& cell22=0	& cell23=0	& cell24=0	& cell25=0	& cell26=0	& cell30=0	& cell31=0	& cell32=0	& cell33=2	& cell34=0	& cell35=0	& cell36=0	& cell40=0	& cell41=0	& cell42=0	& cell43=2	& cell44=0	& cell45=0	& cell46=0	& cell50=0	& cell51=1	& cell52=0	& cell53=2	& cell54=0	& cell55=0	& cell56=0	& cell60=0	& cell61=1	& cell62=0	& cell63=2	& cell64=0	& cell65=2	& cell66=0	& cell70=0	& cell71=1	& cell72=0	& cell73=2	& cell74=1	& cell75=1	& cell76=1	& turn=0]
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=0	& cell12=0	& cell20=0	& cell21=0	& cell22=0	& turn=0]
+	action cell21
+		6 : 0.1
+		18 : 0.9
+state 12
+//[cell00=0	& cell01=2	& cell02=1	& cell10=0	& cell11=2	& cell12=0	& cell20=0	& cell21=0	& cell22=0	& turn=0]
+	action cell21
+		19 : 0.9
+		20 : 0.1
+state 13
+//[cell00=0	& cell01=0	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=0	& cell21=0	& cell22=0	& turn=0]
+	action cell21
+		21 : 0.9
+		22 : 0.1
+state 14
+//[cell00=0	& cell01=0	& cell02=1	& cell10=1	& cell11=0	& cell12=0	& cell20=0	& cell21=0	& cell22=0	& turn=0]
+	action cell12
+		8 : 0.1
+		23 : 0.9
+state 15
+//[cell00=0	& cell01=2	& cell02=0	& cell10=0	& cell11=2	& cell12=0	& cell20=0	& cell21=0	& cell22=0	& turn=0]
+	action cell02
+		20 : 0.9
+		24 : 0.1
+state 16
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=0	& cell21=1	& cell22=0	& turn=1]
+	action cell22
+		25 : 0.9
+		26 : 0.1
+state 17
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=0	& cell21=0	& cell22=0	& turn=1]
+	action cell22
+		10 : 0.1
+		27 : 0.9
+state 18
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=0	& cell12=0	& cell20=0	& cell21=1	& cell22=0	& turn=1]
+	action cell11
+		26 : 0.9
+		28 : 0.1
+state 19
+//[cell00=0	& cell01=2	& cell02=1	& cell10=0	& cell11=2	& cell12=0	& cell20=0	& cell21=1	& cell22=0	& turn=1]
+	action cell22
+		29 : 0.9
+		30 : 0.1
+state 20
+//[cell00=0	& cell01=2	& cell02=1	& cell10=0	& cell11=2	& cell12=0	& cell20=0	& cell21=0	& cell22=0	& turn=1]
+	action cell22
+		12 : 0.1
+		31 : 0.9
+state 21
+//[cell00=0	& cell01=0	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=0	& cell21=1	& cell22=0	& turn=1]
+	action cell22
+		32 : 0.9
+		33 : 0.1
+state 22
+//[cell00=0	& cell01=0	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=0	& cell21=0	& cell22=0	& turn=1]
+	action cell01
+		10 : 0.9
+		13 : 0.1
+state 23
+//[cell00=0	& cell01=0	& cell02=1	& cell10=1	& cell11=0	& cell12=1	& cell20=0	& cell21=0	& cell22=0	& turn=1]
+	action cell11
+		34 : 0.9
+		35 : 0.1
+state 24
+//[cell00=0	& cell01=2	& cell02=0	& cell10=0	& cell11=2	& cell12=0	& cell20=0	& cell21=0	& cell22=0	& turn=1]
+	action cell22
+		15 : 0.1
+		36 : 0.9
+state 25
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=0	& cell21=1	& cell22=2	& turn=0]
+	action cell00
+		37 : 0.9
+		38 : 0.1
+state 26
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=0	& cell21=1	& cell22=0	& turn=0]
+	action cell12
+		16 : 0.1
+		39 : 0.9
+state 27
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=0	& cell21=0	& cell22=2	& turn=0]
+	action cell21
+		38 : 0.9
+		40 : 0.1
+state 28
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=0	& cell12=0	& cell20=0	& cell21=1	& cell22=0	& turn=0]
+	action cell12
+		18 : 0.1
+		41 : 0.9
+state 29
+//[cell00=0	& cell01=2	& cell02=1	& cell10=0	& cell11=2	& cell12=0	& cell20=0	& cell21=1	& cell22=2	& turn=0]
+	action cell10
+		38 : 0.9
+		42 : 0.1
+state 30
+//[cell00=0	& cell01=2	& cell02=1	& cell10=0	& cell11=2	& cell12=0	& cell20=0	& cell21=1	& cell22=0	& turn=0]
+	action cell10
+		16 : 0.9
+		19 : 0.1
+state 31
+//[cell00=0	& cell01=2	& cell02=1	& cell10=0	& cell11=2	& cell12=0	& cell20=0	& cell21=0	& cell22=2	& turn=0]
+	action cell10
+		40 : 0.9
+		43 : 0.1
+state 32
+//[cell00=0	& cell01=0	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=0	& cell21=1	& cell22=2	& turn=0]
+	action cell00
+		44 : 0.9
+		45 : 0.1
+state 33
+//[cell00=0	& cell01=0	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=0	& cell21=1	& cell22=0	& turn=0]
+	action cell22
+		21 : 0.1
+		46 : 0.9
+state 34
+//[cell00=0	& cell01=0	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=0	& cell21=0	& cell22=0	& turn=0]
+	action cell21
+		47 : 0.9
+		48 : 0.1
+state 35
+//[cell00=0	& cell01=0	& cell02=1	& cell10=1	& cell11=0	& cell12=1	& cell20=0	& cell21=0	& cell22=0	& turn=0]
+	action cell21
+		23 : 0.1
+		49 : 0.9
+state 36
+//[cell00=0	& cell01=2	& cell02=0	& cell10=0	& cell11=2	& cell12=0	& cell20=0	& cell21=0	& cell22=2	& turn=0]
+	action cell02
+		43 : 0.9
+		50 : 0.1
+state 37
+//[cell00=1	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=0	& cell21=1	& cell22=2	& turn=1]
+	action cell20
+		51 : 0.9
+		52 : 0.1
+state 38
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=0	& cell21=1	& cell22=2	& turn=1]
+	action cell20
+		25 : 0.1
+		53 : 0.9
+state 39
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=0	& cell21=1	& cell22=0	& turn=1]
+	action cell22
+		54 : 0.9
+		55 : 0.1
+state 40
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=0	& cell21=0	& cell22=2	& turn=1]
+	action cell20
+		27 : 0.1
+		56 : 0.9
+state 41
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=0	& cell12=1	& cell20=0	& cell21=1	& cell22=0	& turn=1]
+	action cell11
+		55 : 0.9
+		57 : 0.1
+state 42
+//[cell00=0	& cell01=2	& cell02=1	& cell10=0	& cell11=2	& cell12=0	& cell20=0	& cell21=1	& cell22=2	& turn=1]
+	action cell20
+		29 : 0.1
+		58 : 0.9
+state 43
+//[cell00=0	& cell01=2	& cell02=1	& cell10=0	& cell11=2	& cell12=0	& cell20=0	& cell21=0	& cell22=2	& turn=1]
+	action cell21
+		31 : 0.1
+		59 : 0.9
+state 44
+//[cell00=1	& cell01=0	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=0	& cell21=1	& cell22=2	& turn=1]
+	action cell01
+		52 : 0.9
+		60 : 0.1
+state 45
+//[cell00=0	& cell01=0	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=0	& cell21=1	& cell22=2	& turn=1]
+	action cell01
+		25 : 0.9
+		32 : 0.1
+state 46
+//[cell00=0	& cell01=0	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=0	& cell21=1	& cell22=1	& turn=1]
+	action cell01
+		61 : 0.9
+		62 : 0.1
+state 47
+//[cell00=0	& cell01=0	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=0	& cell21=1	& cell22=0	& turn=1]
+	action cell22
+		63 : 0.9
+		64 : 0.1
+state 48
+//[cell00=0	& cell01=0	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=0	& cell21=0	& cell22=0	& turn=1]
+	action cell22
+		34 : 0.1
+		65 : 0.9
+state 49
+//[cell00=0	& cell01=0	& cell02=1	& cell10=1	& cell11=0	& cell12=1	& cell20=0	& cell21=1	& cell22=0	& turn=1]
+	action cell11
+		64 : 0.9
+		66 : 0.1
+state 50
+//[cell00=0	& cell01=2	& cell02=0	& cell10=0	& cell11=2	& cell12=0	& cell20=0	& cell21=0	& cell22=2	& turn=1]
+	action cell21
+		36 : 0.1
+		67 : 0.9
+state 51
+//[cell00=1	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=2	& cell21=1	& cell22=2	& turn=0]
+	action cell12
+		68 : 0.9
+		69 : 0.1
+state 52
+//[cell00=1	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=0	& cell21=1	& cell22=2	& turn=0]
+	action cell12
+		37 : 0.1
+		70 : 0.9
+state 53
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=2	& cell21=1	& cell22=2	& turn=0]
+	action cell00
+		69 : 0.9
+		71 : 0.1
+state 54
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=0	& cell21=1	& cell22=2	& turn=0]
+	action cell00
+		70 : 0.9
+		72 : 0.1
+state 55
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=0	& cell21=1	& cell22=0	& turn=0]
+	action cell22
+		39 : 0.1
+		73 : 0.9
+state 56
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=2	& cell21=0	& cell22=2	& turn=0]
+	action cell21
+		71 : 0.9
+		74 : 0.1
+state 57
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=0	& cell12=1	& cell20=0	& cell21=1	& cell22=0	& turn=0]
+	action cell12
+		41 : 1
+state 58
+//[cell00=0	& cell01=2	& cell02=1	& cell10=0	& cell11=2	& cell12=0	& cell20=2	& cell21=1	& cell22=2	& turn=0]
+	action cell10
+		71 : 0.9
+		75 : 0.1
+state 59
+//[cell00=0	& cell01=2	& cell02=1	& cell10=0	& cell11=2	& cell12=0	& cell20=0	& cell21=2	& cell22=2	& turn=0]
+	action cell00
+		76 : 1
+state 60
+//[cell00=1	& cell01=0	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=0	& cell21=1	& cell22=2	& turn=0]
+	action cell12
+		44 : 0.1
+		77 : 0.9
+state 61
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=0	& cell21=1	& cell22=1	& turn=0]
+	action cell00
+		78 : 0.9
+		79 : 0.1
+state 62
+//[cell00=0	& cell01=0	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=0	& cell21=1	& cell22=1	& turn=0]
+	action cell22
+		46 : 1
+state 63
+//[cell00=0	& cell01=0	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=0	& cell21=1	& cell22=2	& turn=0]
+	action cell00
+		77 : 0.9
+		80 : 0.1
+state 64
+//[cell00=0	& cell01=0	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=0	& cell21=1	& cell22=0	& turn=0]
+	action cell22
+		47 : 0.1
+		81 : 0.9
+state 65
+//[cell00=0	& cell01=0	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=0	& cell21=0	& cell22=2	& turn=0]
+	action cell21
+		80 : 0.9
+		82 : 0.1
+state 66
+//[cell00=0	& cell01=0	& cell02=1	& cell10=1	& cell11=0	& cell12=1	& cell20=0	& cell21=1	& cell22=0	& turn=0]
+	action cell12
+		49 : 1
+state 67
+//[cell00=0	& cell01=2	& cell02=0	& cell10=0	& cell11=2	& cell12=0	& cell20=0	& cell21=2	& cell22=2	& turn=0]
+	action cell02
+		76 : 1
+state 68
+//[cell00=1	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=2	& cell21=1	& cell22=2	& turn=1]
+	action cell10
+		83 : 1
+state 69
+//[cell00=1	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=2	& cell21=1	& cell22=2	& turn=1]
+	action cell12
+		51 : 0.1
+		84 : 0.9
+state 70
+//[cell00=1	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=0	& cell21=1	& cell22=2	& turn=1]
+	action cell20
+		85 : 0.9
+		86 : 0.1
+state 71
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=2	& cell21=1	& cell22=2	& turn=1]
+	action cell12
+		53 : 0.1
+		87 : 0.9
+state 72
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=0	& cell21=1	& cell22=2	& turn=1]
+	action cell20
+		54 : 0.1
+		88 : 0.9
+state 73 win
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=0	& cell21=1	& cell22=1	& turn=1]
 	action __NOLABEL__
-		12 : 1
+		73 : 1
+state 74
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=2	& cell21=0	& cell22=2	& turn=1]
+	action cell21
+		56 : 0.1
+		89 : 0.9
+state 75
+//[cell00=0	& cell01=2	& cell02=1	& cell10=0	& cell11=2	& cell12=0	& cell20=2	& cell21=1	& cell22=2	& turn=1]
+	action cell12
+		58 : 0.1
+		90 : 0.9
+state 76
+//[cell00=3	& cell01=3	& cell02=3	& cell10=3	& cell11=3	& cell12=3	& cell20=3	& cell21=3	& cell22=3	& turn=0]
+	action cell12
+		76 : 1
+state 77
+//[cell00=1	& cell01=0	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=0	& cell21=1	& cell22=2	& turn=1]
+	action cell01
+		86 : 0.9
+		91 : 0.1
+state 78
+//[cell00=1	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=0	& cell21=1	& cell22=1	& turn=1]
+	action cell20
+		92 : 0.9
+		93 : 0.1
+state 79
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=0	& cell21=1	& cell22=1	& turn=1]
+	action cell20
+		61 : 0.1
+		94 : 0.9
+state 80
+//[cell00=0	& cell01=0	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=0	& cell21=1	& cell22=2	& turn=1]
+	action cell01
+		54 : 0.9
+		63 : 0.1
+state 81 win
+//[cell00=0	& cell01=0	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=0	& cell21=1	& cell22=1	& turn=1]
+	action __NOLABEL__
+		81 : 1
+state 82
+//[cell00=0	& cell01=0	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=0	& cell21=0	& cell22=2	& turn=1]
+	action cell20
+		65 : 0.1
+		95 : 0.9
+state 83
+//[cell00=3	& cell01=3	& cell02=3	& cell10=3	& cell11=3	& cell12=3	& cell20=3	& cell21=3	& cell22=3	& turn=1]
+	action cell10
+		83 : 1
+state 84
+//[cell00=1	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=2	& cell20=2	& cell21=1	& cell22=2	& turn=0]
+	action cell00
+		76 : 1
+state 85
+//[cell00=1	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=2	& cell21=1	& cell22=2	& turn=0]
+	action cell12
+		76 : 1
+state 86
+//[cell00=1	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=0	& cell21=1	& cell22=2	& turn=0]
+	action cell12
+		70 : 1
+state 87
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=2	& cell20=2	& cell21=1	& cell22=2	& turn=0]
+	action cell00
+		96 : 0.9
+		97 : 0.1
+state 88
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=2	& cell21=1	& cell22=2	& turn=0]
+	action cell00
+		68 : 0.9
+		98 : 0.1
+state 89
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=2	& cell21=2	& cell22=2	& turn=0]
+	action cell00
+		76 : 1
+state 90
+//[cell00=0	& cell01=2	& cell02=1	& cell10=0	& cell11=2	& cell12=2	& cell20=2	& cell21=1	& cell22=2	& turn=0]
+	action cell10
+		97 : 0.9
+		99 : 0.1
+state 91
+//[cell00=1	& cell01=0	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=0	& cell21=1	& cell22=2	& turn=0]
+	action cell12
+		77 : 1
+state 92
+//[cell00=1	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=2	& cell21=1	& cell22=1	& turn=0]
+	action cell12
+		100 : 0.9
+		101 : 0.1
+state 93
+//[cell00=1	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=0	& cell21=1	& cell22=1	& turn=0]
+	action cell12
+		78 : 0.1
+		102 : 0.9
+state 94
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=2	& cell21=1	& cell22=1	& turn=0]
+	action cell12
+		103 : 0.9
+		104 : 0.1
+state 95
+//[cell00=0	& cell01=0	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=2	& cell21=0	& cell22=2	& turn=0]
+	action cell00
+		105 : 0.9
+		106 : 0.1
+state 96
+//[cell00=1	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=2	& cell20=2	& cell21=1	& cell22=2	& turn=1]
+	action cell10
+		83 : 1
+state 97
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=2	& cell20=2	& cell21=1	& cell22=2	& turn=1]
+	action cell00
+		87 : 0.1
+		107 : 0.9
+state 98
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=2	& cell21=1	& cell22=2	& turn=1]
+	action cell00
+		88 : 0.1
+		108 : 0.9
+state 99
+//[cell00=0	& cell01=2	& cell02=1	& cell10=0	& cell11=2	& cell12=2	& cell20=2	& cell21=1	& cell22=2	& turn=1]
+	action cell10
+		90 : 0.1
+		109 : 0.9
+state 100 win
+//[cell00=1	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=2	& cell21=1	& cell22=1	& turn=1]
+	action __NOLABEL__
+		100 : 1
+state 101
+//[cell00=1	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=2	& cell21=1	& cell22=1	& turn=1]
+	action cell12
+		92 : 0.1
+		110 : 0.9
+state 102 win
+//[cell00=1	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=0	& cell21=1	& cell22=1	& turn=1]
+	action __NOLABEL__
+		102 : 1
+state 103 win
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=2	& cell21=1	& cell22=1	& turn=1]
+	action __NOLABEL__
+		103 : 1
+state 104
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=0	& cell20=2	& cell21=1	& cell22=1	& turn=1]
+	action cell12
+		94 : 0.1
+		111 : 0.9
+state 105
+//[cell00=1	& cell01=0	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=2	& cell21=0	& cell22=2	& turn=1]
+	action cell01
+		112 : 0.9
+		113 : 0.1
+state 106
+//[cell00=0	& cell01=0	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=2	& cell21=0	& cell22=2	& turn=1]
+	action cell01
+		95 : 0.1
+		114 : 0.9
+state 107
+//[cell00=2	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=2	& cell20=2	& cell21=1	& cell22=2	& turn=0]
+	action cell02
+		76 : 1
+state 108
+//[cell00=2	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=2	& cell21=1	& cell22=2	& turn=0]
+	action cell02
+		76 : 1
+state 109
+//[cell00=0	& cell01=2	& cell02=1	& cell10=2	& cell11=2	& cell12=2	& cell20=2	& cell21=1	& cell22=2	& turn=0]
+	action cell00
+		76 : 1
+state 110
+//[cell00=1	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=2	& cell20=2	& cell21=1	& cell22=1	& turn=0]
+	action cell12
+		76 : 1
+state 111
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=2	& cell20=2	& cell21=1	& cell22=1	& turn=0]
+	action cell00
+		115 : 0.9
+		116 : 0.1
+state 112
+//[cell00=1	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=2	& cell21=0	& cell22=2	& turn=0]
+	action cell21
+		68 : 0.9
+		117 : 0.1
+state 113
+//[cell00=1	& cell01=0	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=2	& cell21=0	& cell22=2	& turn=0]
+	action cell21
+		105 : 0.1
+		118 : 0.9
+state 114
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=2	& cell21=0	& cell22=2	& turn=0]
+	action cell00
+		117 : 0.9
+		119 : 0.1
+state 115
+//[cell00=1	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=2	& cell20=2	& cell21=1	& cell22=1	& turn=1]
+	action cell10
+		83 : 1
+state 116
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=2	& cell20=2	& cell21=1	& cell22=1	& turn=1]
+	action cell00
+		111 : 0.1
+		120 : 0.9
+state 117
+//[cell00=1	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=2	& cell21=0	& cell22=2	& turn=1]
+	action cell21
+		112 : 0.1
+		121 : 0.9
+state 118
+//[cell00=1	& cell01=0	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=2	& cell21=1	& cell22=2	& turn=1]
+	action cell01
+		85 : 0.9
+		122 : 0.1
+state 119
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=2	& cell21=0	& cell22=2	& turn=1]
+	action cell21
+		114 : 0.1
+		123 : 0.9
+state 120
+//[cell00=2	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=2	& cell20=2	& cell21=1	& cell22=1	& turn=0]
+	action cell12
+		76 : 1
+state 121
+//[cell00=1	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=2	& cell21=2	& cell22=2	& turn=0]
+	action cell00
+		76 : 1
+state 122
+//[cell00=1	& cell01=0	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=2	& cell21=1	& cell22=2	& turn=0]
+	action cell12
+		118 : 1
+state 123
+//[cell00=0	& cell01=2	& cell02=1	& cell10=1	& cell11=2	& cell12=1	& cell20=2	& cell21=2	& cell22=2	& turn=0]
+	action cell00
+		76 : 1

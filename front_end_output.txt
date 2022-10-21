@@ -1,4 +1,4 @@
 Project ID: 2
-Run ID: 39gshinv542aiz1u37bz0mekbf7y1fmuce4wso4hnq
-Property Query: Pmin=? [F "player1_win"]
-Property Result: 1.0
+Run ID: t9hdsqpit7c6b7m4l2k228yjm4ur1hzy5s3a699qxe
+Property Query: Pmin=? [F "win"]
+Property Result: 0.023098226095619005
