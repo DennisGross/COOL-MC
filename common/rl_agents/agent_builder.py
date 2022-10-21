@@ -7,6 +7,7 @@ from common.rl_agents.hillclimbing_agent import HillClimbingAgent
 from common.rl_agents.reinforce_agent import ReinforceAgent
 from common.rl_agents.CooperativeAgents import CooperativeAgents
 from common.rl_agents.CooperativePOAgents import CooperativePOAgents
+from common.rl_agents.TurnBasedTwoAgents import TurnBasedTwoAgents
 '''
 HOW TO ADD MORE AGENTS?
 1) Create a new AGENTNAME.py with an AGENTNAME class
@@ -82,4 +83,10 @@ class AgentBuilder():
             agent = CooperativePOAgents(command_line_arguments, state_dimension, action_space.n, all_actions, number_of_neurons)
             if model_root_folder_path!= None:
                 agent.load(model_root_folder_path)
+        elif command_line_arguments['rl_algorithm'] == 'turnbasedtwoagents':
+            #print("Build DQN Agent.", state_dimension, action_space.n)
+            number_of_neurons = AgentBuilder.layers_neurons_to_number_of_neurons(command_line_arguments['layers'],command_line_arguments['neurons'])
+            agent = TurnBasedTwoAgents(command_line_arguments, state_dimension, action_space.n, number_of_neurons)
+            if model_root_folder_path!= None:
+                agent.load(model_root_folder_path[0])
         return agent

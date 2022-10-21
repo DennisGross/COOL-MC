@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 from common.utilities.front_end_printer import *
 
 
-def run_verify_rl_agent(command_line_arguments: Dict[str, Any]) -> List[float]:
+def run_verify_rl_agent(command_line_arguments: Dict[str, Any], random_state_idx=None, prop_extension="min") -> List[float]:
     """Runs the verification task.
 
     Args:
@@ -36,7 +36,7 @@ def run_verify_rl_agent(command_line_arguments: Dict[str, Any]) -> List[float]:
             query = command_line_arguments['prop']
             # Insert min at second position
             operator_str = query[:1]
-            min_part = "min"
+            min_part = prop_extension
             command_line_arguments['prop'] = operator_str + min_part + query[1:]
         env = SafeGym(prism_file_path, m_project.command_line_arguments['constant_definitions'], 1, 1, False, command_line_arguments['seed'], command_line_arguments[
                       'permissive_input'],  m_project.command_line_arguments['disabled_features'], abstraction_input=m_project.command_line_arguments['abstract_features'])
@@ -46,6 +46,8 @@ def run_verify_rl_agent(command_line_arguments: Dict[str, Any]) -> List[float]:
             m_project.agent.load_env(env)
         except:
             pass
+
+        env.storm_bridge.model_checker.random_state_idx = random_state_idx
         mdp_reward_result, model_size = env.storm_bridge.model_checker.induced_markov_chain(
             m_project.agent, env, command_line_arguments['constant_definitions'], command_line_arguments['prop'])
         print(command_line_arguments['prop'], ':', mdp_reward_result)
@@ -60,7 +62,7 @@ def run_verify_rl_agent(command_line_arguments: Dict[str, Any]) -> List[float]:
             command_line_arguments['prop'] + " for " + command_line_arguments['constant_definitions'])
         m_project.save()
         m_project.close()
-        return [mdp_reward_result]
+        return [mdp_reward_result, model_size]
     elif command_line_arguments['constant_definitions'].count('[') == 1 and command_line_arguments['constant_definitions'].count(']') == 1:
         # For each step make model checking and save results in list
         all_constant_definitions, range_tuple, range_state_variable = ConstantDefinitionParser.parse_constant_definition(
@@ -72,7 +74,7 @@ def run_verify_rl_agent(command_line_arguments: Dict[str, Any]) -> List[float]:
                 query = command_line_arguments['prop']
                 # Insert min at second position
                 operator_str = query[:1]
-                min_part = "min"
+                min_part = prop_extension
                 command_line_arguments['prop'] = operator_str + min_part + query[1:]
                 first = False
             env = SafeGym(prism_file_path, constant_definitions, 1, 1, False, command_line_arguments['seed'], command_line_arguments[
@@ -99,7 +101,7 @@ def run_verify_rl_agent(command_line_arguments: Dict[str, Any]) -> List[float]:
             ax.plot(x, y)
 
             ax.set(xlabel=range_state_variable, ylabel=command_line_arguments['prop'].replace("max", "").replace(
-                "min", ""), title='Property Results over a range of different constant assignments (' + str(range_state_variable) + ')')
+                prop_extension, ""), title='Property Results over a range of different constant assignments (' + str(range_state_variable) + ')')
             ax.grid()
 
             #fig.savefig(os.path.join(project_folder, "properties.png"))

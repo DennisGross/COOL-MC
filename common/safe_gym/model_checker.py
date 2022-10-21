@@ -12,7 +12,7 @@ import common
 from common.safe_gym.permissive_manager import PermissiveManager
 from common.safe_gym.abstraction_manager import AbstractionManager
 from common.safe_gym.state_mapper import StateMapper
-
+import random
 
 class ModelChecker():
     """
@@ -32,9 +32,15 @@ class ModelChecker():
         assert isinstance(mapper, StateMapper)
         assert isinstance(abstraction_input, str)
         self.wrong_choices = 0
+        
         self.m_permissive_manager = PermissiveManager(permissive_input, mapper)
         self.m_abstraction_manager = AbstractionManager(
             mapper, abstraction_input)
+        # PAC stuff
+        self.random_state_idx = None
+        self.state_counter = 0
+        self.current_state = None
+        self.first_state = True
 
     def __get_clean_state_dict(self, state_valuation_json: JsonContainerRational,
                                example_json: str) -> dict:
@@ -113,6 +119,8 @@ class ModelChecker():
         assert str(agent.__class__).find("common.rl_agents") != -1
         assert isinstance(constant_definitions, str)
         assert isinstance(formula_str, str)
+        
+        first_state = True
         env.reset()
         self.m_permissive_manager.action_mapper = env.action_mapper
         self.wrong_choices = 0
@@ -156,7 +164,18 @@ class ModelChecker():
             # conditions on the action
             state = self.__get_clean_state_dict(
                 state_valuation.to_json(), env.storm_bridge.state_json_example)
+            try:
+                turn = state['turn']
+            except:
+                pass
             state = self.__get_numpy_state(env, state)
+
+            
+
+
+                    
+
+            
             # State Abstraction
             if self.m_abstraction_manager.is_active:
                 state = self.m_abstraction_manager.preprocess_state(state)
@@ -179,6 +198,28 @@ class ModelChecker():
                     selected_action = available_actions[0]
                 #print(state, selected_action)
                 cond1 = (action_name == selected_action)
+            
+            # PAC
+            if self.random_state_idx is not None:
+                # DO THE FOLLOWING ONLY FOR turn=1
+                if turn == 1:
+                    if self.first_state == True:
+                        self.current_state = np.array(state, copy=True)
+                        self.first_state = False
+                
+                    if np.array_equal(state, self.current_state):
+                        if self.state_counter == self.random_state_idx:
+                            if cond1 == False:
+                                cond1 = True
+                            else:
+                                # REMOVE ACTION WHICH WAS ORIGINAL CHOSEN
+                                cond1 = False
+                    else:
+                        self.current_state = np.array(state, copy=True)
+                        self.state_counter+=1
+                        # Through a dice, if the dice is 1, then select a new permissive policy state
+                        if random.random() < 0.1 and self.first_state == False:
+                            self.random_state_idx = self.state_counter
 
             # print(str(state_valuation.to_json()), action_name)#, state, selected_action, cond1)
             assert isinstance(cond1, bool)

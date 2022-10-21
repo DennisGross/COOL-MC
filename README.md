@@ -450,3 +450,12 @@ python cool_mc.py --task=safe_training --project_name="experiments" --rl_algorit
 
 
 python cool_mc.py --parent_run_id=e91d1112609d415bbfc9ab8e756a3e5b --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="R=? [ LRA ]"
+
+### Connect Four
+Run the following code to train a cooperative multi-agent policy:
+
+`python cool_mc.py --task=safe_training --project_name="experiments" --rl_algorithm=turnbasedtwoagents --prism_file_path="connect_four.prism" --constant_definitions="" --prop="" --num_episodes=25000  --reward_flag=0 --seed=128 --epsilon=0.1 --layers=2 --neurons=64 --epsilon_min=0.01`
+
+Verification:
+
+`python cool_mc.py --parent_run_id=361272c26f56493dbfe0eb605a8f303b --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F \"player1_win\" ]"`

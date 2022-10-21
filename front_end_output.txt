@@ -1,4 +1,4 @@
 Project ID: 2
-Run ID: ql3r75cejviclagygb4o68c9dgmuqwe229odoq8wkp
-Property Query: Rmin=? [ LRA ]
-Property Result: 49.99999999999999
+Run ID: 39gshinv542aiz1u37bz0mekbf7y1fmuce4wso4hnq
+Property Query: Pmin=? [F "player1_win"]
+Property Result: 1.0

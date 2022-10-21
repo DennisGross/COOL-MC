@@ -84,11 +84,19 @@ def train(project, env, prop_type=''):
                 else:
                     print(episode, "Episode\tReward", episode_reward, '\tAverage Reward', reward_of_sliding_window, "\tLast Property Result:", None)
                 
-
-            if reward_of_sliding_window  > best_reward_of_sliding_window and len(all_episode_rewards)>=project.command_line_arguments['sliding_window_size']:
-                best_reward_of_sliding_window = reward_of_sliding_window
-                if prop_type=='reward' and project.command_line_arguments['deploy']==False:
-                    project.save()
+            if project.command_line_arguments['rl_algorithm']=="turnbasedtwoagents":
+                if project.agent.turn_value == 0:
+                    pass
+                    #print("Agent 0's Turn Reward: ",episode_reward)
+                elif project.agent.turn_value == 1:
+                    pass
+                    #print("Agent 1's Turn Reward: ",episode_reward)
+                project.save()
+            else:
+                if reward_of_sliding_window  > best_reward_of_sliding_window and len(all_episode_rewards)>=project.command_line_arguments['sliding_window_size']:
+                    best_reward_of_sliding_window = reward_of_sliding_window
+                    if prop_type=='reward' and project.command_line_arguments['deploy']==False:
+                        project.save()
 
             gc.collect()
     except KeyboardInterrupt:
