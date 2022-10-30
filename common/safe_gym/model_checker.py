@@ -32,11 +32,21 @@ class ModelChecker():
         assert isinstance(mapper, StateMapper)
         assert isinstance(abstraction_input, str)
         self.wrong_choices = 0
-        self.m_permissive_manager = PermissiveManager(permissive_input, mapper)
+        
         self.m_abstraction_manager = AbstractionManager(
             mapper, abstraction_input)
         attack_builder = AdversarialAttackBuilder()
+        self.action_mapper = None
+        if permissive_input.find("robustness")==0:
+            permissive_input = permissive_input.replace("robustness_min", "robustness")
+            self.robustness_str = permissive_input
+            permissive_input = ""
+            self.m_robustness_checker = attack_builder.build_adversarial_attack(mapper, self.robustness_str)
+        else:
+            self.m_robustness_checker = None
+            self.robustness_str = ""
         self.m_adversarial_attack = attack_builder.build_adversarial_attack(mapper, attack_config_str)
+        self.m_permissive_manager = PermissiveManager(permissive_input, mapper)
 
     def __get_clean_state_dict(self, state_valuation_json: JsonContainerRational,
                                example_json: str) -> dict:
@@ -92,6 +102,7 @@ class ModelChecker():
         """
         assert str(agent.__class__).find("common.rl_agents") != -1
         assert isinstance(state, np.ndarray)
+        
         if self.m_adversarial_attack != None:
             state = self.m_adversarial_attack.attack(agent, state)
         action_index = agent.select_action(state, True)
@@ -157,6 +168,7 @@ class ModelChecker():
             simulator.restart(state_valuation)
             available_actions = sorted(simulator.available_actions())
             action_name = prism_program.get_action_name(action_index)
+            my_action_index = self.m_permissive_manager.action_mapper.action_name_to_action_index(action_name)
             # conditions on the action
             state = self.__get_clean_state_dict(
                 state_valuation.to_json(), env.storm_bridge.state_json_example)
@@ -172,7 +184,13 @@ class ModelChecker():
                 return False
 
             cond1 = False
-            if self.m_permissive_manager.is_permissive:
+            # Create new conditions with current state, policy, and current action name
+            if self.robustness_str != "":
+                self.m_robustness_checker.max_actions = len(available_actions)
+                self.m_robustness_checker.attack(self.m_permissive_manager.action_mapper, agent, state, my_action_index)
+                cond1 = self.m_robustness_checker.create_condition(available_actions, action_name)
+
+            elif self.m_permissive_manager.is_permissive:
                 self.m_permissive_manager.manage_actions(state, agent)
                 cond1 = self.m_permissive_manager.create_condition(
                     available_actions, action_name)

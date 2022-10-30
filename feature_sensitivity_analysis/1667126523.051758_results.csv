@@ -1,7 +1,0 @@
-task,empirical_static_reward_impact_map
-env,transporter.prism
-attack_strings,feature_fgsm,1,x
-expected_reward,-445.9
-feature_fgsm,1,x_distance,122.20000000000005
-sample_size,10
-running_time,26.070331811904907
