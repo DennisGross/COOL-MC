@@ -12,7 +12,7 @@ import common
 from common.safe_gym.permissive_manager import PermissiveManager
 from common.safe_gym.abstraction_manager import AbstractionManager
 from common.safe_gym.state_mapper import StateMapper
-
+from common.adversarial_attacks.adversarial_attack_builder import AdversarialAttackBuilder
 
 class ModelChecker():
     """
@@ -20,7 +20,7 @@ class ModelChecker():
     the policy based on a property query.
     """
 
-    def __init__(self, permissive_input: str, mapper: StateMapper, abstraction_input: str):
+    def __init__(self, permissive_input: str, mapper: StateMapper, abstraction_input: str, attack_config_str: str):
         """Initialization
 
         Args:
@@ -35,6 +35,8 @@ class ModelChecker():
         self.m_permissive_manager = PermissiveManager(permissive_input, mapper)
         self.m_abstraction_manager = AbstractionManager(
             mapper, abstraction_input)
+        attack_builder = AdversarialAttackBuilder()
+        self.m_adversarial_attack = attack_builder.build_adversarial_attack(mapper, attack_config_str)
 
     def __get_clean_state_dict(self, state_valuation_json: JsonContainerRational,
                                example_json: str) -> dict:
@@ -90,6 +92,8 @@ class ModelChecker():
         """
         assert str(agent.__class__).find("common.rl_agents") != -1
         assert isinstance(state, np.ndarray)
+        if self.m_adversarial_attack != None:
+            state = self.m_adversarial_attack.attack(agent, state)
         action_index = agent.select_action(state, True)
         action_name = env.action_mapper.actions[action_index]
         assert isinstance(action_name, str)

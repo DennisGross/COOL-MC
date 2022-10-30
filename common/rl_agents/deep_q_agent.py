@@ -117,14 +117,23 @@ class DeepQNetwork(nn.Module):
         Returns:
             int: Action Index
         """
-        state = torch.tensor(state).float().to(device)
-        x = state
-        for i in range(len(self.layers)):
-            if i == (len(self.layers)-1):
-                x = self.layers[i](x)
-            else:
-                x = F.relu(self.layers[i](x))
-        return x
+        try:
+            x = state
+            for i in range(len(self.layers)):
+                if i == (len(self.layers)-1):
+                    x = self.layers[i](x)
+                else:
+                    x = F.relu(self.layers[i](x))
+            return x
+        except:
+            state = torch.tensor(state).float().to(device)
+            x = state
+            for i in range(len(self.layers)):
+                if i == (len(self.layers)-1):
+                    x = self.layers[i](x)
+                else:
+                    x = F.relu(self.layers[i](x))
+            return x
 
     def save_checkpoint(self, file_name : str):
         """Save model.

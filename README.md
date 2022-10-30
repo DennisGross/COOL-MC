@@ -1,4 +1,7 @@
 # COOL-MC
+
+Note: This is the combined branch of adversarial_rl2 and rl_robustness. If any problems occur during adversarial RL or robustness checking, please refer to the original repositories.
+
 COOL-MC provides a framework for connecting state-of-the-art (deep) reinforcement learning (RL) with modern model checking. In particular, COOL-MC extends the OpenAI Gym to support RL training on PRISM environments and allows verification of the trained RL policies via the Storm model checker.
 The general workflow of our approach is as follows. First, we model the RL environment as a MDP in PRISM. Second, we train our RL policy in the PRISM environment or, if available, in the matching OpenAI Gym environment. Third, we verify the trained RL policy via the Storm model checker. Depending on the model checking outcome, we retrain the RL policy or deploy it. We are convinced that the basis provided by the tool helps those interested in connecting the areas of verification and RL with the proper framework to create new approaches in an effective and reproducible way.
 
