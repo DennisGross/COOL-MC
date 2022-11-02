@@ -1,6 +1,10 @@
 # COOL-MC
 
-Note: This is the combined branch of adversarial_rl2 and rl_robustness. If any problems occur during adversarial RL or robustness checking, please refer to the original repositories.
+Note: This is the combined branch of adversarial_rl2 and rl_robustness. If any problems occur during adversarial RL or robustness checking, please refer to the original repositories. To reproduce the experiments in Targeted Adversarial Attacks on Deep Reinforcement Learning Policies via Model Checking, we refer to point 17 in the table of content.
+
+
+
+
 
 COOL-MC provides a framework for connecting state-of-the-art (deep) reinforcement learning (RL) with modern model checking. In particular, COOL-MC extends the OpenAI Gym to support RL training on PRISM environments and allows verification of the trained RL policies via the Storm model checker.
 The general workflow of our approach is as follows. First, we model the RL environment as a MDP in PRISM. Second, we train our RL policy in the PRISM environment or, if available, in the matching OpenAI Gym environment. Third, we verify the trained RL policy via the Storm model checker. Depending on the model checking outcome, we retrain the RL policy or deploy it. We are convinced that the basis provided by the tool helps those interested in connecting the areas of verification and RL with the proper framework to create new approaches in an effective and reproducible way.
@@ -43,7 +47,7 @@ open, and is a Markov chain induced by the original MDP and the policy.
 14. RL Agent Training
 15. COOL-MC Command Line Arguments
 16. Manual Installation
-
+17. Reproducing the results of the paper Targeted Adversarial Attacks on Deep Reinforcement Learning Policies via Model Checking
 
 ## Getting Started with COOL-MC
 We assume that you have docker installed and that you run the following commands in the root of this repository:
@@ -413,3 +417,7 @@ For testing the installation, follow the steps [here](https://moves-rwth.github.
 1. `pip install -r requirements.txt`
 2. `mkdir projects`
 
+## Reproducing the results of the paper Targeted Adversarial Attacks on Deep Reinforcement Learning Policies via Model Checking
+1. Run the test_experiments to train the RL agents
+2. Update the robustness script with the correct parent IDs and run the robustness script
+3. Run feature_sensitivity_analysis with the trained RL agent parent IDs to get the property impact results of the property impact attacks.
