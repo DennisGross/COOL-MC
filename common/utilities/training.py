@@ -3,12 +3,14 @@ import sys
 from common.rl_agents.dummy_agent import DummyAgent
 from common.safe_gym.safe_gym import SafeGym
 from common.utilities.front_end_printer import *
+from common.utilities.autoencoder_data_collector import *
 import gym
 import random
 import math
 import numpy as np
 import torch
 from collections import deque
+
 import gc
 
 
@@ -21,6 +23,10 @@ def train(project, env, prop_type=''):
     last_max_steps_actions = deque(maxlen=project.command_line_arguments['max_steps']*2)
     last_max_steps_rewards = deque(maxlen=project.command_line_arguments['max_steps']*2)
     last_max_steps_terminals = deque(maxlen=project.command_line_arguments['max_steps']*2)
+    if project.command_line_arguments['autoencoder_folder'] != "":
+        m_autoencoder_data_collector = AutoencoderDataCollector(project.command_line_arguments['autoencoder_folder'])
+    else:
+        m_autoencoder_data_collector = None
     try:
         project.agent.load_env(env)
     except:
@@ -41,8 +47,11 @@ def train(project, env, prop_type=''):
                 if next_state.__class__.__name__ == 'int':
                     next_state = [next_state]
                 if project.command_line_arguments['deploy']==False:
-                    project.agent.store_experience(state, action, reward, next_state, terminal)
-                    project.agent.step_learn()
+                    if m_autoencoder_data_collector == None:
+                        project.agent.store_experience(state, action, reward, next_state, terminal)
+                        project.agent.step_learn()
+                    else:
+                        m_autoencoder_data_collector.collect_data(state, next_state)
                 # Collect last max_steps states, actions, and rewards
                 last_max_steps_states.append(next_state)
                 last_max_steps_actions.append(action)
@@ -62,11 +71,11 @@ def train(project, env, prop_type=''):
                 project.mlflow_bridge.log_avg_reward(reward_of_sliding_window, episode)
                 # Log Property Result
                 if prop_type != 'reward':
-                    mdp_reward_result, model_size = env.storm_bridge.model_checker.induced_markov_chain(project.agent, env, project.command_line_arguments['constant_definitions'], project.command_line_arguments['prop'])
+                    mdp_reward_result, model_size = env.storm_bridge.model_checker.induced_markov_chain(project.agent, env, project.command_line_arguments['constant_definitions'], project.command_line_arguments['prop'], project.autoencoders)
                     all_property_results.append(mdp_reward_result)
 
                     if (all_property_results[-1] == min(all_property_results) and prop_type == "min_prop") or (all_property_results[-1] == max(all_property_results) and prop_type == "max_prop"):
-                        if project.command_line_arguments['deploy']==False:
+                        if project.command_line_arguments['deploy']==False and  m_autoencoder_data_collector == None:
                             project.save()
     
                     project.mlflow_bridge.log_property(all_property_results[-1], 'Property Result', episode)
@@ -84,7 +93,7 @@ def train(project, env, prop_type=''):
                 else:
                     print(episode, "Episode\tReward", episode_reward, '\tAverage Reward', reward_of_sliding_window, "\tLast Property Result:", None)
                 
-            if project.command_line_arguments['rl_algorithm']=="turnbasedtwoagents":
+            if project.command_line_arguments['rl_algorithm']=="turnbasedtwoagents" and prop_type=='reward' and  m_autoencoder_data_collector == None:
                 if project.agent.turn_value == 0:
                     pass
                     #print("Agent 0's Turn Reward: ",episode_reward)
@@ -95,8 +104,9 @@ def train(project, env, prop_type=''):
             else:
                 if reward_of_sliding_window  > best_reward_of_sliding_window and len(all_episode_rewards)>=project.command_line_arguments['sliding_window_size']:
                     best_reward_of_sliding_window = reward_of_sliding_window
-                    if prop_type=='reward' and project.command_line_arguments['deploy']==False:
+                    if prop_type=='reward' and project.command_line_arguments['deploy']==False and  m_autoencoder_data_collector == None:
                         project.save()
+                        print("SAVE")
 
             gc.collect()
     except KeyboardInterrupt:
@@ -105,7 +115,7 @@ def train(project, env, prop_type=''):
     finally:
         torch.cuda.empty_cache()
         # Log overall metrics
-        if project.command_line_arguments['deploy']==0:
+        if project.command_line_arguments['deploy']==0 and  m_autoencoder_data_collector == None:
             project.mlflow_bridge.log_best_reward(best_reward_of_sliding_window)
             if project.command_line_arguments['task']=='safe_training':
                 #TODO: Save Metrics

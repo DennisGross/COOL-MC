@@ -16,6 +16,13 @@ if __name__ == '__main__':
             use_conda=False,
             parameters=dict(args)
         )
+    if args['task'] == 'autoencoder_training':
+        m_error_handler.check_command_line_arguments_for_safe_training(dict(args))
+        mlflow.run(
+            "autoencoder_training",
+            use_conda=False,
+            parameters=dict(args)
+        )
     elif args['task'] == 'openai_training':
         m_error_handler.check_command_line_arguments_for_openai_training(dict(args))
         mlflow.run(

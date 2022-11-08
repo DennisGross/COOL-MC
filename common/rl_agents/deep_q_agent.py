@@ -117,14 +117,23 @@ class DeepQNetwork(nn.Module):
         Returns:
             int: Action Index
         """
-        state = torch.tensor(state).float().to(device)
-        x = state
-        for i in range(len(self.layers)):
-            if i == (len(self.layers)-1):
-                x = self.layers[i](x)
-            else:
-                x = F.relu(self.layers[i](x))
-        return x
+        try:
+            x = state
+            for i in range(len(self.layers)):
+                if i == (len(self.layers)-1):
+                    x = self.layers[i](x)
+                else:
+                    x = F.relu(self.layers[i](x))
+            return x
+        except:
+            state = torch.tensor(state).float().to(device)
+            x = state
+            for i in range(len(self.layers)):
+                if i == (len(self.layers)-1):
+                    x = self.layers[i](x)
+                else:
+                    x = F.relu(self.layers[i](x))
+            return x
 
     def save_checkpoint(self, file_name : str):
         """Save model.
@@ -197,9 +206,8 @@ class DQNAgent(Agent):
         try:
             self.q_eval.load_checkpoint(os.path.join(model_root_folder_path,'q_eval.chkpt'))
             self.q_next.load_checkpoint(os.path.join(model_root_folder_path,'q_next.chkpt'))
-            print("Model loaded successfully", os.path.join(model_root_folder_path,'q_eval.chkpt'))
         except:
-            print("No model found",model_root_folder_path)
+            pass
 
     
 
@@ -263,6 +271,5 @@ class DQNAgent(Agent):
         loss.backward()
         self.q_eval.optimizer.step()
    
-
 
 

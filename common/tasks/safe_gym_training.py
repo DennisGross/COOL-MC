@@ -16,7 +16,10 @@ def run_safe_gym_training(command_line_arguments: Dict[str, Any]) -> int:
     Returns:
         int: Experiment ID
     """
-    command_line_arguments['task'] = 'safe_training'
+    if command_line_arguments['autoencoder_folder'] != "":
+        command_line_arguments['task'] = 'autoencoder_training'
+    else:
+        command_line_arguments['task'] = 'safe_training'
     command_line_arguments['prop_type'] = parse_prop_type(
         command_line_arguments['prop'])
     command_line_arguments['reward_flag'] = command_line_arguments['reward_flag'] == 1
@@ -24,6 +27,7 @@ def run_safe_gym_training(command_line_arguments: Dict[str, Any]) -> int:
     prism_file_path = os.path.join(
         command_line_arguments['prism_dir'], command_line_arguments['prism_file_path'])
     # Environment
+    print(prism_file_path)
     env = SafeGym(prism_file_path, command_line_arguments['constant_definitions'], 
                 command_line_arguments['max_steps'], command_line_arguments['wrong_action_penalty'],
                   command_line_arguments['reward_flag'], 

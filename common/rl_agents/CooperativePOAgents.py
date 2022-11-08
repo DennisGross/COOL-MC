@@ -12,12 +12,9 @@ import torch
 import numpy as np
 from common.rl_agents.deep_q_agent import DQNAgent
 from common.rl_agents.partial_observable_manager import *
+
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 device = 'cpu'
-
-
-    
-
 
 class CooperativePOAgents(Agent):
 
@@ -135,8 +132,6 @@ class CooperativePOAgents(Agent):
             self.agents[agent_idx].store_experience(observation, local_action_idx, reward, n_observation, done)
 
             
-        
-
 
     def select_action(self, state : np.ndarray, deploy=False) -> int:
         """Select random action or action based on the current state.
@@ -150,7 +145,6 @@ class CooperativePOAgents(Agent):
         """
         all_action_idizes = []
         for i in range(len(self.agents)):
-            # TODO: Assemble state for each agent
             observation = self.po_manager.get_observation(state, i)
             action_idx = self.agents[i].select_action(observation, deploy)
             all_action_idizes.append(action_idx)

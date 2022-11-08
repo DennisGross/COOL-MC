@@ -1,4 +1,4 @@
-Project ID: 2
-Run ID: t9hdsqpit7c6b7m4l2k228yjm4ur1hzy5s3a699qxe
-Property Query: Pmin=? [F "win"]
-Property Result: 0.023098226095619005
+Project ID: 1
+Run ID: rrl2nhdawv7tqag2xecbu02oql9f0xx6sh7ua0e2sz
+Property Query: Pmin=? [F COLLISION=true ]
+Property Result: 0.22329460330932524

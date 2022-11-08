@@ -12,7 +12,8 @@ import torch
 import numpy as np
 from common.rl_agents.deep_q_agent import DQNAgent
 from common.rl_agents.partial_observable_manager import *
-
+from collections import deque
+import math
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 device = 'cpu'
 
@@ -33,7 +34,10 @@ class TurnBasedTwoAgents(Agent):
         self.command_line_arguments = command_line_arguments
         self.agent0_reward = 0
         self.agent1_reward = 0
-        
+        self.player0_rewards = deque(maxlen=command_line_arguments['sliding_window_size'])
+        self.best_sliding_window0 = -math.inf
+        self.player1_rewards = deque(maxlen=command_line_arguments['sliding_window_size'])
+        self.best_sliding_window1 = -math.inf
 
     def load_env(self, env):
         """
@@ -54,7 +58,13 @@ class TurnBasedTwoAgents(Agent):
         Saves the agent onto the MLFLow Server.
         """
         for i in range(len(self.agents)):
-            self.agents[i].save(artifact_path='model'+str(i))
+            if self.best_sliding_window0 <= np.mean(self.player0_rewards) and i == 0 and len(self.player0_rewards) >= self.command_line_arguments['sliding_window_size']:
+                self.agents[i].save(artifact_path='model'+str(i))
+                print("Save Agen0")
+            if self.best_sliding_window1 <= np.mean(self.player1_rewards) and i == 1 and len(self.player1_rewards) >= self.command_line_arguments['sliding_window_size']:
+                self.agents[i].save(artifact_path='model'+str(i))
+                print("Save Agen1")
+              
 
 
     def load(self, model_root_folder_path):
@@ -85,10 +95,32 @@ class TurnBasedTwoAgents(Agent):
             done (bool): Terminal state?
         """
         self.turn_value = int(state[self.turn_idx])
-        if state[self.turn_idx] == 0:
-            self.agents[0].store_experience(state, action, reward, n_state, done)
-        else:
-            self.agents[1].store_experience(state, action, reward, n_state, done)
+        
+        self.agents[self.turn_value].store_experience(state, action, reward, n_state, done)
+       
+        
+        if reward==1 and done:
+            print(f"Player {self.turn_value} won", n_state)
+            
+            if self.turn_value == 0:
+                self.player0_rewards.append(reward)
+                self.player1_rewards.append(0)
+            else:
+                self.player0_rewards.append(0)
+                self.player1_rewards.append(reward)
+           
+        elif done:
+            self.player0_rewards.append(reward)
+            self.player1_rewards.append(reward)
+            
+        print("Player 0 Average Reward: ", np.mean(self.player0_rewards), "Player 1 Average Reward: ", np.mean(self.player1_rewards))
+        
+        if self.best_sliding_window0 <= np.mean(self.player0_rewards) and len(self.player0_rewards) == self.command_line_arguments['sliding_window_size']:
+            self.best_sliding_window0 = np.mean(self.player0_rewards)
+        if self.best_sliding_window1 <= np.mean(self.player1_rewards) and len(self.player0_rewards) == self.command_line_arguments['sliding_window_size']:
+            self.best_sliding_window1 = np.mean(self.player1_rewards)
+
+       
 
             
         
@@ -105,11 +137,7 @@ class TurnBasedTwoAgents(Agent):
             [type]: action
         """
         self.turn_value = int(state[self.turn_idx])
-        if state[self.turn_idx] == 0:
-            action_idx = self.agents[0].select_action(state, deploy)
-        else:
-            action_idx = self.agents[1].select_action(state, deploy)
-           
+        action_idx = self.agents[self.turn_value].select_action(state, deploy)
         return action_idx
 
 
@@ -118,10 +146,7 @@ class TurnBasedTwoAgents(Agent):
         """
         Agent learning.
         """
-        if self.turn_value == 0:
-            self.agents[0].step_learn()
-        else:
-            self.agents[1].step_learn()
+        self.agents[self.turn_value].step_learn()
 
     
 

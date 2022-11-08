@@ -3,12 +3,12 @@ entry_points:
     main:
         parameters:
             project_name : {type: string, default: "experiments"}
-            parent_run_id : {type: string, default: "1fe34b7829264531853067e2d564b2d1"}
+            parent_run_id : {type: string, default: "53fda362e4074a2ab33aea07d3287fa6"}
             # Model Checking Parameters
             prism_dir : {type: string, default: "../prism_files"}
             prism_file_path : {type: string, default: "ttt.prism"}
             constant_definitions : {type: string, default: ""}
-            prop : {type: string, default: "P=? [F \"win\"]"}
+            prop : {type: string, default: "P=? [F \"lose\"]"}
             permissive_input: {type: string, default: ""}
             disabled_features: {type: string, default: ""}
             # VAR=[LOW;STEP;MAX;METHOD], VAR=[LOW;STEP;MAX]

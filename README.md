@@ -440,33 +440,48 @@ Verification via:
 ### PO-MA Scheduling
 Run the following code to train a cooperative multi-agent policy:
 
-`python cool_mc.py --task=safe_training --project_name="experiments" --rl_algorithm=cooperative_poagents --prism_file_path="ma_scheduling_reward2_4ops.prism" --constant_definitions="" --prop="" --num_episodes=25000  --reward_flag=0 --seed=128 --epsilon=0.1 --layers=1 --neurons=32 --epsilon_min=0.01`
+`python cool_mc.py --task=safe_training --project_name="experiments" --rl_algorithm=cooperative_poagents --prism_file_path="scheduling_task.prism" --constant_definitions="" --prop="" --num_episodes=50000  --reward_flag=0 --seed=128 --epsilon=0.1 --layers=2 --neurons=128 --epsilon_min=0.01`
 
 Verification via:
 
-`python cool_mc.py --parent_run_id=4e09ca5e595a40c19ebac17fbddf06d8 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F ALL_OPS_ZERO=true ]"`
+`python cool_mc.py --parent_run_id=b932000bf6764b338ba34b66af43f64d --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F ALL_OPS_ZERO=true ]"`
 
-python cool_mc.py --task=safe_training --project_name="experiments" --rl_algorithm=cooperative_poagents --prism_file_path="tiger.prism" --constant_definitions="" --prop="" --num_episodes=101  --reward_flag=1
+`python cool_mc.py --parent_run_id=b932000bf6764b338ba34b66af43f64d --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F COLLISION=true ]"`
 
+`python cool_mc.py --parent_run_id=b932000bf6764b338ba34b66af43f64d --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F NO_BUDGET_AVAILABLE=true ]"`
 
-python cool_mc.py --parent_run_id=e91d1112609d415bbfc9ab8e756a3e5b --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="R=? [ LRA ]"
+`python cool_mc.py --parent_run_id=b932000bf6764b338ba34b66af43f64d --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F TIME_OVER=true ]"`
+
+`python cool_mc.py --parent_run_id=b932000bf6764b338ba34b66af43f64d --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F WRONG_OPERATION_ORDER=true ]"`
+
+Autoencoder Training:
+
+`python cool_mc.py --parent_run_id=b932000bf6764b338ba34b66af43f64d --task=autoencoder_training --project_name="experiments" --constant_definitions="" --prop="" --prism_file_path="scheduling_task.prism" --num_episodes=10000 --eval_interval=100`
+
+Autoencoder Verification (no attack):
+
+`python cool_mc.py --parent_run_id=wrxdtqfccfoi4uimem0mnsnph27y9sayp1caxdyik9 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F ALL_OPS_ZERO=true ]" --prism_file_path="scheduling_task.prism"`
+
+Autoencoder Verification (attack):
+
+`python cool_mc.py --parent_run_id=wrxdtqfccfoi4uimem0mnsnph27y9sayp1caxdyik9 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F ALL_OPS_ZERO=true ]" --prism_file_path="scheduling_task.prism" --permissive_input="autoencoder,0.5"`
 
 ### Connect Four
 Run the following code to train a cooperative multi-agent policy:
 
-`python cool_mc.py --task=safe_training --project_name="experiments" --rl_algorithm=turnbasedtwoagents --prism_file_path="connect_four.prism" --constant_definitions="" --prop="" --num_episodes=10000  --reward_flag=0 --seed=128 --epsilon=0.1 --layers=2 --neurons=64 --epsilon_min=0.01`
+`python cool_mc.py --task=safe_training --project_name="experiments" --rl_algorithm=turnbasedtwoagents --prism_file_path="connect_four.prism" --constant_definitions="" --prop="" --num_episodes=50000  --reward_flag=1 --seed=128 --epsilon=0.1 --layers=2 --neurons=256 --epsilon_min=0.01`
 
 Verification:
 
-`python cool_mc.py --parent_run_id=361272c26f56493dbfe0eb605a8f303b --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F \"player1_win\" ]"`
+`python cool_mc.py --parent_run_id=3d24ef7097b7417d8bae2f08046b5205 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F \"player1_win\" ]"`
 
 
 ### Tic Tac Toe
 
 Run the following code to train a cooperative multi-agent policy:
 
-`python cool_mc.py --task=safe_training --project_name="experiments" --rl_algorithm=turnbasedtwoagents --prism_file_path="ttt.prism" --constant_definitions="" --prop="" --num_episodes=10000  --reward_flag=0 --seed=128 --epsilon=0.1 --layers=2 --neurons=64 --epsilon_min=0.01`
+`python cool_mc.py --task=safe_training --project_name="experiments" --rl_algorithm=turnbasedtwoagents --prism_file_path="ttt.prism" --constant_definitions="" --prop="" --num_episodes=50000  --reward_flag=1 --seed=128 --epsilon=0.1 --layers=2 --neurons=256 --epsilon_min=0.01`
 
 Verification:
 
-`python cool_mc.py --parent_run_id=99567cd0d12c4ec887478c7d9cda5b13 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F \"win\" ]"`
+`python cool_mc.py --parent_run_id=840541aa979248ecacb9a20e9506e69e --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F \"win\" ]"`

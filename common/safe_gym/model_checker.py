@@ -103,7 +103,7 @@ class ModelChecker():
 
     def induced_markov_chain(self, agent: common.rl_agents, env,
                              constant_definitions: str,
-                             formula_str: str) -> Tuple[float, int]:
+                             formula_str: str, autoencoders = None) -> Tuple[float, int]:
         """Creates a Markov chain of an MDP induced by a policy
         and applies model checking.py
 
@@ -170,10 +170,15 @@ class ModelChecker():
                 pass
             state = self.__get_numpy_state(env, state)
 
-            
+            # Attack State and Denoise state with autoencoder (if no attack, only denoise)
+            if autoencoders is not None and len(autoencoders) !=0:
+                #print("Original", state)
+                for i in range(len(autoencoders)):
+                    state = autoencoders[i].attack_and_clean(state, agent, i)
+                    #print(state)
+                #print("Cleaned",state)
+                
 
-
-                    
 
             
             # State Abstraction
@@ -201,25 +206,29 @@ class ModelChecker():
             
             # PAC
             if self.random_state_idx is not None:
+                
                 # DO THE FOLLOWING ONLY FOR turn=1
                 if turn == 1:
-                    if self.first_state == True:
-                        self.current_state = np.array(state, copy=True)
-                        self.first_state = False
-                
-                    if np.array_equal(state, self.current_state):
-                        if self.state_counter == self.random_state_idx:
-                            if cond1 == False:
-                                cond1 = True
-                            else:
-                                # REMOVE ACTION WHICH WAS ORIGINAL CHOSEN
-                                cond1 = False
+                    if self.random_state_idx == -1:
+                        cond1 = True
                     else:
-                        self.current_state = np.array(state, copy=True)
-                        self.state_counter+=1
-                        # Through a dice, if the dice is 1, then select a new permissive policy state
-                        if random.random() < 0.1 and self.first_state == False:
-                            self.random_state_idx = self.state_counter
+                        if self.first_state == True:
+                            self.current_state = np.array(state, copy=True)
+                            self.first_state = False
+                    
+                        if np.array_equal(state, self.current_state):
+                            if self.state_counter == self.random_state_idx:
+                                if cond1 == False:
+                                    cond1 = True
+                                else:
+                                    # REMOVE ACTION WHICH WAS ORIGINAL CHOSEN
+                                    cond1 = False
+                        else:
+                            self.current_state = np.array(state, copy=True)
+                            self.state_counter+=1
+                            # Through a dice, if the dice is 1, then select a new permissive policy state
+                            if random.random() < 0.1 and self.first_state == False:
+                                self.random_state_idx = self.state_counter
 
             # print(str(state_valuation.to_json()), action_name)#, state, selected_action, cond1)
             assert isinstance(cond1, bool)

@@ -1,4 +1,4 @@
-name: safe_gym_training
+name: autoencoder_training
 entry_points:
     main:
         parameters:
@@ -8,7 +8,7 @@ entry_points:
             parent_run_id : {type: string, default: ""}
             env : {type: string, default: "Taxi with Fuel" }
             sliding_window_size : {type: float, default: 100}
-            num_episodes : {type: float, default: 50000}
+            num_episodes : {type: float, default: 5000}
             eval_interval : {type: float, default: 100}
             rl_algorithm : {type: string, default: "dqn_agent" }
             # Model Checking Parameters

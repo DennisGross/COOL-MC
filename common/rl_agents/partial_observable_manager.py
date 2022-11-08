@@ -46,3 +46,12 @@ class PartialObservableManager:
                 variable_idx = self.state_mapper.mapper[variable_name.strip()]
                 observation.append(full_state[variable_idx])
         return np.array(observation)
+
+    def inject_observation_into_state(self, full_state, observation, agent_index):
+        print("HERE")
+        for i, variable_name in enumerate(self.all_agent_variables[agent_index]):
+            if variable_name.strip() != '':
+                full_state[self.state_mapper.mapper[variable_name.strip()]] = observation[i]
+        return full_state
+
+

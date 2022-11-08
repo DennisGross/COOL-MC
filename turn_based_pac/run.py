@@ -25,7 +25,8 @@ if __name__ == '__main__':
     all_results = []
     for i in range(N):
         rand_state_idx = random.randint(0, int(outputs[1]/2) -1)
-        outputs = run_verify_rl_agent(command_line_arguments,random_state_idx=rand_state_idx, prop_extension="min")
+        rand_state_idx = -1
+        outputs = run_verify_rl_agent(command_line_arguments,random_state_idx=rand_state_idx, prop_extension="max")
         clean_folder("../mlruns",start_timestemp)
         print("Current Sample IDX:", i)
         all_results.append(outputs[0])

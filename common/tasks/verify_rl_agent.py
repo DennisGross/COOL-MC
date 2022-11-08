@@ -31,8 +31,15 @@ def run_verify_rl_agent(command_line_arguments: Dict[str, Any], random_state_idx
     prism_file_path = os.path.join(
         m_project.command_line_arguments['prism_dir'], m_project.command_line_arguments['prism_file_path'])
     print(m_project.command_line_arguments)
+    
+    if command_line_arguments["permissive_input"].startswith("autoencoder"):
+        autoencoder_attack_str = command_line_arguments["permissive_input"]
+        command_line_arguments["permissive_input"] = ""
+    else:
+        autoencoder_attack_str = ""
+
     if command_line_arguments['constant_definitions'].count('[') == 0 and command_line_arguments['constant_definitions'].count(']') == 0:
-        if command_line_arguments['permissive_input']=="":
+        if command_line_arguments['permissive_input']=="" and command_line_arguments["permissive_input"].startswith("autoencoder")==False:
             query = command_line_arguments['prop']
             # Insert min at second position
             operator_str = query[:1]
@@ -42,6 +49,9 @@ def run_verify_rl_agent(command_line_arguments: Dict[str, Any], random_state_idx
                       'permissive_input'],  m_project.command_line_arguments['disabled_features'], abstraction_input=m_project.command_line_arguments['abstract_features'])
         m_project.create_agent(command_line_arguments,
                                env.observation_space, env.action_space, all_actions=env.action_mapper.actions)
+        if autoencoder_attack_str.startswith("autoencoder"):
+            # Add autoencoder attack if specified
+            m_project.set_autoencoder_attack(autoencoder_attack_str)
         try:
             m_project.agent.load_env(env)
         except:
@@ -49,7 +59,7 @@ def run_verify_rl_agent(command_line_arguments: Dict[str, Any], random_state_idx
 
         env.storm_bridge.model_checker.random_state_idx = random_state_idx
         mdp_reward_result, model_size = env.storm_bridge.model_checker.induced_markov_chain(
-            m_project.agent, env, command_line_arguments['constant_definitions'], command_line_arguments['prop'])
+            m_project.agent, env, command_line_arguments['constant_definitions'], command_line_arguments['prop'], m_project.autoencoders)
         print(command_line_arguments['prop'], ':', mdp_reward_result)
         print("Model Size", model_size)
         m_project.mlflow_bridge.log_best_property_result(mdp_reward_result)
@@ -86,7 +96,7 @@ def run_verify_rl_agent(command_line_arguments: Dict[str, Any], random_state_idx
             except:
                 pass
             mdp_reward_result, model_size = env.storm_bridge.model_checker.induced_markov_chain(
-                m_project.agent, env, constant_definitions, command_line_arguments['prop'])
+                m_project.agent, env, constant_definitions, command_line_arguments['prop'], m_project.autoencoders)
             print("Constant Definitions:", constant_definitions)
             print(command_line_arguments['prop'], ':', mdp_reward_result)
 
