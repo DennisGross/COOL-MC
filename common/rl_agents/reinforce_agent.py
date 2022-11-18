@@ -61,7 +61,7 @@ class ReinforceAgent(Agent):
         self.saved_log_probs = []
         
 
-    def select_action(self, state : np.ndarray, deploy : bool =False):
+    def select_action(self, state : np.ndarray, deploy : bool =False, attack=None):
 
         action_index, log_prob, max_action = self.policy.act(state)
         if deploy:

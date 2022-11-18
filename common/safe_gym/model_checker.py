@@ -12,7 +12,10 @@ import common
 from common.safe_gym.permissive_manager import PermissiveManager
 from common.safe_gym.abstraction_manager import AbstractionManager
 from common.safe_gym.state_mapper import StateMapper
+from common.adversarial_attacks.adversarial_attack_builder import AdversarialAttackBuilder
 import random
+import gc
+import torch
 
 class ModelChecker():
     """
@@ -20,7 +23,7 @@ class ModelChecker():
     the policy based on a property query.
     """
 
-    def __init__(self, permissive_input: str, mapper: StateMapper, abstraction_input: str):
+    def __init__(self, permissive_input: str, mapper: StateMapper, abstraction_input: str, attack_config_str: str):
         """Initialization
 
         Args:
@@ -36,6 +39,11 @@ class ModelChecker():
         self.m_permissive_manager = PermissiveManager(permissive_input, mapper)
         self.m_abstraction_manager = AbstractionManager(
             mapper, abstraction_input)
+
+        # Attack
+        attack_builder = AdversarialAttackBuilder()
+        self.attack_config_str = attack_config_str
+        self.m_adversarial_attack = attack_builder.build_adversarial_attack(mapper, self.attack_config_str)
         # PAC stuff
         self.random_state_idx = None
         self.state_counter = 0
@@ -95,8 +103,9 @@ class ModelChecker():
             str: Action name
         """
         assert str(agent.__class__).find("common.rl_agents") != -1
-        assert isinstance(state, np.ndarray)
-        action_index = agent.select_action(state, True)
+        #assert isinstance(state, np.ndarray)
+        # TODO: pass attack to agent (for MARL)
+        action_index = agent.select_action(state, True, attack=self.m_adversarial_attack)
         action_name = env.action_mapper.actions[action_index]
         assert isinstance(action_name, str)
         return action_name
@@ -171,12 +180,16 @@ class ModelChecker():
             state = self.__get_numpy_state(env, state)
 
             # Attack State and Denoise state with autoencoder (if no attack, only denoise)
+            clean_obs = []
             if autoencoders is not None and len(autoencoders) !=0:
                 #print("Original", state)
                 for i in range(len(autoencoders)):
-                    state = autoencoders[i].attack_and_clean(state, agent, i)
+                    tmp_ob = autoencoders[i].attack_and_clean(state, agent, i)
+                    #print(tmp_ob)
+                    clean_obs.append(tmp_ob.detach().cpu().numpy())
                     #print(state)
                 #print("Cleaned",state)
+                state = clean_obs
                 
 
 
@@ -229,7 +242,8 @@ class ModelChecker():
                             # Through a dice, if the dice is 1, then select a new permissive policy state
                             if random.random() < 0.1 and self.first_state == False:
                                 self.random_state_idx = self.state_counter
-
+            #torch.cuda.empty_cache()
+            #gc.collect()
             # print(str(state_valuation.to_json()), action_name)#, state, selected_action, cond1)
             assert isinstance(cond1, bool)
             return cond1
@@ -247,6 +261,7 @@ class ModelChecker():
         print("Model Building Time:", time.time()-model_building_start)
         print("Model Size:", model.nr_states)
         print("Transitions", model.nr_transitions)
+        print("Attack Config (empty=No Attack):", self.attack_config_str)
         # print(model)
         #formula_str = formula_str.replace("min", "max")
         print(formula_str)

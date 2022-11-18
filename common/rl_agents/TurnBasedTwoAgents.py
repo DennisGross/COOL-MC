@@ -126,7 +126,7 @@ class TurnBasedTwoAgents(Agent):
         
 
 
-    def select_action(self, state : np.ndarray, deploy=False) -> int:
+    def select_action(self, state : np.ndarray, deploy=False, attack=None) -> int:
         """Select random action or action based on the current state.
 
         Args:

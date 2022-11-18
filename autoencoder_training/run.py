@@ -4,19 +4,23 @@ sys.path.insert(0, '../')
 from common.tasks.safe_gym_training import *
 from common.utilities.project import Project
 from common.autoencoders.autoencoder import *
+from torch.utils.data import DataLoader
 import matplotlib.pyplot as plt
 import os
 from os import walk
+import gc
+import torch
 
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
 if __name__ == '__main__':
     command_line_arguments = get_arguments()
+    state_descriptions = command_line_arguments['permissive_input']
     if command_line_arguments['parent_run_id']=="":
         print("No parent run id provided. Exiting.")
         exit(-1)
     command_line_arguments["autoencoder_folder"] = command_line_arguments['prism_file_path'].split(".")[0]+"_data"
-    command_line_arguments['deploy'] = 0
+    command_line_arguments['deploy'] = 1
     if os.path.exists(command_line_arguments["autoencoder_folder"]) == False:
         os.mkdir(command_line_arguments["autoencoder_folder"])
     set_random_seed(command_line_arguments['seed'])
@@ -28,7 +32,7 @@ if __name__ == '__main__':
                 command_line_arguments['max_steps'], command_line_arguments['wrong_action_penalty'],
                   command_line_arguments['reward_flag'], 
                   command_line_arguments['seed'], command_line_arguments['permissive_input'],
-                  command_line_arguments['disabled_features'])
+                  command_line_arguments['disabled_features'], command_line_arguments['attack_config'])
     m_project = Project(command_line_arguments)
     m_project.init_mlflow_bridge(
         command_line_arguments['project_name'], command_line_arguments['task'],
@@ -43,44 +47,36 @@ if __name__ == '__main__':
     # For each autoencoder
     for i in range(len(m_project.agent.agents)):
         # For each state
-        m_data_loader = AEDataLoader(command_line_arguments["autoencoder_folder"], m_project.agent, i)
-
+        m_dataset = AEDataset(command_line_arguments["autoencoder_folder"], m_project.agent, i)
+        m_dataset.artificial_data_generation(20000)
+        m_data_loader = DataLoader(dataset=m_dataset, batch_size=64, shuffle=True)
         # Train Autoencoder
         autoencoders.append(AE(m_project.agent.po_manager.get_observation_dimension_for_agent_idx(i)))
         loss_function = torch.nn.MSELoss()
  
         # Using an Adam Optimizer with lr = 0.1
         optimizer = torch.optim.Adam(autoencoders[i].parameters(),
-                                    lr = 1e-1,
-                                    weight_decay = 1e-8)
+                                    lr = 0.0001)
         # Plot
         epochs = command_line_arguments['eval_interval']
-        outputs = []
+        print("Training Autoencoder for agent",i)
         losses = []
         for epoch in range(epochs):
-            print("Epoch",epoch)
-            for (image, original_image) in m_data_loader:
-                # numpy image to tensor
-               
-                try:
-                    image = torch.from_numpy(image).float()
-                    image = image.to(device)
-                except:
-                    try:
-                        image = image.to(device)
-                    except:
-                        pass
+            epoch_loss = []
+            for (images, original_images) in m_data_loader:
+                images = images.to(device).float()
+
                 # Output of Autoencoder
-                reconstructed = autoencoders[i](image)
+                reconstructs = autoencoders[i](images)
                 # numpy array to pytorch tensor
-                original_image = torch.from_numpy(original_image).float()
+                original_images = original_images.float()
 
 
                 # Original image to pytorch tensor on gpu
-                original_image = original_image.to(device)
+                original_images = original_images.to(device)
             
                 # Calculating the loss function
-                loss = loss_function(reconstructed, original_image)
+                loss = loss_function(reconstructs, original_images)
                 
                 # The gradients are set to zero,
                 # the gradient is computed and stored.
@@ -91,8 +87,10 @@ if __name__ == '__main__':
                 
                 # Storing the losses in a list for plotting
                 losses.append(loss.cpu().detach().numpy())
-                outputs.append((epochs, image, reconstructed))
-                print("Loss",losses[-1])
+                epoch_loss.append(losses[-1])
+            print(epoch, "Average Epoch Loss",sum(epoch_loss)/len(epoch_loss))
+            torch.cuda.empty_cache()
+            gc.collect()
         
         # Defining the Plot Style
         #plt.style.use('fivethirtyeight')

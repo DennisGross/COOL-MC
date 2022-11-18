@@ -25,7 +25,7 @@ class HillClimbingAgent(Agent):
         self.progress_counter = 0
 
         
-    def select_action(self, state : np.ndarray, deploy : bool =False):
+    def select_action(self, state : np.ndarray, deploy : bool =False, attack=None):
         x = None
         if deploy:
             x = np.dot(state, self.best_w)

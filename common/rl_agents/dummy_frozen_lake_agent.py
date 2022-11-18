@@ -13,7 +13,7 @@ class DummyFrozenLakeAgent(Agent):
         self.always_action = always_action
         
 
-    def select_action(self, state, deploy=False):
+    def select_action(self, state, deploy=False, attack=None):
         if state.tolist() == [0, 0, 3]:
             return 0
         elif state.tolist() == [0, 0, 2]:

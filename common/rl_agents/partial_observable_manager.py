@@ -35,23 +35,25 @@ class PartialObservableManager:
         return all_agent_variables
 
     def get_observation_dimension_for_agent_idx(self, idx):
-        print(len(self.all_agent_variables[idx]))
-        print(self.all_agent_variables[idx])
         return len(self.all_agent_variables[idx])
 
     def get_observation(self, full_state, agent_index):
         observation = []
         for variable_name in self.all_agent_variables[agent_index]:
             if variable_name.strip() != '':
+                #print(self.state_mapper.mapper)
                 variable_idx = self.state_mapper.mapper[variable_name.strip()]
                 observation.append(full_state[variable_idx])
         return np.array(observation)
 
     def inject_observation_into_state(self, full_state, observation, agent_index):
-        print("HERE")
+        print("Original State:", full_state, full_state.shape)
         for i, variable_name in enumerate(self.all_agent_variables[agent_index]):
             if variable_name.strip() != '':
+                print(variable_name.strip(), observation[i])
                 full_state[self.state_mapper.mapper[variable_name.strip()]] = observation[i]
+        print("Observation:", observation.shape)
+        print("Full State:", full_state)
         return full_state
 
 

@@ -68,6 +68,10 @@ class Project():
             except:
                 pass
             try:
+                del saved_command_line_arguments['attack_config']
+            except:
+                pass
+            try:
                 del saved_command_line_arguments['abstract_features']
             except:
                 pass
@@ -121,7 +125,7 @@ class Project():
         # List all files in the folder
         files = os.listdir(model_path)
         for file in files:
-            if file.startswith("encoder"):
+            if file.startswith("nn"):
                 return int(file.split("_")[1])
 
     def create_agent(self, command_line_arguments, observation_space, number_of_actions, all_actions):

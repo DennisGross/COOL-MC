@@ -5,7 +5,7 @@ class Agent():
     def __init__(self):
         pass
 
-    def select_action(self, state : np.ndarray, deploy : bool =False):
+    def select_action(self, state : np.ndarray, deploy : bool =False, attack=None):
         """
         The agent gets the OpenAI Gym state and makes a decision.
 

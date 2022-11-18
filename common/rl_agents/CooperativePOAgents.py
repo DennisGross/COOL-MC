@@ -133,7 +133,7 @@ class CooperativePOAgents(Agent):
 
             
 
-    def select_action(self, state : np.ndarray, deploy=False) -> int:
+    def select_action(self, state : np.ndarray, deploy=False, attack=None) -> int:
         """Select random action or action based on the current state.
 
         Args:
@@ -144,10 +144,17 @@ class CooperativePOAgents(Agent):
             [type]: action
         """
         all_action_idizes = []
-        for i in range(len(self.agents)):
-            observation = self.po_manager.get_observation(state, i)
-            action_idx = self.agents[i].select_action(observation, deploy)
-            all_action_idizes.append(action_idx)
+        if isinstance(state, list):
+            for i, s in enumerate(state):
+                action_idx = self.agents[i].select_action(s, deploy)
+                all_action_idizes.append(action_idx)
+        else:
+            for i in range(len(self.agents)):
+                observation = self.po_manager.get_observation(state, i)
+                if attack!=None:
+                    observation = attack.attack(self.agents[i], observation)
+                action_idx = self.agents[i].select_action(observation, deploy)
+                all_action_idizes.append(action_idx)
         action_idx = self.combine_actions(all_action_idizes)
         return action_idx
 

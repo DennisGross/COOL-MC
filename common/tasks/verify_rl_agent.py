@@ -46,7 +46,7 @@ def run_verify_rl_agent(command_line_arguments: Dict[str, Any], random_state_idx
             min_part = prop_extension
             command_line_arguments['prop'] = operator_str + min_part + query[1:]
         env = SafeGym(prism_file_path, m_project.command_line_arguments['constant_definitions'], 1, 1, False, command_line_arguments['seed'], command_line_arguments[
-                      'permissive_input'],  m_project.command_line_arguments['disabled_features'], abstraction_input=m_project.command_line_arguments['abstract_features'])
+                      'permissive_input'],  m_project.command_line_arguments['disabled_features'], abstraction_input=m_project.command_line_arguments['abstract_features'], attack_config=m_project.command_line_arguments['attack_config'])
         m_project.create_agent(command_line_arguments,
                                env.observation_space, env.action_space, all_actions=env.action_mapper.actions)
         if autoencoder_attack_str.startswith("autoencoder"):
@@ -88,7 +88,7 @@ def run_verify_rl_agent(command_line_arguments: Dict[str, Any], random_state_idx
                 command_line_arguments['prop'] = operator_str + min_part + query[1:]
                 first = False
             env = SafeGym(prism_file_path, constant_definitions, 1, 1, False, command_line_arguments['seed'], command_line_arguments[
-                          'permissive_input'],  m_project.command_line_arguments['disabled_features'], abstraction_input=m_project.command_line_arguments['abstract_features'])
+                          'permissive_input'],  m_project.command_line_arguments['disabled_features'], abstraction_input=m_project.command_line_arguments['abstract_features'], attack_config=command_line_arguments['attack_config'])
             m_project.create_agent(
                 command_line_arguments, env.observation_space, env.action_space, all_actions=env.action_mapper.actions)
             try:

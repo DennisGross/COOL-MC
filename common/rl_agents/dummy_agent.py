@@ -12,7 +12,7 @@ class DummyAgent(Agent):
         self.always_action = always_action
         
 
-    def select_action(self, time_step, deploy=False):
+    def select_action(self, time_step, deploy=False, attack=None):
         return self.always_action
 
     def store_experience(self, state, action, reward, next_state, terminal):

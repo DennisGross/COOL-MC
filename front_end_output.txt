@@ -1,4 +1,4 @@
 Project ID: 1
-Run ID: rrl2nhdawv7tqag2xecbu02oql9f0xx6sh7ua0e2sz
-Property Query: Pmin=? [F COLLISION=true ]
-Property Result: 0.22329460330932524
+Run ID: jp90rnc1gwmfz55gbxdddiqcv1iatj0lpo5eo86yy7
+Property Query: Pmin=? [F TIME_OVER=true ]
+Property Result: 0.0975

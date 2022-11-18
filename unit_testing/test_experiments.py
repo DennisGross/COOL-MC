@@ -82,6 +82,7 @@ def test_frozen_lake_agent_a():
                             default=128)
     arg_parser.add_argument('--seed', help='Batch Size', type=int,
                             default=128)
+    arg_parser.add_argument('--attack_config', help='Attack config in csv format', type=str, default="")
 
     args, unknown_args = arg_parser.parse_known_args(sys.argv)
     command_line_arguments = vars(args)
@@ -186,6 +187,7 @@ def test_taxi_experiment_section_agent_b():
                             default=100)
     arg_parser.add_argument('--seed', help='Batch Size', type=int,
                             default=128)
+    arg_parser.add_argument('--attack_config', help='Attack config in csv format', type=str, default="")
 
     args, unknown_args = arg_parser.parse_known_args(sys.argv)
     command_line_arguments = vars(args)
@@ -270,6 +272,7 @@ def test_taxi_experiment_section_agent_c():
                             default=100)
     arg_parser.add_argument('--seed', help='Batch Size', type=int,
                             default=128)
+    arg_parser.add_argument('--attack_config', help='Attack config in csv format', type=str, default="")
 
     args, unknown_args = arg_parser.parse_known_args(sys.argv)
     command_line_arguments = vars(args)
@@ -354,6 +357,7 @@ def test_collision_avoidance_experiment_agent_d():
                             default=100)
     arg_parser.add_argument('--seed', help='Batch Size', type=int,
                             default=128)
+    arg_parser.add_argument('--attack_config', help='Attack config in csv format', type=str, default="")
 
     args, unknown_args = arg_parser.parse_known_args(sys.argv)
     command_line_arguments = vars(args)
@@ -436,6 +440,7 @@ def test_smart_grid_agent_e():
                             default=100)
     arg_parser.add_argument('--seed', help='Batch Size', type=int,
                             default=128)
+    arg_parser.add_argument('--attack_config', help='Attack config in csv format', type=str, default="")
 
     args, unknown_args = arg_parser.parse_known_args(sys.argv)
     command_line_arguments = vars(args)
@@ -517,6 +522,7 @@ def test_stock_market_agent_f():
                             default=100)
     arg_parser.add_argument('--seed', help='Batch Size', type=int,
                             default=128)
+    arg_parser.add_argument('--attack_config', help='Attack config in csv format', type=str, default="")
 
     args, unknown_args = arg_parser.parse_known_args(sys.argv)
     command_line_arguments = vars(args)
@@ -598,6 +604,7 @@ def test_james_bond_g():
                             default=100)
     arg_parser.add_argument('--seed', help='Batch Size', type=int,
                             default=128)
+    arg_parser.add_argument('--attack_config', help='Attack config in csv format', type=str, default="")
 
     args, unknown_args = arg_parser.parse_known_args(sys.argv)
     command_line_arguments = vars(args)
@@ -679,6 +686,7 @@ def test_crazy_climber_h():
                             default=100)
     arg_parser.add_argument('--seed', help='Batch Size', type=int,
                             default=128)
+    arg_parser.add_argument('--attack_config', help='Attack config in csv format', type=str, default="")
 
     args, unknown_args = arg_parser.parse_known_args(sys.argv)
     command_line_arguments = vars(args)

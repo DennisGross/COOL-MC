@@ -47,11 +47,10 @@ def train(project, env, prop_type=''):
                 if next_state.__class__.__name__ == 'int':
                     next_state = [next_state]
                 if project.command_line_arguments['deploy']==False:
-                    if m_autoencoder_data_collector == None:
-                        project.agent.store_experience(state, action, reward, next_state, terminal)
-                        project.agent.step_learn()
-                    else:
-                        m_autoencoder_data_collector.collect_data(state, next_state)
+                    project.agent.store_experience(state, action, reward, next_state, terminal)
+                    project.agent.step_learn()
+                elif m_autoencoder_data_collector != None and project.command_line_arguments['deploy']==True:
+                    m_autoencoder_data_collector.collect_data(state, next_state)
                 # Collect last max_steps states, actions, and rewards
                 last_max_steps_states.append(next_state)
                 last_max_steps_actions.append(action)

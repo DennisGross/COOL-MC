@@ -20,7 +20,7 @@ class SarsaMaxAgent(Agent):
 
         
 
-    def select_action(self, state, deploy=False):
+    def select_action(self, state, deploy=False, attack=None):
         state, next_state =  self.__make_sure_that_states_in_dictionary(state)
         action_index = None
         if deploy == True:

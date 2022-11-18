@@ -9,11 +9,16 @@ from common.adversarial_attacks.fgsm import FGSM
 import random
 import getpass
 
+import sys
+
+
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
+NORM_SCALE = 40
+HIDDEN_LAYER_SIZE = 512
 
 
-class AEDataLoader(Dataset):
+class AEDataset(Dataset):
 
     def __init__(self, root_dir, coop_agent, agent_idx):
         self.root_dir = root_dir
@@ -26,6 +31,29 @@ class AEDataLoader(Dataset):
                     self.file_paths.append(os.path.join(dirpath, filename))
         self.create_adv_data()
 
+    def artificial_data_generation(self, n):
+        """
+        Sample from self.file_path and add a random noise to it
+        """
+        for i in range(n):
+            for i in range(3):
+                random_file_path = random.sample(self.file_paths, 1)[0]
+                x = np.load(random_file_path)
+                x = self.coop_agent.po_manager.get_observation(x, self.agent_idx)
+                # Random numpy noise
+                np.random.shuffle(x)
+                rnd_epsilon = random.random()
+                rnd_epsilon = 0.1
+                m_fgsm = FGSM(self.coop_agent.po_manager.state_mapper, "fgsm,"+str(rnd_epsilon))
+                adv_data = m_fgsm.attack(self.coop_agent.agents[self.agent_idx], x)
+                adv_data = torch.from_numpy(adv_data)
+                #print(adv_data)
+                self.X.append(adv_data/NORM_SCALE)
+                self.y.append(x/NORM_SCALE)
+                self.X.append(x/NORM_SCALE)
+                self.y.append(x/NORM_SCALE)
+
+
     def create_adv_data(self):
         self.X = []
         self.y = []
@@ -37,23 +65,22 @@ class AEDataLoader(Dataset):
             #x = torch.from_numpy(x)
             # Create adversarial data
             rnd_epsilon = random.random()
+            rnd_epsilon = 0.1
             m_fgsm = FGSM(self.coop_agent.po_manager.state_mapper, "fgsm,"+str(rnd_epsilon))
             adv_data = m_fgsm.attack(self.coop_agent.agents[self.agent_idx], x)
             adv_data = torch.from_numpy(adv_data)
             #print(adv_data)
-            self.X.append(adv_data)
-            self.y.append(x)
-            self.X.append(x)
-            self.y.append(x)
-            if idx > 100:
-                break
+            self.X.append(adv_data/NORM_SCALE)
+            self.y.append(x/NORM_SCALE)
+            self.X.append(x/NORM_SCALE)
+            self.y.append(x/NORM_SCALE)
         
 
     def __len__(self):
         return len(self.y)
 
     def __getitem__(self, index):
-        return (self.X[index], self.y[index])
+        return (torch.tensor(self.X[index]), torch.tensor(self.y[index]))
 
 
 class AE(torch.nn.Module):
@@ -62,66 +89,64 @@ class AE(torch.nn.Module):
         super().__init__()
         self.input_output_size = input_output_size
          
-        # Building an linear encoder with Linear
-        # layer followed by Relu activation function
-        # 784 ==> 9
-        self.encoder = torch.nn.Sequential(
-            torch.nn.Linear(input_output_size, 256),
+
+        self.nn = torch.nn.Sequential(
+            torch.nn.Linear(input_output_size, HIDDEN_LAYER_SIZE),
             torch.nn.ReLU(),
-            torch.nn.Linear(256, 128),
+            torch.nn.Linear(HIDDEN_LAYER_SIZE, HIDDEN_LAYER_SIZE),
             torch.nn.ReLU(),
-            torch.nn.Linear(128, 64),
+            torch.nn.Linear(HIDDEN_LAYER_SIZE, HIDDEN_LAYER_SIZE),
             torch.nn.ReLU(),
-            torch.nn.Linear(64, 32)
-        )
-         
-        # Building an linear decoder with Linear
-        # layer followed by Relu activation function
-        # The Sigmoid activation function
-        # outputs the value between 0 and 1
-        # 9 ==> 784
-        self.decoder = torch.nn.Sequential(
-            torch.nn.Linear(32, 64),
-            torch.nn.ReLU(),
-            torch.nn.Linear(64, 128),
-            torch.nn.ReLU(),
-            torch.nn.Linear(128, 256),
-            torch.nn.ReLU(),
-            torch.nn.Linear(256, input_output_size),
-            torch.nn.Sigmoid()
+            torch.nn.Linear(HIDDEN_LAYER_SIZE, input_output_size),
+            torch.nn.ReLU()
         )
         self.epsilon = None
         self.to(device)
  
     def forward(self, x):
-        encoded = self.encoder(x)
-        decoded = self.decoder(encoded)
-        return decoded
+        x = self.nn(x)
+        return x
 
     def attack_and_clean(self, x, rl_agent, agent_idx):
         # Get first observation of agent
         obs = np.array(rl_agent.po_manager.get_observation(x, agent_idx), copy=True)
         if self.epsilon == None:
             #print(obs)
-            obs = torch.from_numpy(obs).to(device)
-            #print("Tensor", obs)
-            clean_obs = self.forward(obs.float())
-            #print("Cleaned", clean_obs)
-            x = rl_agent.po_manager.inject_observation_into_state(x, clean_obs, agent_idx)
+            obs = torch.from_numpy(obs/NORM_SCALE).to(device)
+            clean_obs = torch.round(self.forward(obs.float())*NORM_SCALE)
+            #print(clean_obs)
+            #x = rl_agent.po_manager.inject_observation_into_state(x, clean_obs, agent_idx)
             #print("Injected", x)
             #exit(0)
-            return x
+            return clean_obs
         else:
             m_fgsm = FGSM(rl_agent.po_manager.state_mapper, "fgsm,"+str(self.epsilon))
             #print(obs)
             adv_data = m_fgsm.attack(rl_agent.agents[agent_idx], obs)
             #print("adv_data", adv_data)
-            adv_data = torch.from_numpy(adv_data).to(device)
-            clean_obs = self.forward(adv_data)
+            adv_data = torch.from_numpy(adv_data/NORM_SCALE).to(device)
+            clean_obs = torch.round(self.forward(adv_data)*NORM_SCALE)
             #print("Cleaned", clean_obs)
-            x = rl_agent.po_manager.inject_observation_into_state(x, clean_obs, agent_idx)
+            #x = rl_agent.po_manager.inject_observation_into_state(x, clean_obs, agent_idx)
             #print("Injected", x)
-            return x
+            return clean_obs
+
+    def attack(self, x, rl_agent, agent_idx):
+        obs = np.array(rl_agent.po_manager.get_observation(x, agent_idx), copy=True)
+        if self.epsilon != None:
+            m_fgsm = FGSM(rl_agent.po_manager.state_mapper, "fgsm,"+str(self.epsilon))
+            adv_data = m_fgsm.attack(rl_agent.agents[agent_idx], obs)
+            return adv_data
+        else:
+            return obs
+
+    def clean(self, x, rl_agent, agent_idx):
+        obs = np.array(rl_agent.po_manager.get_observation(x, agent_idx), copy=True)
+        obs = torch.from_numpy(obs/NORM_SCALE).to(device)
+        clean_obs = torch.round(self.forward(obs.float())*NORM_SCALE)
+        return clean_obs
+
+
 
     
     def set_attack(self, attack:str):
@@ -134,8 +159,7 @@ class AE(torch.nn.Module):
             os.mkdir('tmp_model')
         except Exception as msg:
             username = getpass.getuser()
-        torch.save(self.encoder.state_dict(), 'tmp_model/encoder_'+str(self.input_output_size)+'_.chkpt')
-        torch.save(self.decoder.state_dict(), 'tmp_model/decoder.chkpt')
+        torch.save(self.nn.state_dict(), 'tmp_model/nn_'+str(self.input_output_size)+'_.chkpt')
         mlflow.log_artifacts("tmp_model", artifact_path="autoencoder" + str(idx))
         shutil.rmtree('tmp_model')
 
@@ -143,5 +167,4 @@ class AE(torch.nn.Module):
     def load(self, model_path, idx):
         # replace last foldername with autoencoder of the model_path
         model_path = model_path[0].replace("model", "autoencoder" + str(idx))
-        self.encoder.load_state_dict(torch.load(os.path.join(model_path, 'encoder_'+str(self.input_output_size)+'_.chkpt')))
-        self.decoder.load_state_dict(torch.load(os.path.join(model_path, 'decoder.chkpt')))
+        self.nn.load_state_dict(torch.load(os.path.join(model_path, 'nn_'+str(self.input_output_size)+'_.chkpt')))
