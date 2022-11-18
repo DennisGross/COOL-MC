@@ -14,7 +14,7 @@ def dummy_agent_safe_frozen_lake():
     command_line_arguments['task'] = 'safe_training'
     command_line_arguments['deploy'] = 0
     prism_file_path = os.path.join(command_line_arguments['prism_dir'], command_line_arguments['prism_file_path'])
-    env = SafeGym(prism_file_path,command_line_arguments['constant_definitions'], command_line_arguments['max_steps'], command_line_arguments['wrong_action_penalty'], command_line_arguments['reward_flag'], command_line_arguments['seed'], "", command_line_arguments['disabled_features'])
+    env = SafeGym(prism_file_path,command_line_arguments['constant_definitions'], command_line_arguments['max_steps'], command_line_arguments['wrong_action_penalty'], command_line_arguments['reward_flag'], command_line_arguments['seed'], "", command_line_arguments['disabled_features'],attack_config="")
     m_project = Project(command_line_arguments)
     m_project.init_mlflow_bridge(command_line_arguments['project_name'],command_line_arguments['task'],command_line_arguments['parent_run_id'])
     m_project.load_saved_command_line_arguments()
@@ -28,7 +28,7 @@ def dummy_agent_safe_frozen_lake_dqn_agent():
     command_line_arguments['deploy'] = 0
     command_line_arguments['rl_algorithm'] = 'dqn_agent'
     prism_file_path = os.path.join(command_line_arguments['prism_dir'], command_line_arguments['prism_file_path'])
-    env = SafeGym(prism_file_path,command_line_arguments['constant_definitions'], command_line_arguments['max_steps'], command_line_arguments['wrong_action_penalty'], command_line_arguments['reward_flag'], command_line_arguments['seed'], "", command_line_arguments['disabled_features'])
+    env = SafeGym(prism_file_path,command_line_arguments['constant_definitions'], command_line_arguments['max_steps'], command_line_arguments['wrong_action_penalty'], command_line_arguments['reward_flag'], command_line_arguments['seed'], "", command_line_arguments['disabled_features'],attack_config="")
     m_project = Project(command_line_arguments)
     m_project.init_mlflow_bridge(command_line_arguments['project_name'],command_line_arguments['task'],command_line_arguments['parent_run_id'])
     m_project.load_saved_command_line_arguments()
@@ -43,7 +43,7 @@ def dummy_agent_safe_frozen_lake_dummy_frozen_lake_agent():
     command_line_arguments['deploy'] = 0
     command_line_arguments['rl_algorithm'] = 'dummy_frozen_lake_agent'
     prism_file_path = os.path.join(command_line_arguments['prism_dir'], command_line_arguments['prism_file_path'])
-    env = SafeGym(prism_file_path,command_line_arguments['constant_definitions'], command_line_arguments['max_steps'], command_line_arguments['wrong_action_penalty'], command_line_arguments['reward_flag'], command_line_arguments['seed'], "", command_line_arguments['disabled_features'])
+    env = SafeGym(prism_file_path,command_line_arguments['constant_definitions'], command_line_arguments['max_steps'], command_line_arguments['wrong_action_penalty'], command_line_arguments['reward_flag'], command_line_arguments['seed'], "", command_line_arguments['disabled_features'],attack_config="")
     m_project = Project(command_line_arguments)
     m_project.init_mlflow_bridge(command_line_arguments['project_name'],command_line_arguments['task'],command_line_arguments['parent_run_id'])
     m_project.load_saved_command_line_arguments()

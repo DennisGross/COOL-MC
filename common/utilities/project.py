@@ -62,6 +62,10 @@ class Project():
             except:
                 pass
             try:
+                del saved_command_line_arguments['attack_config']
+            except:
+                pass
+            try:
                 del saved_command_line_arguments['abstract_features']
             except:
                 pass
