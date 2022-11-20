@@ -141,6 +141,9 @@ class MlFlowBridge:
     def log_avg_reward(self, avg_reward, episode):
         mlflow.log_metric(key='avg_reward', value=avg_reward, step=episode)
 
+    def log_denoiser_loss(self, denoiser_idx, loss, episode):
+        mlflow.log_metric(key='denoiser_loss' + str(denoiser_idx), value=loss, step=episode)
+
     def log_property(self, property_result, property_query, episode):
         mlflow.log_metric(key=property_query, value=property_result, step= episode)
 

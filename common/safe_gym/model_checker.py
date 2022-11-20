@@ -43,6 +43,7 @@ class ModelChecker():
         # Attack
         attack_builder = AdversarialAttackBuilder()
         self.attack_config_str = attack_config_str
+        self.mapper = mapper
         self.m_adversarial_attack = attack_builder.build_adversarial_attack(mapper, self.attack_config_str)
         # PAC stuff
         self.random_state_idx = None
@@ -76,6 +77,12 @@ class ModelChecker():
         assert isinstance(state, dict)
         return state
 
+    def set_pac_settings(self, random_state_idx, attack_config_str):
+        self.random_state_idx = random_state_idx
+        attack_builder = AdversarialAttackBuilder()
+        print(random_state_idx, attack_config_str)
+        self.pac_attack = attack_builder.build_adversarial_attack(self.mapper, attack_config_str)
+
     def __get_numpy_state(self, env, state_dict: dict) -> np.ndarray:
         """Get numpy state
 
@@ -104,7 +111,21 @@ class ModelChecker():
         """
         assert str(agent.__class__).find("common.rl_agents") != -1
         #assert isinstance(state, np.ndarray)
-        # TODO: pass attack to agent (for MARL)
+        # PAC
+        if self.random_state_idx is not None:
+            if self.first_state:
+                self.current_state = np.array(state, copy=True)
+                self.first_state = False
+            if np.array_equal(state, self.current_state) and self.first_state == False:
+                # Random Attack
+                attack_builder = AdversarialAttackBuilder()
+                attack_config_str = "random,"+str(random.uniform(0,0.1))
+                self.m_adversarial_attack = attack_builder.build_adversarial_attack(self.mapper, attack_config_str)
+            else:
+                self.current_state = np.array(state, copy=True)
+                self.m_adversarial_attack = None
+                self.state_counter+=1
+        # pass attack to agent (for MARL)
         action_index = agent.select_action(state, True, attack=self.m_adversarial_attack)
         action_name = env.action_mapper.actions[action_index]
         assert isinstance(action_name, str)
@@ -217,31 +238,7 @@ class ModelChecker():
                 #print(state, selected_action)
                 cond1 = (action_name == selected_action)
             
-            # PAC
-            if self.random_state_idx is not None:
-                
-                # DO THE FOLLOWING ONLY FOR turn=1
-                if turn == 1:
-                    if self.random_state_idx == -1:
-                        cond1 = True
-                    else:
-                        if self.first_state == True:
-                            self.current_state = np.array(state, copy=True)
-                            self.first_state = False
-                    
-                        if np.array_equal(state, self.current_state):
-                            if self.state_counter == self.random_state_idx:
-                                if cond1 == False:
-                                    cond1 = True
-                                else:
-                                    # REMOVE ACTION WHICH WAS ORIGINAL CHOSEN
-                                    cond1 = False
-                        else:
-                            self.current_state = np.array(state, copy=True)
-                            self.state_counter+=1
-                            # Through a dice, if the dice is 1, then select a new permissive policy state
-                            if random.random() < 0.1 and self.first_state == False:
-                                self.random_state_idx = self.state_counter
+            
             #torch.cuda.empty_cache()
             #gc.collect()
             # print(str(state_valuation.to_json()), action_name)#, state, selected_action, cond1)

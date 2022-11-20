@@ -15,6 +15,7 @@ device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
 if __name__ == '__main__':
     command_line_arguments = get_arguments()
+    artificial_samples = command_line_arguments['replay_buffer_size']
     state_descriptions = command_line_arguments['permissive_input']
     if command_line_arguments['parent_run_id']=="":
         print("No parent run id provided. Exiting.")
@@ -46,10 +47,13 @@ if __name__ == '__main__':
     autoencoders = []
     # For each autoencoder
     for i in range(len(m_project.agent.agents)):
+        torch.manual_seed(860523297119962652)
+        #860523297119962652
+        print(torch.seed())
         # For each state
         m_dataset = AEDataset(command_line_arguments["autoencoder_folder"], m_project.agent, i)
-        m_dataset.artificial_data_generation(20000)
-        m_data_loader = DataLoader(dataset=m_dataset, batch_size=64, shuffle=True)
+        m_dataset.artificial_data_generation(artificial_samples)
+        m_data_loader = DataLoader(dataset=m_dataset, batch_size=32, shuffle=True)
         # Train Autoencoder
         autoencoders.append(AE(m_project.agent.po_manager.get_observation_dimension_for_agent_idx(i)))
         loss_function = torch.nn.MSELoss()
@@ -89,6 +93,7 @@ if __name__ == '__main__':
                 losses.append(loss.cpu().detach().numpy())
                 epoch_loss.append(losses[-1])
             print(epoch, "Average Epoch Loss",sum(epoch_loss)/len(epoch_loss))
+            m_project.mlflow_bridge.log_denoiser_loss(i, sum(epoch_loss)/len(epoch_loss),epoch)
             torch.cuda.empty_cache()
             gc.collect()
         

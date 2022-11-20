@@ -9,13 +9,10 @@ from common.adversarial_attacks.fgsm import FGSM
 import random
 import getpass
 
-import sys
-
-
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
 NORM_SCALE = 40
-HIDDEN_LAYER_SIZE = 512
+HIDDEN_LAYER_SIZE = 1048
 
 
 class AEDataset(Dataset):
@@ -35,6 +32,7 @@ class AEDataset(Dataset):
         """
         Sample from self.file_path and add a random noise to it
         """
+        print("Generate",n," samples.")
         for i in range(n):
             for i in range(3):
                 random_file_path = random.sample(self.file_paths, 1)[0]
@@ -97,6 +95,8 @@ class AE(torch.nn.Module):
             torch.nn.ReLU(),
             torch.nn.Linear(HIDDEN_LAYER_SIZE, HIDDEN_LAYER_SIZE),
             torch.nn.ReLU(),
+            torch.nn.Linear(HIDDEN_LAYER_SIZE, HIDDEN_LAYER_SIZE),
+            torch.nn.ReLU(),
             torch.nn.Linear(HIDDEN_LAYER_SIZE, input_output_size),
             torch.nn.ReLU()
         )
@@ -111,13 +111,9 @@ class AE(torch.nn.Module):
         # Get first observation of agent
         obs = np.array(rl_agent.po_manager.get_observation(x, agent_idx), copy=True)
         if self.epsilon == None:
-            #print(obs)
             obs = torch.from_numpy(obs/NORM_SCALE).to(device)
             clean_obs = torch.round(self.forward(obs.float())*NORM_SCALE)
-            #print(clean_obs)
             #x = rl_agent.po_manager.inject_observation_into_state(x, clean_obs, agent_idx)
-            #print("Injected", x)
-            #exit(0)
             return clean_obs
         else:
             m_fgsm = FGSM(rl_agent.po_manager.state_mapper, "fgsm,"+str(self.epsilon))

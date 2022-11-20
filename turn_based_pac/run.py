@@ -21,12 +21,13 @@ if __name__ == '__main__':
     result = outputs[0]
     N = command_line_arguments['range_plotting']
     print("Result", result)
-    print("Half Model size", int(outputs[1]/2))
+    model_size = outputs[1]
+    print("Model size", model_size)
     all_results = []
     for i in range(N):
-        rand_state_idx = random.randint(0, int(outputs[1]/2) -1)
-        rand_state_idx = -1
-        outputs = run_verify_rl_agent(command_line_arguments,random_state_idx=rand_state_idx, prop_extension="max")
+        rand_state_idx = random.randint(0, model_size -1)
+        random_epsilon = 0.1
+        outputs = run_verify_rl_agent(command_line_arguments,random_state_idx=rand_state_idx, random_epsilon=random_epsilon)
         clean_folder("../mlruns",start_timestemp)
         print("Current Sample IDX:", i)
         all_results.append(outputs[0])

@@ -456,15 +456,16 @@ Verification via:
 
 Autoencoder Training:
 
-`python cool_mc.py --parent_run_id=b932000bf6764b338ba34b66af43f64d --task=autoencoder_training --project_name="experiments" --constant_definitions="" --prop="" --prism_file_path="scheduling_task.prism" --num_episodes=1 --eval_interval=10`
+`python cool_mc.py --parent_run_id=b932000bf6764b338ba34b66af43f64d --task=autoencoder_training --project_name="experiments" --constant_definitions="" --prop="" --prism_file_path="scheduling_task.prism" --num_episodes=1 --eval_interval=100 --replay_buffer_size=30000`
 
 Autoencoder Verification (no attack):
-
-`python cool_mc.py --parent_run_id=99g3j68b77kdtxpuhvnmuwyoxezxkev43ox2guvijs --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F ALL_OPS_ZERO=true ]" --prism_file_path="scheduling_task.prism"`
+99g3j68b77kdtxpuhvnmuwyoxezxkev43ox2guvijs OLD
+f419qvx6585y5wl88ojf5ulawh8o03qxs20trb1ckl IN TEST
+`python cool_mc.py --parent_run_id=f419qvx6585y5wl88ojf5ulawh8o03qxs20trb1ckl --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F ALL_OPS_ZERO=true ]" --prism_file_path="scheduling_task.prism"`
 
 Autoencoder Verification (attack):
 
-`python cool_mc.py --parent_run_id=moe2h1qmle314n0qfhq5sgsbanzfmg5idvwg73ks01 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F ALL_OPS_ZERO=true ]" --prism_file_path="scheduling_task.prism" --permissive_input="autoencoder,0.5"`
+`python cool_mc.py --parent_run_id=moe2h1qmle314n0qfhq5sgsbanzfmg5idvwg73ks01 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F ALL_OPS_ZERO=true ]" --prism_file_path="scheduling_task.prism" --permissive_input="autoencoder,0.1"`
 
 ### PO-MA Trains
 Run the following code to train a cooperative multi-agent policy:
@@ -477,23 +478,42 @@ Verification via:
 
 `python cool_mc.py --parent_run_id=a685402293744915acc94cb3aac70699 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F SOME_COLLISION=true ]"`
 
-`python cool_mc.py --parent_run_id=a685402293744915acc94cb3aac70699 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F NO_BUDGET_AVAILABLE=true ]"`
-
 `python cool_mc.py --parent_run_id=a685402293744915acc94cb3aac70699 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F TIME_OVER=true ]"`
 
-`python cool_mc.py --parent_run_id=a685402293744915acc94cb3aac70699 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F WRONG_OPERATION_ORDER=true ]"`
+
+PAC:
+
+`python cool_mc.py --parent_run_id=a685402293744915acc94cb3aac70699 --task=turn_based_pac --project_name="experiments" --constant_definitions="" --prop="P=? [F ALL_AGENTS_ARRIVED=true ]" --alpha=0.1 --range_plotting=2`
+
+
+
+Attack Verification:
+
+`python cool_mc.py --parent_run_id=a685402293744915acc94cb3aac70699 --task=rl_model_checking --project_name="experiments" --prop="P=? [F ALL_AGENTS_ARRIVED=true ]" --attack_config="fgsm,0.1"`
+
+`python cool_mc.py --parent_run_id=a685402293744915acc94cb3aac70699 --task=rl_model_checking --project_name="experiments" --prop="P=? [F SOME_COLLISION=true ]" --attack_config="fgsm,0.1"`
+
+`python cool_mc.py --parent_run_id=a685402293744915acc94cb3aac70699 --task=rl_model_checking --project_name="experiments" --prop="P=? [F TIME_OVER=true ]" --attack_config="fgsm,0.1"`
 
 Autoencoder Training:
 
-`python cool_mc.py --parent_run_id=b932000bf6764b338ba34b66af43f64d --task=autoencoder_training --project_name="experiments" --constant_definitions="" --prop="" --prism_file_path="scheduling_task.prism" --num_episodes=1 --eval_interval=10`
+`python cool_mc.py --parent_run_id=a685402293744915acc94cb3aac70699 --task=autoencoder_training --project_name="experiments" --constant_definitions="" --prop="" --prism_file_path="train.prism" --num_episodes=1 --eval_interval=100 --replay_buffer_size=10000`
 
 Autoencoder Verification (no attack):
 
-`python cool_mc.py --parent_run_id=99g3j68b77kdtxpuhvnmuwyoxezxkev43ox2guvijs --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F ALL_OPS_ZERO=true ]" --prism_file_path="scheduling_task.prism"`
+`python cool_mc.py --parent_run_id=pgbmazydho0r6py1b0tumcauhlk35duetvdjos5bq5 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F ALL_AGENTS_ARRIVED=true ]" --prism_file_path="train.prism"`
+
+`python cool_mc.py --parent_run_id=pgbmazydho0r6py1b0tumcauhlk35duetvdjos5bq5 --task=rl_model_checking --project_name="experiments" --prop="P=? [F SOME_COLLISION=true ]"`
+
+`python cool_mc.py --parent_run_id=pgbmazydho0r6py1b0tumcauhlk35duetvdjos5bq5 --task=rl_model_checking --project_name="experiments" --prop="P=? [F TIME_OVER=true ]"`
 
 Autoencoder Verification (attack):
 
-`python cool_mc.py --parent_run_id=moe2h1qmle314n0qfhq5sgsbanzfmg5idvwg73ks01 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F ALL_OPS_ZERO=true ]" --prism_file_path="scheduling_task.prism" --permissive_input="autoencoder,0.5"`
+`python cool_mc.py --parent_run_id=pgbmazydho0r6py1b0tumcauhlk35duetvdjos5bq5 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F ALL_AGENTS_ARRIVED=true ]" --prism_file_path="train.prism" --permissive_input="autoencoder,0.1"`
+
+`python cool_mc.py --parent_run_id=pgbmazydho0r6py1b0tumcauhlk35duetvdjos5bq5 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F SOME_COLLISION=true ]" --prism_file_path="train.prism" --permissive_input="autoencoder,0.1"`
+
+`python cool_mc.py --parent_run_id=pgbmazydho0r6py1b0tumcauhlk35duetvdjos5bq5 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F TIME_OVER=true ]" --prism_file_path="train.prism" --permissive_input="autoencoder,0.1"`
 
 
 ### Connect Four

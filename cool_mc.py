@@ -37,3 +37,10 @@ if __name__ == '__main__':
             parameters=dict(args),
             use_conda=False
         )
+    elif args['task'] == 'turn_based_pac':
+        m_error_handler.check_command_line_arguments_for_rl_model_checking(dict(args))
+        mlflow.run(
+            "turn_based_pac",
+            parameters=dict(args),
+            use_conda=False
+        )
