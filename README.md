@@ -467,6 +467,13 @@ Autoencoder Verification (attack):
 
 `python cool_mc.py --parent_run_id=moe2h1qmle314n0qfhq5sgsbanzfmg5idvwg73ks01 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F ALL_OPS_ZERO=true ]" --prism_file_path="scheduling_task.prism" --permissive_input="autoencoder,0.1"`
 
+### DPP
+`python cool_mc.py --task=safe_training --project_name="experiments" --rl_algorithm=cooperative_poagents --prism_file_path="dining5.prism" --constant_definitions="" --prop="" --num_episodes=1500  --reward_flag=1 --seed=128 --epsilon=0.1 --layers=2 --neurons=128 --epsilon_min=0.01 --epsilon_dec=0.9999`
+
+Verification:
+
+`python cool_mc.py --parent_run_id=7408a21ae0764204903c778a620d00bd --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F<=5 \"somebody_starved\" ]"`
+
 ### PO-MA Trains
 Run the following code to train a cooperative multi-agent policy:
 
@@ -480,10 +487,12 @@ Verification via:
 
 `python cool_mc.py --parent_run_id=a685402293744915acc94cb3aac70699 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F TIME_OVER=true ]"`
 
+`python cool_mc.py --parent_run_id=a685402293744915acc94cb3aac70699 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [ (AGENT1_ARRIVES=false U AGENT2_ARRIVES=true)]"`
+
 
 PAC:
 
-`python cool_mc.py --parent_run_id=a685402293744915acc94cb3aac70699 --task=turn_based_pac --project_name="experiments" --constant_definitions="" --prop="P=? [F ALL_AGENTS_ARRIVED=true ]" --alpha=0.1 --range_plotting=2`
+`python cool_mc.py --parent_run_id=a685402293744915acc94cb3aac70699 --task=turn_based_pac --project_name="experiments" --constant_definitions="" --prop="P=? [F ALL_AGENTS_ARRIVED=true ]" --alpha=0.1 --range_plotting=2  --epsilon=0.3`
 
 
 
@@ -494,6 +503,8 @@ Attack Verification:
 `python cool_mc.py --parent_run_id=a685402293744915acc94cb3aac70699 --task=rl_model_checking --project_name="experiments" --prop="P=? [F SOME_COLLISION=true ]" --attack_config="fgsm,0.1"`
 
 `python cool_mc.py --parent_run_id=a685402293744915acc94cb3aac70699 --task=rl_model_checking --project_name="experiments" --prop="P=? [F TIME_OVER=true ]" --attack_config="fgsm,0.1"`
+
+`python cool_mc.py --parent_run_id=a685402293744915acc94cb3aac70699 --task=rl_model_checking --project_name="experiments" --prop="P=? [ (AGENT1_ARRIVES=false U AGENT2_ARRIVES=true)]" --attack_config="fgsm,0.1"`
 
 Autoencoder Training:
 
@@ -507,6 +518,8 @@ Autoencoder Verification (no attack):
 
 `python cool_mc.py --parent_run_id=pgbmazydho0r6py1b0tumcauhlk35duetvdjos5bq5 --task=rl_model_checking --project_name="experiments" --prop="P=? [F TIME_OVER=true ]"`
 
+`python cool_mc.py --parent_run_id=pgbmazydho0r6py1b0tumcauhlk35duetvdjos5bq5 --task=rl_model_checking --project_name="experiments" --prop="P=? [ (AGENT1_ARRIVES=false U AGENT2_ARRIVES=true)]"`
+
 Autoencoder Verification (attack):
 
 `python cool_mc.py --parent_run_id=pgbmazydho0r6py1b0tumcauhlk35duetvdjos5bq5 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F ALL_AGENTS_ARRIVED=true ]" --prism_file_path="train.prism" --permissive_input="autoencoder,0.1"`
@@ -515,6 +528,8 @@ Autoencoder Verification (attack):
 
 `python cool_mc.py --parent_run_id=pgbmazydho0r6py1b0tumcauhlk35duetvdjos5bq5 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F TIME_OVER=true ]" --prism_file_path="train.prism" --permissive_input="autoencoder,0.1"`
 
+
+`python cool_mc.py --parent_run_id=pgbmazydho0r6py1b0tumcauhlk35duetvdjos5bq5 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [ (AGENT1_ARRIVES=false U AGENT2_ARRIVES=true)]" --prism_file_path="train.prism" --permissive_input="autoencoder,0.1"`
 
 ### Connect Four
 Run the following code to train a cooperative multi-agent policy:

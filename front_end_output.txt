@@ -1,4 +1,4 @@
 Project ID: 1
-Run ID: mlypllo68jwn2r7u30a8e1mc0zfjzovl1k4b0ct6cm
-Property Query: Pmin=? [F ALL_AGENTS_ARRIVED=true ]
-Property Result: 0.9927499999999999
+Run ID: dkhti6vkywmnaoz0fknurcyaa02j4qbrk3ypw3wkj1
+Property Query: Pmin=? [F TIME_OVER=true ]
+Property Result: 0.0975

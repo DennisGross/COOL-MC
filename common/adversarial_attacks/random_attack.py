@@ -31,8 +31,8 @@ class RandomAttack(AdversarialAttack):
                 np.random.shuffle(tmp_attack)
                 return state + tmp_attack, tmp_attack
             #print(tmp_epsilon)
-            np.random.shuffle(tmp_attack)
-            return state + tmp_attack, tmp_attack
+        np.random.shuffle(tmp_attack)
+        return state + tmp_attack, tmp_attack
 
 
         

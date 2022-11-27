@@ -35,6 +35,9 @@ formula AGENT2_RIGHT_POSSIBLE = (CELL_0_RIGHT != -1 & current_agent2_id=0) | (CE
 formula AGENT2_NOP_POSSIBLE = true;
 formula AGENT2_STOP_POSSIBLE = true;
 formula TIME_OVER = (time = TIME_LIMIT);
+formula AGENT1_ARRIVES = (current_agent0_id = 2);
+formula AGENT2_ARRIVES = (current_agent1_id = 3);
+formula AGENT3_ARRIVES = (current_agent2_id = 4);
 formula ALL_AGENTS_ARRIVED = (current_agent0_id = 2) & (current_agent1_id = 3) & (current_agent2_id = 4);
 formula AGENT0_AGENT1_COLLISION = (current_agent0_id = current_agent1_id);
 formula AGENT0_AGENT2_COLLISION = (current_agent0_id = current_agent2_id);

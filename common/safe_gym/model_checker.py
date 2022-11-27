@@ -50,6 +50,8 @@ class ModelChecker():
         self.state_counter = 0
         self.current_state = None
         self.first_state = True
+        # Benchmarking
+        
 
     def __get_clean_state_dict(self, state_valuation_json: JsonContainerRational,
                                example_json: str) -> dict:
@@ -119,7 +121,7 @@ class ModelChecker():
             if np.array_equal(state, self.current_state) and self.first_state == False:
                 # Random Attack
                 attack_builder = AdversarialAttackBuilder()
-                attack_config_str = "random,"+str(random.uniform(0,0.1))
+                attack_config_str = "fgsm,"+str(random.uniform(0,0.1))
                 self.m_adversarial_attack = attack_builder.build_adversarial_attack(self.mapper, attack_config_str)
             else:
                 self.current_state = np.array(state, copy=True)
@@ -199,7 +201,7 @@ class ModelChecker():
             except:
                 pass
             state = self.__get_numpy_state(env, state)
-
+            #print(state)
             # Attack State and Denoise state with autoencoder (if no attack, only denoise)
             clean_obs = []
             if autoencoders is not None and len(autoencoders) !=0:

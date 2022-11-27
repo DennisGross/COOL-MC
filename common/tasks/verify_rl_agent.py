@@ -57,7 +57,7 @@ def run_verify_rl_agent(command_line_arguments: Dict[str, Any], random_state_idx
         except:
             pass
         if random_state_idx!=None and random_epsilon!=None:
-            env.storm_bridge.model_checker.set_pac_settings(random_state_idx, "random,"+str(random_epsilon))
+            env.storm_bridge.model_checker.set_pac_settings(random_state_idx, "fgsm,"+str(random_epsilon))
         mdp_reward_result, model_size = env.storm_bridge.model_checker.induced_markov_chain(
             m_project.agent, env, command_line_arguments['constant_definitions'], command_line_arguments['prop'], m_project.autoencoders)
         print(command_line_arguments['prop'], ':', mdp_reward_result)
