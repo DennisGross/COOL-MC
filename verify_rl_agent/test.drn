@@ -6,52 +6,31 @@
 @reward_models
 
 @nr_states
-10
+6
 @nr_choices
-10
+6
 @model
 state 0 init
-//[!current_agent0_moving	& !current_agent1_moving	& !current_agent2_moving	& !done	& time=0	& current_agent0_id=0	& current_agent0_target_id=2	& current_agent1_id=1	& current_agent1_target_id=3	& current_agent2_id=2	& current_agent2_target_id=4]
-	action STOP_RIGHT_RIGHT
-		1 : 0.95
-		2 : 0.05
+//[!done	& h0=0	& h1=0	& h2=0]
+	action think_think_think
+		1 : 1
 state 1
-//[!current_agent0_moving	& current_agent1_moving	& current_agent2_moving	& !done	& time=1	& current_agent0_id=0	& current_agent0_target_id=2	& current_agent1_id=3	& current_agent1_target_id=3	& current_agent2_id=4	& current_agent2_target_id=4]
-	action STRAIGHT_STRAIGHT_STRAIGHT
-		3 : 0.95
-		4 : 0.05
+//[!done	& h0=1	& h1=1	& h2=1]
+	action think_think_think
+		2 : 1
 state 2
-//[!current_agent0_moving	& !current_agent1_moving	& !current_agent2_moving	& !done	& time=1	& current_agent0_id=0	& current_agent0_target_id=2	& current_agent1_id=1	& current_agent1_target_id=3	& current_agent2_id=2	& current_agent2_target_id=4]
-	action STOP_RIGHT_RIGHT
-		4 : 0.95
-		5 : 0.05
+//[!done	& h0=2	& h1=2	& h2=2]
+	action think_think_think
+		3 : 1
 state 3
-//[current_agent0_moving	& !current_agent1_moving	& !current_agent2_moving	& !done	& time=2	& current_agent0_id=2	& current_agent0_target_id=2	& current_agent1_id=3	& current_agent1_target_id=3	& current_agent2_id=4	& current_agent2_target_id=4]
-	action LEFT_STRAIGHT_NOP
-		6 : 1
+//[!done	& h0=3	& h1=3	& h2=3]
+	action eat_think_think
+		4 : 1
 state 4
-//[!current_agent0_moving	& current_agent1_moving	& current_agent2_moving	& !done	& time=2	& current_agent0_id=0	& current_agent0_target_id=2	& current_agent1_id=3	& current_agent1_target_id=3	& current_agent2_id=4	& current_agent2_target_id=4]
-	action STRAIGHT_STRAIGHT_STRAIGHT
-		7 : 0.95
-		8 : 0.05
-state 5
-//[!current_agent0_moving	& !current_agent1_moving	& !current_agent2_moving	& !done	& time=2	& current_agent0_id=0	& current_agent0_target_id=2	& current_agent1_id=1	& current_agent1_target_id=3	& current_agent2_id=2	& current_agent2_target_id=4]
-	action STOP_RIGHT_RIGHT
-		8 : 0.95
-		9 : 0.05
-state 6
-//[current_agent0_moving	& !current_agent1_moving	& !current_agent2_moving	& done	& time=2	& current_agent0_id=2	& current_agent0_target_id=4	& current_agent1_id=3	& current_agent1_target_id=4	& current_agent2_id=4	& current_agent2_target_id=4]
-	action NOP_STOP_RIGHT
-		6 : 1
-state 7 "((time = 3) = true)"
-//[current_agent0_moving	& !current_agent1_moving	& !current_agent2_moving	& !done	& time=3	& current_agent0_id=2	& current_agent0_target_id=2	& current_agent1_id=3	& current_agent1_target_id=3	& current_agent2_id=4	& current_agent2_target_id=4]
+//[!done	& h0=0	& h1=4	& h2=4]
+	action think_think_think
+		5 : 1
+state 5 "(done = true)"
+//[done	& h0=0	& h1=4	& h2=4]
 	action __NOLABEL__
-		7 : 1
-state 8 "((time = 3) = true)"
-//[!current_agent0_moving	& current_agent1_moving	& current_agent2_moving	& !done	& time=3	& current_agent0_id=0	& current_agent0_target_id=2	& current_agent1_id=3	& current_agent1_target_id=3	& current_agent2_id=4	& current_agent2_target_id=4]
-	action __NOLABEL__
-		8 : 1
-state 9 "((time = 3) = true)"
-//[!current_agent0_moving	& !current_agent1_moving	& !current_agent2_moving	& !done	& time=3	& current_agent0_id=0	& current_agent0_target_id=2	& current_agent1_id=1	& current_agent1_target_id=3	& current_agent2_id=2	& current_agent2_target_id=4]
-	action __NOLABEL__
-		9 : 1
+		5 : 1

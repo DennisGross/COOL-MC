@@ -458,9 +458,6 @@ Autoencoder Training:
 
 `python cool_mc.py --parent_run_id=b932000bf6764b338ba34b66af43f64d --task=autoencoder_training --project_name="experiments" --constant_definitions="" --prop="" --prism_file_path="scheduling_task.prism" --num_episodes=1 --eval_interval=100 --replay_buffer_size=30000`
 
-Autoencoder Verification (no attack):
-99g3j68b77kdtxpuhvnmuwyoxezxkev43ox2guvijs OLD
-f419qvx6585y5wl88ojf5ulawh8o03qxs20trb1ckl IN TEST
 `python cool_mc.py --parent_run_id=f419qvx6585y5wl88ojf5ulawh8o03qxs20trb1ckl --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F ALL_OPS_ZERO=true ]" --prism_file_path="scheduling_task.prism"`
 
 Autoencoder Verification (attack):
@@ -468,11 +465,36 @@ Autoencoder Verification (attack):
 `python cool_mc.py --parent_run_id=moe2h1qmle314n0qfhq5sgsbanzfmg5idvwg73ks01 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F ALL_OPS_ZERO=true ]" --prism_file_path="scheduling_task.prism" --permissive_input="autoencoder,0.1"`
 
 ### DPP
-`python cool_mc.py --task=safe_training --project_name="experiments" --rl_algorithm=cooperative_poagents --prism_file_path="dining5.prism" --constant_definitions="" --prop="" --num_episodes=1500  --reward_flag=1 --seed=128 --epsilon=0.1 --layers=2 --neurons=128 --epsilon_min=0.01 --epsilon_dec=0.9999`
+`python cool_mc.py --task=safe_training --project_name="experiments" --rl_algorithm=cooperative_poagents --prism_file_path="dining3.prism" --constant_definitions="" --prop="" --num_episodes=1500  --reward_flag=1 --seed=128 --epsilon=0.1 --layers=2 --neurons=128 --epsilon_min=0.01 --epsilon_dec=0.9999`
+
 
 Verification:
 
-`python cool_mc.py --parent_run_id=7408a21ae0764204903c778a620d00bd --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F<=5 \"somebody_starved\" ]"`
+`python cool_mc.py --parent_run_id=7408a21ae0764204903c778a620d00bd --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F done=true ]"`
+
+
+
+Attack Verification:
+
+`python cool_mc.py --parent_run_id=7408a21ae0764204903c778a620d00bd --task=rl_model_checking --project_name="experiments" --prop="P=? [F done=true ]" --attack_config="fgsm,1"`
+
+Autoencoder Verification (no attack):
+
+`python cool_mc.py --parent_run_id=7408a21ae0764204903c778a620d00bd --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F \"somebody_starved\" ]" --prism_file_path="dining5.prism"`
+
+
+Autoencoder Training:
+
+`python cool_mc.py --parent_run_id=7408a21ae0764204903c778a620d00bd --task=autoencoder_training --project_name="experiments" --constant_definitions="" --prop="" --prism_file_path="dining3.prism" --num_episodes=1 --eval_interval=100 --replay_buffer_size=10000`
+
+Autoencoder Verification (no attack):
+
+`python cool_mc.py --parent_run_id=o37r4tm5syk6wnnkpce67p5u8umammyu9d4m2sr5c7 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F \"somebody_starved\" ]" --prism_file_path="dining3.prism"`
+
+Autoencoder Verification (attack):
+
+`python cool_mc.py --parent_run_id=o37r4tm5syk6wnnkpce67p5u8umammyu9d4m2sr5c7 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F done=true ]" --prism_file_path="train.prism" --permissive_input="autoencoder,0.1"`
+
 
 ### PO-MA Trains
 Run the following code to train a cooperative multi-agent policy:

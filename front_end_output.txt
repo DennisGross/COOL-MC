@@ -1,4 +1,4 @@
 Project ID: 1
-Run ID: dkhti6vkywmnaoz0fknurcyaa02j4qbrk3ypw3wkj1
-Property Query: Pmin=? [F TIME_OVER=true ]
-Property Result: 0.0975
+Run ID: bojoxqo6wa9twx33m7pjqm71buyq64kjg27bvrjmve6pcbpl4c7d
+Property Query: Pmin=? [F done=true ]
+Property Result: 1.0
