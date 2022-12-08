@@ -38,6 +38,7 @@ cell20 : [0..2];
 cell21 : [0..2];
 cell22 : [0..2];
 turn : [0..1];
+done : bool init false;
 [cell00] NOT_GAME_OVER & CELL00_NOT_BLOCKED -> (1-NOP_PROP) : (cell00'=(turn=0) ? 1 : 2) & (turn' = (turn = 0) ? 1 : 0) + NOP_PROP : (turn' = (turn = 0) ? 1 : 0);
 [cell01] NOT_GAME_OVER & CELL01_NOT_BLOCKED -> (1-NOP_PROP) : (cell01'=(turn=0) ? 1 : 2) & (turn' = (turn = 0) ? 1 : 0) + NOP_PROP : (turn' = (turn = 0) ? 1 : 0);
 [cell02] NOT_GAME_OVER & CELL02_NOT_BLOCKED -> (1-NOP_PROP) : (cell02'=(turn=0) ? 1 : 2) & (turn' = (turn = 0) ? 1 : 0) + NOP_PROP : (turn' = (turn = 0) ? 1 : 0);
@@ -56,11 +57,20 @@ turn : [0..1];
 [cell20] NOT_GAME_OVER & CELL20_BLOCKED -> (turn' = (turn = 0) ? 1 : 0);
 [cell21] NOT_GAME_OVER & CELL21_BLOCKED -> (turn' = (turn = 0) ? 1 : 0);
 [cell22] NOT_GAME_OVER & CELL22_BLOCKED -> (turn' = (turn = 0) ? 1 : 0);
+[cell00] GAME_OVER -> (done'=true);
+[cell01] GAME_OVER -> (done'=true);
+[cell02] GAME_OVER -> (done'=true);
+[cell10] GAME_OVER -> (done'=true);
+[cell11] GAME_OVER -> (done'=true);
+[cell12] GAME_OVER -> (done'=true);
+[cell20] GAME_OVER -> (done'=true);
+[cell21] GAME_OVER -> (done'=true);
+[cell22] GAME_OVER -> (done'=true);
 endmodule
 rewards
 //Reward for winning
-A_PLAYER_ONE : 1;
+A_PLAYER_ONE & done=true: 500;
 endrewards
-label "win" = PLAYER1_WON;
-label "lose" = PLAYER2_WON;
+label "player1_won" = PLAYER1_WON;
+label "player2_won" = PLAYER2_WON;
 label "draw" = ALL_BLOCKED & A_PLAYER_ONE=false & cell00!=3;

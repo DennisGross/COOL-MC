@@ -140,6 +140,7 @@ class StormBridge:
         assert isinstance(action_name, str)
         penalty = 0
         current_available_actions = sorted(self.simulator.available_actions())
+        #print(action_name)
         if len(current_available_actions) == 0:
             return self._state, self.reward, True
         if action_name not in current_available_actions:

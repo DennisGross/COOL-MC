@@ -554,9 +554,9 @@ Autoencoder Verification (attack):
 `python cool_mc.py --parent_run_id=pgbmazydho0r6py1b0tumcauhlk35duetvdjos5bq5 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [ (AGENT1_ARRIVES=false U AGENT2_ARRIVES=true)]" --prism_file_path="train.prism" --permissive_input="autoencoder,0.1"`
 
 ### Connect Four
-Run the following code to train a cooperative multi-agent policy:
+Run the following code to train a turn-based multi-agent policy:
 
-`python cool_mc.py --task=safe_training --project_name="experiments" --rl_algorithm=turnbasedtwoagents --prism_file_path="connect_four.prism" --constant_definitions="" --prop="" --num_episodes=50000  --reward_flag=1 --seed=128 --epsilon=0.1 --layers=2 --neurons=256 --epsilon_min=0.01`
+`python cool_mc.py --task=safe_training --project_name="experiments" --rl_algorithm=turnbasedtwoagents --prism_file_path="connect_four.prism" --constant_definitions="" --prop="" --num_episodes=50000  --reward_flag=1 --seed=128 --epsilon=0.5 --layers=2 --neurons=256 --epsilon_min=0.1`
 
 Verification:
 
@@ -565,10 +565,42 @@ Verification:
 
 ### Tic Tac Toe
 
-Run the following code to train a cooperative multi-agent policy:
+Run the following code to train a turn-based multi-agent policy:
 
-`python cool_mc.py --task=safe_training --project_name="experiments" --rl_algorithm=turnbasedtwoagents --prism_file_path="ttt.prism" --constant_definitions="" --prop="" --num_episodes=50000  --reward_flag=1 --seed=128 --epsilon=0.1 --layers=2 --neurons=256 --epsilon_min=0.01`
+`python cool_mc.py --task=safe_training --project_name="experiments" --rl_algorithm=turnbasedtwoagents --prism_file_path="ttt.prism" --constant_definitions="" --prop="" --num_episodes=10000  --reward_flag=1 --seed=128 --epsilon=0.5 --layers=2 --neurons=256 --epsilon_min=0.1`
 
 Verification:
 
-`python cool_mc.py --parent_run_id=840541aa979248ecacb9a20e9506e69e --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F \"win\" ]"`
+`python cool_mc.py --parent_run_id=cfa9340ccc7a490f9c5641b043c2535d --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F \"player1_won\" ]"`
+
+
+### Pokemon
+Run the following code to train a turn-based multi-agent policy:
+
+`python cool_mc.py --task=safe_training --project_name="experiments" --rl_algorithm=turnbasedtwoagents --prism_file_path="pokemon.prism" --constant_definitions="" --prop="" --num_episodes=50000  --reward_flag=1 --seed=128 --epsilon=0.5 --layers=4 --neurons=256 --epsilon_min=0.1`
+
+Player 0 Average Reward:  818.2280000000002 Player 1 Average Reward:  690.3240000000001
+49999 Episode   Reward 1745.9999999999995       Average Reward 1508.5520000000004       Last Property Result: None
+
+`python cool_mc.py --parent_run_id=eed71abb6f3b4fc1907c1f5eb3780b59 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F PLAYER0_KO = true ]"`
+
+States: 	31502736
+Transitions: 	516547296 too large for naive model checking
+
+`python cool_mc.py --parent_run_id=eed71abb6f3b4fc1907c1f5eb3780b59 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [(healpots1 = 1) U (healpots1 = 0)]"`
+
+
+### Dice
+Run the following code to train a turn-based multi-agent policy:
+
+`python cool_mc.py --task=safe_training --project_name="experiments" --rl_algorithm=turnbasednagents --prism_file_path="dice.prism" --constant_definitions="" --prop="" --num_episodes=10000  --reward_flag=1 --seed=128 --epsilon=0.5 --layers=2 --neurons=128 --epsilon_min=0.1`
+
+`python cool_mc.py --task=safe_training --project_name="experiments" --rl_algorithm=turnbasednagents --prism_file_path="dice_prob.prism" --constant_definitions="" --prop="" --num_episodes=10000  --reward_flag=1 --seed=128 --epsilon=0.5 --layers=2 --neurons=128 --epsilon_min=0.1`
+
+109 Episode     Reward 55.0     Average Reward 44.96    Last Property Result: None
+SAVE
+Experiment ID: 695f3787832b4cf6b2a996df2cbc6125
+
+`python cool_mc.py --parent_run_id=49e3303bee6f493c86183e9ee9c2846a --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F PLAYER0_KO = true ]"`
+
+`python cool_mc.py --parent_run_id=8b42356ea59842218b2f2db65f83d739 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F PLAYER0_KO = true ]"`

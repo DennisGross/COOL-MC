@@ -19,7 +19,7 @@ device = 'cpu'
 
 
 
-class TurnBasedTwoAgents(Agent):
+class TurnBasedNAgents(Agent):
 
     def __init__(self, command_line_arguments, state_dimension : int, number_of_actions : int, number_of_neurons : int):
         """Initialize Deep Q-Learning Agent
@@ -32,14 +32,21 @@ class TurnBasedTwoAgents(Agent):
         self.state_dimension = state_dimension
         self.number_of_neurons = number_of_neurons
         self.command_line_arguments = command_line_arguments
-        self.agent0_reward = 0
-        self.agent1_reward = 0
-        self.player0_rewards = []
-        self.player0_episode_rewards = deque(maxlen=command_line_arguments['sliding_window_size'])
-        self.best_sliding_window0 = -math.inf
-        self.player1_rewards = []
-        self.player1_episode_rewards = deque(maxlen=command_line_arguments['sliding_window_size'])
-        self.best_sliding_window1 = -math.inf
+        self.number_of_agents = self.extract_number_of_players(os.path.join(command_line_arguments['prism_dir'], command_line_arguments['prism_file_path']))
+
+    def extract_number_of_players(self, prism_file_path):
+        """
+        Extracts the number of players from the prism file.
+        """
+        file1 = open(prism_file_path, 'r')
+        lines = file1.readlines()
+        for line in lines:
+            if "const int NUMBER_OF_PLAYERS" in line:
+                number = line.split("=")[1]
+                number = int(number.split(";")[0].strip())+1
+                print("Number of Agents: ", number)
+                return number
+
 
     def load_env(self, env):
         """
@@ -60,26 +67,6 @@ class TurnBasedTwoAgents(Agent):
         Saves the agent onto the MLFLow Server.
         """
         for i in range(len(self.agents)):
-            """
-            if self.best_sliding_window0 <= np.mean(self.player0_episode_rewards) and i == 0 and len(self.player0_episode_rewards) >= self.command_line_arguments['sliding_window_size']:
-                self.agents[i].save(artifact_path='model'+str(i))
-                self.best_sliding_window0 = np.mean(self.player0_episode_rewards)
-                print("Save Agen0")
-            if self.best_sliding_window1 <= np.mean(self.player1_episode_rewards) and i == 1 and len(self.player1_episode_rewards) >= self.command_line_arguments['sliding_window_size']:
-                self.agents[i].save(artifact_path='model'+str(i))
-                self.best_sliding_window1 = np.mean(self.player1_episode_rewards)
-                print("Save Agen1")
-            """
-            """
-            if np.mean(self.player1_episode_rewards) <= np.mean(self.player0_episode_rewards) and i == 0 and len(self.player0_episode_rewards) >= self.command_line_arguments['sliding_window_size']:
-                self.agents[i].save(artifact_path='model'+str(i))
-                #self.best_sliding_window0 = np.mean(self.player0_episode_rewards)
-                print("Save Agent0")
-            if np.mean(self.player0_episode_rewards) <= np.mean(self.player1_episode_rewards) and i == 1 and len(self.player1_episode_rewards) >= self.command_line_arguments['sliding_window_size']:
-                self.agents[i].save(artifact_path='model'+str(i))
-                #self.best_sliding_window1 = np.mean(self.player1_episode_rewards)
-                print("Save Agent1")
-            """
             self.agents[i].save(artifact_path='model'+str(i))
             self.agents[i].save(artifact_path='model'+str(i))
 
@@ -94,7 +81,7 @@ class TurnBasedTwoAgents(Agent):
         self.agents = []
         self.model_root_folder_path = model_root_folder_path
         #print(self.model_root_folder_path)
-        for i in range(2):
+        for i in range(self.number_of_agents):
             # Extract state_dimension from prism file for each agent
             self.agents.append(DQNAgent(self.state_dimension, self.number_of_neurons, self.number_of_actions, epsilon=self.command_line_arguments['epsilon'], epsilon_dec=self.command_line_arguments['epsilon_dec'], epsilon_min=self.command_line_arguments['epsilon_min'], gamma=self.command_line_arguments['gamma'], learning_rate=self.command_line_arguments['lr'], replace=self.command_line_arguments['replace'], batch_size=self.command_line_arguments['batch_size'], replay_buffer_size=self.command_line_arguments['replay_buffer_size']))
             self.agents[i].load(self.model_root_folder_path+str(i))
@@ -113,32 +100,11 @@ class TurnBasedTwoAgents(Agent):
             done (bool): Terminal state?
         """
         self.turn_value = int(state[self.turn_idx])
-        
         self.agents[self.turn_value].store_experience(state, action, reward, n_state, done)
+        #print(self.turn_value,reward)
        
         
-        if self.turn_value == 0:
-            self.player0_rewards.append(reward)
-            #self.player1_rewards.append(0)
-        else:
-            #self.player0_rewards.append(0)
-            self.player1_rewards.append(reward)
-           
-        if done:
-            self.player0_episode_rewards.append(np.sum(self.player0_rewards))
-            self.player1_episode_rewards.append(np.sum(self.player1_rewards))
-            self.player0_rewards = []
-            self.player1_rewards = []
-            print("Player 0 Average Reward: ", np.mean(self.player0_episode_rewards), "Player 1 Average Reward: ", np.mean(self.player1_episode_rewards))
-            #self.player0_rewards.append(reward)
-            #self.player1_rewards.append(reward)
-            
-        
-        
-        if self.best_sliding_window0 <= np.mean(self.player0_rewards) and len(self.player0_rewards) == self.command_line_arguments['sliding_window_size']:
-            self.best_sliding_window0 = np.mean(self.player0_rewards)
-        if self.best_sliding_window1 <= np.mean(self.player1_rewards) and len(self.player0_rewards) == self.command_line_arguments['sliding_window_size']:
-            self.best_sliding_window1 = np.mean(self.player1_rewards)
+
 
        
 

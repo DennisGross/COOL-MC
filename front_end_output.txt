@@ -1,4 +1,4 @@
 Project ID: 1
-Run ID: bojoxqo6wa9twx33m7pjqm71buyq64kjg27bvrjmve6pcbpl4c7d
-Property Query: Pmin=? [F done=true ]
-Property Result: 1.0
+Run ID: km3pfjyfyw0vic8jd4vhg3mxmvkh0wflxegn17d18e
+Property Query: Pmin=? [(healpots1 = 1) U (healpots1 = 0)]
+Property Result: 0.6512775270218026
