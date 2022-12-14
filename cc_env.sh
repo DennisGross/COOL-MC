@@ -1,0 +1,4 @@
+python cool_mc.py --parent_run_id=5752b9f68be74227b3f5c29db3ae849c --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F PLAYER0_KO = true ]"
+python cool_mc.py --parent_run_id=5752b9f68be74227b3f5c29db3ae849c --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F PLAYER1_KO = true ]"
+python cool_mc.py --parent_run_id=5752b9f68be74227b3f5c29db3ae849c --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F PLAYER2_KO = true ]"
+#python cool_mc.py --parent_run_id=5752b9f68be74227b3f5c29db3ae849c --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F PLAYER3_KO = true ]"

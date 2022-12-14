@@ -590,6 +590,14 @@ Transitions: 	516547296 too large for naive model checking
 `python cool_mc.py --parent_run_id=eed71abb6f3b4fc1907c1f5eb3780b59 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [(healpots1 = 1) U (healpots1 = 0)]"`
 
 
+### Coin Collection
+Run the following code to train a turn-based multi-agent policy:
+
+`python cool_mc.py --task=safe_training --project_name="experiments" --rl_algorithm=turnbasednagents --prism_file_path="navigation.prism" --constant_definitions="" --prop="" --num_episodes=10000  --reward_flag=1 --seed=128 --epsilon=0.5 --layers=2 --neurons=128 --epsilon_min=0.1`
+
+
+`python cool_mc.py --parent_run_id=5752b9f68be74227b3f5c29db3ae849c --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F PLAYER1_KO = true ]"`
+
 ### Dice
 Run the following code to train a turn-based multi-agent policy:
 
@@ -601,6 +609,10 @@ Run the following code to train a turn-based multi-agent policy:
 SAVE
 Experiment ID: 695f3787832b4cf6b2a996df2cbc6125
 
-`python cool_mc.py --parent_run_id=49e3303bee6f493c86183e9ee9c2846a --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F PLAYER0_KO = true ]"`
+`python cool_mc.py --parent_run_id=49e3303bee6f493c86183e9ee9c2846a --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F PLAYER1_KO = true ]"`
 
+IN TABLE:
 `python cool_mc.py --parent_run_id=8b42356ea59842218b2f2db65f83d739 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F PLAYER0_KO = true ]"`
+
+
+`python cool_mc.py --parent_run_id=8b42356ea59842218b2f2db65f83d739 --task=rl_model_checking --project_name="experiments" --constant_definitions="" --prop="P=? [F PLAYER1_KO = true ]"`
