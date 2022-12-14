@@ -58,8 +58,6 @@ class TurnBasedNAgents(Agent):
             print(e)
             
         
-    
-
 
 
     def save(self):
@@ -101,14 +99,7 @@ class TurnBasedNAgents(Agent):
         """
         self.turn_value = int(state[self.turn_idx])
         self.agents[self.turn_value].store_experience(state, action, reward, n_state, done)
-        #print(self.turn_value,reward)
-       
-        
 
-
-       
-
-            
         
 
 

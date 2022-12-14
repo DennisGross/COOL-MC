@@ -135,6 +135,9 @@ class MlFlowBridge:
     def log_reward1(self, reward, episode):
         mlflow.log_metric(key='episode_reward1', value=reward, step= episode)
 
+    def log_reward_i(self, reward, epsiode, i):
+        mlflow.log_metric(key='episode_reward'+str(i), value=reward, step= epsiode)
+
     def log_best_reward(self, reward):
         mlflow.log_param("best_sliding_window_reward", reward)
 

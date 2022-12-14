@@ -66,6 +66,10 @@ def train(project, env, prop_type=''):
                 # Log reward and property result (Safe Training)
                 all_episode_rewards.append(episode_reward)
                 project.mlflow_bridge.log_reward(all_episode_rewards[-1], episode)
+                try:
+                    project.mlflow_bridge.log_reward_i(all_episode_rewards[-1], episode, project.agent.turn_value)
+                except:
+                    pass
                 reward_of_sliding_window = np.mean(list(all_episode_rewards))
                 project.mlflow_bridge.log_avg_reward(reward_of_sliding_window, episode)
                 # Log Property Result
@@ -85,6 +89,10 @@ def train(project, env, prop_type=''):
                 # Only log reward
                 all_episode_rewards.append(episode_reward)
                 project.mlflow_bridge.log_reward(all_episode_rewards[-1], episode)
+                try:
+                    project.mlflow_bridge.log_reward_i(all_episode_rewards[-1], episode, project.agent.turn_value)
+                except:
+                    pass
                 reward_of_sliding_window = np.mean(list(all_episode_rewards))
                 project.mlflow_bridge.log_avg_reward(reward_of_sliding_window, episode)
                 if len(all_property_results) > 0:

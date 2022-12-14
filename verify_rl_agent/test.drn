@@ -6,9 +6,9 @@
 @reward_models
 
 @nr_states
-205
+199
 @nr_choices
-205
+199
 @model
 state 0 init
 //[!done	& turn=0	& x0=3	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=3	& hp2=1	& target_x=1	& target_y=2]
@@ -125,93 +125,90 @@ state 24
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=2	& hp2=1	& target_x=2	& target_y=0]
 	action HIT_RIGHT
 		39 : 1
-state 25
+state 25 "((((((((((x0 = x1) & (y0 = y1)) & (hp0 != 0)) & (hp1 != 0)) | ((((x0 = x2) & (y0 = y2)) & (hp0 != 0)) & (hp2 != 0))) | ((((x1 = x0) & (y1 = y0)) & (hp1 != 0)) & (hp0 != 0))) | ((((x1 = x2) & (y1 = y2)) & (hp1 != 0)) & (hp2 != 0))) | ((((x2 = x0) & (y2 = y0)) & (hp2 != 0)) & (hp0 != 0))) | ((((x2 = x1) & (y2 = y1)) & (hp2 != 0)) & (hp1 != 0))) = true)"
 //[!done	& turn=1	& x0=0	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=2	& hp2=1	& target_x=3	& target_y=0]
-	action HIT_RIGHT
-		40 : 1
+	action __NOLABEL__
+		25 : 1
 state 26
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=2	& hp2=1	& target_x=0	& target_y=1]
 	action HIT_RIGHT
-		41 : 1
+		40 : 1
 state 27
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=2	& hp2=1	& target_x=1	& target_y=1]
 	action HIT_RIGHT
-		42 : 1
+		41 : 1
 state 28
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=2	& hp2=1	& target_x=2	& target_y=1]
 	action HIT_RIGHT
-		43 : 1
+		42 : 1
 state 29
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=2	& hp2=1	& target_x=3	& target_y=1]
 	action HIT_RIGHT
-		44 : 1
+		43 : 1
 state 30
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=2	& hp2=1	& target_x=0	& target_y=2]
 	action HIT_RIGHT
-		45 : 1
+		44 : 1
 state 31
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=2	& hp2=1	& target_x=2	& target_y=2]
 	action HIT_RIGHT
-		46 : 1
+		45 : 1
 state 32
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=2	& hp2=1	& target_x=3	& target_y=2]
 	action HIT_RIGHT
-		47 : 1
+		46 : 1
 state 33
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=2	& hp2=1	& target_x=0	& target_y=3]
 	action HIT_RIGHT
-		48 : 1
+		47 : 1
 state 34
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=2	& hp2=1	& target_x=1	& target_y=3]
 	action HIT_RIGHT
-		49 : 1
+		48 : 1
 state 35
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=2	& hp2=1	& target_x=2	& target_y=3]
 	action HIT_RIGHT
-		50 : 1
+		49 : 1
 state 36
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=2	& hp2=1	& target_x=3	& target_y=3]
 	action RIGHT
-		51 : 1
+		50 : 1
 state 37
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=2	& hp2=1	& target_x=0	& target_y=0]
 	action UP
-		52 : 1
+		51 : 1
 state 38
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=2	& hp2=1	& target_x=1	& target_y=0]
 	action UP
-		53 : 1
+		52 : 1
 state 39
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=2	& hp2=1	& target_x=2	& target_y=0]
 	action UP
-		54 : 1
+		53 : 1
 state 40
-//[done	& turn=1	& x0=0	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=2	& hp2=1	& target_x=3	& target_y=0]
-	action HIT_RIGHT
-		40 : 1
-state 41
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=2	& hp2=1	& target_x=0	& target_y=1]
 	action PICK_UP
 		11 : 1
-state 42
+state 41
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=2	& hp2=1	& target_x=1	& target_y=1]
+	action UP
+		54 : 1
+state 42
+//[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=2	& hp2=1	& target_x=2	& target_y=1]
 	action UP
 		55 : 1
 state 43
-//[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=2	& hp2=1	& target_x=2	& target_y=1]
+//[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=2	& hp2=1	& target_x=3	& target_y=1]
 	action UP
 		56 : 1
 state 44
-//[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=2	& hp2=1	& target_x=3	& target_y=1]
-	action UP
-		57 : 1
-state 45
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=2	& hp2=1	& target_x=0	& target_y=2]
 	action PICK_UP
 		5 : 0.0625
 		37 : 0.0625
 		38 : 0.0625
 		39 : 0.0625
+		40 : 0.0625
 		41 : 0.0625
 		42 : 0.0625
 		43 : 0.0625
@@ -221,238 +218,226 @@ state 45
 		47 : 0.0625
 		48 : 0.0625
 		49 : 0.0625
-		50 : 0.0625
+		57 : 0.0625
 		58 : 0.0625
-		59 : 0.0625
-state 46
+state 45
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=2	& hp2=1	& target_x=2	& target_y=2]
+	action RIGHT
+		59 : 1
+state 46
+//[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=2	& hp2=1	& target_x=3	& target_y=2]
 	action RIGHT
 		60 : 1
 state 47
-//[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=2	& hp2=1	& target_x=3	& target_y=2]
-	action RIGHT
-		61 : 1
-state 48
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=2	& hp2=1	& target_x=0	& target_y=3]
 	action PICK_UP
 		18 : 1
-state 49
+state 48
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=2	& hp2=1	& target_x=1	& target_y=3]
 	action PICK_UP
 		19 : 1
-state 50
+state 49
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=2	& hp2=1	& target_x=2	& target_y=3]
 	action RIGHT
-		62 : 1
-state 51
+		61 : 1
+state 50 "((((((((((x0 = x1) & (y0 = y1)) & (hp0 != 0)) & (hp1 != 0)) | ((((x0 = x2) & (y0 = y2)) & (hp0 != 0)) & (hp2 != 0))) | ((((x1 = x0) & (y1 = y0)) & (hp1 != 0)) & (hp0 != 0))) | ((((x1 = x2) & (y1 = y2)) & (hp1 != 0)) & (hp2 != 0))) | ((((x2 = x0) & (y2 = y0)) & (hp2 != 0)) & (hp0 != 0))) | ((((x2 = x1) & (y2 = y1)) & (hp2 != 0)) & (hp1 != 0))) = true)"
 //[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=2	& hp2=1	& target_x=3	& target_y=3]
-	action PICK_UP
-		63 : 1
-state 52
+	action __NOLABEL__
+		50 : 1
+state 51
 //[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=1	& hp2=1	& target_x=0	& target_y=0]
 	action PICK_UP
-		64 : 1
-state 53
+		62 : 1
+state 52
 //[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=1	& hp2=1	& target_x=1	& target_y=0]
 	action PICK_UP
-		65 : 1
-state 54
+		63 : 1
+state 53
 //[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=1	& hp2=1	& target_x=2	& target_y=0]
 	action PICK_UP
-		66 : 1
-state 55
+		64 : 1
+state 54
 //[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=1	& hp2=1	& target_x=1	& target_y=1]
 	action PICK_UP
-		67 : 1
-state 56
+		65 : 1
+state 55
 //[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=1	& hp2=1	& target_x=2	& target_y=1]
 	action PICK_UP
-		68 : 1
-state 57
+		66 : 1
+state 56
 //[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=1	& hp2=1	& target_x=3	& target_y=1]
 	action PICK_UP
-		69 : 1
-state 58
+		67 : 1
+state 57
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=2	& hp2=1	& target_x=3	& target_y=0]
 	action UP
-		70 : 1
-state 59
+		68 : 1
+state 58
 //[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=2	& hp2=1	& target_x=3	& target_y=3]
 	action PICK_UP
 		21 : 1
-state 60
+state 59 "((((((((((x0 = x1) & (y0 = y1)) & (hp0 != 0)) & (hp1 != 0)) | ((((x0 = x2) & (y0 = y2)) & (hp0 != 0)) & (hp2 != 0))) | ((((x1 = x0) & (y1 = y0)) & (hp1 != 0)) & (hp0 != 0))) | ((((x1 = x2) & (y1 = y2)) & (hp1 != 0)) & (hp2 != 0))) | ((((x2 = x0) & (y2 = y0)) & (hp2 != 0)) & (hp0 != 0))) | ((((x2 = x1) & (y2 = y1)) & (hp2 != 0)) & (hp1 != 0))) = true)"
 //[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=2	& hp2=1	& target_x=2	& target_y=2]
-	action PICK_UP
-		71 : 1
-state 61
+	action __NOLABEL__
+		59 : 1
+state 60 "((((((((((x0 = x1) & (y0 = y1)) & (hp0 != 0)) & (hp1 != 0)) | ((((x0 = x2) & (y0 = y2)) & (hp0 != 0)) & (hp2 != 0))) | ((((x1 = x0) & (y1 = y0)) & (hp1 != 0)) & (hp0 != 0))) | ((((x1 = x2) & (y1 = y2)) & (hp1 != 0)) & (hp2 != 0))) | ((((x2 = x0) & (y2 = y0)) & (hp2 != 0)) & (hp0 != 0))) | ((((x2 = x1) & (y2 = y1)) & (hp2 != 0)) & (hp1 != 0))) = true)"
 //[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=2	& hp2=1	& target_x=3	& target_y=2]
-	action PICK_UP
-		72 : 1
-state 62
+	action __NOLABEL__
+		60 : 1
+state 61 "((((((((((x0 = x1) & (y0 = y1)) & (hp0 != 0)) & (hp1 != 0)) | ((((x0 = x2) & (y0 = y2)) & (hp0 != 0)) & (hp2 != 0))) | ((((x1 = x0) & (y1 = y0)) & (hp1 != 0)) & (hp0 != 0))) | ((((x1 = x2) & (y1 = y2)) & (hp1 != 0)) & (hp2 != 0))) | ((((x2 = x0) & (y2 = y0)) & (hp2 != 0)) & (hp0 != 0))) | ((((x2 = x1) & (y2 = y1)) & (hp2 != 0)) & (hp1 != 0))) = true)"
 //[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=2	& hp2=1	& target_x=2	& target_y=3]
-	action PICK_UP
-		73 : 1
-state 63
-//[done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=2	& hp2=1	& target_x=3	& target_y=3]
-	action PICK_UP
-		63 : 1
-state 64
+	action __NOLABEL__
+		61 : 1
+state 62
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=1	& hp2=1	& target_x=0	& target_y=0]
 	action HIT_RIGHT
-		74 : 1
-state 65
+		69 : 1
+state 63
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=1	& hp2=1	& target_x=1	& target_y=0]
 	action HIT_RIGHT
-		75 : 1
-state 66
+		70 : 1
+state 64
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=1	& hp2=1	& target_x=2	& target_y=0]
 	action HIT_RIGHT
-		76 : 1
-state 67
+		71 : 1
+state 65
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=1	& hp2=1	& target_x=1	& target_y=1]
 	action HIT_RIGHT
-		77 : 1
-state 68
+		72 : 1
+state 66
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=1	& hp2=1	& target_x=2	& target_y=1]
 	action HIT_RIGHT
-		78 : 1
-state 69
+		73 : 1
+state 67
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=1	& hp2=1	& target_x=3	& target_y=1]
 	action HIT_RIGHT
-		79 : 1
-state 70
+		74 : 1
+state 68
 //[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=1	& hp2=1	& target_x=3	& target_y=0]
 	action LEFT
-		80 : 1
-state 71
-//[done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=2	& hp2=1	& target_x=2	& target_y=2]
-	action PICK_UP
-		71 : 1
-state 72
-//[done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=2	& hp2=1	& target_x=3	& target_y=2]
-	action PICK_UP
-		72 : 1
-state 73
-//[done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=2	& hp2=1	& target_x=2	& target_y=3]
-	action PICK_UP
-		73 : 1
-state 74
+		75 : 1
+state 69
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=1	& hp2=1	& target_x=0	& target_y=0]
 	action PICK_UP
-		52 : 1
-state 75
+		51 : 1
+state 70
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=1	& hp2=1	& target_x=1	& target_y=0]
 	action UP
-		81 : 1
-state 76
+		76 : 1
+state 71
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=1	& hp2=1	& target_x=2	& target_y=0]
 	action UP
-		82 : 1
-state 77
+		77 : 1
+state 72
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=1	& hp2=1	& target_x=1	& target_y=1]
 	action PICK_UP
-		55 : 1
-state 78
+		54 : 1
+state 73
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=1	& hp2=1	& target_x=2	& target_y=1]
 	action RIGHT
-		83 : 1
-state 79
+		78 : 1
+state 74
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=1	& hp2=1	& target_x=3	& target_y=1]
 	action RIGHT
-		84 : 1
-state 80
+		79 : 1
+state 75
 //[!done	& turn=1	& x0=0	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=1	& hp2=1	& target_x=3	& target_y=0]
 	action HIT_RIGHT
-		85 : 1
-state 81
+		80 : 1
+state 76
 //[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=0	& hp2=1	& target_x=1	& target_y=0]
 	action PICK_UP
-		86 : 1
-state 82
+		81 : 1
+state 77
 //[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=0	& hp2=1	& target_x=2	& target_y=0]
 	action PICK_UP
-		87 : 1
-state 83
+		82 : 1
+state 78
 //[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=2	& target_y=1]
 	action PICK_UP
-		88 : 1
-state 84
+		83 : 1
+state 79
 //[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=3	& target_y=1]
 	action PICK_UP
-		89 : 1
-state 85
+		84 : 1
+state 80
 //[!done	& turn=2	& x0=0	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=1	& hp2=1	& target_x=3	& target_y=0]
 	action UP
-		90 : 1
-state 86
+		85 : 1
+state 81
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=0	& hp2=1	& target_x=1	& target_y=0]
 	action HIT_RIGHT
-		91 : 1
-state 87
+		86 : 1
+state 82
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=0	& hp2=1	& target_x=2	& target_y=0]
 	action HIT_RIGHT
-		92 : 1
-state 88
+		87 : 1
+state 83
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=2	& target_y=1]
 	action HIT_RIGHT
-		93 : 1
-state 89
+		88 : 1
+state 84
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=3	& target_y=1]
 	action HIT_RIGHT
-		94 : 1
-state 90
+		89 : 1
+state 85
 //[!done	& turn=0	& x0=0	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=0	& hp2=1	& target_x=3	& target_y=0]
 	action HIT_DOWN
-		95 : 1
-state 91
+		90 : 1
+state 86
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=0	& hp2=1	& target_x=1	& target_y=0]
 	action RIGHT
-		96 : 1
-state 92
+		91 : 1
+state 87
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=0	& hp2=1	& target_x=2	& target_y=0]
 	action RIGHT
-		97 : 1
-state 93
+		92 : 1
+state 88
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=2	& target_y=1]
 	action PICK_UP
-		83 : 1
-state 94
+		78 : 1
+state 89
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=3	& target_y=1]
 	action HIT_UP
-		84 : 1
-state 95
+		79 : 1
+state 90
 //[!done	& turn=1	& x0=0	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=0	& hp2=1	& target_x=3	& target_y=0]
+	action HIT_RIGHT
+		93 : 1
+state 91
+//[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=1	& target_y=0]
+	action PICK_UP
+		94 : 1
+state 92
+//[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=2	& target_y=0]
+	action PICK_UP
+		95 : 1
+state 93
+//[!done	& turn=2	& x0=0	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=0	& hp2=1	& target_x=3	& target_y=0]
+	action RIGHT
+		96 : 1
+state 94
+//[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=1	& target_y=0]
+	action HIT_RIGHT
+		97 : 1
+state 95
+//[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=2	& target_y=0]
 	action HIT_RIGHT
 		98 : 1
 state 96
-//[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=1	& target_y=0]
-	action PICK_UP
-		99 : 1
-state 97
-//[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=2	& target_y=0]
-	action PICK_UP
-		100 : 1
-state 98
-//[!done	& turn=2	& x0=0	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=0	& y2=0	& hp2=1	& target_x=3	& target_y=0]
-	action RIGHT
-		101 : 1
-state 99
-//[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=1	& target_y=0]
-	action HIT_RIGHT
-		102 : 1
-state 100
-//[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=2	& target_y=0]
-	action HIT_RIGHT
-		103 : 1
-state 101
 //[!done	& turn=0	& x0=0	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=3	& target_y=0]
 	action HIT_DOWN
-		104 : 1
-state 102
+		99 : 1
+state 97
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=1	& target_y=0]
 	action PICK_UP
+		97 : 0.0625
+		98 : 0.0625
+		100 : 0.0625
+		101 : 0.0625
 		102 : 0.0625
 		103 : 0.0625
+		104 : 0.0625
 		105 : 0.0625
 		106 : 0.0625
 		107 : 0.0625
@@ -462,447 +447,438 @@ state 102
 		111 : 0.0625
 		112 : 0.0625
 		113 : 0.0625
-		114 : 0.0625
-		115 : 0.0625
-		116 : 0.0625
-		117 : 0.0625
-		118 : 0.0625
-state 103
+state 98
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=2	& target_y=0]
 	action PICK_UP
-		97 : 1
-state 104
+		92 : 1
+state 99
 //[!done	& turn=1	& x0=0	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=3	& target_y=0]
 	action HIT_RIGHT
-		119 : 1
-state 105
+		114 : 1
+state 100
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=0	& target_y=0]
 	action PICK_UP
-		120 : 1
-state 106
+		115 : 1
+state 101
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=3	& target_y=0]
 	action HIT_RIGHT
-		121 : 1
-state 107
+		116 : 1
+state 102
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=0	& target_y=1]
 	action PICK_UP
-		122 : 1
-state 108
+		117 : 1
+state 103
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=1	& target_y=1]
 	action PICK_UP
-		123 : 1
-state 109
+		118 : 1
+state 104
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=2	& target_y=1]
 	action PICK_UP
-		124 : 1
-state 110
+		119 : 1
+state 105
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=3	& target_y=1]
 	action RIGHT
+		120 : 1
+state 106
+//[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=0	& target_y=2]
+	action DOWN
+		121 : 1
+state 107
+//[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=1	& target_y=2]
+	action DOWN
+		122 : 1
+state 108
+//[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=2	& target_y=2]
+	action RIGHT
+		123 : 1
+state 109
+//[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=3	& target_y=2]
+	action RIGHT
+		124 : 1
+state 110
+//[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=0	& target_y=3]
+	action DOWN
 		125 : 1
 state 111
-//[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=0	& target_y=2]
+//[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=1	& target_y=3]
 	action DOWN
 		126 : 1
 state 112
-//[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=1	& target_y=2]
+//[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=2	& target_y=3]
 	action DOWN
 		127 : 1
 state 113
-//[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=2	& target_y=2]
-	action RIGHT
+//[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=3	& target_y=3]
+	action PICK_UP
 		128 : 1
 state 114
-//[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=3	& target_y=2]
-	action RIGHT
-		129 : 1
+//[!done	& turn=2	& x0=0	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=3	& target_y=0]
+	action HIT_RIGHT
+		96 : 1
 state 115
-//[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=0	& target_y=3]
-	action DOWN
-		130 : 1
+//[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=0	& target_y=0]
+	action PICK_UP
+		129 : 1
 state 116
-//[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=1	& target_y=3]
-	action DOWN
-		131 : 1
+//[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=3	& target_y=0]
+	action HIT_DOWN
+		130 : 0.6
+		131 : 0.4
 state 117
-//[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=2	& target_y=3]
-	action DOWN
+//[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=0	& target_y=1]
+	action PICK_UP
 		132 : 1
 state 118
-//[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=3	& target_y=3]
+//[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=1	& target_y=1]
 	action PICK_UP
 		133 : 1
 state 119
-//[!done	& turn=2	& x0=0	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=3	& target_y=0]
-	action HIT_RIGHT
-		101 : 1
-state 120
-//[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=0	& target_y=0]
-	action PICK_UP
-		134 : 1
-state 121
-//[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=3	& target_y=0]
-	action HIT_DOWN
-		135 : 0.6
-		136 : 0.4
-state 122
-//[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=0	& target_y=1]
-	action PICK_UP
-		137 : 1
-state 123
-//[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=1	& target_y=1]
-	action PICK_UP
-		138 : 1
-state 124
 //[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=2	& target_y=1]
 	action PICK_UP
-		139 : 1
-state 125
+		134 : 1
+state 120
 //[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=2	& y2=0	& hp2=1	& target_x=3	& target_y=1]
 	action PICK_UP
-		140 : 1
-state 126
+		135 : 1
+state 121
 //[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=0	& target_y=2]
 	action PICK_UP
-		141 : 1
-state 127
+		136 : 1
+state 122
 //[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=1	& target_y=2]
 	action PICK_UP
-		83 : 0.0625
-		84 : 0.0625
+		78 : 0.0625
+		79 : 0.0625
+		121 : 0.0625
+		122 : 0.0625
+		125 : 0.0625
 		126 : 0.0625
 		127 : 0.0625
-		130 : 0.0625
-		131 : 0.0625
-		132 : 0.0625
+		137 : 0.0625
+		138 : 0.0625
+		139 : 0.0625
+		140 : 0.0625
+		141 : 0.0625
 		142 : 0.0625
 		143 : 0.0625
 		144 : 0.0625
 		145 : 0.0625
-		146 : 0.0625
-		147 : 0.0625
-		148 : 0.0625
-		149 : 0.0625
-		150 : 0.0625
-state 128
+state 123
 //[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=2	& y2=0	& hp2=1	& target_x=2	& target_y=2]
 	action PICK_UP
-		151 : 1
-state 129
+		146 : 1
+state 124
 //[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=2	& y2=0	& hp2=1	& target_x=3	& target_y=2]
 	action PICK_UP
-		152 : 1
-state 130
+		147 : 1
+state 125
 //[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=0	& target_y=3]
 	action PICK_UP
-		153 : 1
-state 131
+		148 : 1
+state 126
 //[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=1	& target_y=3]
 	action PICK_UP
-		154 : 1
-state 132
+		149 : 1
+state 127
 //[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=2	& target_y=3]
 	action PICK_UP
-		155 : 1
-state 133
+		150 : 1
+state 128
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=3	& target_y=3]
 	action HIT_RIGHT
-		156 : 1
-state 134
+		151 : 1
+state 129
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=0	& target_y=0]
 	action HIT_RIGHT
-		105 : 1
-state 135
+		100 : 1
+state 130
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=3	& target_y=0]
 	action HIT_RIGHT
-		106 : 1
-state 136
+		101 : 1
+state 131
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=0	& x2=1	& y2=0	& hp2=1	& target_x=3	& target_y=0]
 	action HIT_RIGHT
-		157 : 1
-state 137
+		152 : 1
+state 132
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=0	& target_y=1]
 	action HIT_RIGHT
-		107 : 1
-state 138
+		102 : 1
+state 133
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=1	& target_y=1]
 	action HIT_RIGHT
-		108 : 1
-state 139
+		103 : 1
+state 134
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=2	& target_y=1]
 	action HIT_RIGHT
-		109 : 1
-state 140
+		104 : 1
+state 135
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=2	& y2=0	& hp2=1	& target_x=3	& target_y=1]
 	action HIT_RIGHT
-		158 : 1
-state 141
+		153 : 1
+state 136
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=0	& target_y=2]
 	action HIT_RIGHT
+		154 : 1
+state 137
+//[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=0	& target_y=0]
+	action PICK_UP
+		155 : 1
+state 138
+//[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=1	& target_y=0]
+	action PICK_UP
+		156 : 1
+state 139
+//[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=2	& target_y=0]
+	action PICK_UP
+		157 : 1
+state 140
+//[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=3	& target_y=0]
+	action PICK_UP
+		158 : 1
+state 141
+//[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=0	& target_y=1]
+	action PICK_UP
 		159 : 1
 state 142
-//[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=0	& target_y=0]
+//[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=1	& target_y=1]
 	action PICK_UP
 		160 : 1
 state 143
-//[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=1	& target_y=0]
+//[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=2	& target_y=2]
 	action PICK_UP
 		161 : 1
 state 144
-//[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=2	& target_y=0]
+//[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=3	& target_y=2]
 	action PICK_UP
 		162 : 1
 state 145
-//[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=3	& target_y=0]
-	action PICK_UP
+//[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=3	& target_y=3]
+	action HIT_RIGHT
 		163 : 1
 state 146
-//[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=0	& target_y=1]
-	action PICK_UP
+//[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=2	& y2=0	& hp2=1	& target_x=2	& target_y=2]
+	action HIT_RIGHT
 		164 : 1
 state 147
-//[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=1	& target_y=1]
-	action PICK_UP
+//[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=2	& y2=0	& hp2=1	& target_x=3	& target_y=2]
+	action HIT_RIGHT
 		165 : 1
 state 148
-//[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=2	& target_y=2]
-	action PICK_UP
+//[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=0	& target_y=3]
+	action HIT_RIGHT
 		166 : 1
 state 149
-//[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=3	& target_y=2]
-	action PICK_UP
+//[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=1	& target_y=3]
+	action HIT_RIGHT
 		167 : 1
 state 150
-//[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=3	& target_y=3]
+//[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=2	& target_y=3]
 	action HIT_RIGHT
 		168 : 1
 state 151
-//[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=2	& y2=0	& hp2=1	& target_x=2	& target_y=2]
-	action HIT_RIGHT
-		169 : 1
-state 152
-//[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=2	& y2=0	& hp2=1	& target_x=3	& target_y=2]
-	action HIT_RIGHT
-		170 : 1
-state 153
-//[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=0	& target_y=3]
-	action HIT_RIGHT
-		171 : 1
-state 154
-//[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=1	& target_y=3]
-	action HIT_RIGHT
-		172 : 1
-state 155
-//[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=2	& target_y=3]
-	action HIT_RIGHT
-		173 : 1
-state 156
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=0	& hp2=1	& target_x=3	& target_y=3]
 	action DOWN
-		174 : 1
-state 157
+		169 : 1
+state 152
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=0	& x2=1	& y2=0	& hp2=1	& target_x=3	& target_y=0]
 	action UP
-		175 : 1
-state 158
+		170 : 1
+state 153
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=2	& y2=0	& hp2=1	& target_x=3	& target_y=1]
 	action PICK_UP
-		125 : 1
-state 159
+		120 : 1
+state 154
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=0	& target_y=2]
 	action PICK_UP
-		126 : 1
-state 160
+		121 : 1
+state 155
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=0	& target_y=0]
+	action HIT_RIGHT
+		171 : 1
+state 156
+//[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=1	& target_y=0]
+	action HIT_RIGHT
+		172 : 1
+state 157
+//[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=2	& target_y=0]
+	action HIT_RIGHT
+		173 : 1
+state 158
+//[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=3	& target_y=0]
+	action HIT_RIGHT
+		174 : 1
+state 159
+//[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=0	& target_y=1]
+	action HIT_RIGHT
+		175 : 1
+state 160
+//[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=1	& target_y=1]
 	action HIT_RIGHT
 		176 : 1
 state 161
-//[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=1	& target_y=0]
+//[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=2	& target_y=2]
 	action HIT_RIGHT
 		177 : 1
 state 162
-//[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=2	& target_y=0]
+//[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=3	& target_y=2]
 	action HIT_RIGHT
 		178 : 1
 state 163
-//[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=3	& target_y=0]
-	action HIT_RIGHT
-		179 : 1
-state 164
-//[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=0	& target_y=1]
-	action HIT_RIGHT
-		180 : 1
-state 165
-//[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=1	& target_y=1]
-	action HIT_RIGHT
-		181 : 1
-state 166
-//[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=2	& target_y=2]
-	action HIT_RIGHT
-		182 : 1
-state 167
-//[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=3	& target_y=2]
-	action HIT_RIGHT
-		183 : 1
-state 168
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=3	& target_y=3]
 	action RIGHT
-		184 : 1
-state 169
+		179 : 1
+state 164
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=2	& y2=0	& hp2=1	& target_x=2	& target_y=2]
 	action DOWN
-		185 : 1
-state 170
+		180 : 1
+state 165
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=2	& y2=0	& hp2=1	& target_x=3	& target_y=2]
 	action DOWN
-		186 : 1
-state 171
+		181 : 1
+state 166
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=0	& target_y=3]
 	action DOWN
-		187 : 1
-state 172
+		182 : 1
+state 167
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=1	& target_y=3]
 	action PICK_UP
-		131 : 1
-state 173
+		126 : 1
+state 168
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=2	& target_y=3]
 	action PICK_UP
-		132 : 1
-state 174
+		127 : 1
+state 169
 //[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=3	& target_y=3]
 	action PICK_UP
-		150 : 1
-state 175
+		145 : 1
+state 170
 //[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=0	& x2=1	& y2=0	& hp2=1	& target_x=3	& target_y=0]
 	action LEFT
-		188 : 1
-state 176
+		183 : 1
+state 171
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=0	& target_y=0]
 	action PICK_UP
-		142 : 1
-state 177
+		137 : 1
+state 172
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=1	& target_y=0]
 	action PICK_UP
-		143 : 1
-state 178
+		138 : 1
+state 173
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=2	& target_y=0]
 	action PICK_UP
-		144 : 1
-state 179
+		139 : 1
+state 174
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=3	& target_y=0]
 	action UP
-		121 : 1
-state 180
+		116 : 1
+state 175
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=0	& target_y=1]
 	action PICK_UP
-		146 : 1
-state 181
+		141 : 1
+state 176
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=1	& target_y=1]
 	action PICK_UP
-		93 : 0.0625
-		94 : 0.0625
-		159 : 0.0625
+		88 : 0.0625
+		89 : 0.0625
+		154 : 0.0625
+		166 : 0.0625
+		167 : 0.0625
+		168 : 0.0625
+		169 : 0.0625
 		171 : 0.0625
 		172 : 0.0625
 		173 : 0.0625
 		174 : 0.0625
+		175 : 0.0625
 		176 : 0.0625
 		177 : 0.0625
 		178 : 0.0625
-		179 : 0.0625
-		180 : 0.0625
-		181 : 0.0625
-		182 : 0.0625
-		183 : 0.0625
-		189 : 0.0625
-state 182
+		184 : 0.0625
+state 177
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=2	& target_y=2]
 	action PICK_UP
-		148 : 1
-state 183
+		143 : 1
+state 178
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=3	& target_y=2]
 	action RIGHT
-		186 : 1
-state 184
+		181 : 1
+state 179
 //[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=2	& y2=1	& hp2=1	& target_x=3	& target_y=3]
 	action PICK_UP
-		190 : 1
-state 185
+		185 : 1
+state 180
 //[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=2	& y2=1	& hp2=1	& target_x=2	& target_y=2]
 	action PICK_UP
-		191 : 1
-state 186
+		186 : 1
+state 181
 //[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=2	& y2=1	& hp2=1	& target_x=3	& target_y=2]
 	action PICK_UP
-		192 : 1
-state 187
+		187 : 1
+state 182 "((((((((((x0 = x1) & (y0 = y1)) & (hp0 != 0)) & (hp1 != 0)) | ((((x0 = x2) & (y0 = y2)) & (hp0 != 0)) & (hp2 != 0))) | ((((x1 = x0) & (y1 = y0)) & (hp1 != 0)) & (hp0 != 0))) | ((((x1 = x2) & (y1 = y2)) & (hp1 != 0)) & (hp2 != 0))) | ((((x2 = x0) & (y2 = y0)) & (hp2 != 0)) & (hp0 != 0))) | ((((x2 = x1) & (y2 = y1)) & (hp2 != 0)) & (hp1 != 0))) = true)"
 //[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=2	& hp2=1	& target_x=0	& target_y=3]
-	action PICK_UP
-		193 : 1
-state 188
+	action __NOLABEL__
+		182 : 1
+state 183
 //[!done	& turn=1	& x0=0	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=0	& x2=1	& y2=0	& hp2=1	& target_x=3	& target_y=0]
 	action HIT_RIGHT
-		194 : 1
-state 189
+		188 : 1
+state 184
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=1	& hp2=1	& target_x=1	& target_y=2]
 	action PICK_UP
-		127 : 1
-state 190
+		122 : 1
+state 185
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=2	& y2=1	& hp2=1	& target_x=3	& target_y=3]
 	action HIT_RIGHT
-		195 : 1
-state 191
+		189 : 1
+state 186
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=2	& y2=1	& hp2=1	& target_x=2	& target_y=2]
 	action HIT_RIGHT
-		196 : 1
-state 192
+		190 : 1
+state 187
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=2	& y2=1	& hp2=1	& target_x=3	& target_y=2]
 	action HIT_RIGHT
-		197 : 1
-state 193
-//[done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=1	& y2=2	& hp2=1	& target_x=0	& target_y=3]
-	action PICK_UP
-		193 : 1
-state 194
+		191 : 1
+state 188
 //[!done	& turn=2	& x0=0	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=0	& x2=1	& y2=0	& hp2=1	& target_x=3	& target_y=0]
 	action HIT_UP
-		198 : 1
-state 195
+		192 : 1
+state 189
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=2	& y2=1	& hp2=1	& target_x=3	& target_y=3]
 	action DOWN
-		199 : 1
-state 196
+		193 : 1
+state 190
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=2	& y2=1	& hp2=1	& target_x=2	& target_y=2]
 	action PICK_UP
-		185 : 1
-state 197
+		180 : 1
+state 191
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=2	& y2=1	& hp2=1	& target_x=3	& target_y=2]
 	action PICK_UP
-		186 : 1
-state 198
+		181 : 1
+state 192
 //[!done	& turn=0	& x0=0	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=0	& x2=1	& y2=0	& hp2=1	& target_x=3	& target_y=0]
 	action DOWN
-		200 : 1
-state 199
+		194 : 1
+state 193
 //[!done	& turn=0	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=2	& y2=2	& hp2=1	& target_x=3	& target_y=3]
 	action PICK_UP
-		201 : 1
-state 200
+		195 : 1
+state 194
 //[!done	& turn=1	& x0=0	& y0=3	& hp0=1	& x1=1	& y1=3	& hp1=0	& x2=1	& y2=0	& hp2=1	& target_x=3	& target_y=0]
 	action HIT_RIGHT
-		202 : 1
-state 201
+		196 : 1
+state 195
 //[!done	& turn=1	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=2	& y2=2	& hp2=1	& target_x=3	& target_y=3]
 	action HIT_RIGHT
-		203 : 1
-state 202
+		197 : 1
+state 196
 //[!done	& turn=2	& x0=0	& y0=3	& hp0=1	& x1=1	& y1=3	& hp1=0	& x2=1	& y2=0	& hp2=1	& target_x=3	& target_y=0]
 	action HIT_UP
-		204 : 1
-state 203
+		198 : 1
+state 197
 //[!done	& turn=2	& x0=1	& y0=2	& hp0=1	& x1=1	& y1=3	& hp1=1	& x2=2	& y2=2	& hp2=1	& target_x=3	& target_y=3]
 	action PICK_UP
-		199 : 1
-state 204
+		193 : 1
+state 198
 //[!done	& turn=0	& x0=0	& y0=3	& hp0=1	& x1=1	& y1=3	& hp1=0	& x2=1	& y2=0	& hp2=1	& target_x=3	& target_y=0]
 	action DOWN
-		200 : 1
+		194 : 1
