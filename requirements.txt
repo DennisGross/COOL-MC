@@ -64,7 +64,6 @@ protobuf==3.19.4
 py==1.11.0
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
--e git+https://github.com/moves-rwth/pycarl.git@fcee9162a3428e8bc874e9cbff46f5ff32ccc886#egg=pycarl
 pyee==9.0.4
 Pygments==2.13.0
 PyJWT==2.4.0
@@ -90,7 +89,6 @@ six==1.16.0
 smmap==5.0.0
 SQLAlchemy==1.4.40
 sqlparse==0.4.2
--e git+https://github.com/moves-rwth/stormpy.git@5dff607d4e49ed0392f23f29736a0b41dbaaae0c#egg=stormpy
 tabulate==0.8.10
 tensorboard==2.9.1
 tensorboard-data-server==0.6.1
